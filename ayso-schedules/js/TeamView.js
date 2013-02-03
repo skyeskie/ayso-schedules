@@ -4,155 +4,150 @@ var TeamView = {
 	regions: Array("49", "105", "208", "253", "491"),
 	divisions: Array("U6", "U8", "U10", "U12", "U14", "U19"),
 	
-	showIndex: function() {
-		$('#main').empty();
-		$('#main').append("<h2>Select Team</h2>");
-		
-		$('#main').append("<div id='region-scroll'></div>");
+	init: function() {
 		for(var reg in this.regions) {
-			$('#region-scroll').append("<input type='button' value='"+this.regions[reg]+"' />");
+			$('#region-select ul').append("<li><a>"+this.regions[reg]+"</a></li>");
 		}
 		
-		$('#main').append("<div id='divis-scroll'></div>");
-		for(var div in this.divisions) {
-			$('#divis-scroll').append("<input type='button' value='"+this.divisions[div]+"' />");
-		}
-				
-		$('#main').append("<div id='gender-select'></div>");
-		$('#gender-select').append("<input type='button' value='Girls' />");
-		$('#gender-select').append("<input type='button' value='Boys' />");		
+		//Divisions
+		for(var i=0; i<4 && i<this.divisions.length; ++i)
+			$('#divis-select1 ul').append("<li><a>"+this.divisions[i]+"</a></li>");
+		if(this.divisions.length<7)
+			$('#divis-select2 ul').append("<li>&nbsp;</li>");
+		for(var i=4; i<this.divisions.length; ++i)
+			$('#divis-select2 ul').append("<li><a>"+this.divisions[i]+"</a></li>");
+		for(var i=this.divisions.length; i<7; ++i)
+			$('#divis-select2 ul').append("<li>&nbsp;</li>");
 		
-		$('#main').append("<div id='listings'>Loading...</div>");
+		$('#divis-select1 a').click(this.divisionUpdate);
+		$('#divis-select2 a').click(this.divisionUpdate);
+		$('#gender-select a').click(this.genderUpdate);
+		$('#region-select a').click(this.regionUpdate);
+	},
+	
+	showIndex: function() {
+		$('#team .results').html("Loading...");
 		
-		this.addFormListeners();
+		$('#team .ui-btn-active').removeClass('ui-btn-active');
+		
+		$('#divis-select1').data('active', null);
+		$('#gender-select').data('active', null);
+		$('#region-select').data('active', null);
+		TeamView.generateListing();
 
 		app.currentView = this.type;
+		
+		var $page = $( "#team" );
+		$page.page();
+		$.mobile.changePage( $page );
+		window.hash = "team";
 	},
 	
 	regionUpdate: function(triggerObject) {
 		var $target = $(triggerObject.target);
-		if($target.hasClass('active')) {
-			$target.removeClass('active');
-			$('#region-scroll').data('active', null);
+		if($target.hasClass('ui-btn-active')) {
+			$target.removeClass('ui-btn-active');
+			$('#region-select').data('active', null);
 		} else {
-			$('#region-scroll .active').removeClass('active');
-			$target.addClass('active');
-			$('#region-scroll').data('active', $target.val());
+			$('#region-select .ui-btn-active').removeClass('ui-btn-active');
+			$target.addClass('ui-btn-active');
+			$('#region-select').data('active', $target.text());
 		}
 		TeamView.generateListing();
 	},
 	
 	divisionUpdate: function(triggerObject) {
 		var $target = $(triggerObject.target);
-		if($target.hasClass('active')) {
-			$target.removeClass('active');
-			$('#divis-scroll').data('active', null);
+		if($target.hasClass('ui-btn-active')) {
+			$target.removeClass('ui-btn-active');
+			$('#divis-select1').data('active', null);
 		} else {
-			$('#divis-scroll .active').removeClass('active');
-			$target.addClass('active');
-			$('#divis-scroll').data('active', $target.val());
+			$('#divis-select1 .ui-btn-active').removeClass('ui-btn-active');
+			$('#divis-select2 .ui-btn-active').removeClass('ui-btn-active');
+			$target.addClass('ui-btn-active');
+			$('#divis-select1').data('active', $target.text());
 		}
 		TeamView.generateListing();
 	},
 	
 	genderUpdate: function(triggerObject) {
 		var $target = $(triggerObject.target);
-		if($target.hasClass('active')) {
+		if($target.hasClass('ui-btn-active')) {
 			$('#gender-select').data('active', null);
-			$('#gender-select .active').removeClass('active');
+			$('#gender-select .ui-btn-active').removeClass('ui-btn-active');
 		} else {
-			$('#gender-select .active').removeClass('active');
-			$target.addClass('active');
-			$('#gender-select').data('active', $target.val());
+			$('#gender-select .ui-btn-active').removeClass('ui-btn-active');
+			$target.addClass('ui-btn-active');
+			$('#gender-select').data('active', $target.text());
 		}
-		TeamView.generateListing();
-	},
-	
-	addFormListeners: function() {
-		$('#divis-scroll input').click(this.divisionUpdate);
-		$('#gender-select input').click(this.genderUpdate);
-		$('#region-scroll input').click(this.regionUpdate);
-		$('#divis-scroll').data('active', null);
-		$('#gender-select').data('active', null);
-		$('#region-scroll').data('active', null);
 		TeamView.generateListing();
 	},
 	
 	generateListing: function() {
 		app.store.findTeams(this.updateListing,
-				$('#region-scroll').data('active'),
-				$('#divis-scroll').data('active'),
+				$('#region-select').data('active'),
+				$('#divis-select1').data('active'),
 				$('#gender-select').data('active'));
 	},
 	
 	updateListing: function(rows) {
-		$("#listings").empty();
+		$("#team .results").empty();
 		if(rows.length==0) {
-			$("#listings").append("No teams found.");
+			$("#team .results").append("No teams found.");
 		}
 		
 		for(var i=0; i<rows.length; ++i) {
 			var val = rows.item(i).Home;
-			$("#listings").append("<div><a href='#team/"+val+"'>"+val+"</a></div>");
+			$("#team .results").append("<div><a href='index.html#team?"+val+"'>"+val+"</a></div>");
 		}
+		$("#team").page();
 	},
 	
 	teamRegEx: /^(\d)(\d)(\d{1,2})([GBC])$/i,
 	
-	teamHeader: function(team) {
-		var html = "<div id='team-header'>";
-		
-		var match = team.match(this.teamRegEx);
-		
-		if(!match) {
-			html += "Schedule for "+team+"</div>";
-			return html;
-		}
-		
-		html += "Region ";
-		switch(Number(match[1])) {
-			case 1: html +=  "49"; break;
-			case 2: html += "105"; break;
-			case 4: html += "208"; break;
-			case 5: html += "253"; break;
-			case 6: html += "491"; break;
-			default:html += "???"; break;
-		}
-		
-		html += ". ";
-		
-		switch(Number(match[2])) {
-			case 1: html += "U19"; break;
-			case 2: html += "U16"; break;
-			case 3: html += "U14"; break;
-			case 4: html += "U12"; break;
-			case 5: html += "U10"; break;
-			case 6: html += "U08"; break;
-			case 7: html += "U06"; break;
-			case 8: html += "U05"; break;
-			default: html += match[2]; break;
-		}
-		
-		html += " ";
-		
-		switch(match[4]) {
-		case "G": html += "Girls"; break;
-		case "B": html += "Boys"; break;
-		case "C": html += "Coed"; break;
-		}
-		
-		html += ". Team " + team;
-		return html;
-	},
-	
 	showDetail: function(team) {
-		$('#main').empty();
-		$('#main').append(this.teamHeader(team));
+		$('#team-detail .listing').empty();
+		$('#team-detail h2 span').html(team);
+		$('#team-detail ul').html("<li><em>Loading...</em></li>");
+		
 		app.store.findByTeam(team, function(rows) {
-			app.PrintTableList(Array("Date", "Time", "Field", "", "Opponent"),
-					rows, Array("Jour", "Heur", "Field", "HA", "Opponent"));
+			$('#team-detail ul').replaceWith(
+				'<ul data-role="listview" data-theme="c" data-inset="true"></ul>'
+			);
+			
+			if(rows.length==0) {
+				$('#team-detail ul').html("<li>No results</li>");
+			}
+			
+			for(var i=0; i<rows.length; ++i) {
+				var game = rows.item(i);
+				
+				var datetime = game.Jour.replace(/^\d{4}\-0?/, "");
+				var opponent, field;
+				if(game.Opponent=="-") {
+					opponent = "Bye";
+					field = "&nbsp;";
+				} else {
+					datetime += " &nbsp;&nbsp;" + game.Heur.replace(/:00$/, "");
+					opponent = game.HA+" "+game.Opponent;
+					field = "Region " + game.Field;
+				}
+				
+				$('#team-detail ul').append("<li>" +
+					"<h3 class='width50'>"+datetime+"</h3>" +
+					"<h3 class='width50'>"+opponent+"</h3>" +
+					"<p>"+field+"</p>" +
+				"</li>");
+			}
+			
+			$('#team-detail ul').listview();
 		});
 		
 		app.currentView = this.type;
+		
+		var $page = $( "#team-detail" );
+		$page.page();
+		$.mobile.changePage( $page );
+		window.hash = "team?" + team;
 	}
 };

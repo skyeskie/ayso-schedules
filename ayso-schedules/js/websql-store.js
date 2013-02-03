@@ -28,6 +28,7 @@ var WebSqlStore = function(successCallback, errorCallback) {
     };
 
     this.createTable = function(tx) {
+    	console.log("createTable");
 		//Remove existing table
         tx.executeSql('DROP TABLE IF EXISTS games');
         tx.executeSql("CREATE TABLE IF NOT EXISTS `games` ("
@@ -46,11 +47,13 @@ var WebSqlStore = function(successCallback, errorCallback) {
     };
 
     this.addSampleData = function(tx) {
+    	console.log("Adding sample data");
         insertGamesData(tx);
         console.log('Data added');
     };
     
     this.countWeeks = function(callback) {
+    	console.log("countWeeks");
     	this.db.transaction(
     		function(tx) {
     			var sql = "SELECT MAX(Week) AS nweeks FROM games LIMIT 1";
@@ -69,6 +72,7 @@ var WebSqlStore = function(successCallback, errorCallback) {
     };
 
     this.findByWeek = function(weekNum, callback) {
+    	console.log("findByWeek");
         this.db.transaction(
             function(tx) {
                 var sql = "SELECT * FROM games " +

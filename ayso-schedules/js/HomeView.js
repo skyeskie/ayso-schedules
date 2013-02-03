@@ -1,16 +1,18 @@
 var HomeView = {
 	type: "index",
 	
-	html: "<ul class='main'>" +
-			"<li><a href='#week'>By week</a></li>" +
-			"<li><a href='#field'>By field</a></li>" +
-			"<li><a href='#team'>By team</a></li>" +
-		  "</ul>",
+	pageContainer: "#index",
 	
 	printView: function() {
+		console.log("Running HomeView.printView()");
+		
+		var $page = $( this.pageContainer);
+		
 		console.log("Printing index");
-		$('#main').empty();
-		$('#main').append(this.html);
+		$page.page();
+		
+		$.mobile.changePage( $page );
 		app.currentView = this.type;
+		window.hash = "index";
 	}
 };

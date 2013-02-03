@@ -4,8 +4,8 @@
 	<title>AYSO Schedules</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<!-- <link rel="stylesheet" type="text/css" href="css/styles.css"> -->
-	<link rel="stylesheet" type="text/css" href="lib/jquery.mobile/jquery.mobile-1.2.0.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="lib/jquery.mobile/jquery.mobile-1.2.0.css" />
 	
 	<script src="lib/jquery-1.8.2.min.js"></script>
 	
@@ -15,13 +15,66 @@
 </head>
 <body>
 
-<div data-role="header" data-id="pageheader" data-position="fixed"> 
-	<a href="index.html#" data-icon="back"></a>
-	<h1><a href="#">Schedules</a></h1>
-	<a href="index.html#options" data-icon="gear"></a>
+<div id="site-header">
+	<div data-role="header" data-id="pageheader" data-position="fixed">
+		<a class="home" data-icon="home" data-iconpos="notext" href="#index">Home</a>
+		<h1>Ayso Schedules</h1>
+	</div>
 </div>
 
-<div id="main" data-role="page"></div>
+<div id="main">(INIT)</div>
+
+<div id="index" data-role="page" class="page">
+	<div data-role="controlgroup">
+		<a href='#week' data-role="button">By week</a>
+		<a href='#team' data-role="button">By team</a>
+	</div>
+</div>
+
+<div id="team" data-role="page" class="page">
+	<div class="ui-bar ui-bar-d">Filter Teams</div>
+	<div class="filters" id="region-select" data-role="navbar">
+		<ul></ul>
+	</div>
+	
+	<div class="filters" id="divis-select1" data-role="navbar">
+		<ul></ul>
+	</div>
+	
+	<div class="filters" id="divis-select2" data-role="navbar">
+		<ul></ul>
+	</div>
+	
+	<div class="filters" id="gender-select" data-role="navbar">
+	<ul>
+		<li><a>Boys</a></li>
+		<li><a>Girls</a></li>
+		<!-- <li><a>Coed</a></li> -->
+	</ul>
+	</div>
+	
+	<div class="ui-bar ui-bar-d">Select Team</div>
+	<div class="results">
+	</div>
+</div>
+
+<div id="team-detail" data-role="page" class="page">
+	<div class="ui-bar ui-bar-d">
+		<h2>Team <span></span> Schedule</h2>	
+	</div>
+	
+	<ul data-role="listview" data-theme="c"></ul>
+</div>
+
+<div id="week" data-role="page" class="page">
+	<div data-role="header" data-theme="c">
+		<a class="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+		<h2>Week <span>#</span></h2>
+		<a class="next" data-icon="arrow-r" data-iconpos="notext">Next</a>
+	</div>
+	
+	<ul data-role="listview" data-theme="c"></ul>
+</div>
 
 <script src="js/games-data.js"></script>
 <script src="js/websql-store.js"></script>
