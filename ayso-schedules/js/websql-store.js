@@ -12,7 +12,7 @@ var WebSqlStore = function(successCallback, errorCallback) {
 				//Create database
                 function(tx) {
                     self.createTable(tx);
-                    self.addSampleData(tx);
+                    //self.addSampleData(tx);
                 },
 				
 				function(error) {
@@ -30,7 +30,7 @@ var WebSqlStore = function(successCallback, errorCallback) {
     this.createTable = function(tx) {
     	console.log("createTable");
 		//Remove existing table
-        tx.executeSql('DROP TABLE IF EXISTS games');
+        //tx.executeSql('DROP TABLE IF EXISTS games');
         tx.executeSql("CREATE TABLE IF NOT EXISTS `games` ("
   			+ " `ID` int(11) NOT NULL DEFAULT '0',"
   			+ " `Field` text NOT NULL,"
@@ -53,7 +53,6 @@ var WebSqlStore = function(successCallback, errorCallback) {
     };
     
     this.countWeeks = function(callback) {
-    	console.log("countWeeks");
     	this.db.transaction(
     		function(tx) {
     			var sql = "SELECT MAX(Week) AS nweeks FROM games LIMIT 1";
@@ -140,10 +139,10 @@ var WebSqlStore = function(successCallback, errorCallback) {
     this.findByTeam = function(team, callback) {
     	this.db.transaction(
     		function(tx) {
-    			var sql = "SELECT Jour, Heur, Field, 'vs' AS HA, away AS Opponent " +
+    			var sql = "SELECT ID, Jour, Heur, Field, 'vs' AS HA, away AS Opponent " +
     					" FROM games WHERE Home = '"+team+"' " +
     					" UNION " +
-    					" SELECT Jour, Heur, Field, 'at' AS HA, home AS Opponent " +
+    					" SELECT ID, Jour, Heur, Field, 'at' AS HA, home AS Opponent " +
     					" FROM games WHERE Away = '"+team+"' ORDER BY Jour, Heur ASC";
     			
     			console.log(sql);
@@ -157,31 +156,15 @@ var WebSqlStore = function(successCallback, errorCallback) {
     	);
     };
     
-    this.getFieldList = function(callback) {
-    	this.db.transaction(
-	        function(tx) {
-	            var sql = "SELECT DISTINCT field FROM games WHERE field <> 'Bye'";
-	            
-	            tx.executeSql(sql, [], function(tx, results) {
-	            	callback(results.rows);
-	            });
-	        },
-            this.transactionError
-       );
-    };
-
-    this.findByField = function(fieldNum, callback) {
-        this.db.transaction(
-            function(tx) {
-                var sql = "SELECT * FROM games WHERE field = '"+ decodeURI(fieldNum) + "'" +
-                		" ORDER BY Jour ASC, Heur ASC";
-
-                tx.executeSql(sql, [], function(tx, results) {
-                    callback(results.rows);
-                });
-            },
-            this.transactionError
-        );
+    this.getGameDetail = function(gameID, callback) {
+    	this.db.transaction(function(tx) {
+    		var sql = "SELECT * FROM games WHERE ID = '"+gameID+"'";
+    		
+    		tx.executeSql(sql, [], function(tx, results) {
+    			callback(results.rows);
+    		});
+    	},
+    	this.transactionError);
     };
     
     this.initializeDatabase(successCallback, errorCallback);

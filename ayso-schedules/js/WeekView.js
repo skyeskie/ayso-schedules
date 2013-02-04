@@ -1,9 +1,8 @@
 var WeekView = {
 	type: "week",
 	
-	_maxWeeks: null,
 	maxWeeks: function() { 
-		return this._maxWeeks;
+		return app.data.getMaxWeeks();
 	},
 	
 	showIndex: function() {
@@ -30,7 +29,7 @@ var WeekView = {
 			$("#week a.next").hide();
 		}
 		
-		app.store.findByWeek(week, function(rows) {
+		app.db.findByWeek(week, function(rows) {
 			$('#week ul').replaceWith(
 				'<ul data-role="listview" data-theme="c"></ul>'
 			);
@@ -62,10 +61,10 @@ var WeekView = {
 					lastTime = time;
 				}
 				
-				$('#week ul').append("<li>" +
-					"<h3 class='width40'>"+game.Field+"</p>" +
-					"<h3 class='width60 ta-right'>"+matchup+"</p>" +
-				"</li>");
+				$('#week ul').append("<li><a href='#game?" + game.ID + "'>" +
+					"<h3 class='width40'>"+game.Field+"</h3>" +
+					"<h3 class='width60 ta-right'>"+matchup+"</h3>" +
+				"</a></li>");
 			}
 			
 			var byelist = "";
@@ -74,6 +73,7 @@ var WeekView = {
 				byelist += byes[i];
 			}
 			
+			//Prepend, so reverse order
 			$('#week ul').prepend("<li>"+byelist+"</li>");
 			$('#week ul').prepend('<li data-role="list-divider">Byes</li>');
 			

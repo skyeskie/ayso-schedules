@@ -76,12 +76,37 @@
 	<ul data-role="listview" data-theme="c"></ul>
 </div>
 
+<div id="game" data-role="page" class="page">
+	<ul data-role="listview">
+		<li><span id="game-date"></span> at <span id="game-time"></span></li>
+		
+		<li>
+			<strong>Home:</strong> <span id="game-home"></span><br />
+			<strong>Away:</strong> <span id="game-away"></span>
+		</li>
+		
+		<li><a href="#region">
+			<strong>Region</strong> <span id="game-region"></span>
+			<span class="ui-li-aside">Click for directions</span>
+		</a></li>
+		
+		<li><a href="#field">
+			<strong>Field</strong> <span id="game-field"></span>
+			<span class="ui-li-aside">Click for field map</span>
+		</a></li>
+	
+	</ul>
+
+
+</div>
+
 <script src="js/games-data.js"></script>
 <script src="js/websql-store.js"></script>
+<script src="js/DataControl.js"></script>
 <script src="js/HomeView.js"></script>
 <script src="js/WeekView.js"></script>
 <script src="js/TeamView.js"></script>
-<script src="js/FieldView.js"></script>
+<script src="js/GameView.js"></script>
 <script src="js/main.js"></script>
 
 </body>

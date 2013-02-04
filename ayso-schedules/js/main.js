@@ -1,21 +1,27 @@
 var app = {
 	currentView: null,
 	
+	reset: function() {
+		console.log("RESET called. Forcing full data download.");
+        window.localStorage.removeItem("init");
+	},
+	
     initialize: function() {
     	console.log("Initializing App");
-        this.store = new WebSqlStore();
-        TeamView.init();
+    	
+        this.db = new WebSqlStore();
+        this.data = new DataControl();
         
-        console.log("Calling 'countWeeks'");
-        app.store.countWeeks(
-			function(num) {
-				console.log("Setting "+num);
-				WeekView._maxWeeks = num;
-				
-				//Refresh if we're in WeekView
-				//if(app.currentView==WeekView.type) app.route();
-			}
-		);//*/
+        //Uncomment to force full data update
+        //this.reset();
+        
+        TeamView.init(); //Populate filter objects
+                
+        if(this.data.isAppSetup()) {
+        	this.data.updateData();
+        } else {
+        	this.data.downloadInitialData();
+        }
         
         console.log("Registering events");
         
@@ -97,6 +103,11 @@ var app = {
 	        		else TeamView.showDetail(offset);
 	        	break;
 	       
+	        case GameView.type:
+	        	if(isIndex) GameView.showIndex();
+        			else GameView.showDetail(offset);
+	        	break;
+	        	
 	        default:
 	        	console.log("Error: unexpected page type.");
 	        	HomeView.printView();

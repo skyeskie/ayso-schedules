@@ -84,7 +84,7 @@ var TeamView = {
 	},
 	
 	generateListing: function() {
-		app.store.findTeams(this.updateListing,
+		app.db.findTeams(this.updateListing,
 				$('#region-select').data('active'),
 				$('#divis-select1').data('active'),
 				$('#gender-select').data('active'));
@@ -110,7 +110,7 @@ var TeamView = {
 		$('#team-detail h2 span').html(team);
 		$('#team-detail ul').html("<li><em>Loading...</em></li>");
 		
-		app.store.findByTeam(team, function(rows) {
+		app.db.findByTeam(team, function(rows) {
 			$('#team-detail ul').replaceWith(
 				'<ul data-role="listview" data-theme="c" data-inset="true"></ul>'
 			);
@@ -133,11 +133,11 @@ var TeamView = {
 					field = "Region " + game.Field;
 				}
 				
-				$('#team-detail ul').append("<li>" +
+				$('#team-detail ul').append("<li><a href='#game?" + game.ID + "'>" +
 					"<h3 class='width50'>"+datetime+"</h3>" +
 					"<h3 class='width50'>"+opponent+"</h3>" +
 					"<p>"+field+"</p>" +
-				"</li>");
+				"</a></li>");
 			}
 			
 			$('#team-detail ul').listview();
