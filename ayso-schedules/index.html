@@ -33,19 +33,19 @@
 
 <div id="team" data-role="page" class="page">
 	<div class="ui-bar ui-bar-d">Filter Teams</div>
-	<div class="filters" id="region-select" data-role="navbar">
+	<div class="filters region-select" data-role="navbar">
 		<ul></ul>
 	</div>
 	
-	<div class="filters" id="divis-select1" data-role="navbar">
+	<div class="filters divis-select1" data-role="navbar">
 		<ul></ul>
 	</div>
 	
-	<div class="filters" id="divis-select2" data-role="navbar">
+	<div class="filters divis-select2" data-role="navbar">
 		<ul></ul>
 	</div>
 	
-	<div class="filters" id="gender-select" data-role="navbar">
+	<div class="filters gender-select" data-role="navbar">
 	<ul>
 		<li><a>Boys</a></li>
 		<li><a>Girls</a></li>
@@ -98,6 +98,40 @@
 	</ul>
 
 
+</div>
+
+<div id="setup" data-role="page">
+	<img src="img/AYSO.gif" alt="AYSO" width="100%" />
+	
+	<div id="setup-status">
+	<p>Initializing setup...</p>
+	<div id="progressbar"></div>
+	</div>
+		
+	<fieldset data-role="controlgroup">
+		<legend>Select Region:</legend>
+	     	<input type="radio" name="radio-region" id="radio-49" value="49" />
+	     	<label for="radio-49">Region 49 (Stryker)</label>
+	
+	     	<input type="radio" name="radio-region" id="radio-105" value="105"  />
+	     	<label for="radio-105">Region 105 (Southview)</label>
+	
+	     	<input type="radio" name="radio-region" id="radio-208" value="208"  />
+	     	<label for="radio-208">Region 208 (West Wichita)</label>
+	
+	     	<input type="radio" name="radio-region" id="radio-253" value="253"  />
+	     	<label for="radio-253">Region 253 (Valley Center)</label>
+	     	
+	     	<input type="radio" name="radio-region" id="radio-491" value="491"  />
+	     	<label for="radio-491">Region 491 (Clearwater)</label>
+	</fieldset>
+	
+	<button id="setup-finish">Finish</button>
+</div>
+
+<div id="error" data-role="page" data-theme="e">
+	<h2>Setup error</h2>
+	<p id="message">An error occured during setup.</p>
 </div>
 
 <script src="js/games-data.js"></script>

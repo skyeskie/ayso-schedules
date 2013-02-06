@@ -15,10 +15,7 @@ var WebSqlStore = function(successCallback, errorCallback) {
                     //self.addSampleData(tx);
                 },
 				
-				function(error) {
-                    console.log('Transaction error: ' + error);
-                    if (errorCallback) errorCallback();
-                },
+                this.transactionError,
 				
                 function() {
                     console.log('Transaction success');
@@ -30,20 +27,29 @@ var WebSqlStore = function(successCallback, errorCallback) {
     this.createTable = function(tx) {
     	console.log("createTable");
 		//Remove existing table
-        //tx.executeSql('DROP TABLE IF EXISTS games');
+        tx.executeSql('DROP TABLE IF EXISTS games');
         tx.executeSql("CREATE TABLE IF NOT EXISTS `games` ("
-  			+ " `ID` int(11) NOT NULL DEFAULT '0',"
+  			+ " `ID` int(11) PRIMARY KEY,"
   			+ " `Field` text NOT NULL,"
   			+ " `Week` int(11) NOT NULL DEFAULT '0',"
   			+ " `Jour` date NOT NULL DEFAULT '0000-00-00',"
   			+ " `Heur` time NOT NULL DEFAULT '00:00:00',"
   			+ " `Divis` text NOT NULL,"
   			+ " `Away` text NOT NULL,"
-  			+ " `Home` text NOT NULL,"
-  			+ " `RefLead` text NOT NULL,"
-  			+ " `RefAsst1` text NOT NULL,"
-  			+ " `RefAsst2` text NOT NULL"
+  			+ " `Home` text NOT NULL"
+  			//+ " `RefLead` text NOT NULL,"
+  			//+ " `RefAsst1` text NOT NULL,"
+  			//+ " `RefAsst2` text NOT NULL"
   			+ " ) ");
+        
+        tx.executeSql("CREATE TABLE IF NOT EXISTS `coaches` ("
+  			+ "  `ID` int(11) PRIMARY KEY,"
+  			+ "  `Divis` text NOT NULL,"
+  			+ "  `TeamNo` text NOT NULL,"
+  			+ "  `Coach` text NOT NULL,"
+  			+ "  `Phone` text NOT NULL"
+  			+ " ) "
+  		);
     };
 
     this.addSampleData = function(tx) {
@@ -74,9 +80,13 @@ var WebSqlStore = function(successCallback, errorCallback) {
     	console.log("findByWeek");
         this.db.transaction(
             function(tx) {
+            	var r = DataControl.regionToID(DataControl.getRegion());
+            	if(r==null) r = "";
+            	
                 var sql = "SELECT * FROM games " +
-                		" WHERE Week = "+Number(weekNum)+
-                		" ORDER BY Heur ASC";
+            		" WHERE Week = "+Number(weekNum) +
+            		" AND ( Home LIKE '"+r+"%' OR Away LIKE '"+r+"%')" +
+            		" ORDER BY Heur ASC";
 
                 tx.executeSql(sql, [],
                 	function(tx, results) {
@@ -96,27 +106,10 @@ var WebSqlStore = function(successCallback, errorCallback) {
     	if(gender=='Coed')  g = 'C';
     	
     	var reg = '_';
-    	switch(region) {
-	    	case  null: reg = '_'; break;
-	    	case '49': reg = '1'; break;
-	    	case '105': reg = '2'; break;
-	    	case '208': reg = '4'; break;
-	    	case '253': reg = '5'; break;
-	    	case '491': reg = '6'; break;
-    	}
+    	if(region!=null) reg = DataControl.regionToID(region);
     	
     	var div = '_';
-    	switch(divis) {
-	    	case  null: div = '_'; break;
-	    	case  "U5": div = '8'; break;
-	    	case  "U6": div = '7'; break;
-	    	case  "U8": div = '6'; break;
-	    	case "U10": div = '5'; break;
-	    	case "U12": div = '4'; break;
-	    	case "U14": div = '3'; break;
-	    	case "U16": div = '2'; break;
-	    	case "U19": div = '1'; break;
-    	}
+    	if(divis!=null) div = DataControl.divisionToCode(divis);
     	
     	this.db.transaction(
     		function(tx) {

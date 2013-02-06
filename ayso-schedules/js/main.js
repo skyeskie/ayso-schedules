@@ -1,33 +1,59 @@
 var app = {
 	currentView: null,
+	regions: Array("49", "105", "208", "253", "491"),
+	divisions: Array("U6", "U8", "U10", "U12", "U14", "U19"),
 	
 	reset: function() {
 		console.log("RESET called. Forcing full data download.");
         window.localStorage.removeItem("init");
 	},
 	
-    initialize: function() {
-    	console.log("Initializing App");
-    	
-        this.db = new WebSqlStore();
-        this.data = new DataControl();
-        
-        //Uncomment to force full data update
-        //this.reset();
-        
-        TeamView.init(); //Populate filter objects
-                
-        if(this.data.isAppSetup()) {
-        	this.data.updateData();
-        } else {
-        	this.data.downloadInitialData();
-        }
-        
-        console.log("Registering events");
-        
-        //jQueryMobile hooking
+	initPage: null,
+	firstRoute: true,
+	
+	formsInit: function() {
+		//Regions filter
+		for(var reg in this.regions) {
+			$('.region-select ul').append("<li><a>"+this.regions[reg]+"</a></li>");
+		}
+		
+		//Divisions filter
+		for(var i=0; i<4 && i<this.divisions.length; ++i)
+			$('.divis-select1 ul').append("<li><a>"+this.divisions[i]+"</a></li>");
+		if(this.divisions.length<7)
+			$('.divis-select2 ul').append("<li>&nbsp;</li>");
+		for(var i=4; i<this.divisions.length; ++i)
+			$('.divis-select2 ul').append("<li><a>"+this.divisions[i]+"</a></li>");
+		for(var i=this.divisions.length; i<7; ++i)
+			$('.divis-select2 ul').append("<li>&nbsp;</li>");
+	},
+	
+	addListeners: function() {
+		//TeamView
+		$('#team .divis-select1 a').click(TeamView.divisionUpdate);
+		$('#team .divis-select2 a').click(TeamView.divisionUpdate);
+		$('#team .gender-select a').click(TeamView.genderUpdate);
+		$('#team .region-select a').click(TeamView.regionUpdate);
+		
+		//Setup
+		$("#setup :radio").change(DataControl.setupButtonControl);
+		$("#setup-status p").change(DataControl.setupButtonControl);
+		$("#setup-finish").click(DataControl.setupButtonClick);
+		$("#setup-finish").prop("disabled", true);
+	},
+	
+	addRoutingHook: function() {
+		//jQueryMobile hooking
         $(document).bind( "pagebeforechange", function( e, data ) {
         	console.log("Running pagebeforechange");
+        	if(app.firstRoute) {
+        		//First run -- we want to call route
+        		console.log("Interceptiong first routing call");
+        		app.firstRoute = false;
+        		app.route(null);
+        		e.preventDefault();
+        	}
+        	
         	if(typeof data.toPage === "string" ) {
         		var u = $.mobile.path.parseUrl( data.toPage );
 
@@ -39,15 +65,40 @@ var app = {
         			// Kill jQueryMobile's auto-processing
         			e.preventDefault();
         		} else console.log("URL["+u.href+"] is not processable");
-        	} else if(data.toPage[0].id == "main") {
-        		//First run -- we want to call route
-        		app.route({hash: window.hash});
-        		e.preventDefault();
         	}
         });
+	},
+	
+    initialize: function() {
+    	console.log("Initializing App");
+    	
+        this.db = new WebSqlStore();
+        this.data = DataControl;
         
-        //Setup page headers
+        //Uncomment to force full data update
+        this.reset();
+        
+        console.log("Setup page headers");
         $('.page').prepend($("#site-header").html());
+        
+        console.log("Populating filters");
+        this.formsInit();
+        
+        console.log("Registering events");
+        this.addListeners();
+        this.addRoutingHook();
+        
+        //Determine page to go to
+        if(this.data.isAppSetup()) {
+        	this.data.updateData();
+        	this.initPage = "index";
+        } else {
+        	console.log("Routing to first run setup");
+        	this.initPage = "setup";
+        	$( document ).delegate("#setup", "pageinit", function() {
+        		DataControl.downloadInitialData();
+    		});
+        }
     },
     
 	indexURL:  /^#([\w\-_]+)$/,
@@ -58,7 +109,19 @@ var app = {
 	
     route: function(urlObject, options) {
     	console.log("Running route function");
-        var hash = urlObject.hash;
+    	var hash;
+    	if(urlObject == null)
+    		hash = this.initPage;
+    	else
+    		hash = urlObject.hash;
+        
+    	if( hash == "setup" ) {
+    		var $page = $( "#setup" );
+    		$page.page();
+    		$.mobile.changePage( $page );
+    		return;
+    	}
+    	
         if (!hash || hash == "index" || hash == "") {
             HomeView.printView();
             return;
