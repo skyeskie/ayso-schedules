@@ -3,6 +3,8 @@ var DataControl = {
 	
 	lastData: null,
 	
+	savedTeams: null,
+	
 	isAppSetup: function() {
 		var init = window.localStorage.getItem("init");
 		
@@ -175,6 +177,37 @@ var DataControl = {
 		return window.localStorage.getItem("region");
 	},
 	
+	//MyTeams functions
+	populateSavedTeams: function() {
+		if(window.localStorage.getItem("savedTeams")==null) {
+			window.localStorage.setItem("savedTeams", "");
+		}
+				
+		this.savedTeams = window.localStorage.getItem("savedTeams").split(",");
+		
+	},
+	
+	storeSavedTeams: function() {
+		if(this.savedTeams==null) return;
+		window.localStorage.setItem("savedTeams", this.savedTeams.join());
+	},
+	
+	saveTeam: function(team) {
+		if(this.isTeamSaved(team)) return;
+		this.savedTeams.push(team);
+		this.storeSavedTeams();
+	},
+	
+	unSaveTeam: function(team) {
+		if(!this.isTeamSaved(team)) return;
+		this.savedTeams.splice(this.savedTeams.indexOf(team), 1);
+		this.storeSavedTeams();
+	},
+	
+	isTeamSaved: function(team) {
+		if(this.savedTeams==null) this.populateSavedTeams();
+		return (-1 != this.savedTeams.indexOf(team));
+	},
 	
 	//Conversion functions
 	regionToID: function(region) {

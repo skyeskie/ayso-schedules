@@ -15,19 +15,23 @@
 </head>
 <body>
 
+<div id="main" data-role="page">
 <div id="site-header">
-	<div data-role="header" data-id="pageheader" data-position="fixed">
+	<div data-role="header" data-id="pageheader" class="pageheader" data-position="fixed">
 		<a class="home" data-icon="home" data-iconpos="notext" href="#index">Home</a>
 		<h1>Ayso Schedules</h1>
 	</div>
 </div>
 
-<div id="main">(INIT)</div>
+(INIT)
+</div>
 
 <div id="index" data-role="page" class="page">
 	<div data-role="controlgroup">
-		<a href='#week' data-role="button">By week</a>
-		<a href='#team' data-role="button">By team</a>
+		<a href='#week' data-role="button">View Week</a>
+		<a href='#team' data-role="button">Find Team</a>
+		<a href="#divis" data-role="button">Advanced Filter</a>
+		<a href="#favorites" data-role="button">My teams</a>
 	</div>
 </div>
 
@@ -54,16 +58,83 @@
 	</div>
 	
 	<div class="ui-bar ui-bar-d">Select Team</div>
-	<div class="results">
+	<div class="grid-b results">
+		<ul data-role="listview" class="ui-block-a" data-inset="true"></ul>
+		<ul data-role="listview" class="ui-block-b" data-inset="true"></ul>
+		<ul data-role="listview" class="ui-block-c" data-inset="true"></ul>
 	</div>
 </div>
 
 <div id="team-detail" data-role="page" class="page">
-	<div class="ui-bar ui-bar-d">
-		<h2>Team <span></span> Schedule</h2>	
+	<div>Team <span class="team"></span>
+	<!-- <button class="myteam" data-icon="star" data-iconpos="notext">Favorite</button> -->
+		<label for="flip-team">Save Team:</label>
+		<select name="flip-team" id="flip-team" data-role="slider" data-mini="true">
+			<option value="off">No</option>
+			<option value="on">Yes</option>
+		</select> 
+	<div>
+	<span class="coach">- Coach </span>
+	<a class="tel" href="#" data-role="button" data-mini="true"
+		data-inline="true" data-icon="arrow-r" data-iconpos="right">Call</a>
+	</div>
 	</div>
 	
 	<ul data-role="listview" data-theme="c"></ul>
+</div>
+
+<div id="divis" data-role="page" class="page">
+<div class="ui-bar ui-bar-d">Select Filter</div>
+	Region:
+	<div class="filters region-select" data-role="navbar">
+		<ul></ul>
+	</div>
+	
+	Division:
+	<div class="filters divis-select1" data-role="navbar">
+		<ul></ul>
+	</div>
+	
+	<div class="filters divis-select2" data-role="navbar">
+		<ul></ul>
+	</div>
+	
+	Gender:
+	<div class="filters gender-select" data-role="navbar">
+	<ul>
+		<li><a>Boys</a></li>
+		<li><a>Girls</a></li>
+		<!-- <li><a>Coed</a></li> -->
+	</ul>
+	</div>
+	
+	<label for="slider-fill">Week:</label><br />
+	<input type="range" name="slider-week" id="slider-week"
+		value="1" min="1" max="9" data-highlight="true" />
+		
+	<button id="divis-submit">Go</button>
+</div>
+
+<div id="games-list" data-role="page" class="page">
+	<div class="subheader ui-bar ui-bar-d">
+		<h2></h2>	
+	</div>
+	<div class="week-bar" data-role="header" data-theme="c">
+		<a class="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+		<h2>Week <span>#</span></h2>
+		<a class="next" data-icon="arrow-r" data-iconpos="notext">Next</a>
+	</div>
+	
+	<ul data-role="listview" data-theme="c"></ul>
+</div>
+
+<div id="favorites" data-role="page" class="page">
+	<div class="subheader ui-bar ui-bar-d">
+		<h2>My Teams' Schedules</h2>	
+	</div>
+	<div class="myteams"></div>
+
+	<ul data-role="listview"></ul>
 </div>
 
 <div id="week" data-role="page" class="page">
@@ -101,7 +172,7 @@
 </div>
 
 <div id="setup" data-role="page">
-	<img src="img/AYSO.gif" alt="AYSO" width="100%" />
+	<img src="img/AYSO.gif" alt="AYSO" />
 	
 	<div id="setup-status">
 	<p>Initializing setup...</p>
@@ -140,6 +211,8 @@
 <script src="js/HomeView.js"></script>
 <script src="js/WeekView.js"></script>
 <script src="js/TeamView.js"></script>
+<script src="js/SavedTeamsView.js"></script>
+<script src="js/DivisionView.js"></script>
 <script src="js/GameView.js"></script>
 <script src="js/main.js"></script>
 

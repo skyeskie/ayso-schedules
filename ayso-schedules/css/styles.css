@@ -1,3 +1,7 @@
+body, div.page, #setup,
+#site-header, .pageheader {
+	max-width: 380px;
+}
 
 table {
 	width: 100%;
@@ -5,10 +9,35 @@ table {
 	text-align: center;
 }
 
+#setup img {
+	width: 100%;
+	margin: auto;
+	max-width: 300px;
+}
+
+#team .results ul {
+	width: 33%;
+	padding: 2px;
+}
+
+#team .results ul li {
+	font-weight: normal;
+	font-size: 0.9em;
+}
+
+#team .results ul li a {
+	padding: 10px;
+	padding-right: 30px;
+}
+
 tr.thead {
 	background-color: #CCC;
 	font-weight: bold;
 	font-size: 1.3em;
+}
+
+.active-button {
+	theme: "b";
 }
 
 tr { border-top: 1px solid black; }
@@ -20,3 +49,7 @@ td { padding: 1px 4px; }
 .width60 { width: 59%; display: inline-block !important; margin: 0px; }
 
 .ta-right { text-align: right; }
+
+.saved-team {
+	color: #009;
+}

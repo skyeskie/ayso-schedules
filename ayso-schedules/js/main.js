@@ -2,6 +2,8 @@ var app = {
 	currentView: null,
 	regions: Array("49", "105", "208", "253", "491"),
 	divisions: Array("U6", "U8", "U10", "U12", "U14", "U19"),
+	regionsLong: Array("Stryker", "Southview", "West Wichita",
+			"Valley Center", "Clearwater"),
 	
 	reset: function() {
 		console.log("RESET called. Forcing full data download.");
@@ -26,6 +28,9 @@ var app = {
 			$('.divis-select2 ul').append("<li><a>"+this.divisions[i]+"</a></li>");
 		for(var i=this.divisions.length; i<7; ++i)
 			$('.divis-select2 ul').append("<li>&nbsp;</li>");
+		
+		//DivisionsView
+		//$("#slider-week")
 	},
 	
 	addListeners: function() {
@@ -40,6 +45,18 @@ var app = {
 		$("#setup-status p").change(DataControl.setupButtonControl);
 		$("#setup-finish").click(DataControl.setupButtonClick);
 		$("#setup-finish").prop("disabled", true);
+		
+		//DivisonView
+		$('#divis .divis-select1 a').click(DivisionView.divisionUpdate);
+		$('#divis .divis-select2 a').click(DivisionView.divisionUpdate);
+		$('#divis .gender-select a').click(DivisionView.genderUpdate);
+		$('#divis .region-select a').click(DivisionView.regionUpdate);
+		$('#slider-week').change(DivisionView.weekUpdate);
+		$('#divis-submit').click(DivisionView.doSubmit);
+		
+		//SavedTeams / Favorite Buttons
+		//$('.myteam').click(SavedTeamsView.favoriteToggle);
+		$("#flip-team").change(SavedTeamsView.favoriteToggle);
 	},
 	
 	addRoutingHook: function() {
@@ -102,10 +119,10 @@ var app = {
     },
     
 	indexURL:  /^#([\w\-_]+)$/,
-	detailsURL: /^#([\w\-_]+)[\/\?]([\w\-_%]*)$/,
+	detailsURL: /^#([\w\-_]+)[\/\?]([\w\-_%&=]*)$/,
 	
 	//Combination of above two for jQuery hook
-	processableURL: /^#[\w\-_]+([\/\?][\w\-_%]*)?$/,
+	processableURL: /^#[\w\-_]+([\/\?][\w\-_%&=]*)?$/,
 	
     route: function(urlObject, options) {
     	console.log("Running route function");
@@ -155,12 +172,7 @@ var app = {
 	        	if(isIndex) WeekView.showIndex();
 	        		else WeekView.showDetail(offset);
 	        	break;
-	        /*	
-	        case FieldView.type:
-	        	if(isIndex) FieldView.showIndex();
-	        		else FieldView.showDetail(offset);
-	        	break;
-	        //*/	
+	        
 	        case TeamView.type:
 	        	if(isIndex) TeamView.showIndex();
 	        		else TeamView.showDetail(offset);
@@ -169,6 +181,16 @@ var app = {
 	        case GameView.type:
 	        	if(isIndex) GameView.showIndex();
         			else GameView.showDetail(offset);
+	        	break;
+	        	
+	        case DivisionView.type:
+	        	if(isIndex) DivisionView.showIndex();
+	        		else DivisionView.showDetail(offset);
+	        	break;
+	        
+	        case SavedTeamsView.type:
+	        	if(isIndex) SavedTeamsView.showIndex();
+	        		else SavedTeamsView.showDetail(offset);
 	        	break;
 	        	
 	        default:

@@ -1,11 +1,11 @@
 var TeamView = {
 	type: "team",
 	
-	regions: Array("49", "105", "208", "253", "491"),
-	divisions: Array("U6", "U8", "U10", "U12", "U14", "U19"),
+	//regions: Array("49", "105", "208", "253", "491"),
+	//divisions: Array("U6", "U8", "U10", "U12", "U14", "U19"),
 	
 	showIndex: function() {
-		$('#team .results').html("Loading...");
+		$('#team .results ul.ui-block-b').append("Loading...");
 		
 		$('#team .ui-btn-active').removeClass('ui-btn-active');
 		
@@ -70,24 +70,44 @@ var TeamView = {
 	},
 	
 	updateListing: function(rows) {
-		$("#team .results").empty();
+		$("#team .results ul").empty();
 		if(rows.length==0) {
-			$("#team .results").append("No teams found.");
+			$("#team .results .ui-block-b").append("<li>No teams found.</li>");
 		}
+		
+		var cols = ["#team .results .ui-block-a",
+		            "#team .results .ui-block-b",
+		            "#team .results .ui-block-c"];
+		var col = 0;
+		var wrap = Math.ceil(rows.length/3);
 		
 		for(var i=0; i<rows.length; ++i) {
 			var val = rows.item(i).Home;
-			$("#team .results").append("<div><a href='index.html#team?"+val+"'>"+val+"</a></div>");
+			if(i==wrap) {
+				wrap*=2;
+				col++;
+			}
+			
+			$(cols[col]).append(
+				"<li><a href='index.html#team?"+val+"'>"+val+"</a></li>"
+			);
 		}
 		$("#team").page();
+		$("#team .results ul").listview();
+		$("#team .results ul").listview('refresh');
 	},
 	
 	teamRegEx: /^(\d)(\d)(\d{1,2})([GBC])$/i,
 	
 	showDetail: function(team) {
 		$('#team-detail .listing').empty();
-		$('#team-detail h2 span').html(team);
+		$('#team-detail span.team').html(team);
 		$('#team-detail ul').html("<li><em>Loading...</em></li>");
+		$('button.tel').hide();
+		$('#team-detail span.coach').hide();
+		SavedTeamsView.favoriteInit('#team-detail #flip-team', team);
+		//SavedTeamsView.favoriteInit('#team-detail button.myteam', team);
+		//$('button.myteam').show();
 		
 		app.db.findByTeam(team, function(rows) {
 			$('#team-detail ul').replaceWith(
@@ -120,6 +140,23 @@ var TeamView = {
 			}
 			
 			$('#team-detail ul').listview();
+		});
+		
+		app.db.getCoachInfo(team, function(rows) {
+			if(rows.length==0) return;
+			var coach = rows.item(0);
+			
+			var match = coach.Phone.match(/\(?(\d*)\)?\s+(\d*)\-?(\d*)/);
+			var tel = "tel:+1" + match[1] + match[2] + match[3];
+			
+			match = coach.Coach.match(/([^,]+), ?(.+)/);
+			var coachName = match[2] + " " + match[1];
+			
+			$('#team-detail .tel').show();
+			$('#team-detail .tel').attr("href", tel);
+			
+			$('#team-detail span.coach').show();
+			$('#team-detail span.coach').html("Coach "+coachName);
 		});
 		
 		app.currentView = this.type;

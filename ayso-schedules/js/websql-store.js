@@ -118,7 +118,6 @@ var WebSqlStore = function(successCallback, errorCallback) {
     					" AND away <> '-' " +
     					" ORDER BY away ASC";
     			
-    			console.log("Updating teams with: "+sql);
     			tx.executeSql(sql, [],
     				function(tx, results) {
     					callback(results.rows);
@@ -139,6 +138,69 @@ var WebSqlStore = function(successCallback, errorCallback) {
     					" FROM games WHERE Away = '"+team+"' ORDER BY Jour, Heur ASC";
     			
     			console.log(sql);
+    			tx.executeSql(sql, [],
+    				function(tx, results) {
+    					callback(results.rows);
+    				}
+    			);
+    		},
+    		this.transactionError
+    	);
+    };
+    
+    this.findByDivWeek = function(team, week, callback) {
+    	this.db.transaction(
+    		function(tx) {
+    			var sql = "SELECT ID, Jour, Heur, Field, Home, Away " +
+    					" FROM games " +
+    					" WHERE Week = " + week + " AND" +
+    					" (Home LIKE '"+team+"' OR Away LIKE '"+team+"')" +
+    					" ORDER BY Jour, Heur ASC";
+    			
+    			tx.executeSql(sql, [],
+    				function(tx, results) {
+    					callback(results.rows);
+    				}
+    			);
+    		},
+    		this.transactionError
+    	);
+    };
+    
+    this.findByFavorites = function(callback) {
+    	this.db.transaction(
+			function(tx) {
+				var in_list = DataControl.savedTeams.join("','");
+				if(in_list.length>0) {
+					in_list = "'" + in_list + "'";
+				} else {
+					in_list = "'NoTeamMatchesThis'";
+				}
+				
+				var sql = "SELECT ID, Jour, Heur, Field, Home, Away " +
+						" FROM games " +
+						" WHERE Home IN ("+in_list+") " +
+							"OR Away IN ("+in_list+") " +
+						" ORDER BY Jour, Heur ASC";
+				
+				console.log(sql);
+				tx.executeSql(sql, [],
+					function(tx, results) {
+						callback(results.rows);
+					}
+				);
+			},
+			this.transactionError
+		);
+    };
+    
+    this.getCoachInfo = function(team, callback) {
+    	this.db.transaction(
+    		function(tx) {
+    			var sql = "SELECT ID, Coach, Phone " +
+    					" FROM coaches " +
+    					" WHERE TeamNo = '" +team + "';";
+    			
     			tx.executeSql(sql, [],
     				function(tx, results) {
     					callback(results.rows);
