@@ -36,6 +36,40 @@ var DataControl = {
 		$.mobile.changePage( $page );
 	},
 	
+	updateData: function() {
+		console.log("Running data update");
+		//TODO Figure out how displaying UI status
+		
+		$.post(this.remoteURL, { lastUpdate: DataControl.getLastUpdate() },
+				DataControl.updateFinish, "json")
+			.fail(function(error) {
+				console.error("Error connecting to remote server: "+error);
+			});
+	},
+	
+	updateFinish: function(data) {
+		console.log("Processing data");
+		
+		if(typeof data.Error == "undefined") {
+			console.log("Improper JSON response.");
+			return;
+		}
+		
+		if(data.Error!="") {
+			console.log(data.Error);
+			return;
+		}
+		
+		DataControl.lastData = data;
+		
+		//Inject into DB
+		app.db.db.transaction(DataControl.injectData,
+			function(msg) {
+				console.error("Transaction error on update: " + msg.message);
+			}
+		);
+	},
+	
 	downloadInitialData: function() {
 		//Call AJAX
 		console.log("Running initial data setup");
@@ -52,6 +86,7 @@ var DataControl = {
 		
 		if(typeof data.Error == "undefinded") {
 			DataControl.setupError("Improper JSON response.");
+			return;
 		}
 		
 		if(data.Error!="") {
@@ -159,13 +194,6 @@ var DataControl = {
 		HomeView.printView();
 	},
 	
-	updateData: function() {
-		//AJAX call and update data
-	},
-	
-	updateFinish: function() {
-		//Set last update field
-	},
 	
 	//Get functions
 	
@@ -175,6 +203,10 @@ var DataControl = {
 	
 	getRegion: function() {
 		return window.localStorage.getItem("region");
+	},
+	
+	getLastUpdate: function() {
+		return window.localStorage.getItem("lastUpdate");
 	},
 	
 	//MyTeams functions
