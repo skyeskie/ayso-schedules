@@ -6,14 +6,14 @@ $mysqli = new mysqli($dbhost, $dbusername, $dbpassword);
 if ($mysqli->connect_errno) {
 	$json_array['Error'] = "Failed to connect to MySQL: " . $mysqli->connect_error;
 	$json_array["Version"] = "0000-00-00"; //Set to bad date on Error
-	$json_array["Games"] = [];
-	$json_array["Coaches"] = [];
+	$json_array["Games"] = array();
+	$json_array["Coaches"] = array();
 	
 	echo json_encode($json_array);
 	exit();
 }
 
-$mysqli->select_db("ayso");
+$mysqli->select_db($default_dbname);
 
 //SQL function
 function sql_to_array($sql) {
@@ -21,9 +21,18 @@ function sql_to_array($sql) {
 	$result = $mysqli->query($sql);
 	
 	//Pass through error for 
-	if(!$result) return [ "error" => sql_error($mysqli) ];
+	if(!$result) {
+		$json_array['Error'] .= sql_error($mysqli);
+		return array();
+	}
+		
+	$out = array();
 	
-	return $result->fetch_all(MYSQLI_ASSOC);
+	while($row = $result->fetch_array( MYSQLI_ASSOC ) ) {
+		$out[] = $row;
+	}
+	
+	return $out;
 }
 
 //Setup version check
@@ -52,12 +61,12 @@ if($lastUpdate == "0000-00-00") {
 		"SELECT ID, Divis, TeamNo, Coach, Phone FROM $coaches_db
 			WHERE TRIM(TeamNo) <> '-';");
 } else {
-	$json_array["Coaches"] = [];
+	$json_array["Coaches"] = array();
 }
 
-if(isset($_GET['pretty'])) {
+if(isset($_GET['pretty']) && version_compare(phpversion(), "5.4.0", ">")) {
 	echo '<pre>';
-	echo json_encode($json_array, JSON_PRETTY_PRINT);
+	echo json_encode($json_array, constant('JSON_PRETTY_PRINT'));
 	echo '</pre>';
 } else echo json_encode($json_array);
 ?>
