@@ -213,7 +213,13 @@ var WebSqlStore = function(successCallback, errorCallback) {
     
     this.getGameDetail = function(gameID, callback) {
     	this.db.transaction(function(tx) {
-    		var sql = "SELECT * FROM games WHERE ID = '"+gameID+"'";
+    		var sql = "SELECT games.*, ch.Coach AS HomeCoach, ch.Phone AS HomeCoachPhone," +
+    				" ca.Coach AS AwayCoach, ca.Phone AS AwayCoachPhone " +
+    				"FROM games LEFT JOIN coaches AS ch ON Home = ch.TeamNo" +
+    				"	LEFT JOIN coaches AS ca ON Away = ca.TeamNo " +
+    				"WHERE games.ID = '"+gameID+"'";
+    		
+    		console.log(sql);
     		
     		tx.executeSql(sql, [], function(tx, results) {
     			callback(results.rows);

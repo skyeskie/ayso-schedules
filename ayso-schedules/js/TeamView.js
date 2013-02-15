@@ -146,14 +146,8 @@ var TeamView = {
 			if(rows.length==0) return;
 			var coach = rows.item(0);
 			
-			var match = coach.Phone.match(/\(?(\d*)\)?\s+(\d*)\-?(\d*)/);
-			var tel = "tel:+1" + match[1] + match[2] + match[3];
-			
-			match = coach.Coach.match(/([^,]+), ?(.+)/);
-			var coachName = match[2] + " " + match[1];
-			
-			$('#team-detail .tel').show();
-			$('#team-detail .tel').attr("href", tel);
+			app.activateCallButton("#team-detail .tel", coach.Phone);
+			var coachName = app.nameSwitch(coach.Coach);
 			
 			$('#team-detail span.coach').show();
 			$('#team-detail span.coach').html("Coach "+coachName);

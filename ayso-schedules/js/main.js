@@ -5,6 +5,10 @@ var app = {
 	regionsLong: Array("Stryker", "Southview", "West Wichita",
 			"Valley Center", "Clearwater"),
 	
+	/**
+	 * Forces a full redownload of data.
+	 * See init() for where it is used
+	 */
 	reset: function() {
 		console.log("RESET called. Forcing full data download.");
         window.localStorage.removeItem("init");
@@ -12,6 +16,30 @@ var app = {
 	
 	initPage: null,
 	firstRoute: true,
+	
+	/**
+	 * Shows a call button and sets its link to the phone number
+	 * @param selector - CSS Selector for the call button
+	 * @param number - String telephone number
+	 * 		Will be processed to remove parentheses and dashes
+	 */
+	activateCallButton: function(selector, number) {
+		var match = number.match(/\(?(\d*)\)?\s+(\d*)\-?(\d*)/);
+		var tel = "tel:+1" + match[1] + match[2] + match[3];
+		
+		$(selector).show();
+		$(selector).attr("href", tel);
+	},
+	
+	/**
+	 * Switches name around from Last, First to First Last
+	 * @param Name in "Last, First" format
+	 * @return Name in "First Last" format
+	 */
+	nameSwitch: function(name) {
+		var match = name.match(/([^,]+), ?(.+)/);
+		return match[2] + " " + match[1];
+	},
 	
 	formsInit: function() {
 		//Regions filter
