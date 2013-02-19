@@ -36,7 +36,7 @@ var GameView = {
 			var $page = $( "#game" );
 			$page.page();
 			$.mobile.changePage( $page );
-			window.hash = "team?" + gameID;
+			location.hash = "#game?" + gameID;
 			app.currentView = this.type;
 		});
 	}

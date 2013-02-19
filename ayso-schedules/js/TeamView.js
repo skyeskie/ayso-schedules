@@ -19,7 +19,7 @@ var TeamView = {
 		var $page = $( "#team" );
 		$page.page();
 		$.mobile.changePage( $page );
-		window.hash = "team";
+		location.hash = "#team";
 	},
 	
 	regionUpdate: function(triggerObject) {
@@ -158,6 +158,6 @@ var TeamView = {
 		var $page = $( "#team-detail" );
 		$page.page();
 		$.mobile.changePage( $page );
-		window.hash = "team?" + team;
+		location.hash = "#team?" + team;
 	}
 };

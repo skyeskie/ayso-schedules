@@ -1,5 +1,5 @@
 var DataControl = {
-	remoteURL: "http://192.168.1.89/ayso-schedules/php/json.php",
+	remoteURL: "http://ayso4u.org/app/json.php5",
 	
 	lastData: null,
 	

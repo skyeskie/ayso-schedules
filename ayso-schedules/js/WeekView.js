@@ -85,6 +85,6 @@ var WeekView = {
 		var $page = $( "#week" );
 		$page.page();
 		$.mobile.changePage( $page );
-		window.hash = "week?" + week;
+		location.hash = "#week?" + week;
 	}
 };

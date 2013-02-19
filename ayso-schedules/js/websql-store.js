@@ -27,7 +27,6 @@ var WebSqlStore = function(successCallback, errorCallback) {
     this.createTable = function(tx) {
     	console.log("createTable");
 		//Remove existing table
-        tx.executeSql('DROP TABLE IF EXISTS games');
         tx.executeSql("CREATE TABLE IF NOT EXISTS `games` ("
   			+ " `ID` int(11) PRIMARY KEY,"
   			+ " `Field` text NOT NULL,"

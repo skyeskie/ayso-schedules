@@ -13,6 +13,6 @@ var HomeView = {
 		
 		$.mobile.changePage( $page );
 		app.currentView = this.type;
-		window.hash = "index";
+		location.hash = "index";
 	}
 };

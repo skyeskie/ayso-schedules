@@ -94,6 +94,7 @@ var app = {
         	if(app.firstRoute) {
         		//First run -- we want to call route
         		console.log("Interceptiong first routing call");
+        		console.log("  initPage: "+this.initPage);
         		app.firstRoute = false;
         		app.route(null);
         		e.preventDefault();
@@ -121,7 +122,7 @@ var app = {
         this.data = DataControl;
         
         //Uncomment to force full data update
-        this.reset();
+        //this.reset();
         
         console.log("Setup page headers");
         $('.page').prepend($("#site-header").html());
@@ -136,7 +137,8 @@ var app = {
         //Determine page to go to
         if(this.data.isAppSetup()) {
         	this.data.updateData();
-        	this.initPage = "index";
+        	this.initPage = location.hash;//.replace(/^#/,"");
+        	console.log("Set initPage to "+this.initPage);
         } else {
         	console.log("Routing to first run setup");
         	this.initPage = "setup";
@@ -146,11 +148,11 @@ var app = {
         }
     },
     
-	indexURL:  /^#([\w\-_]+)$/,
-	detailsURL: /^#([\w\-_]+)[\/\?]([\w\-_%&=]*)$/,
+	indexURL:  /^#?([\w\-_]+)$/,
+	detailsURL: /^#?([\w\-_]+)[\/\?]([\w\-_%&=]*)$/,
 	
 	//Combination of above two for jQuery hook
-	processableURL: /^#[\w\-_]+([\/\?][\w\-_%&=]*)?$/,
+	processableURL: /^#?[\w\-_]+([\/\?][\w\-_%&=]*)?$/,
 	
     route: function(urlObject, options) {
     	console.log("Running route function");
@@ -160,6 +162,8 @@ var app = {
     	else
     		hash = urlObject.hash;
         
+    	console.log("Routing to "+hash);
+    	
     	if( hash == "setup" ) {
     		var $page = $( "#setup" );
     		$page.page();
@@ -167,7 +171,7 @@ var app = {
     		return;
     	}
     	
-        if (!hash || hash == "index" || hash == "") {
+        if (!hash || hash == "index" || hash=="#index" || hash == "") {
             HomeView.printView();
             return;
         }
@@ -188,7 +192,7 @@ var app = {
 	    		filterType = match[1];
 	    		offset = match[2];
 	    	} else {
-	    		console.log("Error: unexpected hash pattern.");
+	    		console.error("Unexpected hash pattern: '"+hash+"'");
 	    		HomeView.printView();
 	    		return;
 	    	}
@@ -222,7 +226,7 @@ var app = {
 	        	break;
 	        	
 	        default:
-	        	console.log("Error: unexpected page type.");
+	        	console.error("Unexpected page type: '"+filterType+"'");
 	        	HomeView.printView();
 	        	break;
         }

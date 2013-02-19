@@ -15,7 +15,7 @@ var DivisionView = {
 		var $page = $( "#divis" );
 		$page.page();
 		$.mobile.changePage( $page );
-		window.hash = "divis";
+		location.hash = "#divis";
 	},
 	
 	regionUpdate: function(triggerObject) {
@@ -176,6 +176,6 @@ var DivisionView = {
 		var $page = $( "#games-list" );
 		$page.page();
 		$.mobile.changePage( $page );
-		window.hash = "divis?" + filter;
+		location.hash = "#divis?" + filter;
 	}
 };
