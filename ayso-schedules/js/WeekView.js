@@ -6,8 +6,7 @@ var WeekView = {
 	},
 	
 	showIndex: function() {
-		//TODO: have this default to current/upcoming week
-		this.showDetail(1);
+		this.showDetail(DataControl.getCurrentWeek());
 	},
 	
 	showDetail: function(week) {

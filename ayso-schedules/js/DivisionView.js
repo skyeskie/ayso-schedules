@@ -10,6 +10,10 @@ var DivisionView = {
 		$('#divis .gender-select').data('active', null);
 		$('#divis .region-select').data('active', null);
 		
+		//$('#divis #slider-week').val(DataControl.getCurrentWeek());
+		$('#divis #slider-week').attr("value", DataControl.getCurrentWeek());
+		$('#divis #slider-week').attr("max", DataControl.getMaxWeeks());
+		
 		app.currentView = this.type;
 		
 		var $page = $( "#divis" );
@@ -57,7 +61,7 @@ var DivisionView = {
 	
 	weekUpdate: function() {
 		//TODO Put in display showing Date for week No.
-		//Need to cache values in SETUP
+		//To get dates, DateControl.getWeekStarts();
 	},
 	
 	doSubmit: function() {

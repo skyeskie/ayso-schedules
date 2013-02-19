@@ -5,6 +5,8 @@ var DataControl = {
 	
 	savedTeams: null,
 	
+	curWeek: null,
+	
 	isAppSetup: function() {
 		var init = window.localStorage.getItem("init");
 		
@@ -119,18 +121,26 @@ var DataControl = {
 	},
 	
 	sqlCacheGenerate: function(tx) {
-		var sql = "SELECT MAX(Week) AS nweeks FROM games LIMIT 1";
+		var sql = "SELECT MIN(Jour) AS Start, Week FROM games GROUP BY Week ORDER BY Week ASC";
 		tx.executeSql(sql, [], DataControl.sqlCacheResult);
 	},
 	
 	sqlCacheResult: function(tx, results) {
 		if(results.rows.length==0) {
-			console.error("Error: could not determine max weeks.");
+			console.error("Could not setup weeks cache");
 			window.localStorage.setItem("maxWeeks", 9); //Default
 		}
 		
+		var nweeks = results.rows.length;
+		var weekStarts = [];
+		
+		for(var i=0; i<nweeks; ++i) {
+			weekStarts[i] = results.rows.item(i).Start;
+		}
+		
 		console.log("Setting maxWeeks");
-		window.localStorage.setItem("maxWeeks", results.rows.item(0).nweeks);
+		window.localStorage.setItem("maxWeeks", nweeks);
+		window.localStorage.setItem("weekStart", weekStarts.join(","));
 	},
 	
 	setupFinish: function(data) {
@@ -196,7 +206,6 @@ var DataControl = {
 	
 	
 	//Get functions
-	
 	getMaxWeeks: function() {
 		return window.localStorage.getItem("maxWeeks");
 	},
@@ -209,6 +218,29 @@ var DataControl = {
 		return window.localStorage.getItem("lastUpdate");
 	},
 	
+	getCurrentWeek: function() {
+		//Cache
+		if(this.curWeek!=null) return this.curWeek;
+		
+		var today = new Date();
+		var dateStrings = this.getWeekStarts();
+		
+		//Loop from end. First one we're after is the current week we're in
+		for(var i=dateStrings.length; i>=0; --i) {
+			if(today >= new Date(dateStrings[i])) {
+				this.curWeek = i+1;
+				return i+1;
+			}
+		}
+		
+		console.warn("Cannot determine current week.");
+		return 1; //Default to 1 so we hopefully don't blow anything up
+	},
+	
+	getWeekStarts: function() {
+		return window.localStorage.getItem("weekStart").split(",");
+	},
+	
 	//MyTeams functions
 	populateSavedTeams: function() {
 		if(window.localStorage.getItem("savedTeams")==null) {
@@ -216,7 +248,6 @@ var DataControl = {
 		}
 				
 		this.savedTeams = window.localStorage.getItem("savedTeams").split(",");
-		
 	},
 	
 	storeSavedTeams: function() {
