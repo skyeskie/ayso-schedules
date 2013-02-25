@@ -104,7 +104,8 @@ var SavedTeamsView = {
 		
 		$page.page();
 		$.mobile.changePage( $page );
-		window.hash = "favorites";
+		window.hash = "#favorites";
+		app.currentView = "#favorites";
 	},
 	
 	showDetail: function(offset) {

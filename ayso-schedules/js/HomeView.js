@@ -12,7 +12,7 @@ var HomeView = {
 		$page.page();
 		
 		$.mobile.changePage( $page );
-		app.currentView = this.type;
-		location.hash = "index";
+		app.currentView = "#index";
+		location.hash = "#index";
 	}
 };

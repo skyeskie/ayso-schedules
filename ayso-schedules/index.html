@@ -15,23 +15,26 @@
 </head>
 <body>
 
-<div id="main" data-role="page">
+<div id="loading" data-role="page">
+<!-- Define Header here. Copied to each page -->
 <div id="site-header">
 	<div data-role="header" data-id="pageheader" class="pageheader" data-position="fixed">
-		<a class="home" data-icon="home" data-iconpos="notext" href="#index">Home</a>
-		<h1>Ayso Schedules</h1>
+		<a class="home" data-icon="back" data-iconpos="notext" href="#index">Back</a>
+		<h1><a href="#index">AYSO Kansas</a></h1>
 	</div>
 </div>
 
 (INIT)
 </div>
 
-<div id="index" data-role="page" class="page">
-	<div data-role="controlgroup">
-		<a href='#week' data-role="button">View Week</a>
+<div id="index" data-role="page">
+	<img src="img/HomeText.png" alt="AYSO Kansas" />
+	<div>
+		<a href='#week' data-role="button">This Week</a>
 		<a href='#team' data-role="button">Find Team</a>
-		<a href="#divis" data-role="button">Advanced Filter</a>
+		<a href="#divis" data-role="button">Advanced Query</a>
 		<a href="#favorites" data-role="button">My teams</a>
+		<!-- <a href="#twitter" data-role="button">Cancellations</a> -->
 	</div>
 </div>
 
@@ -149,7 +152,7 @@
 
 <div id="game" data-role="page" class="page">
 	<ul data-role="listview">
-		<li><span id="game-date"></span> at <span id="game-time"></span></li>
+		<li id="game-datetime"></li>
 		
 		<li>
 			<strong>Home:</strong> <span id="game-home"></span>
@@ -212,6 +215,14 @@
 	<button id="setup-finish">Finish</button>
 </div>
 
+<div id="twitter" data-role="page" class="page">
+	<div class="ui-bar ui-bar-d">Cancellations</div>
+	<!-- 
+<a class="twitter-timeline"  href="https://twitter.com/AYSOKS"  data-widget-id="305786822305386496">Tweets by @AYSOKS</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	 -->
+</div>
+
 <div id="error" data-role="page" data-theme="e">
 	<h2>Setup error</h2>
 	<p id="message">An error occured during setup.</p>
@@ -226,6 +237,7 @@
 <script src="js/SavedTeamsView.js"></script>
 <script src="js/DivisionView.js"></script>
 <script src="js/GameView.js"></script>
+<script src="js/CancelView.js"></script>
 <script src="js/main.js"></script>
 
 </body>

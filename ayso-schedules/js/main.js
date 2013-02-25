@@ -1,5 +1,6 @@
 var app = {
 	currentView: null,
+	lastListing: null,
 	regions: Array("49", "105", "208", "253", "491"),
 	divisions: Array("U6", "U8", "U10", "U12", "U14", "U19"),
 	regionsLong: Array("Stryker", "Southview", "West Wichita",
@@ -59,6 +60,10 @@ var app = {
 		
 		//DivisionsView
 		//$("#slider-week")
+		
+		//Setup back hierarchy
+		$('#team-detail .pageheader a.home').attr("href", "#team");
+		$('#games-list .pageheader a.home').attr("href", "#divis");
 	},
 	
 	addListeners: function() {
@@ -113,6 +118,13 @@ var app = {
         		} else console.log("URL["+u.href+"] is not processable");
         	}
         });
+        
+        /*$(window).bind("hashchange", function(e, data) {
+        	if(app.currentView != location.hash) {
+        		console.log("Hash change.");
+        		app.route(null); //External hash change event
+        	}
+        });//*/
 	},
 	
     initialize: function() {
@@ -148,6 +160,40 @@ var app = {
         }
     },
     
+    months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+             "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
+    
+    formatDate: function(jour) {
+    	var d = new Date(jour);
+    	var os = app.months[ d.getMonth() - 1];
+    	os += " " + d.getDate();
+    	return os;
+    },
+    
+    formatDateTime: function(jour, heur) {
+    	var d = new Date(jour + " " + heur);
+    	var os = app.months[ d.getMonth() - 1 ];
+    	os += " " + d.getDate() + ", ";
+    	var h = d.getHours();
+    	var am = true;
+    	var min = d.getMinutes();
+    	if(h>11) am = false;
+    	if(h>12) h-=12;
+    	os += h + ":" + min;
+    	if(!min) os += "0";
+    	os += " " + ( (am)?"AM" : "PM" );
+    	return os;
+    },
+    
+    formatTime: function(heur) {
+    	var match = heur.match(/(\d\d):(\d\d)/);
+    	var h = match[1];
+    	var am = true;
+    	if(h>11) am=false;
+    	if(h>12) h-=12;
+    	return h + ":" + match[2] + ((am)?"AM":"PM");
+    },
+    
 	indexURL:  /^#?([\w\-_]+)$/,
 	detailsURL: /^#?([\w\-_]+)[\/\?]([\w\-_%&=]*)$/,
 	
@@ -157,9 +203,10 @@ var app = {
     route: function(urlObject, options) {
     	console.log("Running route function");
     	var hash;
-    	if(urlObject == null)
+    	if(urlObject == null) {
     		hash = this.initPage;
-    	else
+    		console.log("Null urlObject -- pulling from initPage");
+    	} else
     		hash = urlObject.hash;
         
     	console.log("Routing to "+hash);
@@ -223,6 +270,10 @@ var app = {
 	        case SavedTeamsView.type:
 	        	if(isIndex) SavedTeamsView.showIndex();
 	        		else SavedTeamsView.showDetail(offset);
+	        	break;
+	        	
+	        case CancelView.type:
+	        	CancelView.showIndex();
 	        	break;
 	        	
 	        default:

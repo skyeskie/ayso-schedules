@@ -149,7 +149,7 @@ var DivisionView = {
 				
 				var matchup = game.Home + " vs " + game.Away;
 				
-				var time = game.Heur.replace(/:00$/,"");
+				var time = app.formatDateTime(game.Jour, game.Heur);
 				
 				if(lastTime != time) {
 					$('#games-list ul').append(
@@ -181,5 +181,6 @@ var DivisionView = {
 		$page.page();
 		$.mobile.changePage( $page );
 		location.hash = "#divis?" + filter;
+		app.currentView = "#divis?" + filter;
 	}
 };

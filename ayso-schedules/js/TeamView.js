@@ -20,6 +20,7 @@ var TeamView = {
 		$page.page();
 		$.mobile.changePage( $page );
 		location.hash = "#team";
+		app.currentView = "#team";
 	},
 	
 	regionUpdate: function(triggerObject) {
@@ -159,5 +160,6 @@ var TeamView = {
 		$page.page();
 		$.mobile.changePage( $page );
 		location.hash = "#team?" + team;
+		app.currentView = "#team?" + team;
 	}
 };

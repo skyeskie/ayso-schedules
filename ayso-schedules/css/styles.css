@@ -1,6 +1,6 @@
-body, div.page, #setup,
+body, div.page, #setup, #index,
 #site-header, .pageheader {
-	max-width: 380px;
+	max-width: 500px;
 }
 
 table {
@@ -9,10 +9,25 @@ table {
 	text-align: center;
 }
 
+div.pageheader h1 a {
+	color: #EEE !important;
+	text-decoration: none;
+}
+
+
 #setup img {
 	width: 100%;
 	margin: auto;
 	max-width: 300px;
+}
+
+#index img {
+	width: 100%;
+}
+
+#index div {
+	width: 80%;
+	margin: 10px 10%;
 }
 
 #team .results ul {

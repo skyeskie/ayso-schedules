@@ -51,7 +51,7 @@ var WeekView = {
 				
 				var matchup = game.Home + " vs " + game.Away;
 				
-				var time = game.Heur.replace(/:00$/,"");
+				var time = app.formatDateTime(game.Jour, game.Heur);
 				
 				if(lastTime != time) {
 					$('#week ul').append(
@@ -85,5 +85,6 @@ var WeekView = {
 		$page.page();
 		$.mobile.changePage( $page );
 		location.hash = "#week?" + week;
+		app.currentView = "#week?" + week;
 	}
 };
