@@ -171,8 +171,8 @@ var DivisionView = {
 			}
 			
 			//Prepend, so reverse order
-			$('#week ul').prepend("<li>"+byelist+"</li>");
-			$('#week ul').prepend('<li data-role="list-divider">Byes</li>');
+			$('#games-list ul').prepend("<li>"+byelist+"</li>");
+			$('#games-list ul').prepend('<li data-role="list-divider">Byes</li>');
 			
 			$('#games-list ul').listview();
 		});

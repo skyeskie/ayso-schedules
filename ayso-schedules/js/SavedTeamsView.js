@@ -156,11 +156,13 @@ var SavedTeamsView = {
 				teams = "<span class='saved-team'>"+byeTeam+"</span>";
 			}
 			
-			$('#favorites ul').append("<li><a href='#game?" + game.ID + "'>" +
+			$('#favorites ul').append("<li>" +
+				((byeTeam==null)?"<a href='#game?" + game.ID + "'>":"") +
 				"<h3 class='width40'>"+datetime+"</h3>" +
 				"<h3 class='width60'>"+teams+"</h3>" +
 				"<p>"+((byeTeam==null)?"Region "+game.Field:"Bye week")+"</p>" +
-			"</a></li>");
+				((byeTeam==null)?"</a>":"") +
+			"</li>");
 		}
 		
 		$('#favorites ul').listview();

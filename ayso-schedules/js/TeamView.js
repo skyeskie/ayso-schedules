@@ -121,23 +121,26 @@ var TeamView = {
 			
 			for(var i=0; i<rows.length; ++i) {
 				var game = rows.item(i);
-				
+				var hasBye = false;
 				var datetime = game.Jour.replace(/^\d{4}\-0?/, "");
 				var opponent, field;
 				if(game.Opponent=="-") {
 					opponent = "Bye";
 					field = "&nbsp;";
+					hasBye = true;
 				} else {
 					datetime += " &nbsp;&nbsp;" + game.Heur.replace(/:00$/, "");
 					opponent = game.HA+" "+game.Opponent;
 					field = "Region " + game.Field;
 				}
 				
-				$('#team-detail ul').append("<li><a href='#game?" + game.ID + "'>" +
+				$('#team-detail ul').append("<li>" +
+					((hasBye)?"":"<a href='#game?" + game.ID + "'>") +
 					"<h3 class='width50'>"+datetime+"</h3>" +
 					"<h3 class='width50'>"+opponent+"</h3>" +
 					"<p>"+field+"</p>" +
-				"</a></li>");
+					((hasBye)?"":"</a>") +
+				"</li>");
 			}
 			
 			$('#team-detail ul').listview();
