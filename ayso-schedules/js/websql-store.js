@@ -50,6 +50,14 @@ var WebSqlStore = function(successCallback, errorCallback) {
   			+ " ) "
   		);
     };
+    
+    this.removeAll = function() {
+    	this.db.transaction(function(tx) {
+    		tx.executeSql("DROP TABLE IF EXISTS games;");
+    		tx.executeSql("DROP TABLE IF EXISTS coaches;");
+    	},
+    	this.transactionError);
+    };
 
     this.addSampleData = function(tx) {
     	console.log("Adding sample data");

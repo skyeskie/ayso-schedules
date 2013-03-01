@@ -90,6 +90,11 @@ var app = {
 		//SavedTeams / Favorite Buttons
 		//$('.myteam').click(SavedTeamsView.favoriteToggle);
 		$("#flip-team").change(SavedTeamsView.favoriteToggle);
+		
+		//Settings
+		$("#settings #select-region").change(SettingsView.regionUpdate);
+		$("#settings #update").click(SettingsView.refresh);
+		$("#settings #reset").click(SettingsView.doReset);
 	},
 	
 	addRoutingHook: function() {
@@ -165,14 +170,14 @@ var app = {
     
     formatDate: function(jour) {
     	var d = new Date(jour);
-    	var os = app.months[ d.getMonth() - 1];
+    	var os = app.months[ d.getMonth() ];
     	os += " " + d.getDate();
     	return os;
     },
     
     formatDateTime: function(jour, heur) {
     	var d = new Date(jour + " " + heur);
-    	var os = app.months[ d.getMonth() - 1 ];
+    	var os = app.months[ d.getMonth() ];
     	os += " " + d.getDate() + ", ";
     	var h = d.getHours();
     	var am = true;
@@ -274,6 +279,10 @@ var app = {
 	        	
 	        case CancelView.type:
 	        	CancelView.showIndex();
+	        	break;
+	        	
+	        case SettingsView.type:
+	        	SettingsView.showIndex();
 	        	break;
 	        	
 	        default:

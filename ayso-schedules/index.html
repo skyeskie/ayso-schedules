@@ -34,6 +34,7 @@
 		<a href='#team' data-role="button">Find Team</a>
 		<a href="#divis" data-role="button">Advanced Query</a>
 		<a href="#favorites" data-role="button">My teams</a>
+		<a href="#settings" data-role="button">Settings</a>
 		<!-- <a href="#twitter" data-role="button">Cancellations</a> -->
 	</div>
 </div>
@@ -196,23 +197,48 @@
 		
 	<fieldset data-role="controlgroup">
 		<legend>Select Region:</legend>
-	     	<input type="radio" name="radio-region" id="radio-49" value="49" />
-	     	<label for="radio-49">Region 49 (Stryker)</label>
-	
-	     	<input type="radio" name="radio-region" id="radio-105" value="105"  />
-	     	<label for="radio-105">Region 105 (Southview)</label>
-	
-	     	<input type="radio" name="radio-region" id="radio-208" value="208"  />
-	     	<label for="radio-208">Region 208 (West Wichita)</label>
-	
-	     	<input type="radio" name="radio-region" id="radio-253" value="253"  />
-	     	<label for="radio-253">Region 253 (Valley Center)</label>
-	     	
-	     	<input type="radio" name="radio-region" id="radio-491" value="491"  />
-	     	<label for="radio-491">Region 491 (Clearwater)</label>
+     	<input type="radio" name="radio-region" id="radio-49" value="49" />
+     	<label for="radio-49">Region 49 (Stryker)</label>
+
+     	<input type="radio" name="radio-region" id="radio-105" value="105"  />
+     	<label for="radio-105">Region 105 (Southview)</label>
+
+     	<input type="radio" name="radio-region" id="radio-208" value="208"  />
+     	<label for="radio-208">Region 208 (West Wichita)</label>
+
+     	<input type="radio" name="radio-region" id="radio-253" value="253"  />
+     	<label for="radio-253">Region 253 (Valley Center)</label>
+     	
+     	<input type="radio" name="radio-region" id="radio-491" value="491"  />
+     	<label for="radio-491">Region 491 (Clearwater)</label>
 	</fieldset>
 	
 	<button id="setup-finish">Finish</button>
+</div>
+
+<div id="settings" data-role="page" class="page">
+	<p>The region setting is used to filter your current week view.
+	You can still view teams from other regions (and even add them to your favorites) by
+	using the 'Search Team' view.</p> 
+	<label for="select-region" class="select" data-inline="true">Change Region:</label>
+	<select name="select-region" id="select-region">
+		<option value="49">Region 49 (Stryker)</option>
+		<option value="105">Region 105 (Southview)y</option>
+		<option value="208">Region 208 (West Wichita)</option>
+		<option value="253">Region 253 (Valley Center)</option>
+		<option value="491">Region 491 (Clearwater)</option>
+	</select>
+	
+	<hr />
+	<p>Data last updated on <span id="lastUpdate">(Unknown)</span>.<br />
+	Click to force an update now: <button id="update" data-inline="true">Update data</button>
+	</p>
+	<hr />
+	<p>Reset the app to its original state.<br />
+	<span class="big-warn">Warning:</span> This will delete all saved preferences and reset the local data storage.
+	The app will be the same when first installed, requiring you to re-download the data.
+	<button id="reset" data-inline="true">Reset App</button>
+	</p>
 </div>
 
 <div id="twitter" data-role="page" class="page">
@@ -237,6 +263,7 @@
 <script src="js/SavedTeamsView.js"></script>
 <script src="js/DivisionView.js"></script>
 <script src="js/GameView.js"></script>
+<script src="js/SettingsView.js"></script>
 <script src="js/CancelView.js"></script>
 <script src="js/main.js"></script>
 
