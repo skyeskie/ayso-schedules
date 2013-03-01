@@ -28,16 +28,27 @@
 </div>
 
 <div id="index" data-role="page">
-	<img src="img/HomeText.png" alt="AYSO Kansas" />
-	<div>
-		<a href='#week' data-role="button">This Week</a>
-		<a href='#team' data-role="button">Find Team</a>
-		<a href="#divis" data-role="button">Advanced Query</a>
+	<img src="img/MainLogo.png" alt="AYSO Kansas" />
+	<div class="main-buttons">
+		<a href="#schedules" data-role="button">Schedules</a>
+		<!-- <a href="#fields" data-role="button">Region Info</a> -->
 		<a href="#favorites" data-role="button">My teams</a>
 		<a href="#settings" data-role="button">Settings</a>
 		<!-- <a href="#twitter" data-role="button">Cancellations</a> -->
 	</div>
 </div>
+
+<div id="schedules" data-role="page" class="page">
+	<img src="img/HomeText.png" alt="AYSO Kansas" />
+	<div class="main-buttons">
+		<a href='#week' data-role="button">This Week</a>
+		<a href='#team' data-role="button">Find Team</a>
+		<a href="#divis" data-role="button">Advanced Query</a>
+		<a href="#favorites" data-role="button">My teams</a>
+	</div>
+</div>
+
+
 
 <div id="team" data-role="page" class="page">
 	<div class="ui-bar ui-bar-d">Filter Teams</div>
@@ -265,6 +276,7 @@
 <script src="js/GameView.js"></script>
 <script src="js/SettingsView.js"></script>
 <script src="js/CancelView.js"></script>
+<script src="js/FieldView.js"></script>
 <script src="js/main.js"></script>
 
 </body>

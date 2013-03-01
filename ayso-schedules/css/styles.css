@@ -25,7 +25,7 @@ div.pageheader h1 a {
 	width: 100%;
 }
 
-#index div {
+.main-buttons {
 	width: 80%;
 	margin: 10px 10%;
 }

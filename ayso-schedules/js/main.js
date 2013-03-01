@@ -62,6 +62,9 @@ var app = {
 		//$("#slider-week")
 		
 		//Setup back hierarchy
+		$('#team .pageheader a.home').attr("href", "#schedules");
+		$('#week .pageheader a.home').attr("href", "#schedules");
+		$('#divis .pageheader a.home').attr("href", "#schedules");
 		$('#team-detail .pageheader a.home').attr("href", "#team");
 		$('#games-list .pageheader a.home').attr("href", "#divis");
 	},
@@ -283,6 +286,15 @@ var app = {
 	        	
 	        case SettingsView.type:
 	        	SettingsView.showIndex();
+	        	break;
+	        	
+	        case FieldView.type:
+	        	if(isIndex) FieldView.showIndex();
+	        		else FieldView.showDetail(offset);
+	        	break;
+	        	
+	        case ScheduleHome.type:
+	        	ScheduleHome.showIndex();
 	        	break;
 	        	
 	        default:
