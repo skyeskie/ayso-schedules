@@ -68,3 +68,28 @@ td { padding: 1px 4px; }
 .saved-team {
 	color: #009;
 }
+
+#fields .listing div {
+	margin: 5%;
+	-moz-border-radius: 				.6em /*{global-radii-blocks}*/;
+	-webkit-border-radius: 				.6em /*{global-radii-blocks}*/;
+	border-radius: 						.6em /*{global-radii-blocks}*/;
+}
+
+#fields .listing div.width50 {
+	margin: 0% 0% 2% 2%;
+	width: 46%;
+}
+
+#fields .listing div h2 {
+	text-align: center; margin: .2em 0 0 0;
+}
+
+#fields .listing div p {
+	text-align: center; margin: 0;
+}
+#fields .listing div a {
+	margin: 0% 0% 2% 2%;
+	width: 45%;
+	display: inline-block;
+}
