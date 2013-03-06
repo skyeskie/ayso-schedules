@@ -49,7 +49,7 @@ var FieldView = {
 		
 		console.log("<embed src='" +
 				this.svgFiles[r] +
-				"' type='image/svg+xml />");
+				"' type='image/svg+xml' />");
 		
 		$("#field-map embed").attr("src", this.svgFiles[r]);
 
