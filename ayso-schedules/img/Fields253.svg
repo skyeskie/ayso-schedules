@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 612 1008" style="enable-background:new 0 0 612 1008;" xml:space="preserve">
+<style type="text/css">
+<![CDATA[
+	.st0{fill:#E6E7E8;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}
+	.st1{font-family:'MyriadPro-Semibold';}
+	.st2{font-family:'MyriadPro-Regular';}
+	.st3{fill:#27AAE1;}
+	.st4{fill:#F69A99;}
+	.st5{fill:#F9F28F;}
+	.st6{fill:#939598;}
+	.st7{fill:#C49A6C;}
+	.st8{fill:#FFF4DF;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}
+	.st9{fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;}
+	.st10{font-size:29.7037;}
+	.st11{fill:none;stroke:#000000;stroke-width:2;}
+	.st12{fill:none;stroke:#000000;stroke-width:3;}
+	.st13{fill:none;stroke:#000000;stroke-width:5;}
+	.st14{fill:none;stroke:#000000;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;}
+	.st15{font-size:18px;}
+	.st16{font-size:21px;}
+	.st17{font-size:24px;}
+	.st18{font-size:36px;}
+	.st19{fill:none;stroke:#6D6E71;stroke-linecap:round;stroke-linejoin:round;}
+	.st20{font-family:'MyriadPro-Bold';}
+]]>
+</style>
+<g id="Roads">
+	<line class="st9" x1="22.5" y1="864.9" x2="346.9" y2="864.9"/>
+	<line class="st9" x1="363.4" y1="843.4" x2="363.4" y2="182.5"/>
+	<line class="st9" x1="383.2" y1="158.6" x2="590.3" y2="158.6"/>
+	<line class="st14" x1="590.3" y1="985" x2="590.3" y2="15"/>
+	<path class="st9" d="M346.9,864.9c9.1,0,16.5-9.6,16.5-21.5"/>
+	<path class="st9" d="M383.2,158.6c-10.9,0-19.8,10.7-19.8,23.9"/>
+	<polygon class="st0" points="541.2,745.2 446.7,745.2 446.7,180.5 387.3,180.5 387.3,843.4 541.2,843.4 	"/>
+	<line class="st13" x1="590.3" y1="793.9" x2="541.2" y2="793.9"/>
+	<line class="st13" x1="415.8" y1="158.6" x2="415.8" y2="180.5"/>
+	<line class="st13" x1="363.4" y1="548" x2="385.8" y2="548"/>
+	<line class="st13" x1="363.4" y1="734.5" x2="387.3" y2="734.5"/>
+	<text transform="matrix(0 -1 1 0 430.6387 334.332)" class="st1 st10">Parking</text>
+	<text transform="matrix(1 0 0 1 414.7627 804.2886)" class="st1 st10">Parking</text>
+	<text transform="matrix(1 0 0 1 64.4565 895.6665)" class="st20 st16">No parking along street</text>
+	<text transform="matrix(1 0 0 1 544.6436 947.334)"><tspan x="0" y="0" class="st2 st17">to </tspan><tspan x="-14.5" y="28.8" class="st2 st17">I-235</tspan></text>
+	<text transform="matrix(1 0 0 1 423.3389 45)" class="st2 st17">to Valley Center</text>
+	<text transform="matrix(1 0 0 1 362.6235 143.6665)" class="st20 st16">No parking along street</text>
+	<text transform="matrix(1 0 0 1 37.6963 797)" class="st2 st15">Picnic Area</text>
+	<line class="st11" x1="61.3" y1="765" x2="82.8" y2="765"/>
+	<line class="st11" x1="51.8" y1="771.5" x2="90.3" y2="771.5"/>
+	<line class="st11" x1="58.5" y1="780" x2="66.3" y2="765"/>
+	<line class="st11" x1="76.3" y1="765" x2="82.8" y2="780"/>
+	<text transform="matrix(0 -1 1 0 579.2295 504.9434)" class="st2 st17">Meridian</text>
+	<text transform="matrix(1 0 0 1 526.3516 180.4561)" class="st2 st17">42nd</text>
+	<text transform="matrix(1 0 0 1 128.4883 857)" class="st2 st17">41st St North</text>
+	<text transform="matrix(1 0 0 1 549.4883 785.5371)" class="st2 st15">41st</text>
+	<text transform="matrix(0 -1 1 0 354.103 594.4692)" class="st20 st16">No parking along street</text>
+</g>
+<g id="Fields">
+	
+		<rect x="58.7" y="340.8" transform="matrix(-0.703 -0.7112 0.7112 -0.703 -114.1302 793.0479)" class="st4" width="99.5" height="159.2"/>
+	<rect x="20.7" y="125.9" class="st5" width="297.9" height="149.1"/>
+	<rect x="209.1" y="314.5" class="st3" width="79.2" height="44.6"/>
+	<g>
+		<line class="st19" x1="327.9" y1="659.9" x2="71" y2="659.9"/>
+		<line class="st19" x1="327.9" y1="659.9" x2="327.9" y2="401.9"/>
+		<path class="st19" d="M327.9,401.9c-142,0-256.9,115.4-256.9,258"/>
+		<path class="st19" d="M327.9,540.5c-65.7,0-118.8,53.4-118.8,119.4"/>
+	</g>
+	<rect x="452.1" y="189.1" class="st8" width="74.3" height="544.6"/>
+	<text transform="matrix(0 -1 1 0 498.2979 628.0977)" class="st2 st10">Riverlawn Christian Church</text>
+	<rect x="268.5" y="675" class="st7" width="39.6" height="70"/>
+	<text transform="matrix(1 0 0 1 190.668 705)"><tspan x="0" y="0" class="st6 st2 st15">Volleyball</tspan><tspan x="13.7" y="21.6" class="st6 st2 st15"> Court</tspan></text>
+</g>
+<g id="Field_Labels">
+	<text transform="matrix(1 0 0 1 77.4297 407)" class="st1 st17">Red Field</text>
+	<text transform="matrix(1 0 0 1 106.7197 180.5239)" class="st1 st17">Yellow Field</text>
+	<text transform="matrix(1 0 0 1 200.4063 380)" class="st1 st17">Blue Field</text>
+	<text transform="matrix(1 0 0 1 246.3379 610)"><tspan x="0" y="0" class="st6 st2 st15">Baseball</tspan><tspan x="-4" y="21.6" class="st6 st2 st15">Diamond</tspan></text>
+	<text transform="matrix(1 0 0 1 107.3174 238.584)" class="st2 st17">U10 and U12</text>
+	<text transform="matrix(1 0 0 1 74.5332 465.084)" class="st2 st17">U8</text>
+	<text transform="matrix(1 0 0 1 218.8848 344.584)" class="st2 st17">U5/U6</text>
+</g>
+<g id="Descriptions">
+</g>
+<g id="North">
+	<g>
+		<g>
+			<line class="st12" x1="427.3" y1="968.5" x2="427.3" y2="915.6"/>
+			<g>
+				<path d="M427.3,897.5c3.2,8.5,8.6,19.1,14.3,25.6l-14.3-5.2l-14.3,5.2C418.8,916.6,424.2,906,427.3,897.5z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 408.3213 887.5)" class="st2 st15">North</text>
+</g>
+<g id="Title">
+	<text transform="matrix(1 0 0 1 36.7158 59.25)"><tspan x="0" y="0" class="st1 st18">AYSO Region 253</tspan><tspan x="0" y="28.8" class="st1 st17">I-235 &amp; North Meridian</tspan></text>
+</g>
+</svg>

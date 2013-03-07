@@ -89,7 +89,12 @@ td { padding: 1px 4px; }
 	text-align: center; margin: 0;
 }
 #fields .listing div a {
-	margin: 0% 0% 2% 2%;
+	margin: 0% 5% 2% 5%;
+	width: 90%;
+}
+
+#fields .listing div.full a {
+	margin: 2%;
 	width: 45%;
 	display: inline-block;
 }

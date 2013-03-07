@@ -4,17 +4,17 @@ var FieldView = {
 	//Could add this for a more descriptive of home region
 	//regionLong: ["Stryker Complex, "],
 	
-	svgFiles: ["img/Fields49.svg", "img/Fields105.svg", "img/Fields208.svg",
-	           "img/error.svg", "img/error.svg", "img/error.svg"],
+	svgFiles: ["img/Fields049.svg", "img/Fields105.svg", "img/Fields208.svg",
+	           "img/Fields253.svg", "img/Fields491.svg", "img/error.svg"],
 	
 	showIndex: function() {
 		$("#fields .listing").empty();
 		var myregion = DataControl.getRegion();
 		for(var i=0; i< app.regions.length; ++i) {
 			if(app.regions[i] == myregion) {
-				$("#fields .listing").prepend("<div>" +
-						"<h2>Region "+app.regions[i]+"</h2>" +
-						"<p>"+app.regionsLong[i]+"</p>" +
+				$("#fields .listing").prepend("<div class='full ui-bar-c'>" +
+						"<h2>Region "+app.regions[i]+" - " +
+						""+app.regionsLong[i]+"</h2>" +
 						"<a data-role='button' href='#map?"+app.regions[i]+"'>Directions</a>" +
 						"<a data-role='button' href='#fields?"+app.regions[i]+"'>Field Map</a>" +
 					"</div>");

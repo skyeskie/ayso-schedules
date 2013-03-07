@@ -67,6 +67,7 @@ var app = {
 		$('#divis .pageheader a.home').attr("href", "#schedules");
 		$('#team-detail .pageheader a.home').attr("href", "#team");
 		$('#games-list .pageheader a.home').attr("href", "#divis");
+		$('#field-map .pageheader a.home').attr("href", "#fields");
 	},
 	
 	addListeners: function() {

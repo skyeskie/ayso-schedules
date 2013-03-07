@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 612 1008" style="enable-background:new 0 0 612 1008;" xml:space="preserve">
+<style type="text/css">
+<![CDATA[
+	.st0{fill:none;stroke:#939598;}
+	.st1{fill:#E6E7E8;stroke:#000000;}
+	.st2{fill:none;stroke:#231F20;stroke-width:5;}
+	.st3{font-family:'MyriadPro-Semibold';}
+	.st4{font-family:'MyriadPro-Regular';}
+	.st5{fill:#F9F7CD;}
+	.st6{fill:#939598;}
+	.st7{fill:#C7E5CA;}
+	.st8{fill:none;stroke:#000000;stroke-width:5;stroke-linejoin:round;}
+	.st9{fill:none;stroke:#000000;stroke-width:3;}
+	.st10{fill:none;stroke:#000000;stroke-width:8;}
+	.st11{font-size:18px;}
+	.st12{font-size:24px;}
+	.st13{font-size:36px;}
+]]>
+</style>
+<g transform="matrix(0 1 -1 0 612 0)">
+<g id="Roads">
+	<line class="st10" x1="24.4" y1="46.3" x2="1000.5" y2="46.3"/>
+	<path class="st8" d="M687.4,46.3v158l123,138l101-90.6c5.7-36-2.6-105.7-15-115.4c-8-23.7-8-23.7-8-53v-37"/>
+	
+		<rect x="678.7" y="208.7" transform="matrix(0.7488 -0.6628 0.6628 0.7488 -20.1096 550.9215)" class="st1" width="76" height="186.5"/>
+	<rect x="593.5" y="81.6" class="st1" width="87.9" height="66"/>
+	<line class="st2" x1="566.5" y1="46.3" x2="566.5" y2="606"/>
+	<polyline class="st0" points="337.5,61 337.5,205 337.5,207 481.5,207 	"/>
+	<path class="st0" d="M481.5,207c0-80.7-64.4-146-144-146"/>
+	<path class="st0" d="M409.5,207c0-40.3-32.2-73-72-73"/>
+	<polyline class="st0" points="311.2,375 311.2,231 311.2,229 167.2,229 	"/>
+	<path class="st0" d="M167.2,229c0,80.7,64.4,146,144,146"/>
+	<path class="st0" d="M239.2,229c0,40.3,32.2,73,72,73"/>
+	<polyline class="st0" points="482.5,230 338.5,230 336.5,230 336.5,374 	"/>
+	<path class="st0" d="M336.5,374c80.7,0,146-64.4,146-144"/>
+	<path class="st0" d="M336.5,302c40.3,0,73-32.2,73-72"/>
+	<text transform="matrix(1 0 0 1 752.9199 165)"><tspan x="0" y="0" class="st4 st12">Clearwater</tspan><tspan x="-6.5" y="28.8" class="st4 st12">High School</tspan></text>
+	<text transform="matrix(1 0 0 1 346.4927 111)"><tspan x="0" y="0" class="st6 st4 st11">Baseball</tspan><tspan x="9.2" y="21.6" class="st6 st4 st11">Fields</tspan></text>
+	<text transform="matrix(1 0 0 1 599.5278 122)" class="st4 st12">Parking</text>
+	<text transform="matrix(0.6757 0.7372 -0.7372 0.6757 685.9009 275.8389)" class="st4 st12">Parking</text>
+	<text transform="matrix(1 0 0 1 98.3276 38)" class="st4 st12">East Ross Avenue / W 103rd Street South</text>
+	<text transform="matrix(1 0 0 1 28.4712 74)"><tspan x="0" y="0" class="st4 st11">to S 4th Ave</tspan><tspan x="-7.1" y="21.6" class="st4 st11">(S 135th St W)</tspan></text>
+	<text transform="matrix(1 0 0 1 896.6299 67.8745)"><tspan x="0" y="0" class="st4 st11">to S Millbrook</tspan><tspan x="18.3" y="21.6" class="st4 st11">(S 119th W)</tspan></text>
+	<rect x="507.3" y="388.3" class="st1" width="56" height="206.7"/>
+	<text transform="matrix(0 -1 1 0 544.2539 533.8955)" class="st4 st12">Parking</text>
+	<path class="st2" d="M101.8,273.2V230c0-10.5,11.4-19,25.5-19h173.2V46.3"/>
+	<rect x="201.2" y="62.5" class="st1" width="99.3" height="148.5"/>
+	<text transform="matrix(1 0 0 1 212.9253 139.543)" class="st4 st12">Parking</text>
+	<path class="st1" d="M178.9,381.2c-2.6,7-85.6,7.5-89.8,0s5-108,5-108h12.7C106.8,273.2,181.5,374.2,178.9,381.2z"/>
+	<text transform="matrix(1 0 0 1 93.2598 374.9766)" class="st4 st12">Parking</text>
+</g>
+<g id="Fields">
+	<rect x="373.8" y="397" class="st5" width="113.3" height="198"/>
+	<rect x="223.5" y="397" class="st7" width="114" height="198"/>
+	<rect x="74.5" y="397" class="st5" width="113.3" height="198"/>
+	<text transform="matrix(1 0 0 1 260.4126 478)"><tspan x="0" y="0" class="st4 st12">U12</tspan><tspan x="0" y="28.8" class="st4 st12">U14</tspan><tspan x="0" y="57.6" class="st4 st12">U19</tspan></text>
+	<rect x="387.5" y="409" class="st7" width="50.5" height="57"/>
+	<rect x="387.5" y="476" class="st7" width="91.4" height="119"/>
+	<text transform="matrix(1 0 0 1 398.8184 448.5)" class="st4 st12">U6</text>
+	<text transform="matrix(1 0 0 1 419.2549 545.5)" class="st4 st12">U8</text>
+	<rect x="84.5" y="430" class="st7" width="99" height="155"/>
+	<text transform="matrix(1 0 0 1 113.4126 516)" class="st4 st12">U10</text>
+</g>
+<g id="Field_Labels">
+</g>
+<g id="Descriptions">
+</g>
+<g id="North">
+	<g>
+		<g>
+			<line class="st9" x1="941.8" y1="408.5" x2="941.8" y2="355.6"/>
+			<g>
+				<path d="M941.8,337.5c3.2,8.5,8.6,19.1,14.3,25.6l-14.3-5.2l-14.3,5.2C933.3,356.6,938.7,346,941.8,337.5z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 922.8213 327.5)" class="st4 st11">North</text>
+</g>
+<g id="Title">
+	<text transform="matrix(1 0 0 1 637.6421 496.0005)"><tspan x="0" y="0" class="st3 st13">AYSO Region 491</tspan><tspan x="0" y="43.2" class="st3 st13">Clearwater</tspan></text>
+</g>
+</g>
+</svg>
