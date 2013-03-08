@@ -13,7 +13,9 @@
 	<script src="lib/jquery.svg.min.js"></script>
 	<script src="js/jquery-config.js"></script>
 	<script src="lib/jquery.mobile/jquery.mobile-1.2.0.min.js"></script>
+	<script src="lib/jquery.ui.map.min.js"></script>
 	<script src="js/cordova-2.3.0.js"></script>
+	<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
 </head>
 <body>
 
@@ -280,9 +282,9 @@
 	 -->
 </div>
 
-<div id="map">
+<div id="map" data-role="page" class="page">
 
-	<div id="map-target"></div>
+	<div id="map_canvas"></div>
 </div>
 
 <div id="error" data-role="page" data-theme="e">
@@ -302,6 +304,7 @@
 <script src="js/SettingsView.js"></script>
 <script src="js/CancelView.js"></script>
 <script src="js/FieldView.js"></script>
+<script src="js/MapView.js"></script>
 <script src="js/main.js"></script>
 
 </body>
