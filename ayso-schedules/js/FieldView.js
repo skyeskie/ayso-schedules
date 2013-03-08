@@ -4,6 +4,9 @@ var FieldView = {
 	//Could add this for a more descriptive of home region
 	//regionLong: ["Stryker Complex, "],
 	
+	svgIDs: ["#fields049", "#fields105", "#fields208",
+	           "#fields253", "#fields491", "#fieldsError"],
+	           
 	svgFiles: ["img/Fields049.svg", "img/Fields105.svg", "img/Fields208.svg",
 	           "img/Fields253.svg", "img/Fields491.svg", "img/error.svg"],
 	
@@ -47,11 +50,7 @@ var FieldView = {
 			r = 5; //Error
 		}
 		
-		console.log("<embed src='" +
-				this.svgFiles[r] +
-				"' type='image/svg+xml' />");
-		
-		$("#field-map embed").attr("src", this.svgFiles[r]);
+		$("#svg-dump").load(this.svgFiles[r]);
 
 		var $page = $( "#field-map" );
 		$page.page();

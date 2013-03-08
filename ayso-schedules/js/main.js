@@ -68,6 +68,9 @@ var app = {
 		$('#team-detail .pageheader a.home').attr("href", "#team");
 		$('#games-list .pageheader a.home').attr("href", "#divis");
 		$('#field-map .pageheader a.home').attr("href", "#fields");
+		
+		//Setup FieldsView
+		$("#svg-dump").svg();
 	},
 	
 	addListeners: function() {

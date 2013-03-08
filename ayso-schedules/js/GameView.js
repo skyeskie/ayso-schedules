@@ -34,6 +34,7 @@ var GameView = {
 			//Set 'Up' button to current level
 			$('#game .pageheader a.home').attr("href", app.currentView);
 			
+			$('#game .field-link').attr("href", "#fields?"+match[1]);
 			//Change page
 			var $page = $( "#game" );
 			$page.page();

@@ -98,3 +98,8 @@ td { padding: 1px 4px; }
 	width: 45%;
 	display: inline-block;
 }
+
+#field-map embed {
+	width: 100%;
+}
+}

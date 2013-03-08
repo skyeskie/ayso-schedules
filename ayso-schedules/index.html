@@ -6,11 +6,11 @@
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
 	<link rel="stylesheet" type="text/css" href="lib/jquery.mobile/jquery.mobile-1.2.0.css" />
-	
+	<link rel="stylesheet" type="text/css" href="lib/jquery.svg.css" />
 	<script src="lib/jquery-1.8.2.min.js"></script>
-	
+	<script src="lib/jquery.svg.min.js"></script>
 	<script src="js/jquery-config.js"></script>
 	<script src="lib/jquery.mobile/jquery.mobile-1.2.0.min.js"></script>
 	<script src="js/cordova-2.3.0.js"></script>
@@ -188,10 +188,10 @@
 		<!-- <span class="ui-li-aside">Click for directions</span>
 		</a>--></li>
 		
-		<li><!-- <a href="#field">-->
+		<li><a href="#fields" class="field-link">
 			<strong>Field</strong> <span id="game-field"></span>
-			<!-- <span class="ui-li-aside">Click for field map</span>
-		</a>--></li>
+			<span class="ui-li-aside">See field map</span>
+		</a></li>
 	
 	</ul>
 
@@ -268,7 +268,21 @@
 
 
 <div id="field-map" data-role="page" class="page">
-	<embed src="img/error.svg" type="image/svg+xml" width="100%" />
+
+	<div id="svg-dump"></div>
+	<!-- 
+	<embed id="fieldsError" src="img/error.svg" type="image/svg+xml" />
+	<embed id="fields049" src="img/Fields049.svg" type="image/svg+xml" />
+	<embed id="fields105" src="img/Fields105.svg" type="image/svg+xml" />
+	<embed id="fields208" src="img/Fields208.svg" type="image/svg+xml" />
+	<embed id="fields253" src="img/Fields253.svg" type="image/svg+xml" />
+	<embed id="fields491" src="img/Fields491.svg" type="image/svg+xml" />
+	 -->
+</div>
+
+<div id="map">
+
+	<div id="map-target"></div>
 </div>
 
 <div id="error" data-role="page" data-theme="e">
