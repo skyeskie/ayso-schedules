@@ -6,7 +6,12 @@ var WeekView = {
 	},
 	
 	showIndex: function() {
-		this.showDetail(DataControl.getCurrentWeek());
+		var cur = DataControl.getCurrentWeek();
+		//Update routing stack to account for auto-route
+		app.viewStack.pop();
+		app.viewStack.push("#week?"+cur);
+		this.showDetail(cur);
+		console.log(app.viewStack);
 	},
 	
 	showDetail: function(week) {

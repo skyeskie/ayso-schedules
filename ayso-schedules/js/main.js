@@ -1,10 +1,13 @@
 var app = {
 	currentView: null,
 	lastListing: null,
-	regions: Array("49", "105", "208", "253", "491"),
-	divisions: Array("U6", "U8", "U10", "U12", "U14", "U19"),
-	regionsLong: Array("Stryker", "Southview", "West Wichita",
-			"Valley Center", "Clearwater"),
+	
+	viewStack: null,
+	
+	regions: ["49", "105", "208", "253", "491"],
+	divisions: ["U6", "U8", "U10", "U12", "U14", "U19"],
+	regionsLong: ["Stryker", "Southview", "West Wichita",
+			"Valley Center", "Clearwater"],
 	
 	/**
 	 * Forces a full redownload of data.
@@ -22,7 +25,7 @@ var app = {
 	 * Shows a call button and sets its link to the phone number
 	 * @param selector - CSS Selector for the call button
 	 * @param number - String telephone number
-	 * 		Will be processed to remove parentheses and dashes
+	 *        Will be processed to remove parentheses and dashes
 	 */
 	activateCallButton: function(selector, number) {
 		var match = number.match(/\(?(\d*)\)?\s+(\d*)\-?(\d*)/);
@@ -62,12 +65,14 @@ var app = {
 		//$("#slider-week")
 		
 		//Setup back hierarchy
-		$('#team .pageheader a.home').attr("href", "#schedules");
-		$('#week .pageheader a.home').attr("href", "#schedules");
-		$('#divis .pageheader a.home').attr("href", "#schedules");
-		$('#team-detail .pageheader a.home').attr("href", "#team");
-		$('#games-list .pageheader a.home').attr("href", "#divis");
-		$('#field-map .pageheader a.home').attr("href", "#fields");
+		$('.pageheader a.home').attr("href", "");
+		$('.pageheader a.home').click(app.routeUp);
+//		$('#team .pageheader a.home').attr("href", "#schedules");
+//		$('#week .pageheader a.home').attr("href", "#schedules");
+//		$('#divis .pageheader a.home').attr("href", "#schedules");
+//		$('#team-detail .pageheader a.home').attr("href", "#team");
+//		$('#games-list .pageheader a.home').attr("href", "#divis");
+//		$('#field-map .pageheader a.home').attr("href", "#fields");
 		
 		//Setup FieldsView
 		$("#svg-dump").svg();
@@ -106,37 +111,38 @@ var app = {
 	
 	addRoutingHook: function() {
 		//jQueryMobile hooking
-        $(document).bind( "pagebeforechange", function( e, data ) {
-        	console.log("Running pagebeforechange");
-        	if(app.firstRoute) {
-        		//First run -- we want to call route
-        		console.log("Interceptiong first routing call");
-        		console.log("  initPage: "+this.initPage);
-        		app.firstRoute = false;
-        		app.route(null);
-        		e.preventDefault();
-        	}
-        	
-        	if(typeof data.toPage === "string" ) {
-        		var u = $.mobile.path.parseUrl( data.toPage );
+		$(document).bind( "pagebeforechange", function( e, data ) {
+			console.log("Running pagebeforechange");
+			if(app.firstRoute) {
+				//First run -- we want to call route
+				console.log("Interceptiong first routing call");
+				console.log("  initPage: "+this.initPage);
+				app.firstRoute = false;
+				app.route(null);
+				e.preventDefault();
+			}
 
-        		if ( u.hash.search(app.processableURL) !== -1 ) {
-        			data.options.dataUrl = u.href;
-        			
-        			app.route(u, data.options);
+			if(typeof data.toPage === "string" ) {
+				var u = $.mobile.path.parseUrl( data.toPage );
 
-        			// Kill jQueryMobile's auto-processing
-        			e.preventDefault();
-        		} else console.log("URL["+u.href+"] is not processable");
-        	}
-        });
-        
-        /*$(window).bind("hashchange", function(e, data) {
-        	if(app.currentView != location.hash) {
-        		console.log("Hash change.");
-        		app.route(null); //External hash change event
-        	}
-        });//*/
+				if ( u.hash.search(app.processableURL) !== -1 ) {
+					data.options.dataUrl = u.href;
+
+					app.route(u, data.options);
+
+					// Kill jQueryMobile's auto-processing
+					e.preventDefault();
+				} else console.log("URL["+u.href+"] is not processable");
+			}
+		});
+
+		/*
+		$(window).bind("hashchange", function(e, data) {
+	    	if(app.currentView != location.hash) {
+	    		console.log("Hash change.");
+	    		app.route(null); //External hash change event
+	    	}
+	    });//*/
 	},
 	
     initialize: function() {
@@ -161,11 +167,13 @@ var app = {
         //Determine page to go to
         if(this.data.isAppSetup()) {
         	this.data.updateData();
-        	this.initPage = location.hash;//.replace(/^#/,"");
+        	this.initPage = location.hash;
+        	var match = this.initPage.match(/^#?([\w\-_]+[\/\?])?[\w\-_%&=]*$/);
         	console.log("Set initPage to "+this.initPage);
         } else {
         	console.log("Routing to first run setup");
         	this.initPage = "setup";
+        	this.initStack("setup");
         	$( document ).delegate("#setup", "pageinit", function() {
         		DataControl.downloadInitialData();
     		});
@@ -212,6 +220,88 @@ var app = {
 	//Combination of above two for jQuery hook
 	processableURL: /^#?[\w\-_]+([\/\?][\w\-_%&=]*)?$/,
 	
+	matchTop: function(str) {
+		var top = app.viewStack[ app.viewStack.length - 1 ];
+		
+		if(top.indexOf('?', 0) > 0) {
+			top = top.substring(0, top.indexOf('?', 0)+1);
+		}
+		
+		if(str.indexOf('?',0) > 0) {
+			str = str.substring(0, str.indexOf('?', 0)+1);
+		}
+		
+		return (top == str);
+	},
+	
+	initStack: function(page) {
+		console.log("initStack("+page+")");
+    	switch(page) {
+	        case WeekView.type:
+	        	// 'week' will be added by route function
+	        	app.viewStack = ['index', 'schedules'];
+	        	break;
+	        	
+	        case TeamView.type:
+	        	app.viewStack = ['index', 'schedules', 'team'];
+	        	break;
+	        	
+	        case GameView.type:
+	        	//We don't know the path, so have to set index as next up
+	        	app.viewStack = ['index', 'game'];
+	        	break;
+	        	
+	        case DivisionView.type:
+	        	app.viewStack = ['index', 'schedules', 'divis'];
+	        	break;
+	        	
+	        case SavedTeamsView.type:
+	        	app.viewStack = ['index', 'favorites'];
+	        	break;
+	        	
+	        case CancelView.type:
+	        	app.viewStack = ['index', 'twitter'];
+	        	break;
+	        	
+	        case SettingsView.type:
+	        	app.viewStack = ['index', 'settings'];
+	        	break;
+	        	
+	        case FieldView.type:
+	        	app.viewStack = ['index', 'fields'];
+	        	break;
+	        	
+	        case MapView.type:
+	        	//The 'map?' will be added in the route() function
+	        	app.viewStack = ['index', 'fields'];
+	        	break;
+	        	
+	        case ScheduleHome.type:
+	        	app.viewStack = ['index', 'schedules'];
+	        	break;
+	        	
+	        case "setup":
+	        	app.viewStack = ['index', 'setup'];
+	        	break;
+	        	
+	        default:
+	        	app.viewStack = ['index'];
+	        	break;
+    	}
+    	console.log("Initialized ViewStack to ");
+    	console.log(app.viewStack);
+	},
+	
+	routeUp: function() {
+		console.log("Route up");
+		var last = app.viewStack.pop();
+		if(last=="index") route({hash: "index"});
+		var top = app.viewStack[app.viewStack.length-1];
+		app.route({hash: top});
+		
+		console.log(app.viewStack);
+	},
+	
     route: function(urlObject, options) {
     	console.log("Running route function");
     	var hash;
@@ -232,6 +322,8 @@ var app = {
     	
         if (!hash || hash == "index" || hash=="#index" || hash == "") {
             HomeView.printView();
+            //Reset the stack
+            app.viewStack = ['index'];
             return;
         }
         
@@ -257,7 +349,16 @@ var app = {
 	    	}
 	    	
         }
-    	
+        
+        if(app.viewStack == null) app.initStack(filterType);
+        
+        if(app.matchTop(hash)) {
+        	//We want a replace if it's a sideways move (week?8 to week?9)
+        	app.viewStack.pop();
+    	}
+        app.viewStack.push(hash);
+        console.log(app.viewStack);
+        
     	switch(filterType) {
 	        case WeekView.type:
 	        	if(isIndex) WeekView.showIndex();
@@ -297,13 +398,18 @@ var app = {
 	        		else FieldView.showDetail(offset);
 	        	break;
 	        	
+	        case MapView.type:
+	        	if(isIndex) MapView.showIndex();
+	        		else MapView.showDetail(offset);
+	        	break;
+	        	
 	        case ScheduleHome.type:
 	        	ScheduleHome.showIndex();
 	        	break;
 	        	
 	        default:
 	        	console.error("Unexpected page type: '"+filterType+"'");
-	        	HomeView.printView();
+	        	app.viewStack.pop(); //No change
 	        	break;
         }
         return;
