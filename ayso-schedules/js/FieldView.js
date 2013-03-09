@@ -4,6 +4,8 @@ var FieldView = {
 	//Could add this for a more descriptive of home region
 	//regionLong: ["Stryker Complex, "],
 	
+	current: null, //Placeholder for rendering functions
+	
 	svgIDs: ["#fields049", "#fields105", "#fields208",
 	           "#fields253", "#fields491", "#fieldsError"],
 	           
@@ -50,12 +52,49 @@ var FieldView = {
 			r = 5; //Error
 		}
 		
-		$("#svg-dump").load(this.svgFiles[r]);
+		FieldView.current = r;
+		
+		if(typeof device != 'undefined') {
+			var versionMajor = Number(device.version.substr(0,1));
+			if(device.platform = "Android" && versionMajor < 4) {
+				$('#field-map').on('pageshow', FieldView.showCanvas);
+			} else {
+				$('#field-map').on('pageshow', FieldView.showSVG);
+			}
+		} else {
+			$('#field-map').on('pageshow', FieldView.showSVG);
+		}//*/
 
 		var $page = $( "#field-map" );
 		$page.page();
 		$.mobile.changePage( $page );
 		location.hash = "#fields?"+offset;
 		app.currentView = "#fields?"+offset;
+	},
+	
+	showSVG: function() {
+		$('canvas').remove();
+		$("#svg-dump").load(FieldView.svgFiles[FieldView.current]);
+		
+		var h = $(window).height() - $('#svg-dump').offset().top;
+		var w = $('#field-map').width();
+		$('#svg-dump').width(w);
+		$('#svg-dump').height(h);
+	},
+	
+	showCanvas: function() {
+		var h = $(window).height() - $('canvas').offset().top;
+		var w = $('#field-map').width();
+		$('canvas').attr('width',w);
+		$('canvas').attr('height',h);
+		var c = document.getElementById('canvas');
+		var ctx = c.getContext('2d');
+	
+		console.log("Creating canvas for compatability.");
+		ctx.drawSvg(FieldView.svgFiles[FieldView.current], 0, 0, w, h);;
+		
+		$('#svg-dump').remove();
+		
+		$('#field-map').off('pageshow');
 	}
 };

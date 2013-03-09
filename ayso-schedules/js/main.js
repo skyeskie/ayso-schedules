@@ -129,6 +129,7 @@ var app = {
 	 * Ties into routeUp, or exits if at index
 	 */
 	backKeyDown : function() {
+		console.log("Back key press.");
 		if(app.viewStack.length===1) {
 			navigator.app.exitApp();
 		}
@@ -348,10 +349,7 @@ var app = {
 			app.viewStack = [ 'index', 'schedules' ];
 			break;
 
-		case "setup":
-			app.viewStack = [ 'index', 'setup' ];
-			break;
-
+		case "setup": //We don't want setup in the stack
 		default:
 			app.viewStack = [ 'index' ];
 			break;
@@ -515,6 +513,11 @@ var app = {
 			ScheduleHome.showIndex();
 			break;
 
+		case "debug":
+			$("#debug").page();
+			$.mobile.changePage( $("#debug") );
+			break;
+			
 		default:
 			console.error("Unexpected page type: '" + filterType + "'");
 			app.viewStack.pop(); //No change
