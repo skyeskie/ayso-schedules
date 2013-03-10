@@ -234,10 +234,8 @@
 </div>
 
 <div id="settings" data-role="page" class="page">
-	<p>The region setting is used to filter your current week view.
-	You can still view teams from other regions (and even add them to your favorites) by
-	using the 'Search Team' view.</p> 
-	<label for="select-region" class="select" data-inline="true">Change Region:</label>
+	<label for="select-region" class="select" data-inline="true">Home Region</label>
+	<p>This filters your current week view.</p> 
 	<select name="select-region" id="select-region">
 		<option value="49">Region 49 (Stryker)</option>
 		<option value="105">Region 105 (Southview)</option>
@@ -247,15 +245,24 @@
 	</select>
 	
 	<hr />
-	<p>Data last updated on <span id="lastUpdate">(Unknown)</span>.<br />
-	Click to force an update now: <button id="update" data-inline="true">Update data</button>
+	
+	<h2>Update data</h2>
+	<p>The app normally checks for updates on start.
+	Use this if you think you missed an update.<br />
+	<strong>Last updated:</strong> <span id="lastUpdate">(Unknown)</span>
+	<button id="update" data-inline="true">Update now</button>
 	</p>
+	<p id="update-result"></p>
 	<hr />
-	<p>Reset the app to its original state.<br />
-	<span class="big-warn">Warning:</span> This will delete all saved preferences and reset the local data storage.
-	The app will be the same when first installed, requiring you to re-download the data.
-	<button id="reset" data-inline="true">Reset App</button>
+	<h2>Reset App</h2>
+	<p>
+	<span class="big-warn">Warning:</span> 
+	This will delete all saved preferences and game info.
+	The app will be as if you first installed it.<br />
 	</p>
+	<div style="text-align: center; font-size: 0.8em">
+	<button id="reset" data-inline="true">Reset App</button>
+	</div>
 </div>
 
 <div id="twitter" data-role="page" class="page">

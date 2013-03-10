@@ -14,13 +14,42 @@ div.pageheader h1 a {
 	text-decoration: none;
 }
 
+#settings label, #settings h2 {
+	font-weight: bold;
+	margin: 1em 5% 0.2em 5%;
+    width: 90%;
+	font-size: 1.1em;
+	text-align: center;
+}
+
+#settings p {
+	margin: 0 10%;
+	font-size: 0.8em;
+}
 
 #setup img, #index img, #schedules img {
 	width: 100%;
 	margin: auto;
 }
 
+#lastUpdate {
+	font-weight: bold;
+	color: #009;
+}
+
+.big-warn {
+	font-weight: bold;
+	text-decoration: underline;
+	text-transform: uppercase;
+	color: #A00;
+}
+
 .main-buttons {
+	width: 80%;
+	margin: 10px 10%;
+}
+
+.ui-select {
 	width: 80%;
 	margin: 10px 10%;
 }

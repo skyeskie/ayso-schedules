@@ -5,6 +5,7 @@ var SettingsView = {
 		//Set current region
 		$("#settings #lastUpdate").html(DataControl.getLastUpdate());
 		$("#select-region").val(DataControl.getRegion());
+		$('#update-result').html('');
 		
 		//Change page
 		var $page = $( "#settings" );
@@ -20,13 +21,15 @@ var SettingsView = {
 	},
 	
 	refresh: function() {
-		$.post(this.remoteURL, { lastUpdate: DataControl.getLastUpdate() },
+		$.post(DataControl.remoteURL, { lastUpdate: DataControl.getLastUpdate() },
 				DataControl.updateFinish, "json")
 			.fail(function(error) {
 				console.error("Error connecting to remote server: "+error);
+				$('#update-result').html('Error connecting to remote server');
 			})
 			.success(function() {
 				$("#settings #lastUpdate").html(DataControl.getLastUpdate());
+				$('#update-result').html('Update successful');
 			});
 	},
 	
