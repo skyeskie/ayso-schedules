@@ -250,6 +250,12 @@ var app = {
 			os += "0";
 		}
 		os += " " + ((am) ? "AM" : "PM");
+		
+		if(isNaN(d.getMinutes())) {
+			console.warn("NaN encountered for formatDateTime.\n" +
+				"Arguments: "+jour+" - "+heur);
+		}
+		
 		return os;
 	},
 

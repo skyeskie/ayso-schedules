@@ -169,36 +169,40 @@
 </div>
 
 <div id="game" data-role="page" class="page">
-	<ul data-role="listview">
-		<li id="game-datetime"></li>
-		
-		<li>
-			<strong>Home:</strong> <span id="game-home"></span>
-			<span id="home-coach"><br />
-				Coach <span class="name"></span> 
-				<a class="tel" href="#" data-role="button" data-mini="true"
-					data-inline="true" data-icon="arrow-r" data-iconpos="right">Call</a>
-			</span>
-		</li>
-		<li>
-			<strong>Away:</strong> <span id="game-away"></span>
-			<span id="away-coach"><br />
-				Coach <span class="name"></span> 
-				<a class="tel" href="#" data-role="button" data-mini="true"
-					data-inline="true" data-icon="arrow-r" data-iconpos="right">Call</a>
-			</span>
-		</li>
-		
-		<li><!-- <a href="#region">-->
-			<strong>Region</strong> <span id="game-region"></span>
-		<!-- <span class="ui-li-aside">Click for directions</span>
-		</a>--></li>
+    <h2>Game Info</h2>
+    <div class="when">Week <span class="game-week">#</span><br />
+    <span class="game-datetime"></span>
+    </div>
+    <div class="home team">
+        <h3>Home Team</h3>
+        <h3 class="team-code"></h3>
+        <div class="coach">
+        <strong>Coach</strong><br />
+        <span class="name"></span><br />
+        <a class="tel" href="#" data-role="button" data-mini="true"
+            data-inline="true" data-icon="arrow-r" data-iconpos="right">Call</a>
+        </div>
+    </div>
+    <div class="away team">
+        <h3>Away Team</h3>
+        <h3 class="team-code"></h3>
+        <div class="coach">
+        <strong>Coach</strong><br />
+        <span class="name"></span><br />
+        <a class="tel" href="#" data-role="button" data-mini="true"
+            data-inline="true" data-icon="arrow-r" data-iconpos="right">Call</a>
+        </div>
+    </div>
+	<ul data-role="listview" data-inset="true">
+		<li><a href="#map" class="map-link">
+			<strong>Region</strong> <span class="game-region"></span>
+		<span class="ui-li-aside">Directions</span>
+		</a></li>
 		
 		<li><a href="#fields" class="field-link">
-			<strong>Field</strong> <span id="game-field"></span>
-			<span class="ui-li-aside">See field map</span>
+			<strong>Field</strong> <span class="game-field"></span>
+			<span class="ui-li-aside">Field map</span>
 		</a></li>
-	
 	</ul>
 
 

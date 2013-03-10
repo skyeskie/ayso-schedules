@@ -129,6 +129,43 @@ td { padding: 1px 4px; }
 	padding: 0px;
 }
 
+#game h2 {
+    text-align: center;
+    margin: 0.3em auto;	
+}
+
+#game div.when {
+	text-align: center;
+	margin-bottom: 1em;
+	font-weight: bold;
+}
+
+#game .game-datetime {
+	font-weight: normal;
+}
+
+#game .team {
+	width: 48%;
+	margin-left: .5%;
+	display: inline-block;
+	background-color: #EEE;
+	border: 1px solid #CCC;
+}
+
+#game .team div {
+	margin: 5%;
+}
+
+#game .team h3 {
+	margin: .2em auto;
+	text-align: center;
+}
+
+#game ul {
+	width: 90%;
+	margin: 1em auto;
+}
+
 /* Font info */
 body {
 	font-size: 16pt;
