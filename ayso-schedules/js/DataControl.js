@@ -185,13 +185,13 @@ var DataControl = {
 	
 	setupButtonControl: function() {
 		if($("#setup-status p").text() == "Setup complete." &&
-			$("input[name='radio-region']:radio").val()!=null) {
+			$("#init-region option:selected").val()!=null) {
 			
 			console.log("ENABLE!!!");
 			$("#setup-finish").prop("disabled", false);
 			$("#setup-finish").button('enable');
 			
-			$("#setup :radio").unbind('click');
+			$("#setup #init-region").unbind('click');
 		} else {
 			$("#setup-finish").prop("disabled", true);
 			$("#setup-finish").button('disable');
@@ -203,7 +203,7 @@ var DataControl = {
 		
 		window.localStorage.setItem("init","T");
 		window.localStorage.setItem("region",
-			$("input[name='radio-region']").val());
+			$("#init-region option:selected").val());
 		
 		HomeView.printView();
 	},

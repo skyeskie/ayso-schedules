@@ -99,7 +99,7 @@ var app = {
 		$('#team .region-select a').click(TeamView.regionUpdate);
 
 		//Setup
-		$("#setup :radio").change(DataControl.setupButtonControl);
+		$("#setup #init-region").change(DataControl.setupButtonControl);
 		$("#setup-status p").change(DataControl.setupButtonControl);
 		$("#setup-finish").click(DataControl.setupButtonClick);
 		$("#setup-finish").prop("disabled", true);

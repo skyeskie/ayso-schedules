@@ -1,6 +1,6 @@
 body, div.page, #setup, #index,
 #site-header, .pageheader {
-	max-width: 500px;
+	max-width: 600px;
 }
 
 table {
@@ -15,14 +15,9 @@ div.pageheader h1 a {
 }
 
 
-#setup img {
+#setup img, #index img, #schedules img {
 	width: 100%;
 	margin: auto;
-	max-width: 300px;
-}
-
-#index img {
-	width: 100%;
 }
 
 .main-buttons {
@@ -99,12 +94,13 @@ td { padding: 1px 4px; }
 	display: inline-block;
 }
 
-#field-map embed {
-	width: 100%;
-}
-
 #map_canvas {
 	width: 100%;
 	height: 100%;
 	padding: 0px;
+}
+
+/* Font info */
+body {
+	font-size: 16pt;
 }

@@ -211,24 +211,24 @@
 	<p>Initializing setup...</p>
 	<div id="progressbar"></div>
 	</div>
-		
-	<fieldset data-role="controlgroup">
-		<legend>Select Region:</legend>
-     	<input type="radio" name="radio-region" id="radio-49" value="49" />
-     	<label for="radio-49">Region 49 (Stryker)</label>
-
-     	<input type="radio" name="radio-region" id="radio-105" value="105"  />
-     	<label for="radio-105">Region 105 (Southview)</label>
-
-     	<input type="radio" name="radio-region" id="radio-208" value="208"  />
-     	<label for="radio-208">Region 208 (West Wichita)</label>
-
-     	<input type="radio" name="radio-region" id="radio-253" value="253"  />
-     	<label for="radio-253">Region 253 (Valley Center)</label>
-     	
-     	<input type="radio" name="radio-region" id="radio-491" value="491"  />
-     	<label for="radio-491">Region 491 (Clearwater)</label>
-	</fieldset>
+	
+	<label class="ui-hidden-accessible">Select region</label>
+	<select name="select-region" id="init-region">
+	    <option>Select your region...</option>
+        <option value="49">Region 49 (Stryker)</option>
+        <option value="105">Region 105 (Southview)</option>
+        <option value="208">Region 208 (West Wichita)</option>
+        <option value="253">Region 253 (Valley Center)</option>
+        <option value="491">Region 491 (Clearwater)</option>
+    </select>
+    
+	<p>This app covers all divisions <strong>except</strong>:</p>
+	<ul>
+	   <li>Region 105 - U6</li>
+       <li>Region 208 - U10, U8 and U6</li>
+       <li>Region 253 - U6</li>
+       <li>Region 491 - U8 and U6</li>
+	</ul>
 	
 	<button id="setup-finish">Finish</button>
 </div>
@@ -240,7 +240,7 @@
 	<label for="select-region" class="select" data-inline="true">Change Region:</label>
 	<select name="select-region" id="select-region">
 		<option value="49">Region 49 (Stryker)</option>
-		<option value="105">Region 105 (Southview)y</option>
+		<option value="105">Region 105 (Southview)</option>
 		<option value="208">Region 208 (West Wichita)</option>
 		<option value="253">Region 253 (Valley Center)</option>
 		<option value="491">Region 491 (Clearwater)</option>
