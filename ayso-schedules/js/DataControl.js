@@ -42,7 +42,7 @@ var DataControl = {
 		console.log("Running data update");
 		//TODO Figure out how displaying UI status
 		
-		$.post(this.remoteURL, { lastUpdate: DataControl.getLastUpdate() },
+		$.post(DataControl.remoteURL, { lastUpdate: DataControl.getLastUpdate() },
 				DataControl.updateFinish, "json")
 			.fail(function(error) {
 				console.error("Error connecting to remote server: "+error);
@@ -76,7 +76,7 @@ var DataControl = {
 		//Call AJAX
 		console.log("Running initial data setup");
 		$("#setup-status p").html("Downloading latest data...");
-		$.post(this.remoteURL, {}, DataControl.processInitialData, "json")
+		$.post(DataControl.remoteURL, {}, DataControl.processInitialData, "json")
 			.fail(function(error) {
 				DataControl.setupError("Error connecting remote server: "+error);
 			});		
@@ -134,12 +134,16 @@ var DataControl = {
 		var nweeks = results.rows.length;
 		var weekStarts = [];
 		
+		var maxWeek = 0;
 		for(var i=0; i<nweeks; ++i) {
 			weekStarts[i] = results.rows.item(i).Start;
+			if(results.rows.item(i).Week > maxWeek) {
+				maxWeek = results.rows.item(i).Week;
+			}
 		}
 		
 		console.log("Setting maxWeeks");
-		window.localStorage.setItem("maxWeeks", nweeks);
+		window.localStorage.setItem("maxWeeks", maxWeek);
 		window.localStorage.setItem("weekStart", weekStarts.join(","));
 	},
 	
@@ -220,15 +224,15 @@ var DataControl = {
 	
 	getCurrentWeek: function() {
 		//Cache
-		if(this.curWeek!=null) return this.curWeek;
+		if(DataControl.curWeek!=null) return DataControl.curWeek;
 		
 		var today = new Date();
-		var dateStrings = this.getWeekStarts();
+		var dateStrings = DataControl.getWeekStarts();
 		
 		//Loop from end. First one we're after is the current week we're in
 		for(var i=dateStrings.length; i>=0; --i) {
 			if(today >= new Date(dateStrings[i])) {
-				this.curWeek = i+1;
+				DataControl.curWeek = i+1;
 				return i+1;
 			}
 		}
@@ -247,29 +251,29 @@ var DataControl = {
 			window.localStorage.setItem("savedTeams", "");
 		}
 				
-		this.savedTeams = window.localStorage.getItem("savedTeams").split(",");
+		DataControl.savedTeams = window.localStorage.getItem("savedTeams").split(",");
 	},
 	
 	storeSavedTeams: function() {
-		if(this.savedTeams==null) return;
-		window.localStorage.setItem("savedTeams", this.savedTeams.join());
+		if(DataControl.savedTeams==null) return;
+		window.localStorage.setItem("savedTeams", DataControl.savedTeams.join());
 	},
 	
 	saveTeam: function(team) {
-		if(this.isTeamSaved(team)) return;
-		this.savedTeams.push(team);
-		this.storeSavedTeams();
+		if(DataControl.isTeamSaved(team)) return;
+		DataControl.savedTeams.push(team);
+		DataControl.storeSavedTeams();
 	},
 	
 	unSaveTeam: function(team) {
-		if(!this.isTeamSaved(team)) return;
-		this.savedTeams.splice(this.savedTeams.indexOf(team), 1);
-		this.storeSavedTeams();
+		if(!DataControl.isTeamSaved(team)) return;
+		DataControl.savedTeams.splice(DataControl.savedTeams.indexOf(team), 1);
+		DataControl.storeSavedTeams();
 	},
 	
 	isTeamSaved: function(team) {
-		if(this.savedTeams==null) this.populateSavedTeams();
-		return (-1 != this.savedTeams.indexOf(team));
+		if(DataControl.savedTeams==null) DataControl.populateSavedTeams();
+		return (-1 != DataControl.savedTeams.indexOf(team));
 	},
 	
 	//Conversion functions

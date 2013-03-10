@@ -42,6 +42,7 @@ var SettingsView = {
         window.localStorage.removeItem("weekStart");
         
         //Change page
+        app.db.initializeDatabase(DataControl.downloadInitialData, DataControl.setupError);
 		var $page = $( "#setup" );
 		$page.page();
 		$.mobile.changePage( $page );

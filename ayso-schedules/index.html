@@ -4,7 +4,9 @@
 	<title>AYSO Schedules</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <meta name="viewport" content="user-scalable=no,
+            maximum-scale=5, minimum-scale=1,
+            width=400" />
     
 	<link rel="stylesheet" type="text/css" href="css/styles.css" />
 	<link rel="stylesheet" type="text/css" href="lib/jquery.mobile/jquery.mobile-1.2.0.css" />
@@ -45,7 +47,7 @@
 </div>
 
 <div id="schedules" data-role="page" class="page">
-	<img src="img/HomeText.png" alt="AYSO Kansas" />
+	<img src="img/MainLogo.png" alt="AYSO Kansas" />
 	<div class="main-buttons">
 		<a href='#week' data-role="button">This Week</a>
 		<a href='#team' data-role="button">Find Team</a>
@@ -274,14 +276,6 @@
 <div id="field-map" data-role="page" class="page">
     <canvas id="canvas"></canvas>
 	<div id="svg-dump"></div>
-	<!-- 
-	<embed id="fieldsError" src="img/error.svg" type="image/svg+xml" />
-	<embed id="fields049" src="img/Fields049.svg" type="image/svg+xml" />
-	<embed id="fields105" src="img/Fields105.svg" type="image/svg+xml" />
-	<embed id="fields208" src="img/Fields208.svg" type="image/svg+xml" />
-	<embed id="fields253" src="img/Fields253.svg" type="image/svg+xml" />
-	<embed id="fields491" src="img/Fields491.svg" type="image/svg+xml" />
-	 -->
 </div>
 
 <div id="map" data-role="page" class="page">
@@ -292,9 +286,9 @@
 <div id="error" data-role="page" data-theme="e">
 	<h2>Setup error</h2>
 	<p id="message">An error occured during setup.</p>
+	<p>Make sure you are connected to the internet.</p>
 </div>
 
-<script src="js/games-data.js"></script>
 <script src="js/websql-store.js"></script>
 <script src="js/DataControl.js"></script>
 <script src="js/HomeView.js"></script>

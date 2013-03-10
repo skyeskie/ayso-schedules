@@ -308,50 +308,50 @@ var app = {
 		switch (page) {
 		case WeekView.type:
 			// 'week' will be added by route function
-			app.viewStack = [ 'index', 'schedules' ];
+			app.viewStack = [ '#index', '#schedules' ];
 			break;
 
 		case TeamView.type:
-			app.viewStack = [ 'index', 'schedules', 'team' ];
+			app.viewStack = [ '#index', '#schedules', '#team' ];
 			break;
 
 		case GameView.type:
 			//We don't know the path, so have to set index as next up
-			app.viewStack = [ 'index', 'game' ];
+			app.viewStack = [ '#index', '#game' ];
 			break;
 
 		case DivisionView.type:
-			app.viewStack = [ 'index', 'schedules', 'divis' ];
+			app.viewStack = [ '#index', '#schedules', '#divis' ];
 			break;
 
 		case SavedTeamsView.type:
-			app.viewStack = [ 'index', 'favorites' ];
+			app.viewStack = [ '#index', '#favorites' ];
 			break;
 
 		case CancelView.type:
-			app.viewStack = [ 'index', 'twitter' ];
+			app.viewStack = [ '#index', '#twitter' ];
 			break;
 
 		case SettingsView.type:
-			app.viewStack = [ 'index', 'settings' ];
+			app.viewStack = [ '#index', '#settings' ];
 			break;
 
 		case FieldView.type:
-			app.viewStack = [ 'index', 'fields' ];
+			app.viewStack = [ '#index', '#fields' ];
 			break;
 
 		case MapView.type:
 			//The 'map?' will be added in the route() function
-			app.viewStack = [ 'index', 'fields' ];
+			app.viewStack = [ '#index', '#fields' ];
 			break;
 
 		case ScheduleHome.type:
-			app.viewStack = [ 'index', 'schedules' ];
+			app.viewStack = [ '#index', '#schedules' ];
 			break;
 
 		case "setup": //We don't want setup in the stack
 		default:
-			app.viewStack = [ 'index' ];
+			app.viewStack = [ '#index' ];
 			break;
 		}
 		console.log("Initialized ViewStack to ");
@@ -406,7 +406,7 @@ var app = {
 		if (!hash || hash === "index" || hash === "#index" || hash === "") {
 			HomeView.printView();
 			//Reset the stack
-			app.viewStack = [ 'index' ];
+			app.viewStack = [ '#index' ];
 			return;
 		}
 
