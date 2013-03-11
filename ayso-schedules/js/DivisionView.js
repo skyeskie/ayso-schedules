@@ -10,22 +10,27 @@ var DivisionView = {
 		$('#divis .gender-select').data('active', null);
 		$('#divis .region-select').data('active', null);
 		
-		//$('#divis #slider-week').val(DataControl.getCurrentWeek());
+		$('#divis #slider-week').val(DataControl.getCurrentWeek());
 		$('#divis #slider-week').attr("value", DataControl.getCurrentWeek());
 		$('#divis #slider-week').attr("max", DataControl.getMaxWeeks());
-		
-		app.currentView = this.type;
+		DivisionView.weekUpdate();
 		
 		var $page = $( "#divis" );
 		$page.page();
+		$('#divis #slider-week').slider('refresh');
 		$.mobile.changePage( $page );
 		location.hash = "#divis";
 	},
 	
 	regionUpdate: function(triggerObject) {
-		var $target = $(triggerObject.target);
+		//Remove jQuery Mobile's handler
+		$('#divis .region-select').undelegate('a', 'vclick');
+		
+		var sel = $(triggerObject.target).text();
+		var $target = $('#divis .region-select .'+sel+' a');
+		
 		if($target.hasClass('ui-btn-active')) {
-			$target.removeClass('ui-btn-active');
+			$('#divis .region-select .ui-btn-active').removeClass('ui-btn-active');
 			$('#divis .region-select').data('active', null);
 		} else {
 			$('#divis .region-select .ui-btn-active').removeClass('ui-btn-active');
@@ -35,7 +40,13 @@ var DivisionView = {
 	},
 	
 	divisionUpdate: function(triggerObject) {
-		var $target = $(triggerObject.target);
+		//Remove jQuery Mobile's handler
+		$('#divis .divis-select1').undelegate('a', 'vclick');
+		$('#divis .divis-select2').undelegate('a', 'vclick');
+		
+		var sel = $(triggerObject.target).text();
+		var $target = $('#divis .'+sel+' a');
+		
 		if($target.hasClass('ui-btn-active')) {
 			$target.removeClass('ui-btn-active');
 			$('#divis .divis-select1').data('active', null);
@@ -48,7 +59,12 @@ var DivisionView = {
 	},
 	
 	genderUpdate: function(triggerObject) {
-		var $target = $(triggerObject.target);
+		//Remove jQuery Mobile's handler
+		$('#divis .gender-select').undelegate('a', 'vclick');
+		
+		var sel = $(triggerObject.target).text();
+		var $target = $('#divis .gender-select .'+sel+' a');
+		
 		if($target.hasClass('ui-btn-active')) {
 			$('#divis .gender-select').data('active', null);
 			$('#divis .gender-select .ui-btn-active').removeClass('ui-btn-active');
@@ -59,9 +75,17 @@ var DivisionView = {
 		}
 	},
 	
+	weekStarts: null,
+	
 	weekUpdate: function() {
-		//TODO Put in display showing Date for week No.
-		//To get dates, DateControl.getWeekStarts();
+		if(DivisionView.weekStarts === null) {
+			DivisionView.weekStarts = DataControl.getWeekStarts();
+			for(var i=0; i<DivisionView.weekStarts.length; ++i) {
+				DivisionView.weekStarts[i] = app.formatDate(DivisionView.weekStarts[i]);
+			}
+		}
+		
+		$('#divis .week-desc').html(DivisionView.weekStarts[$('#slider-week').val()-1]);
 	},
 	
 	doSubmit: function() {

@@ -24,7 +24,12 @@ var TeamView = {
 	},
 	
 	regionUpdate: function(triggerObject) {
-		var $target = $(triggerObject.target);
+		//Remove jQuery Mobile's handler
+		$('#team .region-select').undelegate('a', 'vclick');
+		
+		var sel = $(triggerObject.target).text();
+		var $target = $('#team .region-select .'+sel+' a');
+		
 		if($target.hasClass('ui-btn-active')) {
 			$target.removeClass('ui-btn-active');
 			$('#team .region-select').data('active', null);
@@ -37,7 +42,12 @@ var TeamView = {
 	},
 	
 	divisionUpdate: function(triggerObject) {
-		var $target = $(triggerObject.target);
+		//Remove jQuery Mobile's handler
+		$('#team .divis-select1').undelegate('a', 'vclick');
+		$('#team .divis-select2').undelegate('a', 'vclick');
+		
+		var sel = $(triggerObject.target).text();
+		var $target = $('#team .'+sel+' a');
 		if($target.hasClass('ui-btn-active')) {
 			$target.removeClass('ui-btn-active');
 			$('#team .divis-select1').data('active', null);
@@ -51,7 +61,11 @@ var TeamView = {
 	},
 	
 	genderUpdate: function(triggerObject) {
-		var $target = $(triggerObject.target);
+		//Remove jQuery Mobile's handler
+		$('#team .gender-select').undelegate('a', 'vclick');
+		
+		var sel = $(triggerObject.target).text();
+		var $target = $('#team .gender-select .'+sel+' a');
 		if($target.hasClass('ui-btn-active')) {
 			$('#team .gender-select').data('active', null);
 			$('#team .gender-select .ui-btn-active').removeClass('ui-btn-active');
@@ -106,7 +120,7 @@ var TeamView = {
 		$('#team-detail ul').html("<li><em>Loading...</em></li>");
 		$('button.tel').hide();
 		$('#team-detail span.coach').hide();
-		SavedTeamsView.favoriteInit('#team-detail #flip-team', team);
+		SavedTeamsView.favoriteInit('#team-detail', team);
 		//SavedTeamsView.favoriteInit('#team-detail button.myteam', team);
 		//$('button.myteam').show();
 		
@@ -164,5 +178,7 @@ var TeamView = {
 		$.mobile.changePage( $page );
 		location.hash = "#team?" + team;
 		app.currentView = "#team?" + team;
+		
+		//$('#team-detail')
 	}
 };

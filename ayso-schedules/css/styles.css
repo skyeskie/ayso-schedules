@@ -166,7 +166,46 @@ td { padding: 1px 4px; }
 	margin: 1em auto;
 }
 
+label {
+	display: inline-block;
+	margin-left: .3em;
+	margin-right: 2em;
+	margin-top: .7em;
+	font-weight: bold;
+}
+
+#divis .week-desc {
+	position: relative;
+	top: 0.7em;
+}
+
+#team-detail h2 {
+    margin: .3em;
+    display: inline-block;
+}
+
+#team-detail p {
+	margin: 0.1em;
+	clear: right;
+	text-align: center;
+}
+
+.ui-icon-star.ui-icon-alt {
+	background-image: url('../img/icons-18-yellow.png');
+	background-color: rgba(120,120,0,.6);
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+
+    .ui-icon-star.ui-icon-alt {
+	    background-image: url('../img/icons-36-yellow.png');
+	    background-color: rgba(120,120,0,.6);
+	}
+}
+
 /* Font info */
 body {
-	font-size: 16pt;
+	font-size: 14pt;
 }

@@ -3,7 +3,7 @@ var app = {
 	 * Region information for the app.
 	 */
 	regions : [ "49", "105", "208", "253", "491" ],
-	divisions : [ "U6", "U8", "U10", "U12", "U14", "U19" ],
+	divisions : [ "U5", "U6", "U8", "U10", "U12", "U14", "U19" ],
 	regionsLong : [ "Stryker", "Southview", "West Wichita", "Valley Center",
 			"Clearwater" ],
 
@@ -59,26 +59,31 @@ var app = {
 		//Regions filter
 		for (i = 0; i < this.regions.length; ++i) {
 			$('.region-select ul').append(
-					"<li><a>" + this.regions[i] + "</a></li>");
+				"<li class='" + this.regions[i] + "'><a>" + this.regions[i]  + "</a></li>"
+			);
 		}
 
 		//Divisions filter
 		for (i = 0; i < 4 && i < this.divisions.length; ++i) {
 			$('.divis-select1 ul').append(
-					"<li><a>" + this.divisions[i] + "</a></li>");
+				"<li class='" + this.divisions[i] + "'><a>" + this.divisions[i] + "</a></li>"
+			);
 		}
-		if (this.divisions.length < 7) {
+		var lim = 8;
+		if (this.divisions.length < 7 && this.divisions.length > 4) {
 			$('.divis-select2 ul').append("<li>&nbsp;</li>");
+			lim--;
 		}
 		for (i = 4; i < this.divisions.length; ++i) {
 			$('.divis-select2 ul').append(
-					"<li><a>" + this.divisions[i] + "</a></li>");
+				"<li class='" + this.divisions[i] + "'><a>" + this.divisions[i] + "</a></li>"
+			);
 		}
-		for (i = this.divisions.length; i < 7; ++i) {
+		for (i = this.divisions.length; i < lim; ++i) {
 			$('.divis-select2 ul').append("<li>&nbsp;</li>");
 		}
 		//DivisionsView
-		//$("#slider-week")
+		$("#slider-week").live('change',DivisionView.weekUpdate);
 
 		//Setup back hierarchy
 		$('.pageheader a.home').attr("href", "");
@@ -113,8 +118,8 @@ var app = {
 		$('#divis-submit').click(DivisionView.doSubmit);
 
 		//SavedTeams / Favorite Buttons
-		//$('.myteam').click(SavedTeamsView.favoriteToggle);
-		$("#flip-team").change(SavedTeamsView.favoriteToggle);
+		$('.myteam').click(SavedTeamsView.favoriteToggle);
+		//$("#flip-team").change(SavedTeamsView.favoriteToggle);
 
 		//Settings
 		$("#settings #select-region").change(SettingsView.regionUpdate);
@@ -215,13 +220,13 @@ var app = {
 
 	/**
 	 * Helper function to format the date
-	 * @param jour Date string in any format accepted by Date() c'tor
+	 * @param jour Date string in YYYY-MM-DD
 	 * @returns Date in format "<ShortMonth> <Day>" (Eg: Jan 4)
 	 */
 	formatDate : function(jour) {
-		var d = new Date(jour);
-		var os = app.months[d.getMonth()];
-		os += " " + d.getDate();
+		var match = jour.match(/(\d{4})\-(\d{1,2})\-(\d{1,2})/);
+		var os = app.months[Number(match[2])-1];
+		os += " " + match[3];
 		return os;
 	},
 

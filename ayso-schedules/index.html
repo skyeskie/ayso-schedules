@@ -72,9 +72,9 @@
 	
 	<div class="filters gender-select" data-role="navbar">
 	<ul>
-		<li><a>Boys</a></li>
-		<li><a>Girls</a></li>
-		<!-- <li><a>Coed</a></li> -->
+        <li class="Boys"><a>Boys</a></li>
+        <li class="Girls"><a>Girls</a></li>
+        <li class="Coed"><a>Coed</a></li>
 	</ul>
 	</div>
 	
@@ -87,31 +87,30 @@
 </div>
 
 <div id="team-detail" data-role="page" class="page">
-	<div>Team <span class="team"></span>
-	<!-- <button class="myteam" data-icon="star" data-iconpos="notext">Favorite</button> -->
-		<label for="flip-team">Save Team:</label>
-		<select name="flip-team" id="flip-team" data-role="slider" data-mini="true">
-			<option value="off">No</option>
-			<option value="on">Yes</option>
-		</select> 
-	<div>
-	<span class="coach">- Coach </span>
-	<a class="tel" href="#" data-role="button" data-mini="true"
-		data-inline="true" data-icon="arrow-r" data-iconpos="right">Call</a>
+	<h2>Team <span class="team"></span></h2>
+	<div style="display: inline-block; float: right;">
+	   <button class="myteam" data-mini="true" data-inline="true"
+	       data-icon="star" data-iconpos="right">
+	       <span class="fav">Save</span>
+	   </button>
 	</div>
-	</div>
+	<p>
+		<span class="coach">- Coach </span>
+		<a class="tel" href="#" data-role="button" data-mini="true"
+			data-inline="true" data-icon="arrow-r" data-iconpos="right">Call</a>
+	</p>
 	
 	<ul data-role="listview" data-theme="c"></ul>
 </div>
 
 <div id="divis" data-role="page" class="page">
 <div class="ui-bar ui-bar-d">Select Filter</div>
-	Region:
+	<label>Region</label>
 	<div class="filters region-select" data-role="navbar">
 		<ul></ul>
 	</div>
 	
-	Division:
+	<label>Division</label>
 	<div class="filters divis-select1" data-role="navbar">
 		<ul></ul>
 	</div>
@@ -120,16 +119,16 @@
 		<ul></ul>
 	</div>
 	
-	Gender:
+	<label>Gender</label>
 	<div class="filters gender-select" data-role="navbar">
 	<ul>
-		<li><a>Boys</a></li>
-		<li><a>Girls</a></li>
-		<!-- <li><a>Coed</a></li> -->
+		<li class="Boys"><a>Boys</a></li>
+		<li class="Girls"><a>Girls</a></li>
+		<li class="Coed"><a>Coed</a></li>
 	</ul>
 	</div>
 	
-	<label for="slider-fill">Week:</label><br />
+	<label for="slider-fill">Week</label><span class="week-desc"></span><br />
 	<input type="range" name="slider-week" id="slider-week"
 		value="1" min="1" max="3" data-highlight="true" />
 		

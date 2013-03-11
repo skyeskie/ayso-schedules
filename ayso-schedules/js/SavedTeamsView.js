@@ -38,28 +38,27 @@ var SavedTeamsView = {
 	*/
 	
 	favoriteToggle: function(triggerObject) {
-		var state = $("#flip-team")[0].selectedIndex;
-		var team = $("#flip-team").data("team");
-		if(state==1) {
-			DataControl.saveTeam(team);
+		var pre = "#team-detail";
+		var team = $(pre).data("team");
+		if(DataControl.isTeamSaved(team)) {
+			DataControl.unSaveTeam(team);
 			console.log("Saving team");
 		} else {
-			DataControl.unSaveTeam(team);
+			DataControl.saveTeam(team);
 			console.log("Unsaving team");
 		}
+		SavedTeamsView.favoriteInit(pre, team);
 	},
 	
-	favoriteInit: function(flip, team) {
-		var flipper = $(flip);
-		flipper.data("team", team);
-		flipper.slider();
-		
+	favoriteInit: function(pre, team) {
+		$(pre).data("team", team);
 		if(DataControl.isTeamSaved(team)) {
-			flipper[0].selectedIndex = 1;
+			$(pre+" .ui-icon-star").addClass('ui-icon-alt');
+			$(pre+" .fav").html("Unsave");
 		} else {
-			flipper[0].selectedIndex = 0;
+			$(pre+" .ui-icon-star").removeClass('ui-icon-alt');
+			$(pre+" .fav").html("Save");
 		}
-		flipper.slider("refresh");
 	},
 	
 	showIndex: function() {
@@ -80,23 +79,6 @@ var SavedTeamsView = {
 		
 		//Apply jQuery styling
 		$("#favorites .myteams").trigger("create");
-		
-		if(DataControl.savedTeams.length == 0) {
-			$("#favorites .myteams").html(
-				"<div class='ui-theme-e'>" +
-				"<h2>No Teams</h2>" +
-				"<p>In order to use this view, please 'Favorite' teams by " +
-				"finding them with the 'Find Team' option then marking them " +
-				"as a favorite.</p>" +
-				"<a href='#team' data-role='button'>Find Team</a>"
-			);
-			
-			$page.page();
-			$.mobile.changePage( $page );
-			window.hash = "favorites";
-			
-			return;
-		}
 		
 		//Populate games listing
 		$('#favorites ul').append("<li>Loading...</li>");
@@ -119,13 +101,20 @@ var SavedTeamsView = {
 		);
 		
 		if(rows.length==0) {
-			$('#favorites ul').html("<li>No results</li>");
+			$('#favorites ul').html("<div>" +
+				"<h2 style='text-align: center;'>No saved teams</h2><br />" +
+				"<ol>" +
+					"<li>Go to 'Settings &gt; '<a href='#team'>Find Team</a>'</li>" +
+					"<li>Click the 'Save' button in the top right</li>" +
+				"</ol><br /><div class='main-buttons'>" +
+				"<a href='#team' data-role='button'>Find Team</a></div><br /></div>"
+			).trigger('create');
 		}
 		
 		for(var i=0; i<rows.length; ++i) {
 			var game = rows.item(i);
 			
-			var datetime = game.Jour.replace(/^\d{4}\-0?/, "");
+			var datetime = "";
 			var home = game.Home;
 			var away = game.Away;
 			var byeTeam = null;
@@ -134,11 +123,13 @@ var SavedTeamsView = {
 				if(game.Away == "-") continue;
 				home = "BYE";
 				byeTeam = away;
+				datetime = app.formatDate(game.Jour);
 			} else if(game.Away == "-") {
 				away = "BYE";
 				byeTeam = home;
+				datetime = app.formatDate(game.Jour);
 			} else {
-				datetime += " &nbsp;&nbsp;" + game.Heur.replace(/:00$/, "");
+				datetime = app.formatDateTime(game.Jour, game.Heur);
 			}
 			
 			if(DataControl.isTeamSaved(home)) {
@@ -158,8 +149,8 @@ var SavedTeamsView = {
 			
 			$('#favorites ul').append("<li>" +
 				((byeTeam==null)?"<a href='#game?" + game.ID + "'>":"") +
-				"<h3 class='width40'>"+datetime+"</h3>" +
-				"<h3 class='width60'>"+teams+"</h3>" +
+				"<h3 class='width60'>"+datetime+"</h3>" +
+				"<h3 class='width40'>"+teams+"</h3>" +
 				"<p>"+((byeTeam==null)?"Region "+game.Field:"Bye week")+"</p>" +
 				((byeTeam==null)?"</a>":"") +
 			"</li>");
