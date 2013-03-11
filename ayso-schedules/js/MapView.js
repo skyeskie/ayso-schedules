@@ -16,8 +16,11 @@ var MapView = {
 	},
 	
 	showDetail: function(region) {
-		if(MapView.map==null) MapView.init(region);
-		else MapView.updateMap(region);
+		//Make sure fresh div each time
+		$('#map_canvas').replaceWith('<div id="map_canvas"></div>');
+		//if(MapView.map==null)
+			MapView.init(region);
+		//else MapView.updateMap(region);
 		
 		var $page = $( "#map" );
 		$page.page();
@@ -27,7 +30,7 @@ var MapView = {
 	},
 	
 	init: function(region) {
-		var h = $(document).height() - $('#map .pageheader').height();
+		var h = $(window).height() - $('#map_canvas').offset().top;
 		console.log($(document).height() + " - " + $('#map .pageheader').height() + " = " + h);
 		$('#map_canvas').height(h);
 		var center = MapView.coords["r"+region];
