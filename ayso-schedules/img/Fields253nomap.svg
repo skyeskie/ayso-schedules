@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="612px"
+	 height="1008px" viewBox="0 0 612 1008" style="enable-background:new 0 0 612 1008;" xml:space="preserve">
+<style type="text/css">
+<![CDATA[
+	.st0{fill:#1C75BC;}
+	.st1{fill:#ED1C24;}
+	.st2{font-family:'MyriadPro-Semibold';}
+	.st3{fill:#F1F2F2;stroke:#000000;}
+	.st4{font-size:24px;}
+	.st5{font-size:36px;}
+]]>
+</style>
+<g id="Roads">
+</g>
+<g id="Fields">
+</g>
+<g id="Field_Labels">
+</g>
+<g id="Descriptions">
+</g>
+<g id="North">
+</g>
+<g id="Title">
+	<text transform="matrix(1 0 0 1 170.894 224.25)"><tspan x="0" y="0" class="st2 st5">AYSO Region 253</tspan><tspan x="-10.116" y="28.8" class="st2 st4">Valley Center Middle School</tspan></text>
+	<text transform="matrix(1 0 0 1 190.5864 364)" class="st1 st2 st4">No field map available</text>
+	<text transform="matrix(1 0 0 1 162.7583 495)" class="st2 st4">800 North Meridian Avenue</text>
+	<a href="#map?253" style="cursor: pointer;">
+	<g>
+		<rect x="220.5" y="515" class="st3" width="171" height="38"/>
+		<text transform="matrix(1 0 0 1 232.0811 541)" class="st0 st2 st4">Get Directions</text>
+	</g>
+	</a>
+	<text transform="matrix(1 0 0 1 100.2275 705)"><tspan x="0" y="0" class="st2 st4">NOTE: 85th Street is under construction </tspan><tspan x="62.255" y="28.8" class="st2 st4">Consider taking 77th Street</tspan></text>
+</g>
+</svg>

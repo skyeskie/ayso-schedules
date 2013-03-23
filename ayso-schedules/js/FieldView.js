@@ -10,7 +10,7 @@ var FieldView = {
 	           "#fields253", "#fields491", "#fieldsError"],
 	           
 	svgFiles: ["img/Fields049.svg", "img/Fields105.svg", "img/Fields208.svg",
-	           "img/Fields253.svg", "img/Fields491.svg", "img/error.svg"],
+	           "img/Fields253nomap.svg", "img/Fields491.svg", "img/error.svg"],
 	
 	showIndex: function() {
 		$("#fields .listing").empty();

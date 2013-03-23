@@ -7,7 +7,11 @@ var MapView = {
 		r49:  {lat: 37.737437, lon: -97.213361, content: "Region 49"},
 		r105: {lat: 37.611328, lon: -97.367567, content: "Region 105"},
 		r208: {lat: 37.714016, lon: -97.424741, content: "Region 208"},
+		//Valley Center Middle School
+		r253: {lat: 37.842481, lon: -97.372607, content: "Region 253"},
+		/* Riverlawn Church
 		r253: {lat: 37.760563, lon: -97.373950, content: "Region 253"},
+		*/
 		r491: {lat: 37.503879, lon: -97.490616, content: "Region 491"}
 	},
 	
