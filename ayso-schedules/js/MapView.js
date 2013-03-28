@@ -14,26 +14,9 @@ var MapView = {
 		*/
 		r491: {lat: 37.503879, lon: -97.490616, content: "Region 491"}
 	},
-	
-	showIndex: function() {
-		this.showDetail(DataControl.getRegion());
-	},
-	
-	showDetail: function(region) {
-		//Make sure fresh div each time
-		$('#map_canvas').replaceWith('<div id="map_canvas"></div>');
-		//if(MapView.map==null)
-			MapView.init(region);
-		//else MapView.updateMap(region);
 		
-		var $page = $( "#map" );
-		$page.page();
-		$.mobile.changePage( $page );
-		location.hash = "#map?" + region;
-		app.currentView = "#map?" + region;
-	},
-	
-	init: function(region) {
+	drawMap: function(region) {
+		$('#map_canvas').replaceWith('<div id="map_canvas"></div>');
 		var h = $(window).height() - $('#map_canvas').offset().top;
 		console.log($(document).height() + " - " + $('#map .pageheader').height() + " = " + h);
 		$('#map_canvas').height(h);
@@ -72,3 +55,18 @@ var MapView = {
 		});
 	}
 };
+app.routeAdd(
+	[
+	 	{"#map$" : { handler: "hMapIndex", events: "bs" }},
+	 	{"#map\\?(\\d+)" : { handler: "hMapDetail", events: "bs"}}
+	],
+	{
+		hMapIndex: function(eventType, matchObj, ui, page, evt) {
+			MapView.drawMap(DataControl.getRegion());
+		},
+		
+		hMapDetail: function(eventType, matchObj, ui, page, evt) {
+			MapView.drawMap(matchObj[1]);
+		}
+	}
+);

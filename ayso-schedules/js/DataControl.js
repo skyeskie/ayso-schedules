@@ -184,28 +184,30 @@ var DataControl = {
 	},
 	
 	setupButtonControl: function() {
+		console.log("Controlling setup button...");
 		if($("#setup-status p").text() == "Setup complete." &&
 			$("#init-region option:selected").val()!=null) {
 			
 			console.log("ENABLE!!!");
-			$("#setup-finish").prop("disabled", false);
+			$("#setup-finish").prop("disabled", false).button('refresh');
 			$("#setup-finish").button('enable');
 			
-			$("#setup #init-region").unbind('click');
+			$("#setup #init-region").off('change');
 		} else {
-			$("#setup-finish").prop("disabled", true);
+			$("#setup-finish").prop("disabled", true).button('refresh');
 			$("#setup-finish").button('disable');
 		}
 	},
 	
 	setupButtonClick: function() {
+		console.log("Leaving setup for app itself.");
 		if($("#setup-finish").prop("disabled")) return;
 		
 		window.localStorage.setItem("init","T");
 		window.localStorage.setItem("region",
 			$("#init-region option:selected").val());
 		
-		HomeView.printView();
+		$.mobile.navigate("#index");
 	},
 	
 	

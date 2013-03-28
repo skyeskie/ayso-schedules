@@ -85,11 +85,24 @@ var WeekView = {
 		});
 		
 		app.currentView = this.type;
-
-		var $page = $( "#week" );
-		$page.page();
-		$.mobile.changePage( $page );
-		location.hash = "#week?" + week;
-		app.currentView = "#week?" + week;
 	}
 };
+
+app.routeAdd(
+	[
+		{"#week$" : { handler: "hWeekDefault", events: "bs" }},
+		{"#week\\?(\\d+)" : { handler: "hWeekView", events: "bs" }}
+	],
+	{
+		hWeekDefault: function(eventType, matchObj, ui, page, evt) {
+			WeekView.showDetail(DataControl.getCurrentWeek());
+		},
+		
+		hWeekView: function(eventType, matchObj, ui, page, evt) {
+			//Add replace state here?
+			console.log("Page:");
+			console.log(page);
+			WeekView.showDetail(matchObj[1]);
+		}
+	}
+);

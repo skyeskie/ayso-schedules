@@ -6,13 +6,6 @@ var SettingsView = {
 		$("#settings #lastUpdate").html(DataControl.getLastUpdate());
 		$("#select-region").val(DataControl.getRegion());
 		$('#update-result').html('');
-		
-		//Change page
-		var $page = $( "#settings" );
-		$page.page();
-		$.mobile.changePage( $page );
-		location.hash = "#settings";
-		app.currentView = "#settings";
 	},
 	
 	regionUpdate: function() {
@@ -46,10 +39,17 @@ var SettingsView = {
         
         //Change page
         app.db.initializeDatabase(DataControl.downloadInitialData, DataControl.setupError);
-		var $page = $( "#setup" );
-		$page.page();
-		$.mobile.changePage( $page );
-		location.hash = "#setup";
-		app.currentView = "#setup";
+		$.mobile.changePage( "#setup" );
 	}
 };
+
+app.routeAdd(
+	[
+		{"#settings" : { handler: "hSettings", events: "bs" }}
+	],
+	{
+		hSettings: function(eventType, matchObj, ui, page, evt) {
+			SettingsView.showIndex();
+		}
+	}
+);

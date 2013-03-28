@@ -2,41 +2,6 @@ var SavedTeamsView = {
 	type: "favorites",
 	buttonSelector: null,
 	
-	/*
-	 * Code for the old button toggle.
-	 * Will probably switch back to this code (or very similar)
-	 */
-	/*
-	favoriteToggle: function(triggerObject) {
-		var $target = $(SavedTeamsView.buttonSelector);
-		
-		if($target.hasClass('active-button')) {
-			DataControl.unSaveTeam($target.data("team"));
-			$target.removeClass('active-button');
-			$target.buttonMarkup({ theme: "c" });
-		} else {
-			DataControl.saveTeam($target.data("team"));
-			$target.addClass('active-button');
-			$target.buttonMarkup({ theme: "b" });
-		}
-		$target.button('refresh');
-	},
-	
-	favoriteInit: function(button, team) {
-		$(button).data("team", team);
-		$(button).button();
-		if(DataControl.isTeamSaved(team)) {
-			$(button).addClass('active-button');
-			$(button).buttonMarkup({ theme: "b" });
-		} else {
-			$(button).removeClass('active-button');
-			$(button).buttonMarkup({ theme: "c" });
-		}
-		$(button).button('refresh');
-		this.buttonSelector =  button;
-	},
-	*/
-	
 	favoriteToggle: function(triggerObject) {
 		var pre = "#team-detail";
 		var team = $(pre).data("team");
@@ -62,8 +27,6 @@ var SavedTeamsView = {
 	},
 	
 	showIndex: function() {
-		var $page = $( "#favorites" );
-		
 		//Populate teams listing
 		$("#favorites .myteams").empty();
 		DataControl.populateSavedTeams();
@@ -83,15 +46,6 @@ var SavedTeamsView = {
 		//Populate games listing
 		$('#favorites ul').append("<li>Loading...</li>");
 		app.db.findByFavorites(this.updateGamesList);
-		
-		$page.page();
-		$.mobile.changePage( $page );
-		window.hash = "#favorites";
-		app.currentView = "#favorites";
-	},
-	
-	showDetail: function(offset) {
-		this.showIndex();
 	},
 	
 	updateGamesList: function(rows) {
@@ -159,3 +113,14 @@ var SavedTeamsView = {
 		$('#favorites ul').listview();
 	}
 };
+
+app.routeAdd(
+	[
+		{"#favorites" : { handler: "hFavorites", events: "bs" }}
+	],
+	{
+		hFavorites: function(eventType, matchObj, ui, page, evt) {
+			SavedTeamsView.showIndex();
+		}
+	}
+);

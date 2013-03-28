@@ -14,12 +14,6 @@ var DivisionView = {
 		$('#divis #slider-week').attr("value", DataControl.getCurrentWeek());
 		$('#divis #slider-week').attr("max", DataControl.getMaxWeeks());
 		DivisionView.weekUpdate();
-		
-		var $page = $( "#divis" );
-		$page.page();
-		$('#divis #slider-week').slider('refresh');
-		$.mobile.changePage( $page );
-		location.hash = "#divis";
 	},
 	
 	regionUpdate: function(triggerObject) {
@@ -94,8 +88,8 @@ var DivisionView = {
 		params += "&g=" + $('#divis .gender-select').data('active');
 		params += "&w=" + $('#slider-week').val();
 		
-		console.log("Going to #divis?" + params);
-		$.mobile.changePage("#divis?" + params);
+		console.log("Going to #games-list?" + params);
+		$.mobile.changePage("#games-list?" + params);
 	},
 	
 	showDetail: function(filter) {
@@ -113,7 +107,7 @@ var DivisionView = {
 
 		if(Number(week) > 1) {
 			$("#games-list .week-bar a.back").show();
-			$("#games-list .week-bar a.back").attr("href","#divis?"+
+			$("#games-list .week-bar a.back").attr("href","#games-list?"+
 				filter.replace(/w=([^&]*)/, "w="+(Number(week)-1)));
 		} else {
 			$("#games-list .week-bar a.back").hide();
@@ -121,7 +115,7 @@ var DivisionView = {
 		
 		if(week < DataControl.getMaxWeeks()) {
 			$("#games-list .week-bar a.next").show();
-			$("#games-list .week-bar a.next").attr("href","#divis?"+
+			$("#games-list .week-bar a.next").attr("href","#games-list?"+
 				filter.replace(/w=([^&]*)/, "w="+(Number(week)+1)));
 		} else {
 			$("#games-list .week-bar a.next").hide();
@@ -200,11 +194,20 @@ var DivisionView = {
 			
 			$('#games-list ul').listview();
 		});
-		
-		var $page = $( "#games-list" );
-		$page.page();
-		$.mobile.changePage( $page );
-		location.hash = "#divis?" + filter;
-		app.currentView = "#divis?" + filter;
 	}
 };
+
+app.routeAdd(
+	[
+		{"#divis$" : { handler: "hDivis", events: "bs" }},
+		{"#games\\-list\\?(.*)" : { handler: "hFilter", events: "bs"}}
+	],
+	{
+		hDivis: function(eventType, matchObj, ui, page, evt) {
+			DivisionView.showIndex();
+		},
+		hFilter: function(eventType, matchObj, ui, page, evt) {
+			DivisionView.showDetail(matchObj[1]);
+		}
+	}
+);

@@ -13,14 +13,6 @@ var TeamView = {
 		$('#team .gender-select').data('active', null);
 		$('#team .region-select').data('active', null);
 		TeamView.generateListing();
-
-		app.currentView = this.type;
-		
-		var $page = $( "#team" );
-		$page.page();
-		$.mobile.changePage( $page );
-		location.hash = "#team";
-		app.currentView = "#team";
 	},
 	
 	regionUpdate: function(triggerObject) {
@@ -104,7 +96,7 @@ var TeamView = {
 			}
 			
 			$(cols[col]).append(
-				"<li><a href='index.html#team?"+val+"'>"+val+"</a></li>"
+				"<li><a href='index.html#team-detail?"+val+"'>"+val+"</a></li>"
 			);
 		}
 		$("#team").page();
@@ -170,15 +162,22 @@ var TeamView = {
 			$('#team-detail span.coach').show();
 			$('#team-detail span.coach').html("Coach "+coachName);
 		});
-		
-		app.currentView = this.type;
-		
-		var $page = $( "#team-detail" );
-		$page.page();
-		$.mobile.changePage( $page );
-		location.hash = "#team?" + team;
-		app.currentView = "#team?" + team;
-		
-		//$('#team-detail')
 	}
 };
+
+app.routeAdd(
+	[
+		{"#team$" : { handler: "hTeamSelect", events: "bs" }},
+		{"#team\\-detail\\?(.*)" : { handler: "hTeamDetail", events: "bs" }}
+	],
+	{
+		hTeamSelect: function(eventType, matchObj, ui, page, evt) {
+			TeamView.showIndex();
+		},
+		
+		hTeamDetail: function(eventType, matchObj, ui, page, evt) {
+			console.log("Team detail");
+			TeamView.showDetail(matchObj[1]);
+		}
+	}
+);

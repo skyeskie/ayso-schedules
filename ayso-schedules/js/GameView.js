@@ -1,11 +1,6 @@
 var GameView = {
 	type: "game",
 	
-	showIndex: function() {
-		console.error("Game view needs a game ID");
-		HomeView.printView();
-	},
-	
 	showDetail: function(gameID) {
 		app.db.getGameDetail(gameID,
 		function(rows) {
@@ -34,12 +29,17 @@ var GameView = {
 			
 			$('#game .field-link').attr("href", "#fields?"+match[1]);
 			$('#game .map-link').attr("href", "#map?"+match[1]);
-			//Change page
-			var $page = $( "#game" );
-			$page.page();
-			$.mobile.changePage( $page );
-			location.hash = "#game?" + gameID;
-			app.currentView = "#game?" + gameID;
 		});
 	}
 };
+
+app.routeAdd(
+	[
+		{"#game\\?(\\d+)" : { handler: "hGame", events: "bs" }}
+	],
+	{
+		hGame: function(eventType, matchObj, ui, page, evt) {
+			GameView.showDetail(matchObj[1]);
+		}
+	}
+);

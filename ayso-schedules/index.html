@@ -9,41 +9,62 @@
             width=400" />
     
 	<link rel="stylesheet" type="text/css" href="css/styles.css" />
-	<link rel="stylesheet" type="text/css" href="lib/jquery.mobile/jquery.mobile-1.2.0.css" />
+	<link rel="stylesheet" type="text/css" href="lib/jquery.mobile-1.3.0.css" />
 	<link rel="stylesheet" type="text/css" href="lib/jquery.svg.css" />
-	<script src="lib/jquery-1.8.2.min.js"></script>
+	<script src="lib/jquery-1.9.1.js"></script>
 	<script src="lib/jquery.svg.min.js"></script>
 	<script src="js/jquery-config.js"></script>
-	<script src="lib/jquery.mobile/jquery.mobile-1.2.0.min.js"></script>
+	<script src="lib/jquery.mobile.router.js"></script>
 	<script src="lib/jquery.ui.map.min.js"></script>
 	<script src="cordova-2.3.0.js"></script>
 	<script src="lib/rgbcolor.js"></script>
 	<script src="lib/canvg.js"></script>
 	<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+
+
+<script src="js/websql-store.js"></script>
+<script src="js/DataControl.js"></script>
+<script src="js/main.js"></script>
+
+<script src="js/HomeView.js"></script>
+<script src="js/WeekView.js"></script>
+<script src="js/TeamView.js"></script>
+<script src="js/SavedTeamsView.js"></script>
+<script src="js/DivisionView.js"></script>
+<script src="js/GameView.js"></script>
+<script src="js/SettingsView.js"></script>
+<script src="js/CancelView.js"></script>
+<script src="js/FieldView.js"></script>
+<script src="js/MapView.js"></script>
+
+<script src="lib/jquery.mobile-1.3.0.js"></script>
+
+
 </head>
 <body>
+
+<div id="index" data-role="page">
+    <img src="img/MainLogo.png" alt="AYSO Kansas" />
+    <div class="main-buttons">
+        <a href="#schedules" data-role="button">Schedules</a>
+        <a href="#fields" data-role="button">Region Info</a>
+        <a href="#favorites" data-role="button">My teams</a>
+        <a href="#twitter" data-role="button">Cancellations</a>
+        <a href="#settings" data-role="button">Settings</a>
+    </div>
+</div>
 
 <div id="loading" data-role="page">
 <!-- Define Header here. Copied to each page -->
 <div id="site-header">
 	<div data-role="header" data-id="pageheader" class="pageheader" data-position="fixed">
-		<a class="home" data-icon="back" data-iconpos="notext" href="#index">Back</a>
+		<a class="home" data-icon="back" data-iconpos="notext" href="#index"
+		  data-rel="back" data-direction="reverse">Back</a>
 		<h1><a href="#index">AYSO Kansas</a></h1>
 	</div>
 </div>
 
 (INIT)
-</div>
-
-<div id="index" data-role="page">
-	<img src="img/MainLogo.png" alt="AYSO Kansas" />
-	<div class="main-buttons">
-		<a href="#schedules" data-role="button">Schedules</a>
-		<a href="#fields" data-role="button">Region Info</a>
-		<a href="#favorites" data-role="button">My teams</a>
-		<a href="#twitter" data-role="button">Cancellations</a>
-		<a href="#settings" data-role="button">Settings</a>
-	</div>
 </div>
 
 <div id="schedules" data-role="page" class="page">
@@ -299,19 +320,6 @@
 	<p>Make sure you are connected to the internet.</p>
 </div>
 
-<script src="js/websql-store.js"></script>
-<script src="js/DataControl.js"></script>
-<script src="js/HomeView.js"></script>
-<script src="js/WeekView.js"></script>
-<script src="js/TeamView.js"></script>
-<script src="js/SavedTeamsView.js"></script>
-<script src="js/DivisionView.js"></script>
-<script src="js/GameView.js"></script>
-<script src="js/SettingsView.js"></script>
-<script src="js/CancelView.js"></script>
-<script src="js/FieldView.js"></script>
-<script src="js/MapView.js"></script>
-<script src="js/main.js"></script>
 
 </body>
 </html>

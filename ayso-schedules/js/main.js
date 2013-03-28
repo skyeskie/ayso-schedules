@@ -57,37 +57,37 @@ var app = {
 	formsInit : function() {
 		var i;
 		//Regions filter
-		for (i = 0; i < this.regions.length; ++i) {
+		for (i = 0; i < app.regions.length; ++i) {
 			$('.region-select ul').append(
-				"<li class='" + this.regions[i] + "'><a>" + this.regions[i]  + "</a></li>"
+				"<li class='" + app.regions[i] + "'><a>" + app.regions[i]  + "</a></li>"
 			);
 		}
 
 		//Divisions filter
-		for (i = 0; i < 4 && i < this.divisions.length; ++i) {
+		for (i = 0; i < 4 && i < app.divisions.length; ++i) {
 			$('.divis-select1 ul').append(
-				"<li class='" + this.divisions[i] + "'><a>" + this.divisions[i] + "</a></li>"
+				"<li class='" + app.divisions[i] + "'><a>" + app.divisions[i] + "</a></li>"
 			);
 		}
 		var lim = 8;
-		if (this.divisions.length < 7 && this.divisions.length > 4) {
+		if (app.divisions.length < 7 && app.divisions.length > 4) {
 			$('.divis-select2 ul').append("<li>&nbsp;</li>");
 			lim--;
 		}
-		for (i = 4; i < this.divisions.length; ++i) {
+		for (i = 4; i < app.divisions.length; ++i) {
 			$('.divis-select2 ul').append(
-				"<li class='" + this.divisions[i] + "'><a>" + this.divisions[i] + "</a></li>"
+				"<li class='" + app.divisions[i] + "'><a>" + app.divisions[i] + "</a></li>"
 			);
 		}
-		for (i = this.divisions.length; i < lim; ++i) {
+		for (i = app.divisions.length; i < lim; ++i) {
 			$('.divis-select2 ul').append("<li>&nbsp;</li>");
 		}
 		//DivisionsView
-		$("#slider-week").live('change',DivisionView.weekUpdate);
+		$("#slider-week").on('change',DivisionView.weekUpdate);
 
 		//Setup back hierarchy
-		$('.pageheader a.home').attr("href", "");
-		$('.pageheader a.home').click(app.routeUp);
+		//$('.pageheader a.home').attr("href", "");
+		//$('.pageheader a.home').click(app.routeUp);
 
 		//Setup FieldsView
 		$("#svg-dump").svg();
@@ -104,8 +104,8 @@ var app = {
 		$('#team .region-select a').click(TeamView.regionUpdate);
 
 		//Setup
-		$("#setup #init-region").change(DataControl.setupButtonControl);
-		$("#setup-status p").change(DataControl.setupButtonControl);
+		$("#setup #init-region").on('change',DataControl.setupButtonControl);
+		$("#setup-status p").on('change',DataControl.setupButtonControl);
 		$("#setup-finish").click(DataControl.setupButtonClick);
 		$("#setup-finish").prop("disabled", true);
 
@@ -125,7 +125,7 @@ var app = {
 		$("#settings #select-region").change(SettingsView.regionUpdate);
 		$("#settings #update").click(SettingsView.refresh);
 		$("#settings #reset").click(SettingsView.doReset);
-		
+		//*/
 		document.addEventListener("backbutton", app.backKeyDown, true);
 	},
 	
@@ -151,7 +151,7 @@ var app = {
 			if (app.firstRoute) {
 				//First run -- we want to call route
 				console.log("Interceptiong first routing call");
-				console.log("  initPage: " + this.initPage);
+				console.log("  initPage: " + app.initPage);
 				app.firstRoute = false;
 				app.route(null);
 				e.preventDefault();
@@ -180,36 +180,45 @@ var app = {
 	initialize : function() {
 		console.log("Initializing App");
 
-		this.db = new WebSqlStore();
-		this.data = DataControl;
+		app.db = new WebSqlStore();
+		app.data = DataControl;
 
 		//Uncomment to force full data update
-		//this.reset();
+		//app.reset();
 
 		console.log("Setup page headers");
 		$('.page').prepend($("#site-header").html());
 
 		console.log("Populating filters");
-		this.formsInit();
+		app.formsInit();
 
 		console.log("Registering events");
-		this.addListeners();
-		this.addRoutingHook();
+		app.addListeners();
+		//app.addRoutingHook();
 
 		//Determine page to go to
-		if (this.data.isAppSetup()) {
-			this.data.updateData();
-			this.initPage = location.hash;
-			var match = this.initPage.match(/^#?([\w\-_]+[\/\?])?[\w\-_%&=]*$/);
-			console.log("Set initPage to " + this.initPage);
+		if (app.data.isAppSetup()) {
+			app.data.updateData();
+			app.initPage = location.hash;
+			var match = app.initPage.match(/^#?([\w\-_]+[\/\?])?[\w\-_%&=]*$/);
+			console.log("Set initPage to " + app.initPage);
 		} else {
 			console.log("Routing to first run setup");
-			this.initPage = "setup";
-			this.initStack("setup");
+			app.initPage = "setup";
+			app.initStack("setup");
 			$(document).delegate("#setup", "pageinit", function() {
 				DataControl.downloadInitialData();
 			});
+			$.mobile.navigate("#setup");
 		}
+		
+		console.log("Initializing router.");
+		app.router = new $.mobile.Router(app.routerMatch, app.routerHandlers,
+			{ //Router options
+				ajaxApp: false,
+				firstMatchOnly: true
+			}
+		);
 	},
 
 	/**
@@ -311,7 +320,7 @@ var app = {
 	/**
 	 * Initializes stack as much as possible
 	 * @param page: Entry pageType (no params) to initialize for
-	 * @note This is closely coupled with <route>, and the final
+	 * @note app is closely coupled with <route>, and the final
 	 *       initiation of pages with params is performed there
 	 */
 	initStack : function(page) {
@@ -356,7 +365,7 @@ var app = {
 			app.viewStack = [ '#index', '#fields' ];
 			break;
 
-		case ScheduleHome.type:
+		case "schedules":
 			app.viewStack = [ '#index', '#schedules' ];
 			break;
 
@@ -399,7 +408,7 @@ var app = {
 		console.log("Running route function");
 		var hash;
 		if (urlObject === null) {
-			hash = this.initPage;
+			hash = app.initPage;
 			console.log("Null urlObject -- pulling from initPage");
 		} else {
 			hash = urlObject.hash;
@@ -413,129 +422,48 @@ var app = {
 			$.mobile.changePage($page);
 			return;
 		}
-
-		if (!hash || hash === "index" || hash === "#index" || hash === "") {
-			HomeView.printView();
-			//Reset the stack
-			app.viewStack = [ '#index' ];
-			return;
+	},
+	
+	routeAdd: function(patterns, handlers) {
+		for(var i=0; i<patterns.length; ++i) {
+			app.routerMatch.push(patterns[i]);
 		}
-
-		var isIndex = null;
-		var filterType = null;
-		var offset = null;
-		//Check for index matching
-		var match = hash.match(app.indexURL);
-		if (match) {
-			isIndex = true;
-			filterType = match[1];
-		} else {
-
-			match = hash.match(app.detailsURL);
-			if (match) {
-				isIndex = false;
-				filterType = match[1];
-				offset = match[2];
-			} else {
-				console.error("Unexpected hash pattern: '" + hash + "'");
-				HomeView.printView();
-				return;
-			}
-
-		}
-
-		if (app.viewStack === null) {
-			app.initStack(filterType);
-		}
-		
-		if (app.matchTop(hash)) {
-			//We want a replace if it's a sideways move (week?8 to week?9)
-			app.viewStack.pop();
-		}
-		app.viewStack.push(hash);
-		console.log(app.viewStack);
-
-		switch (filterType) {
-		case WeekView.type:
-			if (isIndex) {
-				WeekView.showIndex();
-			} else {
-				WeekView.showDetail(offset);
-			}
-			break;
-
-		case TeamView.type:
-			if (isIndex) {
-				TeamView.showIndex();
-			} else {
-				TeamView.showDetail(offset);
-			}
-			break;
-
-		case GameView.type:
-			if (isIndex) {
-				GameView.showIndex();
-			} else {
-				GameView.showDetail(offset);
-			}
-			break;
-
-		case DivisionView.type:
-			if (isIndex) {
-				DivisionView.showIndex();
-			} else {
-				DivisionView.showDetail(offset);
-			}
-			break;
-
-		case SavedTeamsView.type:
-			if (isIndex) {
-				SavedTeamsView.showIndex();
-			} else {
-				SavedTeamsView.showDetail(offset);
-			}
-			break;
-
-		case CancelView.type:
-			CancelView.showIndex();
-			break;
-
-		case SettingsView.type:
-			SettingsView.showIndex();
-			break;
-
-		case FieldView.type:
-			if (isIndex) {
-				FieldView.showIndex();
-			} else {
-				FieldView.showDetail(offset);
-			}
-			break;
-
-		case MapView.type:
-			if (isIndex) {
-				MapView.showIndex();
-			} else {
-				MapView.showDetail(offset);
-			}
-			break;
-
-		case ScheduleHome.type:
-			ScheduleHome.showIndex();
-			break;
-
-		case "debug":
-			$("#debug").page();
-			$.mobile.changePage( $("#debug") );
-			break;
-			
-		default:
-			console.error("Unexpected page type: '" + filterType + "'");
-			app.viewStack.pop(); //No change
-			break;
-		}
-		return;
+		$.extend(app.routerHandlers, handlers);
+	},
+	
+	routerMatch: [
+	    { "([^\\?]+)\\??.*": {events: "s", handler: "stackUpdate" }},
+	 	{ "/index.html#index": { events: "i", handler: "ajaxPage" } },
+	 	{ "#index": { events: "i", handler: "ajaxPage" } },
+	 	{ "#schedules": { events: "i", handler: "ajaxPage" } }
+	],
+	
+	routerHandlers: {
+		ajaxPage: function(type,match,ui){
+	      console.log("ajaxPage: "+type+" "+match[0]);
+	      var params=app.router.getParams(match[1]);
+	      console.log(params);
+	    },
+	    
+	    stackUpdate: function(type,match,ui) {
+	    	console.log("Do a stack update:");
+	    	console.log(match[0]+" / "+match[1]);
+	    }
 	}
 };
 
-app.initialize();
+$(document).on("mobileinit", app.initialize);
+
+/*
+app.router.add(
+	[
+		{"#$" : { handler: "h", events: "bs" }}
+	],
+	{
+		h: function(eventType, matchObj, ui, page, evt) {
+			
+		}
+	}
+);
+
+*/
