@@ -55,34 +55,38 @@ var app = {
 	 * Perform other page content initialization
 	 */
 	formsInit : function() {
+        console.log('Init regions');
 		var i;
 		//Regions filter
-		for (i = 0; i < this.regions.length; ++i) {
+		for (i = 0; i < app.regions.length; ++i) {
 			$('.region-select ul').append(
-				"<li class='" + this.regions[i] + "'><a>" + this.regions[i]  + "</a></li>"
+				"<li class='" + app.regions[i] + "'><a>" + app.regions[i]  + "</a></li>"
 			);
 		}
-
+        
+        console.log('Init divisions');
 		//Divisions filter
-		for (i = 0; i < 4 && i < this.divisions.length; ++i) {
+		for (i = 0; i < 4 && i < app.divisions.length; ++i) {
 			$('.divis-select1 ul').append(
-				"<li class='" + this.divisions[i] + "'><a>" + this.divisions[i] + "</a></li>"
+				"<li class='" + app.divisions[i] + "'><a>" + app.divisions[i] + "</a></li>"
 			);
 		}
 		var lim = 8;
-		if (this.divisions.length < 7 && this.divisions.length > 4) {
+		if (app.divisions.length < 7 && app.divisions.length > 4) {
 			$('.divis-select2 ul').append("<li>&nbsp;</li>");
 			lim--;
 		}
-		for (i = 4; i < this.divisions.length; ++i) {
+		for (i = 4; i < app.divisions.length; ++i) {
 			$('.divis-select2 ul').append(
-				"<li class='" + this.divisions[i] + "'><a>" + this.divisions[i] + "</a></li>"
+				"<li class='" + app.divisions[i] + "'><a>" + app.divisions[i] + "</a></li>"
 			);
 		}
-		for (i = this.divisions.length; i < lim; ++i) {
+		for (i = app.divisions.length; i < lim; ++i) {
 			$('.divis-select2 ul').append("<li>&nbsp;</li>");
 		}
-		//DivisionsView
+		
+        console.log('Init slider');
+        //DivisionsView
 		$("#slider-week").live('change',DivisionView.weekUpdate);
 
 		//Setup back hierarchy
@@ -151,7 +155,7 @@ var app = {
 			if (app.firstRoute) {
 				//First run -- we want to call route
 				console.log("Interceptiong first routing call");
-				console.log("  initPage: " + this.initPage);
+				console.log("  initPage: " + app.initPage);
 				app.firstRoute = false;
 				app.route(null);
 				e.preventDefault();
@@ -180,36 +184,38 @@ var app = {
 	initialize : function() {
 		console.log("Initializing App");
 
-		this.db = new WebSqlStore();
-		this.data = DataControl;
+		app.db = new WebSqlStore();
+		app.data = DataControl;
 
 		//Uncomment to force full data update
-		//this.reset();
+		//app.reset();
 
 		console.log("Setup page headers");
 		$('.page').prepend($("#site-header").html());
 
 		console.log("Populating filters");
-		this.formsInit();
+		app.formsInit();
 
 		console.log("Registering events");
-		this.addListeners();
-		this.addRoutingHook();
+		app.addListeners();
+		app.addRoutingHook();
 
 		//Determine page to go to
-		if (this.data.isAppSetup()) {
-			this.data.updateData();
-			this.initPage = location.hash;
-			var match = this.initPage.match(/^#?([\w\-_]+[\/\?])?[\w\-_%&=]*$/);
-			console.log("Set initPage to " + this.initPage);
+		if (app.data.isAppSetup()) {
+			app.data.updateData();
+			app.initPage = location.hash;
+			var match = app.initPage.match(/^#?([\w\-_]+[\/\?])?[\w\-_%&=]*$/);
+			console.log("Set initPage to " + app.initPage);
 		} else {
 			console.log("Routing to first run setup");
-			this.initPage = "setup";
-			this.initStack("setup");
+			app.initPage = "setup";
+			app.initStack("setup");
 			$(document).delegate("#setup", "pageinit", function() {
 				DataControl.downloadInitialData();
 			});
 		}
+        //Route
+        app.route(null);
 	},
 
 	/**
@@ -232,18 +238,19 @@ var app = {
 
 	/**
 	 * Helper function to format the date and time
-	 * @param jour Date string 
-	 * @param heur Time string
+	 * @param jour Date string YYYY-MM-DD
+	 * @param heur Time string HH:MM(:SS)
 	 * The two are combined with a space and fed into Date() c'tor
 	 * @returns Date in format "Jan 4, 2:04 PM"
 	 */
 	formatDateTime : function(jour, heur) {
-		var d = new Date(jour + " " + heur);
-		var os = app.months[d.getMonth()];
-		os += " " + d.getDate() + ", ";
-		var h = d.getHours();
+        var args = jour + " " + heur;
+		var match = args.match(/(\d{2,4})\-(\d\d?)\-(\d\d?) *(\d\d?):(\d\d):?(\d\d)?/);
+		var os = app.months[Number(match[2])];
+		os += " " + match[3] + ", ";
+		var h = match[4];
 		var am = true;
-		var min = d.getMinutes();
+		var min = match[5];
 		if (h > 11) {
 			am = false;
 		}
@@ -256,13 +263,8 @@ var app = {
 		}
 		os += " " + ((am) ? "AM" : "PM");
 		
-		if(isNaN(d.getMinutes())) {
-			console.warn("NaN encountered for formatDateTime.\n" +
-				"Arguments: "+jour+" - "+heur);
-		}
-		
 		return os;
-	},
+    },
 
 	/**
 	 * Helper function to format time in H:MM AM/PM
@@ -399,7 +401,7 @@ var app = {
 		console.log("Running route function");
 		var hash;
 		if (urlObject === null) {
-			hash = this.initPage;
+			hash = app.initPage;
 			console.log("Null urlObject -- pulling from initPage");
 		} else {
 			hash = urlObject.hash;
@@ -538,4 +540,4 @@ var app = {
 	}
 };
 
-app.initialize();
+document.addEventListener('deviceready', app.initialize, false);
