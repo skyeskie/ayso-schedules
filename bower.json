@@ -1,0 +1,30 @@
+{
+  "name": "AysoKS",
+  "version": "1.9.0",
+  "description": "Schedules for Wichita-area AYSO regions",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "ayso",
+    "schedule",
+    "soccer",
+    "wichita"
+  ],
+  "authors": [
+    "Scott Yeskie <scott@yeskie.com>"
+  ],
+  "license": "GPL-2.0",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "1.5.0-build.4325+sha.ad4296d"
+  }
+}
