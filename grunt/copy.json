@@ -1,0 +1,17 @@
+{
+  "images": {
+    "files": [{
+      "expand": true,
+      "cwd": "src/img/",
+      "src": "**",
+      "dest": "www/img/"
+    }]
+  },
+
+  "js": {
+    "files": [
+      {"src": "build/_bower.js", "dest": "www/js/lib.js"},
+      {"src": "build/_local.js", "dest": "www/js/ayso.js"}
+    ]
+  }
+}

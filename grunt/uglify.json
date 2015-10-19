@@ -1,0 +1,16 @@
+{
+  "options": {
+    "banner": "/*! <%= package.name %> - v<%= package.version %> - <%= grunt.template.today(\"yyyy-mm-dd\") %> */",
+    "mangle": false,
+    "report": "min",
+    "preserveComments": "some"
+  },
+  "lib": {
+    "src": ["build/_bower.js"],
+    "dest": "www/js/lib.min.js"
+  },
+  "pkg": {
+    "src": ["build/_local.js"],
+    "dest": "www/js/ayso.min.js"
+  }
+}

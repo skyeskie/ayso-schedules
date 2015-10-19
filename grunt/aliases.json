@@ -1,0 +1,24 @@
+{
+  "default": [
+    "lint",
+    "build"
+  ],
+  "lint": [
+    "jshint"
+  ],
+  "www-build": [
+    "copy",
+    "sass",
+    "bower_concat",
+    "concat",
+    "uglify"
+  ],
+  "build": [
+    "www-build",
+    "cordovacli:build_android"
+  ],
+  "run": [
+    "build",
+    "cordovacli:emulate_android"
+  ]
+}

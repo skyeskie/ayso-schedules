@@ -1,0 +1,12 @@
+{
+  "all": {
+    "options": {
+      "outputStyle": "expanded",
+      "indentType": "space",
+      "precision": 5
+    },
+    "files": {
+      "www/css/ayso.css": "src/scss/index.scss"
+    }
+  }
+}

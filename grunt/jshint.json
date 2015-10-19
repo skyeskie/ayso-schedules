@@ -1,0 +1,9 @@
+{
+  "files": ["src/**/*.js", "test/**/*.js"],
+  "options": {
+    "globals": {
+      "jQuery": true,
+      "console": true
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "options": {
+    "path": ".",
+    "cli": "cordova"
+  },
+
+  "build_android": {
+    "options": {
+      "command": "build",
+      "platforms": ["android"]
+    }
+  },
+  "emulate_android": {
+    "options": {
+      "command": "emulate",
+      "platforms": ["android"],
+      "args": ["--target","Nexus5"]
+    }
+  }
+}

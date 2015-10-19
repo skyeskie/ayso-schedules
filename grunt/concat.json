@@ -1,0 +1,6 @@
+{
+  "dist": {
+    "src": ["src/js/*.js"],
+    "dest": "build/_local.js"
+  }
+}
