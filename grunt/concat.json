@@ -1,6 +1,20 @@
 {
-  "dist": {
-    "src": ["src/js/*.js"],
+  "javascript": {
+    "src": [
+      "src/js/index.js",
+      "src/js/controllers/*.js",
+      "src/js/routing.js"
+    ],
     "dest": "build/_local.js"
+  },
+
+  "html": {
+    "src": [
+      "src/html/header.html",
+      "src/html/navbar.html",
+      "src/views/*.html",
+      "src/html/footer.html"
+    ],
+    "dest": "build/full.html"
   }
 }

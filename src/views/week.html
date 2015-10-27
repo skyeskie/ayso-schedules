@@ -1,0 +1,17 @@
+<div id="week" class="page">
+    <div data-role="header" data-theme="c">
+        <a class="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+        <h2>Week <span>#{{week.num}}</span></h2>
+        <a class="next" data-icon="arrow-r" data-iconpos="notext">Next</a>
+    </div>
+
+    <ul data-role="listview" data-theme="c">
+        <li ng-repeat="game in week.games">
+            <a href="#/game/{{game.gameID}}">
+                <h3 class='width40'>{{+game.field}}</h3>
+                <h3 class='width60 ta-right'>{{game.matchup}}</h3>
+            </a>
+        </li>
+        <li ng-if="games.length == 0">No results</li>
+    </ul>
+</div>

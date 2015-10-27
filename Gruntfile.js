@@ -1,3 +1,6 @@
+/* globals module, require */
+"use strict";
+
 module.exports = function(grunt) {
     require('load-grunt-config')(grunt);
 };

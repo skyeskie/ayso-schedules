@@ -1,0 +1,31 @@
+<div id="settings" data-role="page" class="page">
+    <label for="select-region" class="select" data-inline="true">Home Region</label>
+    <p>This filters your current week view.</p>
+    <select name="select-region" id="select-region">
+        <option value="49">Region 49 (Stryker)</option>
+        <option value="105">Region 105 (Southview)</option>
+        <option value="208">Region 208 (West Wichita)</option>
+        <option value="253">Region 253 (Valley Center)</option>
+        <option value="491">Region 491 (Clearwater)</option>
+    </select>
+
+    <hr />
+
+    <h2>Update data</h2>
+    <p>The app normally checks for updates on start.
+        Use this if you think you missed an update.<br />
+        <strong>Last updated:</strong> <span id="lastUpdate">(Unknown)</span>
+        <button id="update" data-inline="true">Update now</button>
+    </p>
+    <p id="update-result"></p>
+    <hr />
+    <h2>Reset App</h2>
+    <p>
+        <span class="big-warn">Warning:</span>
+        This will delete all saved preferences and game info.
+        The app will be as if you first installed it.<br />
+    </p>
+    <div style="text-align: center; font-size: 0.8em">
+        <button id="reset" data-inline="true">Reset App</button>
+    </div>
+</div>
