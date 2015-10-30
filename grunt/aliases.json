@@ -1,4 +1,5 @@
 {
+  "ls": "availabletasks",
   "default": [
     "lint",
     "build"
@@ -11,7 +12,8 @@
     "sass",
     "bower_concat",
     "concat",
-    "uglify"
+    "uglify",
+    "htmlbuild"
   ],
   "build": [
     "www-build",

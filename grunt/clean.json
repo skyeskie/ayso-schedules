@@ -1,8 +1,6 @@
 {
   "all": [
     "build",
-    "www/img",
-    "www/css",
-    "www/js"
+    "www"
   ]
 }

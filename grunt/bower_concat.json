@@ -1,6 +1,12 @@
 {
   "all": {
     "dest": "build/_bower.js",
-    "cssDest": "build/_bower.css"
+    "cssDest": "build/_bower.css",
+    "exclude": [
+      "jquery-mobile"
+    ],
+    "mainFiles": {
+      "iscroll": "build/iscroll.js"
+    }
   }
 }

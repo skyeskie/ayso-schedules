@@ -77,6 +77,4 @@ bower_components
 # Cordova generated / output
 /platforms
 /plugins
-/www/css
-/www/img
-/www/js
+/www

@@ -11,7 +11,8 @@
   "js": {
     "files": [
       {"src": "build/_bower.js", "dest": "www/js/lib.js"},
-      {"src": "build/_local.js", "dest": "www/js/ayso.js"}
+      {"src": "build/_local.js", "dest": "www/js/ayso.js"},
+      {"src": "build/_bower.css", "dest": "www/css/lib.css"}
     ]
   }
 }

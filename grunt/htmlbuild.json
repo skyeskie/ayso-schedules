@@ -1,0 +1,11 @@
+{
+  "prod": {
+    "src": "src/app.html",
+    "dest": "www/index.html",
+    "options": {
+      "sections": {
+        "views": "src/views/*.html"
+      }
+    }
+  }
+}
