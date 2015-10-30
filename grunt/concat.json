@@ -6,15 +6,5 @@
       "src/js/routing.js"
     ],
     "dest": "build/_local.js"
-  },
-
-  "html": {
-    "src": [
-      "src/html/header.html",
-      "src/html/navbar.html",
-      "src/views/*.html",
-      "src/html/footer.html"
-    ],
-    "dest": "build/full.html"
   }
 }

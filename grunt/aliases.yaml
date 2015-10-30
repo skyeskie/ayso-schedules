@@ -1,0 +1,42 @@
+# Aliases
+ls: 'availabletasks'
+default: 'devo-build'
+
+run:
+  description: 'Run test on Android'
+  tasks:
+    - 'devo-build'
+    - 'cordovacli:build_android'
+    - 'cordovacli:emulate_android'
+
+devo-build:
+  description: 'Build for development environment'
+  tasks:
+    - 'base-build'
+    - 'htmlbuild'
+
+prod-build:
+  description: 'Build for production environment'
+  tasks:
+    - 'base-build'
+    - 'uglify'
+    - 'htmlbuild:prod'
+
+base-build:
+  description: 'Common tasks for building'
+  tasks:
+    - 'lint'
+#    - 'test'
+    - 'copy'
+    - 'sass'
+    - 'bower_concat'
+    - 'concat'
+
+lint:
+  description: 'Static code and style analysis'
+  tasks:
+    - 'jshint'
+
+#test:
+#  description: 'Unit tests'
+#  tasks:
