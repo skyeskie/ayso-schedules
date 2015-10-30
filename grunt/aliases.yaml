@@ -25,12 +25,11 @@ prod-build:
 base-build:
   description: 'Common tasks for building'
   tasks:
-    - 'lint'
-#    - 'test'
-    - 'copy'
+    - 'lint' # TODO: add test
     - 'sass'
     - 'bower_concat'
     - 'concat'
+    - 'copy'
 
 lint:
   description: 'Static code and style analysis'

@@ -1,15 +1,25 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.ayso4u.schedules" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget  xmlns="http://www.w3.org/ns/widgets"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0"
+        id="org.ayso4u.schedules"
+         version="2.0.0"
+         versionCode="200">
     <name>AysoKS</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        An app to view schedule information for Wichita-area AYSO regions.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author href="http://github.com/s42ky/" email="sky42ks@gmail.com">
+        Scott Yeskie
     </author>
+
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" version="1" />
-    <access origin="*" />
+
+    <access origin="http://ayso4u.org" />
+    <access origin="https://twitter.com" subdomains="true" browserOnly="true" />
+    <access origin="http://*.google.com" />
+    <access origin="https://*.google.com" />
+
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
