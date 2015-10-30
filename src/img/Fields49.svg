@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" 
+	 viewBox="0 0 612 1008" style="enable-background:new 0 0 612 1008;" xml:space="preserve">
+<style type="text/css">
+<![CDATA[
+	/* Lines (No Fill) */
+	.ln02{fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:round;}
+	.ln03{fill:none;stroke:#000000;stroke-width:3;stroke-linejoin:round;}
+	.ln04{fill:none;stroke:#000000;stroke-width:4;stroke-linejoin:round;}
+	.ln08{fill:none;stroke:#000000;stroke-width:8;stroke-linejoin:round;}
+	.ln12{fill:none;stroke:#000000;stroke-width:12;stroke-linejoin:round;}
+
+	/* Font face */
+	.fsb{font-family:'MyriadPro-Semibold';}
+	.fr{font-family:'MyriadPro-Regular';}
+	.fb{font-family:'MyriadPro-Bold';}
+	
+	/* Font Sizes */
+	.fs17{font-size:17px;}
+	.fs18{font-size:18px;}
+	.fs21{font-size:21px;}
+	.fs24{font-size:24px;}
+	.fs28{font-size:28px;}
+	.fs32{font-size:32px;}
+	.fs36{font-size:36px;}
+	
+	/* Fill Colors */
+	.cLGr{fill:#C7E5CA;}
+	.cLYw{fill:#FCF9CE;}
+	.cLRd{fill:#EDB6B8;}
+	.cLGy{fill:#E6E7E8;}
+]]>
+</style>
+<g transform="matrix(0 1 -1 0 612 0)"><!-- or 0 -1 1 0 0 1008 for other roatation -->
+<g id="Roads">
+	<line class="ln12" x1="22.488" y1="8.99" x2="22.488" y2="589.99"/>
+	<line class="ln12" x1="956.488" y1="8.99" x2="956.488" y2="589.99"/>
+	<line class="ln12" x1="783.488" y1="580.99" x2="1000.488" y2="580.99"/>
+	<polyline class="ln08" points="531.488,67.49 531.488,38.99 956.488,38.99"/>
+	<line class="ln08" x1="731.488" y1="37.99" x2="731.488" y2="66.49"/>
+	
+	<text transform="matrix(0 1 -1 0 37.3379 151.0078)" class="fr fs36">Webb Road</text>
+	<text transform="matrix(0 1 -1 0 972.3379 78.0078)" class="fr fs36">Greenwich Road</text>
+	<text x="855" y="570" class="fr fs36">K-96</text>
+	<rect x="258.488" y="56.49" class="cLGy" width="654" height="58.5"/>
+	<text x="560" y="95" class="fsb fs36">Parking</text>
+	<text transform="matrix(1 0 0 1 548.5078 186.9902)">
+		<tspan x="0" y="0" class="fsb fs28">Concessions</tspan>
+		<tspan x="10.22" y="33.6" class="fsb fs28">Restrooms</tspan>
+	</text>
+</g>
+<g id="Fields">
+	<rect x="132" y="121" class="cLYw" width="176" height="107"/>
+	<rect x="134" y="123" class="cLGr" width="82" height="103"/>
+	<rect x="225" y="123" class="cLGr" width="82" height="103"/>
+	<rect x="333" y="121" class="cLYw" width="176" height="107"/>
+	<rect x="336" y="123" class="cLGr" width="82" height="103"/>
+	<rect x="425" y="123" class="cLGr" width="82" height="103"/>	
+	<rect x="736" y="121" class="cLYw" width="176" height="107"/>
+	
+	<rect x="132" y="244" class="cLGr" width="176" height="107"/>
+	<rect x="333" y="244" class="cLGr" width="176" height="107"/>
+	<rect x="535" y="244" class="cLRd" width="176" height="107"/>
+	<rect x="736" y="244" class="cLYw" width="176" height="107"/>
+	
+	<rect x="132" y="367" class="cLYw" width="176" height="107"/>
+	<rect x="333" y="367" class="cLGr" width="176" height="107"/>
+	<rect x="535" y="367" class="cLYw" width="176" height="107"/>
+	<rect x="736" y="367" class="cLYw" width="176" height="107"/>
+	
+	<rect x="132" y="490" class="cLYw" width="176" height="107"/>
+
+</g>
+<g id="Field_Labels">
+	<text x="824" y="160" text-anchor="middle" class="fsb fs32">Field 1</text>
+	<text x="220" y="280" text-anchor="middle" class="fsb fs32">Field 10</text>
+	<text x="421" y="280" text-anchor="middle" class="fsb fs32">Field 7</text>
+	<text x="623" y="280" text-anchor="middle" class="fsb fs32">Field 4</text>
+	<text x="824" y="280" text-anchor="middle" class="fsb fs32">Field 2</text>
+	<text x="220" y="410" text-anchor="middle" class="fsb fs32">Field 11</text>
+	<text x="421" y="410" text-anchor="middle" class="fsb fs32">Field 8</text>
+	<text x="623" y="410" text-anchor="middle" class="fsb fs32">Field 5</text>
+	<text x="824" y="410" text-anchor="middle" class="fsb fs32">Field 3</text>
+	<text x="220" y="530" text-anchor="middle" class="fsb fs32">Field 12</text>
+	<text transform="matrix(1 0 0 1 149.5605 148.0073)">
+		<tspan x="0" y="0" class="fsb fs24">Field</tspan>
+		<tspan x="8.567" y="21" class="fsb fs24">9W</tspan>
+	</text>
+	<text transform="matrix(1 0 0 1 240.2285 151.0073)">
+		<tspan x="0" y="0" class="fsb fs24">Field</tspan>
+		<tspan x="12.815" y="21" class="fsb fs24">9E</tspan>
+	</text>
+	<text transform="matrix(1 0 0 1 350.8945 151.0073)">
+		<tspan x="0" y="0" class="fsb fs24">Field</tspan>
+		<tspan x="18.995" y="21" class="fsb fs24">6</tspan>
+	</text>
+	<text x="433.6826" y="148.0073" class="fsb fs21">6A</text>
+	<text x="474.3125" y="148.0073" class="fsb fs21">6B</text>
+	<text x="434.1865" y="174.3237" class="fsb fs21">6C</text>
+	<text x="473.189" y="174.3237" class="fsb fs21">6D</text>
+</g>
+<g id="Descriptions">
+	<text x="157.4219" y="210" class="fr fs21">U10</text>
+	<text x="248.0889" y="210" class="fr fs21">U10</text>
+	<text x="358.7559" y="210" class="fr fs21">U10</text>
+	<text x="454.8086" y="210" class="fr fs21">U6</text>
+	<text x="220" y="310" text-anchor="middle" class="fr fs21">U19</text>
+	<text x="220" y="330" text-anchor="middle" class="fr fs21">U14</text>
+	<text x="220" y="575" text-anchor="middle" class="fr fs21">Out of Play</text>
+	<text x="824" y="325" text-anchor="middle" class="fr fs21">Out of Play</text>
+	<text x="824" y="450" text-anchor="middle" class="fr fs21">Out of Play</text>
+	<text transform="matrix(1 0 0 1 421 310)">
+		<tspan x="0" y="0" text-anchor="middle" class="fr fs21">U8 Boys </tspan>
+		<tspan x="0" y="21" text-anchor="middle" class="fr fs21">U8 Girls</tspan>
+	</text>
+	<text transform="matrix(1 0 0 1 421 440)">
+		<tspan x="0" y="0" text-anchor="middle" class="fr fs21">U12 Boys</tspan>
+		<tspan x="0" y="21" text-anchor="middle" class="fr fs21">U12 Girls</tspan>
+	</text>
+	<text transform="matrix(1 0 0 1 623 310)">
+		<tspan x="0" y="0" text-anchor="middle" class="fb fs21">No Warm-up</tspan>
+		<tspan x="0" y="21" text-anchor="middle" class="fb fs21">No Practice</tspan>
+	</text>
+	<text x="220" y="452.6567" text-anchor="middle" class="fr fs21">Out of Play</text>
+	<text x="623" y="452.6567" text-anchor="middle" class="fr fs21">Out of Play</text>
+	<text x="824" y="210.9902" text-anchor="middle" class="fr fs21">Out of Play</text>
+</g>
+<g id="North">
+	<line class="ln03" x1="215.821" y1="107.99" x2="215.821" y2="55.096"/>
+	<path d="M215.821,36.99c3.161,8.52,8.555,19.09,14.268,25.642l-14.268-5.161l-14.265,5.161
+		C207.27,56.08,212.663,45.51,215.821,36.99z"/>
+	<text x="196.8213" y="26.9902" class="fr fs18">North</text>
+</g>
+<g id="Title">
+	<text transform="matrix(1 0 0 1 337.4883 530.9902)"><tspan x="0" y="0" class="fsb fs36">AYSO Region 49 Stryker Complex</tspan><tspan x="0" y="28.8" class="fsb fs24">29th St. North &amp; Greenwich</tspan></text>
+</g>
+</g>
+</svg>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 612 1008" style="enable-background:new 0 0 612 1008;" xml:space="preserve">
+<style type="text/css">
+<![CDATA[
+	.st0{fill:#FFF4DF;stroke:#BCBEC0;}
+	.st1{fill:none;stroke:#939598;}
+	.st2{fill:#E6E7E8;stroke:#000000;}
+	.st3{fill:#E6E7E8;stroke:#000000;stroke-width:2;}
+	.st4{fill:#FFF4DF;stroke:#939598;}
+	.st5{fill:#58595B;}
+	.st6{fill:#F1824D;}
+	.st7{fill:#F1F2F2;}
+	.st8{font-family:'MyriadPro-Semibold';}
+	.st9{font-family:'MyriadPro-Regular';}
+	.st10{fill:#27AAE1;}
+	.st11{fill:#F69A99;}
+	.st12{fill:#F9F28F;}
+	.st13{fill:#939598;}
+	.st14{fill:#C49A6C;}
+	.st15{fill:#C7E5CA;}
+	.st16{fill:#FBB040;}
+	.st17{fill:#C995C3;}
+	.st18{fill:none;stroke:#000000;stroke-width:3;}
+	.st19{fill:none;stroke:#000000;stroke-width:4;}
+	.st20{fill:none;stroke:#000000;stroke-width:8;}
+	.st21{fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;}
+	.st22{font-size:17px;}
+	.st23{font-size:18px;}
+	.st24{font-size:21px;}
+	.st25{font-size:24px;}
+	.st26{font-size:36px;}
+]]>
+</style>
+<g id="Roads">
+	<line class="st20" x1="27.6" y1="27.4" x2="27.6" y2="975.5"/>
+	<rect x="49.4" y="336" class="st2" width="348.6" height="63.1"/>
+	<path class="st3" d="M473.7,298.6c0,0,111.4,2.9,119.4-8.8s1.8-125.8-4.9-150.1c-6.8-24.3-63.2-23.4-74.8,0
+		C501.7,163,473.7,298.6,473.7,298.6"/>
+	<polyline class="st1" points="184.6,309 184.6,176.8 184.6,175 52.4,175 	"/>
+	<path class="st1" d="M52.4,175c0,74.1,59.1,134,132.2,134"/>
+	<path class="st1" d="M118.5,175c0,37,29.6,67,66.1,67"/>
+	<g>
+		<polyline class="st1" points="326.4,175.9 194.2,175.9 192.4,175.9 192.4,308.1 		"/>
+		<path class="st1" d="M192.4,308.1c74.1,0,134-59.1,134-132.2"/>
+		<path class="st1" d="M192.4,242c37,0,67-29.6,67-66.1"/>
+	</g>
+	<polyline class="st1" points="482.5,195.4 350.7,184.9 348.9,184.8 338.5,316.6 	"/>
+	<path class="st1" d="M338.5,316.6c73.8,5.8,138.2-48.4,144-121.2"/>
+	<path class="st1" d="M343.7,250.7c36.9,2.9,69.1-24.2,72-60.6"/>
+	<line class="st21" x1="398" y1="336" x2="473.7" y2="298.6"/>
+	<text transform="matrix(1 0 0 1 187.5928 374)" class="st9 st25">Parking</text>
+	<text transform="matrix(1 0 0 1 503.4443 241.9941)" class="st9 st25">Parking</text>
+	<text transform="matrix(1 0 0 1 154 168)" class="st13 st9 st23">Two Rivers Softball Fields</text>
+	<polyline class="st1" points="267.7,324.9 333.1,324.9 334,324.9 334,259.5 	"/>
+	<path class="st1" d="M334,259.5c-36.6,0-66.2,29.2-66.2,65.3"/>
+	<path class="st1" d="M334,292.2c-18.3,0-33.1,14.6-33.1,32.7"/>
+	<line class="st19" x1="27.6" y1="860" x2="187.6" y2="860"/>
+	<rect x="187.6" y="857" class="st2" width="192.4" height="141"/>
+	<text transform="matrix(1 0 0 1 244.291 927.5)" class="st9 st25">Parking</text>
+	<g>
+		<polyline class="st1" points="166.5,594 166.5,726.2 166.5,728 298.7,728 		"/>
+		<path class="st1" d="M298.7,728c0-74.1-59.1-134-132.2-134"/>
+		<path class="st1" d="M232.6,728c0-37-29.6-67-66.1-67"/>
+	</g>
+	<g>
+		<polyline class="st1" points="161.9,833.2 274.4,847.1 276,847.3 289.8,734.8 		"/>
+		<path class="st1" d="M289.8,734.8c-63-7.8-120.2,36.2-127.9,98.4"/>
+		<path class="st1" d="M282.9,791.1c-31.5-3.9-60.1,18.1-64,49.2"/>
+	</g>
+	<g>
+		<polyline class="st1" points="314.8,603.3 313.6,675.4 313.6,676.4 385.7,677.5 		"/>
+		<path class="st1" d="M385.7,677.5c0.6-40.4-31.1-73.6-70.9-74.2"/>
+		<path class="st1" d="M349.7,677c0.3-20.2-15.5-36.8-35.5-37.1"/>
+	</g>
+	<g>
+		<polyline class="st1" points="399.9,619.9 399.9,791.6 399.9,793.9 571.6,793.9 		"/>
+		<path class="st1" d="M571.6,793.9c0-96.2-76.8-174-171.6-174"/>
+		<path class="st1" d="M485.8,793.9c0-48.1-38.4-87-85.8-87"/>
+	</g>
+	<g>
+		<polyline class="st1" points="288.1,785.5 370.3,795.7 371.4,795.8 381.5,713.6 		"/>
+		<path class="st1" d="M381.5,713.6c-46-5.7-87.8,26.5-93.4,71.9"/>
+		<path class="st1" d="M376.5,754.7c-23-2.8-43.9,13.2-46.7,35.9"/>
+	</g>
+	<g>
+		<polyline class="st1" points="391.8,833.2 391.8,944.9 391.8,946.4 503.4,946.4 		"/>
+		<path class="st1" d="M503.4,946.4c0-62.6-49.9-113.2-111.7-113.2"/>
+		<path class="st1" d="M447.6,946.4c0-31.3-25-56.6-55.8-56.6"/>
+	</g>
+	<g>
+		<polyline class="st1" points="515,885.7 520.5,968.3 520.5,969.5 603.2,964 		"/>
+		<path class="st1" d="M603.2,964c-3.1-46.3-42.5-81.3-88.2-78.3"/>
+		<path class="st1" d="M561.8,966.7c-1.5-23.1-21.2-40.6-44.1-39.1"/>
+	</g>
+	<g>
+		<polyline class="st1" points="535.2,817.9 534.3,875 534.3,875.8 591.4,876.7 		"/>
+		<path class="st1" d="M591.4,876.7c0.5-32-24.6-58.3-56.2-58.8"/>
+		<path class="st1" d="M562.8,876.3c0.3-16-12.3-29.1-28.1-29.4"/>
+	</g>
+	<text transform="matrix(1 0 0 1 307.6289 817)" class="st13 st9 st23">West Urban Baseball Fields</text>
+	<text transform="matrix(1 0 0 1 41 31.667)"><tspan x="0" y="0" class="st9 st23">to</tspan><tspan x="0" y="21.6" class="st9 st23">21st St N</tspan></text>
+	<text transform="matrix(1 0 0 1 43.6738 959.334)"><tspan x="0" y="0" class="st9 st23">to</tspan><tspan x="0" y="21.6" class="st9 st23">13th St N</tspan></text>
+	<text transform="matrix(0 -1 1 0 19.2822 902.8291)" class="st9 st23">Ridge Road</text>
+	<text transform="matrix(0 -1 1 0 19.2822 158.8271)" class="st9 st23">Ridge Road</text>
+	<text transform="matrix(0 -1 1 0 19.2822 558.8291)" class="st9 st23">Ridge Road</text>
+	<line class="st19" x1="27.6" y1="349" x2="49.4" y2="349"/>
+	<rect x="38.5" y="797" class="st2" width="113.1" height="57.2"/>
+	<text transform="matrix(1 0 0 1 52.4189 833.2393)" class="st9 st25">Parking</text>
+</g>
+<g id="Fields">
+	<rect x="43.7" y="408.5" class="st12" width="97.2" height="173"/>
+	<rect x="147.1" y="408.5" class="st6" width="97.2" height="173"/>
+	<rect x="250.1" y="408.5" class="st10" width="97.2" height="173"/>
+	<rect x="491.3" y="305.1" class="st11" width="105.9" height="177.4"/>
+	<rect x="356.8" y="408.5" class="st5" width="97.2" height="52"/>
+	<rect x="356.8" y="529.5" class="st16" width="97.2" height="52"/>
+	<rect x="356.8" y="469" class="st14" width="97.2" height="52"/>
+	<rect x="43.7" y="608" class="st17" width="97.2" height="173"/>
+	<rect x="492.7" y="495" class="st15" width="48.6" height="52"/>
+	<rect x="491.7" y="556" class="st15" width="48.6" height="52"/>
+	<rect x="555.7" y="521" class="st15" width="48.6" height="52"/>
+</g>
+<g id="Field_Labels">
+	<text transform="matrix(1 0 0 1 60.6182 467)" class="st8 st24">Yellow</text>
+	<text transform="matrix(1 0 0 1 160.8037 467)" class="st8 st24">Orange</text>
+	<text transform="matrix(1 0 0 1 277.5635 467)" class="st8 st24">Blue</text>
+	<text transform="matrix(1 0 0 1 380.2461 431)" class="st7 st8 st24">Black</text>
+	<text transform="matrix(1 0 0 1 374.8066 492)" class="st8 st24">Brown</text>
+	<text transform="matrix(1 0 0 1 382.6709 552)" class="st8 st24">Gold</text>
+	<text transform="matrix(1 0 0 1 61.417 671.5)" class="st8 st24">Purple</text>
+	<text transform="matrix(1 0 0 1 494.3838 519.5)"><tspan x="0" y="0" class="st9 st22">U5/U6</tspan><tspan x="17.4" y="20.4" class="st9 st22">A</tspan></text>
+	<text transform="matrix(1 0 0 1 493.3838 579.5)"><tspan x="0" y="0" class="st9 st22">U5/U6</tspan><tspan x="18" y="20.4" class="st9 st22">B</tspan></text>
+	<text transform="matrix(1 0 0 1 525.7256 358)" class="st8 st24">Red</text>
+	<rect x="410.5" y="333" class="st0" width="49.5" height="31.7"/>
+	<rect x="410.5" y="369.3" class="st4" width="49.5" height="29.7"/>
+	<text transform="matrix(1 0 0 1 402.667 354.334)" class="st9 st22">The Garage</text>
+	<text transform="matrix(1 0 0 1 402.667 389.7881)" class="st9 st22">The Shed</text>
+	<text transform="matrix(1 0 0 1 557.3838 541.5)"><tspan x="0" y="0" class="st9 st22">U5/U6</tspan><tspan x="17.7" y="20.4" class="st9 st22">C</tspan></text>
+</g>
+<g id="Descriptions">
+	<text transform="matrix(1 0 0 1 52.1553 513)" class="st9 st24">U12 Girls</text>
+	<text transform="matrix(1 0 0 1 178.1416 513)" class="st9 st24">U10</text>
+	<text transform="matrix(1 0 0 1 283.2871 513)" class="st9 st24">U10</text>
+	<text transform="matrix(1 0 0 1 393.2051 513)" class="st9 st24">U8</text>
+	<text transform="matrix(1 0 0 1 393.2051 572.667)" class="st9 st24">U8</text>
+	<text transform="matrix(1 0 0 1 393.2051 452)" class="st7 st9 st24">U8</text>
+	<text transform="matrix(1 0 0 1 526.6533 410.334)"><tspan x="0" y="0" class="st9 st24">U14</tspan><tspan x="0" y="25.2" class="st9 st24">U19</tspan></text>
+	<text transform="matrix(1 0 0 1 51.9063 712.9971)" class="st9 st24">U12 Boys</text>
+</g>
+<g id="North">
+	<g>
+		<g>
+			<line class="st18" x1="477.3" y1="175.9" x2="477.3" y2="123"/>
+			<g>
+				<path d="M477.3,104.9c3.2,8.5,8.6,19.1,14.3,25.6l-14.3-5.2l-14.3,5.2C468.8,124,474.2,113.4,477.3,104.9z"/>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 458.3389 94.9063)" class="st9 st23">North</text>
+</g>
+<g id="Title">
+	<text transform="matrix(1 0 0 1 175.0459 44.2734)"><tspan x="0" y="0" class="st8 st26">AYSO Region 208</tspan><tspan x="0" y="28.8" class="st8 st25">North Ridge Road</tspan></text>
+</g>
+</svg>

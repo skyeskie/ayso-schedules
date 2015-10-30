@@ -8,6 +8,15 @@
     }]
   },
 
+  "images-dev": {
+    "files": [{
+      "expand": true,
+      "cwd": "src/img/",
+      "src": "**",
+      "dest": "www/views/img/"
+    }]
+  },
+
   "js": {
     "files": [
       {"src": "build/_bower.js", "dest": "www/js/lib.js"},
