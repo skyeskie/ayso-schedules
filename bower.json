@@ -1,6 +1,6 @@
 {
   "name": "AysoKS",
-  "version": "1.9.0",
+  "version": "2.0.0",
   "description": "Schedules for Wichita-area AYSO regions",
   "main": "",
   "moduleType": [],
@@ -24,8 +24,17 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
+    "jquery": "./lib/jquery.svg",
     "angular": "~1.4.7",
-    "angular-route": "~1.4.7"
+    "angular-route": "~1.4.7",
+    "jquery-mobile": "~1.4.5",
+    "rgbcolor": "http://www.phpied.com/files/rgbcolor/rgbcolor.js",
+    "jquery-ui-maps": "jquery-ui-map#~3.0.1",
+    "angular-iscroll": "~1.3.3",
+    "angular-google-maps": "~2.2.1"
+  },
+  "resolutions": {
+    "jquery": "~2.1.4",
+    "jquery-ui": "c0ab71056b936627e8a7821f03c044aec6280a40"
   }
 }
