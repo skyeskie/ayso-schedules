@@ -1,0 +1,16 @@
+{
+  "options": {
+    "singleQuotes": true
+  },
+
+  "all": {
+    "files": {
+      "src": [
+        "src/js/index.js",
+        "src/js/controllers/*.js",
+        "src/js/routing.js"
+      ],
+      "dest": "build/_local.js"
+    }
+  }
+}

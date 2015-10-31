@@ -5,6 +5,6 @@
       "src/js/controllers/*.js",
       "src/js/routing.js"
     ],
-    "dest": "build/_local.js"
+    "dest": "build/_local~.js"
   }
 }

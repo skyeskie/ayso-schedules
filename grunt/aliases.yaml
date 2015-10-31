@@ -28,6 +28,7 @@ base-build:
     - 'lint' # TODO: add test
     - 'sass'
     - 'bower_concat'
+    - 'ngAnnotate' #Also concat Javascript
     - 'concat'
     - 'copy'
 
