@@ -12,5 +12,7 @@ app.initialize();
 
 
 //Angular initialization
-var aysoApp = angular.module('aysoApp', ['ngRoute']);
-
+var aysoApp = angular.module('aysoApp', [
+    'ui.router',
+    'LocalStorageModule'
+]);

@@ -16,10 +16,16 @@ aysoApp.service('aysoUtil', function() {
          * Switches name around from Last, First to First Last
          * @param name in "Last, First" format
          * @return String Name in "First Last" format
+         *
+         * TODO: Convert this into a filter
          */
         nameSwitch : function(name) {
             var match = name.match(/([^,]+), ?(.+)/);
-            return match[2] + " " + match[1];
+            if(match !== null) {
+                return match[2] + " " + match[1];
+            }
+            //Don't have a Last, First so just passthrough
+            return name;
         },
 
         /**

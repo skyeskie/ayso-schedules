@@ -3,8 +3,12 @@
     "dest": "build/_bower.js",
     "cssDest": "build/_bower.css",
     "exclude": [
-      "jquery-mobile"
+      "jquery-mobile",
+      "ngCordova"
     ],
+    "dependencies": {
+      "angular-local-storage": "angular"
+    },
     "mainFiles": {
       "iscroll": "build/iscroll.js"
     },

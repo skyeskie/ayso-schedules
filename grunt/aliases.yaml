@@ -37,6 +37,8 @@ lint:
   tasks:
     - 'jshint'
 
-#test:
-#  description: 'Unit tests'
-#  tasks:
+test:
+  description: 'Unit tests'
+  tasks:
+    - 'base-build'
+    - 'karma'

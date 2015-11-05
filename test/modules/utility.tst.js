@@ -65,4 +65,18 @@ describe("Utility", function() {
             expect(aysoUtil.divisionToCode('U19')).toBe('1');
         });
     });
+
+    describe("name switching", function() {
+        it("handles last, first", function() {
+            expect(aysoUtil.nameSwitch('Doe, John')).toBe('John Doe');
+        });
+
+        it("handles single name", function() {
+            expect(aysoUtil.nameSwitch('Bob')).toBe('Bob');
+        });
+
+        it("handles two commas", function() {
+            expect(aysoUtil.nameSwitch("Doe, John, Huh?")).toBe('John, Huh? Doe');
+        });
+    });
 });
