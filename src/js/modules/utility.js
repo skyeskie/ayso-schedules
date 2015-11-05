@@ -1,6 +1,6 @@
 /* global angular, aysoApp */
 
-aysoApp.service('aysoUtil', function() {
+aysoApp.service('aysoUtil', function($state) {
     "use strict";
 
     return {
@@ -137,6 +137,14 @@ aysoApp.service('aysoUtil', function() {
                 case "U16": return '2';
                 case "U19": return '1';
                 default: return null;
+            }
+        },
+
+        errorMsg: function(err) {
+            if(typeof err === 'object') {
+                $state.go('error', {errorMsg: err.message});
+            } else {
+                $state.go('error', {errorMsg: err});
             }
         }
     };

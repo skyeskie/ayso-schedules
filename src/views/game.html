@@ -1,4 +1,4 @@
-<script type="text/ng-template" id="game" class="page">
+<div id="game" class="page">
     <h2>Game Info</h2>
     <div class="when">Week <span class="game-week">#{{game.weekNum}}</span><br />
         {{game.dateTime}}
@@ -26,14 +26,14 @@
         </div>
     </div>
     <ul data-role="listview" data-inset="true">
-        <li><a href="/map/{{game.region}}" class="map-link">
+        <li><a ui-sref="map({ region: game.region })" class="map-link">
             <strong>Region</strong> <span class="game-region">{{game.region}}</span>
             <span class="ui-li-aside">Directions</span>
         </a></li>
 
-        <li><a href="/fields/{{game.field}}" class="field-link">
+        <li><a ui-sref="field({ id: game.field})" class="field-link">
             <strong>Field</strong> <span class="game-field">{{game.field}}</span>
             <span class="ui-li-aside">Field map</span>
         </a></li>
     </ul>
-</script>
+</div>

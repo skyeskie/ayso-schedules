@@ -2,8 +2,17 @@ describe("Utility", function() {
     "use strict";
 
     var aysoUtil;
+    var mockState;
     beforeEach(function() {
         module('aysoApp');
+
+        //Create mock
+        mockState = jasmine.createSpyObj('$state', ['go']);
+
+        angular.mock.module(function($provide) {
+            $provide.value('$state', mockState);
+        });
+
         inject(function(_aysoUtil_) {
             aysoUtil = _aysoUtil_;
         });
@@ -77,6 +86,23 @@ describe("Utility", function() {
 
         it("handles two commas", function() {
             expect(aysoUtil.nameSwitch("Doe, John, Huh?")).toBe('John, Huh? Doe');
+        });
+    });
+
+    describe("Error handling", function() {
+        it("exists", function() {
+            expect(mockState).toBeDefined();
+            expect(mockState.go).toBeDefined();
+        });
+
+        it("with object parameter", function() {
+            aysoUtil.errorMsg({message: 'Foo'});
+            expect(mockState.go).toHaveBeenCalledWith('error', {errorMsg: 'Foo'});
+        });
+
+        it("with string parameter", function() {
+            aysoUtil.errorMsg('Bar');
+            expect(mockState.go).toHaveBeenCalledWith('error', {errorMsg: 'Bar'});
         });
     });
 });

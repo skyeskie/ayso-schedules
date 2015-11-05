@@ -8,6 +8,7 @@ describe("Service: aysoApp.ConfigDAO", function() {
             service = _ConfigDAO_;
         });
         service.clearSavedTeams();
+        service.setRegion('');
     });
 
     it('should be injected and defined', function () {
