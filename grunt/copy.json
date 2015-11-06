@@ -8,12 +8,21 @@
     }]
   },
 
+  "images-dev-singlepage": {
+    "files": [{
+      "expand": true,
+      "cwd": "src/img/",
+      "src": "**",
+      "dest": "build/pages/img"
+    }]
+  },
+
   "images-dev": {
     "files": [{
       "expand": true,
       "cwd": "src/img/",
       "src": "**",
-      "dest": "www/views/img/"
+      "dest": "build/app/img"
     }]
   },
 
@@ -23,5 +32,32 @@
       {"src": "build/_local.js", "dest": "www/js/ayso.js"},
       {"src": "build/_bower.css", "dest": "www/css/lib.css"}
     ]
+  },
+
+  "js-dev": {
+    "files": [
+      {"src": "build/_bower.dev.js", "dest": "build/app/js/lib.js"},
+      {"src": "build/_local.dev.js", "dest": "build/app/js/ayso.js"},
+      {"src": "build/_bower.css", "dest": "build/app/css/lib.css"},
+      {"src": "platforms/browser/www/cordova.js", "dest": "build/cordova.js"}
+    ]
+  },
+
+  "views": {
+    "files": [{
+      "expand": true,
+      "cwd": "src/views/",
+      "src": "*.html",
+      "dest": "www/views"
+    }]
+  },
+
+  "views-dev": {
+    "files": [{
+      "expand": true,
+      "cwd": "src/views/",
+      "src": "*.html",
+      "dest": "build/app/views"
+    }]
   }
 }

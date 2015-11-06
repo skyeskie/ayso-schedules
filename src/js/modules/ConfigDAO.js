@@ -15,7 +15,7 @@ aysoApp.service("ConfigDAO", function(localStorageService) {
 
     function init() {
         var fav = ls.get('teams');
-        if (fav === null || fav.length === 0) {
+        if (typeof fav !== 'string' || fav.length === 0) {
             ls.set('teams', '');
         } else {
             savedTeams = fav.split(',');

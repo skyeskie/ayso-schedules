@@ -8,8 +8,7 @@
       "src/js/index.js",
       "src/js/cfg/*.js",
       "src/js/controllers/*.js",
-      "src/js/modules/utility.js",
-      "src/js/modules/ConfigDAO.js"
+      "src/js/modules/*.js"
     ],
     "dest": "build/_local.js"
   }

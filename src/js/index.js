@@ -14,5 +14,6 @@ app.initialize();
 //Angular initialization
 var aysoApp = angular.module('aysoApp', [
     'ui.router',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ngCordova'
 ]);

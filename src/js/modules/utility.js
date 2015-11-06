@@ -111,7 +111,7 @@ aysoApp.service('aysoUtil', function($state) {
                 case '208': return '4';
                 case '253': return '5';
                 case '491': return '6';
-                default: return null;
+                default: return this.NO_MAPPING;
             }
         },
 
@@ -122,7 +122,7 @@ aysoApp.service('aysoUtil', function($state) {
                 case '4': return '208';
                 case '5': return '253';
                 case '6': return '491';
-                default: return null;
+                default: return this.NO_MAPPING;
             }
         },
 
@@ -136,9 +136,20 @@ aysoApp.service('aysoUtil', function($state) {
                 case "U14": return '3';
                 case "U16": return '2';
                 case "U19": return '1';
-                default: return null;
+                default: return this.NO_MAPPING;
             }
         },
+
+        genderToCode: function(gender) {
+            switch(gender) {
+                case 'Girls': return 'G';
+                case  'Boys': return 'B';
+                case  'Coed': return 'C';
+                default: return this.NO_MAPPING;
+            }
+        },
+
+        NO_MAPPING: '_',
 
         errorMsg: function(err) {
             if(typeof err === 'object') {

@@ -1,8 +1,8 @@
 /* global module, require */
 
-function makeTarget(srcView, dest) {
+function makeTarget(dest, srcView) {
     "use strict";
-    return {
+    var target = {
         src: "src/app.html",
         dest: dest,
         options: {
@@ -20,30 +20,34 @@ function makeTarget(srcView, dest) {
                     "www/css/lib.css",
                     "www/css/ayso.css"
                 ]
-            },
-
-            sections: {
-                views: srcView
             }
         }
     };
+
+    if(srcView !== null) {
+        target.options.sections = {
+            views: srcView
+        };
+    }
+
+    return target;
 }
 
 module.exports = function (grunt) {
     "use strict";
 
     var targets = {
-        "prod": makeTarget("src/views/*.html", "www/index.html")
+        "prod": makeTarget("www/index.html", "src/views/*.html")
     };
 
     var path = require('path');
     var src = "src/views";
-    var dest = "www/views";
+    var dest = "build/pages";
 
     grunt.file.expand({cwd: src}, "*.html").forEach(function(filename) {
         targets[filename] = makeTarget(
-            path.join(src, filename),
-            path.join(dest, filename)
+            path.join(dest, filename),
+            path.join(src, filename)
         );
     });
 

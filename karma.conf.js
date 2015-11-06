@@ -17,8 +17,9 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'build/_bower.js',
-            'build/_local.js',
+            'build/cordova.js',
+            'build/_bower.dev.js',
+            'build/_local.dev.js',
             'test/**/*.js'
         ],
 
@@ -79,6 +80,6 @@ module.exports = function (config) {
 
         // Concurrency level
         // how many browser should be started simultanous
-        concurrency: Infinity
+        concurrency: 1
     });
 };

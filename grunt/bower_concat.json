@@ -1,4 +1,11 @@
 {
+  "options": {
+    "dependencies": {
+      "angular-local-storage": "angular"
+    },
+    "separator": ";\n"
+  },
+
   "all": {
     "dest": "build/_bower.js",
     "cssDest": "build/_bower.css",
@@ -6,11 +13,20 @@
       "jquery-mobile",
       "ngCordova"
     ],
-    "dependencies": {
-      "angular-local-storage": "angular"
-    },
     "mainFiles": {
       "iscroll": "build/iscroll.js"
+    },
+    "includeDev": true
+  },
+
+  "dev": {
+    "dest": "build/_bower.dev.js",
+    "exclude": [
+      "jquery-mobile"
+    ],
+    "mainFiles": {
+      "iscroll": "build/iscroll.js",
+      "ngCordova": ["dist/ng-cordova.js", "dist/ng-cordova-mocks.js"]
     },
     "includeDev": true
   }

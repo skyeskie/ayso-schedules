@@ -26,19 +26,29 @@ base-build:
   description: 'Common tasks for building'
   tasks:
     - 'lint' # TODO: add test
-    - 'sass'
-    - 'bower_concat'
-    - 'ngAnnotate' #Also concat Javascript
-    - 'concat'
-    - 'copy'
+    - 'compile'
+    - 'test-base'
 
 lint:
   description: 'Static code and style analysis'
   tasks:
     - 'jshint'
 
+compile:
+  description: 'Actual joining and moving files'
+  tasks:
+    - 'sass'
+    - 'bower_concat'
+    - 'ngAnnotate'
+    - 'replace'
+    - 'copy'
+
 test:
-  description: 'Unit tests'
+  description: 'Entry target for running just tests'
   tasks:
     - 'base-build'
+
+test-base:
+  description: 'Unit tests'
+  tasks:
     - 'karma'

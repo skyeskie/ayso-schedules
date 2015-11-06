@@ -57,11 +57,11 @@ describe("Utility", function() {
         it("is reversible", function() {
             expect(aysoUtil.regionToID(aysoUtil.regionFromID('1'))).toBe('1');
             expect(aysoUtil.regionToID(aysoUtil.regionFromID('2'))).toBe('2');
-            expect(aysoUtil.regionToID(aysoUtil.regionFromID('3'))).toBe(null);
+            expect(aysoUtil.regionToID(aysoUtil.regionFromID('3'))).toBe(aysoUtil.NO_MAPPING);
             expect(aysoUtil.regionToID(aysoUtil.regionFromID('4'))).toBe('4');
             expect(aysoUtil.regionToID(aysoUtil.regionFromID('5'))).toBe('5');
             expect(aysoUtil.regionToID(aysoUtil.regionFromID('6'))).toBe('6');
-            expect(aysoUtil.regionToID(aysoUtil.regionFromID(null))).toBe(null);
+            expect(aysoUtil.regionToID(aysoUtil.regionFromID(null))).toBe(aysoUtil.NO_MAPPING);
         });
     });
 
