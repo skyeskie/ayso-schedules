@@ -1,6 +1,6 @@
-/* global aysoApp */
+/* global aysoApp, angular */
 
-aysoApp.service("SchedulesDAO", function(ConfigDAO, SQLite, localStorageService, aysoUtil, $q) {
+aysoApp.service("SchedulesDAO", function(ConfigDAO, SQLite, localStorageService, aysoUtil, $q, Game, Team, Coach, GameDetail) {
     "use strict";
     var ls = localStorageService;
     var db = SQLite;
@@ -29,6 +29,10 @@ aysoApp.service("SchedulesDAO", function(ConfigDAO, SQLite, localStorageService,
         return ls.get("weekStarts").split(",");
     };
 
+    this.putWeekStarts = function(val) {
+        ls.set('weekStarts', val.join(','));
+    };
+
     /**
      * @returns {number} of week for next games.
      */
@@ -54,19 +58,15 @@ aysoApp.service("SchedulesDAO", function(ConfigDAO, SQLite, localStorageService,
     };
 
     function processGameDetail(tx, results) {
-
+        return GameDetail.arrayfromSql(results);
     }
 
     function processGames(tx, results) {
-
+        return Game.arrayfromSql(results);
     }
 
     function processTeams(tx, results) {
-
-    }
-
-    function processCoaches(tx, results) {
-
+        return Team.arrayfromSql(results);
     }
 
     function noProcess(tx, results) {
@@ -94,23 +94,17 @@ aysoApp.service("SchedulesDAO", function(ConfigDAO, SQLite, localStorageService,
         });
     }
 
-    function promiseSql(sql, process, resolve, reject) {
-        if(process === null) {
-            process = noProcess;
-        }
-
-        db.transaction(
-            function (tx) {
-                tx.executeSql(sql, [],
-                    function (tx, results) {
-                        resolve(process(tx, results));
-                    }
-                );
-            },
-            function (error) {
-                reject(error);
-            }
-        );
+    function promiseSql(transactionFn) {
+        return $q(function(resolve, reject) {
+            db.transaction(transactionFn,
+                function (error) {
+                    reject(error);
+                },
+                function () {
+                    resolve();
+                }
+            );
+        });
     }
 
     /**
@@ -206,14 +200,14 @@ aysoApp.service("SchedulesDAO", function(ConfigDAO, SQLite, localStorageService,
     /**
      * Get coach information for a specific team
      * @param team
-     * @return {Object} Coach
+     * @return {Object} Team
      */
     this.getCoachInfo = function(team) {
         var sql = "SELECT ID, Coach, Phone " +
             " FROM coaches " +
             " WHERE TeamNo = '" +team + "';";
 
-        return promiseSqlReadonly(sql, processCoaches);
+        return promiseSqlReadonly(sql, processTeams);
     };
 
     /**
@@ -232,7 +226,59 @@ aysoApp.service("SchedulesDAO", function(ConfigDAO, SQLite, localStorageService,
     };
 
     this.refreshCaches = function() {
+        var self = this;
         var sql = "SELECT MIN(Jour) AS Start, Week FROM games GROUP BY Week ORDER BY Week ASC";
-        promiseSql(sql);
+        promiseSqlReadonly(sql).then(function(results) {
+            if(results.rows.length === 0) {
+                console.error("Week cache setup failed");
+                self.setMaxWeeks(9);
+            }
+
+            var maxWeek = 0;
+            var weekStarts = [];
+            for(var i=0; i<results.rows.length; ++i) {
+                weekStarts[i] = results.rows.item(i).Start;
+                if(results.rows.item(i).Week > maxWeek) {
+                    maxWeek = results.rows.item(i).Week;
+                }
+            }
+
+            self.setMaxWeeks(maxWeek);
+            self.putWeekStarts(weekStarts);
+        });
+    };
+
+    this.putGames = function(gamesList, resetTable) {
+        return promiseSql(function(tx) {
+            if(resetTable === true) {
+                tx.executeSql('DELETE FROM games WHERE 1');
+            }
+
+            angular.forEach(gamesList, function(game) {
+                tx.executeSql("INSERT OR REPLACE INTO games " +
+                    "(ID, Field, Week, Jour, Heur, Divis, Away, Home) " +
+                    "VALUES ("+game.ID+",'"+game.Field+"'," +
+                    "'"+game.Week+"','"+game.Jour+"','"+game.Heur+"'," +
+                    "'"+game.Divis+"','"+game.Away+"','"+game.Home+"')"
+                );
+            });
+        });
+
+    };
+
+    this.putCoaches = function(coachesList, resetTable) {
+        return promiseSql(function(tx) {
+            if (resetTable === true) {
+                tx.executeSql('DELETE FROM coaches WHERE 1');
+            }
+
+            angular.forEach(coachesList, function(coach) {
+                tx.executeSql("INSERT OR REPLACE INTO coaches " +
+                    "(ID, Divis, TeamNo, Coach, Phone) " +
+                    "VALUES ("+coach.ID+", '"+coach.Divis+"', " +
+                    "'"+coach.TeamNo+"', '"+coach.Coach+"', '"+coach.Phone+"')"
+                );
+            });
+        });
     };
 });

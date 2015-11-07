@@ -7,6 +7,7 @@
     "src": [
       "src/js/index.js",
       "src/js/cfg/*.js",
+      "src/js/models/*.js",
       "src/js/controllers/*.js",
       "src/js/modules/*.js"
     ],
