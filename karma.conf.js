@@ -20,7 +20,8 @@ module.exports = function (config) {
             'build/cordova.js',
             'build/_bower.dev.js',
             'build/_local.dev.js',
-            'test/**/*.js'
+            'test/**/*.mock.js',
+            'test/**/*.tst.js'
         ],
 
 
@@ -71,7 +72,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome'],//['Chrome'],
+        browsers: ['Chrome'],
 
 
         // Continuous Integration mode
@@ -80,6 +81,6 @@ module.exports = function (config) {
 
         // Concurrency level
         // how many browser should be started simultanous
-        concurrency: 1
+        concurrency: Infinity
     });
 };

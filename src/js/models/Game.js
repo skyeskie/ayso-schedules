@@ -1,3 +1,5 @@
+/* global angular */
+
 angular.module('aysoApp').factory('Game', function(){
     "use strict";
 
