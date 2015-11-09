@@ -1,5 +1,5 @@
 /**
- * @ngapp factory
+ * @ngdoc factory
  * @name SQLite
  * @desc Provides a SQLite database. See {@link SchedulesDAO_Sqlite} for use.
  * @requires $cordovaSQLite

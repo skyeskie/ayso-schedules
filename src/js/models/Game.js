@@ -1,7 +1,9 @@
 /* global angular */
 /**
  * A model for a game returned from the DAO
- * @typedef {Object} GameDataModel
+ * @typedef {Object}
+ * @name GameDataModel
+ * @ngdoc models
  * @property {String} ID - unique identifier
  * @property {String} Jour - day in 'YYYY-MM-DD'
  * @property {String} Heur - hour in 'HH:MM:SS'
@@ -18,6 +20,8 @@ angular.module('aysoApp').factory('Game', function(){
 
     /**
      * @desc Model for representing game data (summary)
+     * @name Game
+     * @ngdoc models
      * @param {*} id - Primary key for accessing game
      * @param {String} day - Day of game. Prefer <pre>YYYY-MM-DD</pre>
      * @param {String} hour - Time of game. Prefer <pre>HH:MM:SS</pre>
@@ -37,6 +41,7 @@ angular.module('aysoApp').factory('Game', function(){
 
     /**
      * @function
+     * @memberof GameDetail
      * @desc determine whether one of teams indicates a bye
      * @returns {boolean}
      *
@@ -48,6 +53,7 @@ angular.module('aysoApp').factory('Game', function(){
 
     /**
      * @function arrayfromSql
+     * @memberof GameDetail
      * @static
      * @desc Creates a list of games from the DataModel
      * @param {Array.<GameDataModel>} results
@@ -63,6 +69,7 @@ angular.module('aysoApp').factory('Game', function(){
 
     /**
      * @function fromSql
+     * @memberof GameDetail
      * @static
      * @desc Translates from a GameDataModel (ie from dao)
      * @param {GameDataModel} row

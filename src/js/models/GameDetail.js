@@ -1,15 +1,20 @@
 /* global angular */
 
 /**
- * @typedef {Object} GameDetailSqlResult
- * @prop {Number} length
- * @function item - returns {link: GameDetailDataModel}
+ * Data model for result of SQL query for game details
+ * @class {Object}
+ * @name GameDetailSqlResult
+ * @ngdoc models
+ * @property {number} length
+ * @property {function} item - returns {@link GameDetailDataModel}
  */
 
 /**
  * A model for a game returned from the DAO
- * @typedef {Object} GameDetailDataModel
- * @property {String} Week - week number of  game
+ * @typedef {Object}
+ * @name GameDetailDataModel
+ * @ngdoc models
+ * @property {String} Week - week number of game
  * @property {String} Jour - day in 'YYYY-MM-DD'
  * @property {String} Heur - hour in 'HH:MM:SS'
  * @property {String} Field - format '&lt;Region&gt; Field &lt;Code&gt;'
@@ -27,13 +32,15 @@ angular.module('aysoApp').factory('GameDetail', function(Team) {
 
     /**
      * Model for full game detail, with coach/team info merged in
+     * @name GameDetail
+     * @ngdoc models
      * @param {String} weekNum - week number of  game
-     * @param {String} date
-     * @param {String} time
-     * @param {Team} homeTeam
-     * @param {Team} awayTeam
-     * @param {String} region
-     * @param {String} field
+     * @param {String} date - day in 'YYYY-MM-DD'
+     * @param {String} time - hour in 'HH:MM:SS'
+     * @param {Team} homeTeam - home team info
+     * @param {Team} awayTeam - away team info
+     * @param {String} region - region code
+     * @param {String} field - field name
      * @constructor
      */
     function GameDetail(weekNum, date, time, homeTeam, awayTeam, region, field) {
@@ -48,8 +55,8 @@ angular.module('aysoApp').factory('GameDetail', function(Team) {
 
     /**
      * @function getOpponent
-     *
-     * Find the opponent of a particular team in a game
+     * @desc Find the opponent of a particular team in a game
+     * @memberof GameDetail
      * @param {String|Team} myTeam
      * @returns {Team} the team that is not myTeam.<br/>
      *     If both teams are the same code, returns the awayTeam
@@ -88,6 +95,7 @@ angular.module('aysoApp').factory('GameDetail', function(Team) {
 
     /**
      * @function
+     * @memberof GameDetail
      * @desc determine whether one of teams indicates a bye
      * @returns {boolean}
      *
@@ -99,6 +107,7 @@ angular.module('aysoApp').factory('GameDetail', function(Team) {
 
     /**
      * @function fromSql
+     * @memberof GameDetail
      * @static
      * @desc Translates from a data model (ie from dao)
      * @param {GameDetailSqlResult} results
@@ -110,7 +119,11 @@ angular.module('aysoApp').factory('GameDetail', function(Team) {
             throw "Could not find game (" + results.length + " records)";
         }
 
-        /** @type {GameDetailDataModel} */
+        /**
+         * @type {GameDetailDataModel}
+         * @private
+         * @memberof aysoUtil
+         */
         var game = results.item(0);
 
         var home = new Team(game.Home, game.HomeCoach, game.HomeCoachPhone);

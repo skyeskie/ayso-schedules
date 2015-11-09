@@ -12,6 +12,7 @@
     "plugman": "^1.0.4"
   },
   "devDependencies": {
+    "angular-jsdoc": "^1.2.1",
     "cca": "^0.7.4",
     "grunt": "^0.4.5",
     "grunt-available-tasks": "^0.6.1",
@@ -23,6 +24,7 @@
     "grunt-contrib-uglify": "^0.9.2",
     "grunt-cordovacli": "^0.8.2",
     "grunt-html-build": "^0.5.2",
+    "grunt-jsdoc": "^1.0.0",
     "grunt-karma": "^0.12.1",
     "grunt-sass": "^1.0.0",
     "grunt-text-replace": "^0.4.0",

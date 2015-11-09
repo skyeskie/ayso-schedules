@@ -1,0 +1,31 @@
+{
+  "dist": {
+    "src": [
+      "src/js",
+      "src/js/cfg",
+      "src/js/controllers",
+      "src/js/filters",
+      "src/js/models",
+      "src/js/modules"
+    ],
+    "options": {
+      "destination": "build/docs",
+      "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+      },
+      "source": {
+        "includePattern": ".+\\.js(doc)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+      },
+      "plugins": [
+        "node_modules/angular-jsdoc/common/plugins/ngdoc"
+      ],
+      "templates": {
+        "cleverLinks": true
+      },
+      "readme": "./README.md",
+      "verbose": true
+    }
+  }
+}

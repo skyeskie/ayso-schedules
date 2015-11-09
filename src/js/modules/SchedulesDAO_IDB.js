@@ -1,7 +1,7 @@
 /**
- * @ngapp service
+ * @ngdoc service
  * @name SchedulesDAO_IDB
- * @desc IndexedDB backend for SchedulesDAO
+ * @desc IndexedDB backend for {@link SchedulesDAO}
  * @implements SchedulesDAO
  *
  * @todo: Everything...

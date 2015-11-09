@@ -1,7 +1,7 @@
 /* global angular, aysoApp */
 
 /**
- * @ngapp service
+ * @ngdoc service
  * @name aysoUtil
  * @desc Collection of utilities and config data for the AYSO app
  * @todo Figure out better configuration method
@@ -16,17 +16,20 @@ aysoApp.service('aysoUtil', function($state) {
 
         /**
          * List of regions for the app
+         * @memberof aysoUtil
          */
         regions : [ "49", "105", "208", "253", "491" ],
         /**
          * Long name for regions.
          * See {@link regions} for the code for each region
+         * @memberof aysoUtil
          */
         regionsLong : [ "Stryker", "Southview", "West Wichita", "Valley Center",
             "Clearwater" ],
 
         /**
          * List of divisions for the app
+         * @memberof aysoUtil
          */
         divisions : [ "U5", "U6", "U8", "U10", "U12", "U14", "U19" ],
 
@@ -34,6 +37,7 @@ aysoApp.service('aysoUtil', function($state) {
          * Switches name around from Last, First to First Last
          * @param {String} name in "Last, First" format
          * @return {String} in "First Last" format
+         * @memberof aysoUtil
          *
          * @TODO: Convert this into a filter
          */
@@ -48,6 +52,7 @@ aysoApp.service('aysoUtil', function($state) {
 
         /**
          * Short list of months for date formatting
+         * @memberof aysoUtil
          */
         months : [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept",
             "Oct", "Nov", "Dec" ],
@@ -56,6 +61,7 @@ aysoApp.service('aysoUtil', function($state) {
          * Helper function to format the date
          * @param {String} jour - Date in <pre>YYYY-MM-DD</pre> format
          * @returns {String} date in format <pre>"{ShortMonth} {Day}"</pre> (Ex: Jan 4)
+         * @memberof aysoUtil
          */
         formatDate : function(jour) {
             var match = jour.match(/(\d{4})\-(\d{1,2})\-(\d{1,2})/);
@@ -70,6 +76,7 @@ aysoApp.service('aysoUtil', function($state) {
          * @param {String} jour - Date of format accepted by <code>Date()</code>
          * @param {String} heur - Time string of format accepted by <code>Date()</code>
          * @returns {String} Date in format <pre>Jan 4, 2:04 PM</pre>
+         * @memberof aysoUtil
          */
         formatDateTime : function(jour, heur) {
             var d = new Date(jour + " " + heur);
@@ -102,6 +109,7 @@ aysoApp.service('aysoUtil', function($state) {
          * Helper function to format time in H:MM AM/PM
          * @param {String} heur: Time string in format <pre>hh:mm</pre>
          * @returns {String} H:MM (AM|PM) Ex: 2:04 PM
+         * @memberof aysoUtil
          */
         formatTime: function(heur) {
             var match = heur.match(/(\d\d):(\d\d)/);
@@ -118,14 +126,17 @@ aysoApp.service('aysoUtil', function($state) {
 
         /**
          * @todo: Make sure can remove
+         * @memberof aysoUtil
          */
         indexURL : /^#?([\w\-_]+)$/,
         /**
          * @todo: Make sure can remove
+         * @memberof aysoUtil
          */
         detailsURL : /^#?([\w\-_]+)[\/\?]([\w\-_%&=]*)$/,
         /**
          * @todo: Make sure can remove
+         * @memberof aysoUtil
          */
         processableURL : /^#?[\w\-_]+([\/\?][\w\-_%&=]*)?$/,
 
@@ -133,6 +144,7 @@ aysoApp.service('aysoUtil', function($state) {
          * Utility function to convert from region code to a number used in team ID
          * @param {String} region
          * @returns {String}
+         * @memberof aysoUtil
          */
         regionToID: function(region) {
             switch(region) {
@@ -149,6 +161,7 @@ aysoApp.service('aysoUtil', function($state) {
          * Utility function to convert to a region code from the region ID number
          * @param {String} regionID
          * @returns {String}
+         * @memberof aysoUtil
          */
         regionFromID: function(regionID) {
             switch(regionID) {
@@ -165,6 +178,7 @@ aysoApp.service('aysoUtil', function($state) {
          * Utility function to convert from region code to a number used in team ID
          * @param {string} division
          * @returns {string}
+         * @memberof aysoUtil
          */
         divisionToCode: function(division) {
             switch(division) {
@@ -184,6 +198,7 @@ aysoApp.service('aysoUtil', function($state) {
          * Utility function to convert from gender a single-letter code used in team ID
          * @param {String} gender
          * @returns {String}
+         * @memberof aysoUtil
          */
         genderToCode: function(gender) {
             switch(gender) {
@@ -196,12 +211,14 @@ aysoApp.service('aysoUtil', function($state) {
 
         /**
          * Return value for util conversion functions. Set to match any single character in SQL.
+         * @memberof aysoUtil
          */
         NO_MAPPING: '_',
 
         /**
          * Convenience error route handler
          * @param {string|{message: string}} err - Error
+         * @memberof aysoUtil
          */
         errorMsg: function(err) {
             if(typeof err === 'object') {

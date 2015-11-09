@@ -1,7 +1,7 @@
 /* global aysoApp, angular */
 
 /**
- * @ngapp service
+ * @ngdoc service
  * @name SchedulesDAO_Sqlite
  * @desc SQLite backend for SchedulesDAO
  * @implements SchedulesDAO

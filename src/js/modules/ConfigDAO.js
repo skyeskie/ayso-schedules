@@ -14,18 +14,21 @@ aysoApp.service("ConfigDAO", function(localStorageService) {
     /**
      * @private
      * @borrows localStorageService
+     * @memberof ConfigDAO
      */
     var ls = localStorageService;
 
     /**
      * List of teams saved as favorites
-     * @type {Array.<String>} of team IDs
+     * @type {Array.<String>}
+     * @memberof ConfigDAO
      */
     var savedTeams = [];
 
     /**
      * @private
      * @desc Sets up storage values if nonexistent and caches the saved teams
+     * @memberof ConfigDAO
      */
     function init() {
         var fav = ls.get('teams');
@@ -45,6 +48,7 @@ aysoApp.service("ConfigDAO", function(localStorageService) {
     /**
      * @private
      * @desc Writes cached saved teams array to storage
+     * @memberof ConfigDAO
      */
     function storeSavedTeams() {
         ls.set('teams', savedTeams.join(','));
@@ -52,6 +56,7 @@ aysoApp.service("ConfigDAO", function(localStorageService) {
 
     /**
      * @function getSavedTeams
+     * @memberof ConfigDAO
      * @desc Gets the list of saved teams
      * @returns {Array.<String>}
      *
@@ -62,6 +67,7 @@ aysoApp.service("ConfigDAO", function(localStorageService) {
 
     /**
      * @function saveTeam
+     * @memberof ConfigDAO
      * @desc Saves a team as a favorite.
      * If team already saved, does no-op to prevent duplicates
      * @param {String} team - unique ID for team
@@ -79,6 +85,7 @@ aysoApp.service("ConfigDAO", function(localStorageService) {
 
     /**
      * @function unSaveTeam
+     * @memberof ConfigDAO
      * @desc Removes a team from favorites.
      * Checks all items so will remove all if there are duplicates
      * @param {String} team - unique ID of team to remove
@@ -94,6 +101,7 @@ aysoApp.service("ConfigDAO", function(localStorageService) {
 
     /**
      * @function isTeamSaved
+     * @memberof ConfigDAO
      * @desc Checks if team is saved
      * @param {String} team - unique ID of team
      * @returns {boolean}
@@ -104,6 +112,7 @@ aysoApp.service("ConfigDAO", function(localStorageService) {
 
     /**
      * @function clearSavedTeams
+     * @memberof ConfigDAO
      * @desc Removes all teams from saved list
      * @returns {ConfigDAO}
      */
@@ -115,6 +124,7 @@ aysoApp.service("ConfigDAO", function(localStorageService) {
 
     /**
      * @function getRegion
+     * @memberof ConfigDAO
      * @desc Gets the saved region configuration
      * @returns {String} the region ID
      */
@@ -124,6 +134,7 @@ aysoApp.service("ConfigDAO", function(localStorageService) {
 
     /**
      * @function setRegion
+     * @memberof ConfigDAO
      * @desc Persists the current region to configuration
      * @param {String} region - the region ID
      * @returns {ConfigDAO}

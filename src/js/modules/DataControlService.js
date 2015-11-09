@@ -33,12 +33,14 @@ angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, l
 
     /**
      * @function httpError
+     * @memberof DataControl
      * @param error
      */
     this.httpError = function(error) { console.error("ERROR: " + error); };
 
     /**
      * @function getLastUpdate
+     * @memberof DataControl
      * @desc Gets the version of the last update.
      *     This is used by the server for only sending updated records.
      * @returns {string} No update is the empty string
@@ -53,6 +55,7 @@ angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, l
 
     /**
      * @function setLastUpdate
+     * @memberof DataControl
      * @desc Sets the current update version.
      * @param {String} version
      */
@@ -62,6 +65,7 @@ angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, l
 
     /**
      * @function checkResponse
+     * @memberof DataControl
      * @desc Checks the HTTP response for errors and proper formatting
      * @param response - HTTP response object
      * @returns {boolean}
@@ -82,6 +86,7 @@ angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, l
 
     /**
      * @function injectData
+     * @memberof DataControl
      * @desc Adds data from the remote response to the local data store
      * @param {Object} data - data response from server
      * @param {boolean} replace - whether to empty the table before putting the data
@@ -98,6 +103,7 @@ angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, l
 
     /**
      * @function updateData
+     * @memberof DataControl
      * @desc Gets data updates from the remote service.
      * This attempts to transfer less data than a full update
      */
@@ -115,6 +121,7 @@ angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, l
 
     /**
      * @function fullDataRefresh
+     * @memberof DataControl
      * @desc Retrieves all data from the remote service.
      * This will wipe local data.
      * @todo Make sure favorites still exist

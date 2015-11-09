@@ -1,11 +1,13 @@
 /**
  * A model for a row in the Coaches table
- * @typedef {Object} CoachDataModel
- * @param {String} ID - unique coach revord identifier
- * @param {String} Divis - division code
- * @param {String} TeamNo - unique team identifier
- * @param {String} Coach - name of format <pre>Last, First</pre>
- * @param {String} Phone - Phone number of format <pre>(000) 000-0000</pre>
+ * @typedef {Object}
+ * @name CoachDataModel
+ * @ngdoc models
+ * @property {String} ID - unique coach revord identifier
+ * @property {String} Divis - division code
+ * @property {String} TeamNo - unique team identifier
+ * @property {String} Coach - name of format <pre>Last, First</pre>
+ * @property {String} Phone - Phone number of format <pre>(000) 000-0000</pre>
  */
 
 angular.module('aysoApp').factory('Team', function(){
@@ -13,6 +15,8 @@ angular.module('aysoApp').factory('Team', function(){
 
     /**
      * Representation of team information
+     * @name Team
+     * @ngdoc models
      * @param {String} id - unique team identifier
      * @param {String} coach - name of format <pre>Last, First</pre>
      * @param {String} phone - Phone number of format <pre>(000) 000-0000</pre>
