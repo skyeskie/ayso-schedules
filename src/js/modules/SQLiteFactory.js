@@ -1,6 +1,19 @@
+/**
+ * @ngapp factory
+ * @name SQLite
+ * @desc Provides a SQLite database. See {@link SchedulesDAO_Sqlite} for use.
+ * @requires $cordovaSQLite
+ * @requires localStorageService
+ * @todo Add compatibility with browser. Plugin only works on iOS, Android, WindowsMobile
+ */
+
 angular.module('aysoApp').factory('SQLite', function($cordovaSQLite, $q, localStorageService){
     "use strict";
     var dbUtil = {};
+    /**
+     * @todo move to config section
+     * @type {{name: string, location: number}}
+     */
     dbUtil.config = {
         name: "ayso-ks.db",
         location: 2
@@ -9,6 +22,11 @@ angular.module('aysoApp').factory('SQLite', function($cordovaSQLite, $q, localSt
     var ls = localStorageService;
     var db, resolve, reject;
 
+    /**
+     * Opens database and injects callbacks
+     * @param {Function} _resolve_
+     * @param {Function} _reject_
+     */
     dbUtil.openDB = function(_resolve_, _reject_) {
         resolve = _resolve_;
         reject = _reject_;
@@ -19,6 +37,8 @@ angular.module('aysoApp').factory('SQLite', function($cordovaSQLite, $q, localSt
     /**
      * Function on initial connection to make sure database has been setup.
      * If doesn't exist, will create tables and move for data download.
+     *
+     * @param {Object} _db_ - database returned from successful connection
      */
     dbUtil.initConnection = function(_db_) {
         db = _db_;
@@ -59,10 +79,18 @@ angular.module('aysoApp').factory('SQLite', function($cordovaSQLite, $q, localSt
         }, dbUtil.error);
     };
 
+    /**
+     * Error message callback that rejects/fails a promise object
+     * @param msg
+     */
     dbUtil.error = function(msg) {
         reject(msg);
     };
 
+    /**
+     * Error-handling function that formats message based on type
+     * @param {string|SQLError|{message: string}} msg
+     */
     dbUtil.sqlError = function(msg) {
         var message = "";
         switch(typeof msg) {
@@ -86,6 +114,11 @@ angular.module('aysoApp').factory('SQLite', function($cordovaSQLite, $q, localSt
         //aysoUtil.errorMsg(message);
     };
 
+    /**
+     * @prop promise
+     * @desc the promise object from opening the database
+     * @type {Promise}
+     */
     dbUtil.promise = $q(dbUtil.openDB);
 
 

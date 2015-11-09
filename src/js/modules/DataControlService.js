@@ -7,19 +7,43 @@
  * Handles downloading and updating data from the AYSO website.
  * Most data is handled offline
  *
- * @requires $cordovaSQLite, ConfigDAO, SchedulesDAO
+ * @requires $http, SchedulesDAO, localStorageService
  * */
 angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, localStorageService){
     "use strict";
 
+    /**
+     * @desc remote service endpoint
+     * @todo Switch to using an app-level configuration
+     */
     var remoteURL = "http://aysoks.org/app/json.php5";
 
+    /**
+     * Convenience
+     * @private
+     * @borrows localStorageService
+     */
     var ls = localStorageService;
+
+    /**
+     * @private
+     * @type {DataControl}
+     */
     var service = this;
 
-    service.httpError = function(error) { console.error("ERROR: " + error); };
+    /**
+     * @function httpError
+     * @param error
+     */
+    this.httpError = function(error) { console.error("ERROR: " + error); };
 
-    service.getLastUpdate = function() {
+    /**
+     * @function getLastUpdate
+     * @desc Gets the version of the last update.
+     *     This is used by the server for only sending updated records.
+     * @returns {string} No update is the empty string
+     */
+    this.getLastUpdate = function() {
         var version = ls.get('lastData');
         if(typeof version === 'undefined' || version === null) {
             return '';
@@ -27,11 +51,22 @@ angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, l
         return version;
     };
 
-    service.setLastUpdate = function(version) {
+    /**
+     * @function setLastUpdate
+     * @desc Sets the current update version.
+     * @param {String} version
+     */
+    this.setLastUpdate = function(version) {
         ls.set('lastData', version);
     };
 
-    service.checkResponse = function(response) {
+    /**
+     * @function checkResponse
+     * @desc Checks the HTTP response for errors and proper formatting
+     * @param response - HTTP response object
+     * @returns {boolean}
+     */
+    this.checkResponse = function(response) {
         if(typeof response.data.Error === 'undefined') {
             service.httpError('Response is unrecognized format');
             return false;
@@ -45,7 +80,13 @@ angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, l
         return true;
     };
 
-    service.injectData = function(data, replace) {
+    /**
+     * @function injectData
+     * @desc Adds data from the remote response to the local data store
+     * @param {Object} data - data response from server
+     * @param {boolean} replace - whether to empty the table before putting the data
+     */
+    this.injectData = function(data, replace) {
         if(typeof data.Games !== 'undefined' && data.Games.length > 0) {
             SchedulesDAO.putGames(data.Games, replace);
         }
@@ -55,7 +96,12 @@ angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, l
         }
     };
 
-    service.updateData = function() {
+    /**
+     * @function updateData
+     * @desc Gets data updates from the remote service.
+     * This attempts to transfer less data than a full update
+     */
+    this.updateData = function() {
         $http.post(remoteURL, { lastUpdate: service.getLastUpdate() }).then(
             function(response) {
                 if(service.checkResponse(response)) {
@@ -67,7 +113,13 @@ angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, l
         );
     };
 
-    service.fullDataRefresh = function() {
+    /**
+     * @function fullDataRefresh
+     * @desc Retrieves all data from the remote service.
+     * This will wipe local data.
+     * @todo Make sure favorites still exist
+     */
+    this.fullDataRefresh = function() {
         $http.post(remoteURL).then(
             function(response) {
                 if(service.checkResponse(response)) {

@@ -1,30 +1,24 @@
 /* global aysoApp, angular */
 
-aysoApp.service("SchedulesDAOSqlite", function(ConfigDAO, SQLite, localStorageService, aysoUtil, $q, Game, Team, GameDetail) {
+/**
+ * @ngapp service
+ * @name SchedulesDAO_Sqlite
+ * @desc SQLite backend for SchedulesDAO
+ * @implements SchedulesDAO
+ */
+aysoApp.service("SchedulesDAO_Sqlite", function(ConfigDAO, SQLite, localStorageService, aysoUtil, $q, Game, Team, GameDetail) {
     "use strict";
     var ls = localStorageService;
     var db = SQLite;
 
-
-    /**
-     * @returns {number} of weeks in season
-     */
     this.getNumWeeks = function() {
         return ls.get("maxWeeks");
     };
 
-    /**
-     * Update the cached max weeks value
-     * @param weeks (number)
-     */
     this.setMaxWeeks = function(weeks) {
         ls.set("maxWeeks", weeks);
     };
 
-    /**
-     * Get the cached week start dates
-     * @returns (Array)
-     */
     this.getWeekStarts = function() {
         return ls.get("weekStarts").split(",");
     };
@@ -33,9 +27,6 @@ aysoApp.service("SchedulesDAOSqlite", function(ConfigDAO, SQLite, localStorageSe
         ls.set('weekStarts', val.join(','));
     };
 
-    /**
-     * @returns {number} of week for next games.
-     */
     var curWeek = null;
     this.getCurrentWeek = function() {
         if(curWeek !== null) {
@@ -107,11 +98,6 @@ aysoApp.service("SchedulesDAOSqlite", function(ConfigDAO, SQLite, localStorageSe
         });
     }
 
-    /**
-     *
-     * @param weekNum
-     * @returns {Array}
-     */
     this.findByWeek = function(weekNum) {
         var region = aysoUtil.regionToID(ConfigDAO.getRegion());
         if(region===null || typeof r === 'undefined') {
@@ -126,13 +112,6 @@ aysoApp.service("SchedulesDAOSqlite", function(ConfigDAO, SQLite, localStorageSe
         return promiseSqlReadonly(sql, processGames);
     };
 
-    /**
-     * General search function
-     * @param region - region number
-     * @param divis - division (age) in form U10
-     * @param gender - in {'Girls', 'Boys', 'Coed'}
-     * @returns {Array} Game objects
-     */
     this.findTeams = function(region, divis, gender) {
         var reg = aysoUtil.regionToID(region);
         var div = aysoUtil.divisionToCode(divis);
@@ -146,10 +125,6 @@ aysoApp.service("SchedulesDAOSqlite", function(ConfigDAO, SQLite, localStorageSe
         return promiseSqlReadonly(sql, processTeams);
     };
 
-    /**
-     * @param team - Unique team code
-     * @returns {Array} Game objects
-     */
     this.findByTeam = function(team) {
         var sql = "SELECT ID, Jour, Heur, Field, 'vs' AS HA, away AS Opponent " +
             " FROM games WHERE Home = '"+team+"' " +
@@ -160,12 +135,6 @@ aysoApp.service("SchedulesDAOSqlite", function(ConfigDAO, SQLite, localStorageSe
         return promiseSqlReadonly(sql, processGames);
     };
 
-    /**
-     * TODO: See where used
-     * @param team
-     * @param week
-     * @returns {Array} Game objects
-     */
     this.findByDivWeek = function(team, week) {
         var sql = "SELECT ID, Jour, Heur, Field, Home, Away " +
             " FROM games " +
@@ -176,10 +145,6 @@ aysoApp.service("SchedulesDAOSqlite", function(ConfigDAO, SQLite, localStorageSe
         return promiseSqlReadonly(sql, processGames);
     };
 
-    /**
-     * List all games from teams stored in favorites
-     * @returns {Array} Game objects
-     */
     this.findByFavorites = function() {
         var in_list = ConfigDAO.getSavedTeams().join("','");
         if(in_list.length > 0) {
@@ -197,11 +162,6 @@ aysoApp.service("SchedulesDAOSqlite", function(ConfigDAO, SQLite, localStorageSe
         return promiseSqlReadonly(sql, processGames);
     };
 
-    /**
-     * Get coach information for a specific team
-     * @param team
-     * @return {Object} Team
-     */
     this.getCoachInfo = function(team) {
         var sql = "SELECT ID, Coach, Phone " +
             " FROM coaches " +
@@ -210,11 +170,6 @@ aysoApp.service("SchedulesDAOSqlite", function(ConfigDAO, SQLite, localStorageSe
         return promiseSqlReadonly(sql, processTeams);
     };
 
-    /**
-     * Get details for specific game
-     * @param gameID
-     * @return {Object} Game
-     */
     this.getGameDetail = function(gameID) {
         var sql = "SELECT games.*, ch.Coach AS HomeCoach, ch.Phone AS HomeCoachPhone," +
             " ca.Coach AS AwayCoach, ca.Phone AS AwayCoachPhone " +
