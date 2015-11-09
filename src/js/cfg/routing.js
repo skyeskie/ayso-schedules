@@ -1,5 +1,4 @@
-/* globals aysoApp */
-aysoApp.config(function($stateProvider, $urlRouterProvider) {
+angular.module('aysoApp').config(function($stateProvider, $urlRouterProvider) {
     "use strict";
 
     $urlRouterProvider.otherwise("init");
@@ -40,7 +39,7 @@ aysoApp.config(function($stateProvider, $urlRouterProvider) {
 });
 
 //Error handling
-aysoApp.run(function($rootScope, $state) {
+angular.module('aysoApp').run(function($rootScope, $state) {
     "use strict";
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
         $state.go('error', {

@@ -1,5 +1,3 @@
-/* global angular */
-
 /**
  * Data model for result of SQL query for game details
  * @class {Object}

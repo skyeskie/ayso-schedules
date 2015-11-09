@@ -1,6 +1,4 @@
-/* global aysoApp, angular */
-
-aysoApp.factory("SchedulesDAO", function(SchedulesDAO_IDB) {
+angular.module('aysoApp').factory("SchedulesDAO", function(SchedulesDAO_IDB) {
     "use strict";
     return SchedulesDAO_IDB;
 });

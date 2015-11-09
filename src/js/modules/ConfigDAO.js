@@ -1,5 +1,3 @@
-/* global aysoApp */
-
 /**
  * @ngdoc service
  * @name ConfigDAO
@@ -8,7 +6,7 @@
  * Used to contain and update user preferences and settings
  * @requires localStorageService
  */
-aysoApp.service("ConfigDAO", function(localStorageService) {
+angular.module('aysoApp').service("ConfigDAO", function(localStorageService) {
     "use strict";
 
     /**

@@ -1,0 +1,32 @@
+{
+  "bitwise": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "freeze": true,
+  "futurehostile": true,
+  "latedef": true,
+  "noarg": true,
+  "nonbsp": true,
+  "nonew": true,
+  "strict": true,
+  "undef": true,
+
+  "debug": true,
+
+  "browser": true,
+  "jasmine": true,
+  "jquery": true,
+  "globals": {
+    "angular": false,
+    "console": false,
+    "inject": false,
+    "afterEach": false,
+    "beforeEach": false,
+    "describe": false,
+    "expect": false,
+    "it": false,
+    "jasmine": false,
+    "module": false
+  }
+}

@@ -1,5 +1,3 @@
-/* global angular */
-
 //Cordova initialization
 var app = {
     // Application Constructor
@@ -17,3 +15,13 @@ var aysoApp = angular.module('aysoApp', [
     'LocalStorageModule',
     'ngCordova'
 ]);
+
+/**
+ * @ngdoc config
+ * @name $cfg
+ * @summary contains app configuration parameters
+ * @prop {String} remote - URL endpoint for server
+ */
+aysoApp.constant('$cfg', {
+    remote: "http://aysoks.org/app/json.php5"
+});

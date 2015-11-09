@@ -1,4 +1,3 @@
-/* global angular */
 /**
  * A model for a game returned from the DAO
  * @typedef {Object}

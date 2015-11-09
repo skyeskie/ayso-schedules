@@ -1,12 +1,12 @@
-/* global aysoApp, angular */
-
 /**
+ * SQLite backend for SchedulesDAO.<br />
+ * Uses cordova-sqlite-storage
  * @ngdoc service
  * @name SchedulesDAO_Sqlite
- * @desc SQLite backend for SchedulesDAO
  * @implements SchedulesDAO
+ * @deprecated cordova-sqlite-storage doesn't work on browser platform
  */
-aysoApp.service("SchedulesDAO_Sqlite", function(ConfigDAO, SQLite, localStorageService, aysoUtil, $q, Game, Team, GameDetail) {
+angular.module('aysoApp').service("SchedulesDAO_Sqlite", function(ConfigDAO, SQLite, localStorageService, aysoUtil, $q, Game, Team, GameDetail) {
     "use strict";
     var ls = localStorageService;
     var db = SQLite;

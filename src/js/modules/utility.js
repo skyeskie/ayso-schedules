@@ -1,12 +1,10 @@
-/* global angular, aysoApp */
-
 /**
  * @ngdoc service
  * @name aysoUtil
  * @desc Collection of utilities and config data for the AYSO app
  * @todo Figure out better configuration method
  */
-aysoApp.service('aysoUtil', function($state) {
+angular.module('aysoApp').service('aysoUtil', function($state) {
     "use strict";
 
     return {

@@ -4,7 +4,7 @@
  * @desc Provides a SQLite database. See {@link SchedulesDAO_Sqlite} for use.
  * @requires $cordovaSQLite
  * @requires localStorageService
- * @todo Add compatibility with browser. Plugin only works on iOS, Android, WindowsMobile
+ * @deprecated cordova-sqlite-storage doesn't work on browser platform
  */
 
 angular.module('aysoApp').factory('SQLite', function($cordovaSQLite, $q, localStorageService){
