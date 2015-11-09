@@ -23,11 +23,11 @@ describe("Model: Game", function() {
 
     it("can recognize a bye", function() {
         var g = new Game(1,1,1,1,'-','foo');
-        expect(g.isBye()).toBeTrue();
+        expect(g.isBye()).toBe(true);
         g.home = 'foo';
-        expect(g.isBye()).toBeFalse();
+        expect(g.isBye()).toBe(false);
         g.away = '-';
-        expect(g.isBye()).toBeTrue();
+        expect(g.isBye()).toBe(true);
     });
 
     it("can create a game object from SQL", function() {

@@ -4,6 +4,12 @@
     "cli": "cordova"
   },
 
+  "prod": {
+    "options": {
+      "command": "build"
+    }
+  },
+
   "build_android": {
     "options": {
       "command": "build",

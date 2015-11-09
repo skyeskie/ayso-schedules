@@ -12,7 +12,7 @@
 angular.module('aysoApp').service('DataControl', function($http, SchedulesDAO, localStorageService){
     "use strict";
 
-    var remoteURL = "http://ayso4u.org/app/json.php5";
+    var remoteURL = "http://aysoks.org/app/json.php5";
 
     var ls = localStorageService;
     var service = this;

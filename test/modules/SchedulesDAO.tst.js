@@ -1,17 +1,11 @@
 /* global describe, it, angular, inject, spyOn */
 
-describe("Service: SchedulesDAO", function() {
+describe("Interface: SchedulesDAO", function() {
     "use strict";
 
     var dao, mockDB, mockLS;
     beforeEach(function() {
         module('aysoApp');
-
-        //Create mocks
-        mockDB = {
-            transaction: jasmine.createSpy('transaction'),
-            readTransaction: jasmine.createSpy('readTransaction')
-        };
 
         mockLS = {
             keys: { dbInit: 'A' },

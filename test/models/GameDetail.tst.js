@@ -17,17 +17,17 @@ describe("Model: GameDetail", function () {
 
     it("can recognize a home bye", function() {
         var homeBye = new GameDetail(1, 1, 1, fooTeam, bye, 1, 1);
-        expect(homeBye.isBye()).toBeTrue();
+        expect(homeBye.isBye()).toBe(true);
     });
 
     it("can recognize an away bye", function() {
         var awayBye = new GameDetail(1,1,1,bye,fooTeam,1,1);
-        expect(awayBye.isBye()).toBeTrue();
+        expect(awayBye.isBye()).toBe(true);
     });
 
     it("returns no bye when two teams", function() {
         var noBye = new GameDetail(1,1,1,fooTeam,barTeam,1,1);
-        expect(noBye.isBye()).toBeFalse();
+        expect(noBye.isBye()).toBe(false);
     });
 
     it("can return an opponent by object", function() {

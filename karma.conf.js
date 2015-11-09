@@ -12,7 +12,7 @@ module.exports = function (config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine','jasmine-matchers'],
+        frameworks: ['jasmine'],
 
 
         // list of files / patterns to load in the browser
@@ -21,6 +21,7 @@ module.exports = function (config) {
             'build/_bower.dev.js',
             'build/_local.dev.js',
             'test/**/*.mock.js',
+            'test/**/*.integ.js',
             'test/**/*.tst.js'
         ],
 

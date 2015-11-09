@@ -56,12 +56,12 @@ describe("Service: DataControl", function() {
 
     it("should fail when error field is set", function() {
         spyOn(dc, "httpError");
-        expect(dc.checkResponse({data: { Error: 'Foo'}})).toBeFalse();
+        expect(dc.checkResponse({data: { Error: 'Foo'}})).toBe(false);
         expect(dc.httpError).toHaveBeenCalledWith('Foo');
     });
 
     it("should pass data check with blank Error", function() {
-        expect(dc.checkResponse({data: { Error: ''}})).toBeTrue();
+        expect(dc.checkResponse({data: { Error: ''}})).toBe(true);
     });
 
     it("injectData");

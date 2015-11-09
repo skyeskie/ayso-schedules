@@ -50,8 +50,8 @@ describe("Service: aysoApp.ConfigDAO", function() {
     it('should test existence', function() {
         expect(service.isTeamSaved("Foo")).toBe(false);
         service.saveTeam("Foo");
-        expect(service.isTeamSaved("Foo")).toBeTrue();
-        expect(service.isTeamSaved("Bar")).toBeFalse();
+        expect(service.isTeamSaved("Foo")).toBe(true);
+        expect(service.isTeamSaved("Bar")).toBe(false);
     });
 
     it('should clear saved teams correctly', function() {

@@ -1,6 +1,6 @@
 /* global aysoApp, angular */
 
-aysoApp.service("SchedulesDAO", function(ConfigDAO, SQLite, localStorageService, aysoUtil, $q, Game, Team, Coach, GameDetail) {
+aysoApp.service("SchedulesDAOSqlite", function(ConfigDAO, SQLite, localStorageService, aysoUtil, $q, Game, Team, GameDetail) {
     "use strict";
     var ls = localStorageService;
     var db = SQLite;
