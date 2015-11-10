@@ -10,38 +10,6 @@ angular.module('aysoApp').factory("SchedulesDAO", function(SchedulesDAO_IDB) {
  * @ngdoc factory
  * @name SchedulesDAO
  * @interface SchedulesDAO
- *
- * @todo: Move week cache functions to new DAO?
- */
-
-/**
- * @function SchedulesDAO#getNumWeeks
- * @desc Get the number of weeks in a season
- * @returns {number}
- */
-
-/**
- * @function SchedulesDAO#setMaxweeks
- * @desc Update the cached max weeks value
- * @param {number} weeks
- */
-
-/**
- * @function SchedulesDAO#getWeekStarts
- * @desc Get the cached week start dates
- * @returns {Array.String} - sorted array of dates in <pre>YYYY-MM-DD</pre> format
- */
-
-/**
- * @function SchedulesDAO#putWeekStarts
- * @desc Replaces the cache of week start dates
- * @param {Array.<String>} val - sorted array of dates in <pre>YYYY-MM-DD</pre> format
- */
-
-/**
- * @function SchedulesDAO#getCurrentWeek
- * @desc Determines the week number for the current date
- * @returns {number}
  */
 
 /**

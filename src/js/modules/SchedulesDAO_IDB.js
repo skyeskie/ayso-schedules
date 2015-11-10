@@ -7,8 +7,12 @@
  * @todo: Everything...
  */
 
-angular.module('aysoApp').service("SchedulesDAO_IDB", function(ConfigDAO, localStorageService, aysoUtil, $q, Game, Team, GameDetail) {
+angular.module('aysoApp').service("SchedulesDAO_IDB", function(ConfigDAO, IndexedDB, WeekCache, localStorageService, aysoUtil, $q, Game, Team, GameDetail) {
     "use strict";
     var ls = localStorageService;
+    var db = IndexedDB.getDatabase();
+    var cfg = ConfigDAO;
+
+
 
 });

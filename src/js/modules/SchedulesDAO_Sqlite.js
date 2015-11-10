@@ -6,47 +6,9 @@
  * @implements SchedulesDAO
  * @deprecated cordova-sqlite-storage doesn't work on browser platform
  */
-angular.module('aysoApp').service("SchedulesDAO_Sqlite", function(ConfigDAO, SQLite, localStorageService, aysoUtil, $q, Game, Team, GameDetail) {
+angular.module('aysoApp').service("SchedulesDAO_Sqlite", function(ConfigDAO, SQLite, WeekCache, aysoUtil, $q, Game, Team, GameDetail) {
     "use strict";
-    var ls = localStorageService;
     var db = SQLite;
-
-    this.getNumWeeks = function() {
-        return ls.get("maxWeeks");
-    };
-
-    this.setMaxWeeks = function(weeks) {
-        ls.set("maxWeeks", weeks);
-    };
-
-    this.getWeekStarts = function() {
-        return ls.get("weekStarts").split(",");
-    };
-
-    this.putWeekStarts = function(val) {
-        ls.set('weekStarts', val.join(','));
-    };
-
-    var curWeek = null;
-    this.getCurrentWeek = function() {
-        if(curWeek !== null) {
-            return curWeek;
-        }
-
-        var today = new Date();
-        var dateStrings = this.getWeekStarts();
-
-        //Loop from end. First one we're after is the current week we're in
-        for(var i = dateStrings.length; i>=0; --i) {
-            if(today >= new Date(dateStrings[i])) {
-                curWeek = i+1;
-                return i+1;
-            }
-        }
-
-        console.warn("Cannot determine current week.");
-        return 1; //Default to 1 so we hopefully don't blow anything up
-    };
 
     function processGameDetail(tx, results) {
         return GameDetail.arrayfromSql(results);
@@ -181,12 +143,11 @@ angular.module('aysoApp').service("SchedulesDAO_Sqlite", function(ConfigDAO, SQL
     };
 
     this.refreshCaches = function() {
-        var self = this;
         var sql = "SELECT MIN(Jour) AS Start, Week FROM games GROUP BY Week ORDER BY Week ASC";
         promiseSqlReadonly(sql).then(function(results) {
             if(results.rows.length === 0) {
                 console.error("Week cache setup failed");
-                self.setMaxWeeks(9);
+                WeekCache.setMaxWeeks(9);
             }
 
             var maxWeek = 0;
@@ -198,8 +159,8 @@ angular.module('aysoApp').service("SchedulesDAO_Sqlite", function(ConfigDAO, SQL
                 }
             }
 
-            self.setMaxWeeks(maxWeek);
-            self.putWeekStarts(weekStarts);
+            WeekCache.setMaxWeeks(maxWeek);
+            WeekCache.putWeekStarts(weekStarts);
         });
     };
 

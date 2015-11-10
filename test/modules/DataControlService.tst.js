@@ -50,7 +50,7 @@ describe("Service: DataControl", function() {
 
     it("should fail response when no Error field in data", function() {
         spyOn(dc, "httpError");
-        expect(dc.checkResponse({data: {}})).toBeFalse();
+        expect(dc.checkResponse({data: {}})).toBe(false);
         expect(dc.httpError).toHaveBeenCalledWith('Response is unrecognized format');
     });
 
