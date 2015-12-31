@@ -2,21 +2,37 @@
   "name": "AysoKS",
   "version": "1.9.0-alpha.1",
   "description": "Scheduling app for Wichita-area AYSO regions",
+  "readme": "README.md",
   "license": "GPL-2.0",
   "repository": "https://github.com/s42ky/ayso-schedules.git",
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server",
+    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
+  },
   "dependencies": {
-    "bower": "^1.5.3",
+    "angular2": "^2.0.0-beta.0",
+    "systemjs": "^0.19.9",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.13",
+    "reflect-metadata": "^0.1.2",
+    "rxjs": "^5.0.0-beta.0",
+    "zone.js": "^0.5.10",
     "cordova": "^5.3.3",
     "cordova-plugin-network-information": "^1.0.1",
     "grunt-ng-annotate": "^1.0.1",
+    "jasmine-core": "^2.3.4",
+    "jquery": "^2.1.4",
+    "jquery-mobile": "^1.4.1",
     "plugman": "^1.0.4"
   },
   "devDependencies": {
     "angular-jsdoc": "^1.2.1",
     "cca": "^0.7.4",
+    "concurrently": "^1.0.0",
     "grunt": "^0.4.5",
     "grunt-available-tasks": "^0.6.1",
-    "grunt-bower-concat": "^0.5.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-copy": "^0.8.2",
@@ -35,8 +51,11 @@
     "karma-coverage": "^0.5.3",
     "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "^0.2.1",
+    "lite-server": "^1.3.2",
     "load-grunt-config": "^0.17.2",
     "phantomjs": "^1.9.18",
-    "protractor": "^2.5.1"
+    "protractor": "^2.5.1",
+    "tslint": "^3.2.1",
+    "typescript": "^1.7.5"
   }
 }

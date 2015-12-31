@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "system",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removecomments": false,
+    "noImplicitAny": false,
+    "outDir": "./build/js/",
+    "rootDir": "./src",
+    "outFile": "./build/_localts.js",
+    "newLine": "\n"
+  },
+  "filesGlob": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "grunt",
+    "lib"
+  ]
+}
