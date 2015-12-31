@@ -1,7 +1,15 @@
+import {Component, OnInit} from 'angular2/core';
+import {Team} from '../models/team';
+import {Router} from 'angular2/router';
+import {RouteParams} from "angular2/router";
+
+@Component({
+    selector: 'game',
+    template: `
 <div id="game" class="page">
     <h2>Game Info</h2>
     <div class="when">Week <span class="game-week">#{{game.weekNum}}</span><br />
-        {{game.dateTime}}
+        {{game.dateTime | date:'MMM d, hm'}}
     </div>
     <div class="home team">
         <h3>Home Team</h3>
@@ -26,14 +34,41 @@
         </div>
     </div>
     <ul data-role="listview" data-inset="true">
-        <li><a ui-sref="map({ region: game.region })" class="map-link">
+        <li class="map-link" (click)="gotoMap()">
             <strong>Region</strong> <span class="game-region">{{game.region}}</span>
             <span class="ui-li-aside">Directions</span>
-        </a></li>
+        </li>
 
-        <li><a ui-sref="field({ id: game.field})" class="field-link">
+        <li class="field-link" (click)="gotoField()">
             <strong>Field</strong> <span class="game-field">{{game.field}}</span>
             <span class="ui-li-aside">Field map</span>
-        </a></li>
+        </li>
     </ul>
 </div>
+    `
+})
+
+export class GameComponent implements OnInit {
+    public game: Game;
+    public homeTeam: Team;
+    public awayTeam: Team;
+
+    constructor(
+        //private _dao:GameService,
+        private _router:Router,
+        private _routeParams:RouteParams
+    )
+
+    ngOnInit() {
+        let id = this._routeParams.get('id');
+        //this._dao.getGame(id).then(game => this.game = game)
+    }
+
+    gotoMap() {
+        this._router.navigate(['Map'], { id: game.map })
+    }
+
+    gotoField() {
+        this._router.navigate(['Field'], { id: game.field })
+    }
+}
