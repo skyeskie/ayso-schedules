@@ -1,0 +1,18 @@
+{
+  "rules": {
+    "curly": true,
+    "eofline": true,
+    "indent": "spaces",
+    "jsdoc-format": true,
+    "max-line-length": 120,
+    "no-any": true,
+    "no-conditional-assignment": true,
+    "no-duplicate-variable": true,
+    "no-unused-expression": true,
+    "no-use-before-declare": true,
+    "radix": true,
+    "semicolon": true,
+    "switch-default": true,
+    "triple-equals": true
+  }
+}

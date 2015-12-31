@@ -48,7 +48,7 @@ import {RouteParams} from "angular2/router";
     `
 })
 
-export class GameComponent implements OnInit {
+export default class GameComponent implements OnInit {
     public game: Game;
     public homeTeam: Team;
     public awayTeam: Team;

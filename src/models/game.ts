@@ -1,4 +1,4 @@
-export class Game {
+export default class Game {
     constructor(
         public awayTeam:Team,
         public homeTeam:Team,
@@ -7,5 +7,4 @@ export class Game {
         public region:String,
         public field:String
     ) {}
-
 }

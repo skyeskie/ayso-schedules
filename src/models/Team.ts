@@ -1,4 +1,4 @@
-export class Team {
+export default class Team {
     constructor(
         public code:String,
         public coach:String,

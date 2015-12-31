@@ -21,7 +21,7 @@ import {Component, OnInit} from "angular2/core";
     `
 })
 
-export class GamesListComponent implements OnInit {
+export default class GamesListComponent implements OnInit {
     public games: Game[];
 
     constructor(
