@@ -1,4 +1,4 @@
-describe("Load JSON into database", function() {
+xdescribe("Load JSON into database", function() {
     "use strict";
     var $httpBackend, dc, dao, GameDetail, Team, mockExpect;
     beforeAll(function() {

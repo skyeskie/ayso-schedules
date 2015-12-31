@@ -13,7 +13,8 @@ app.initialize();
 var aysoApp = angular.module('aysoApp', [
     'ui.router',
     'LocalStorageModule',
-    'ngCordova'
+    'ngCordova',
+    'indexedDB'
 ]);
 
 /**
