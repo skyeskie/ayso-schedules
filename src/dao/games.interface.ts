@@ -8,7 +8,7 @@ interface GamesDAO {
 
     findByWeek(week: Number): Promise<Game[]>;
 
-    findGames(regionID: String, division: Division): Promise<Game[]>;
+    findGames(regionID:Number, division:Division, week:Number): Promise<Game[]>;
 
     findForTeam(teamID: String): Promise<Game[]>;
 
