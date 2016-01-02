@@ -13,7 +13,7 @@ let NULL_REGION: Region = new Region(0,0,"","","");
 export default REGIONS;
 
 export class RegionLookup {
-    public static getByNumber(regionNumber: Number) {
+    static getByNumber(regionNumber: Number) {
         for(let i = 0; i < REGIONS.length; ++i) {
             let region = REGIONS[i];
             if(region.number === regionNumber) {
@@ -23,7 +23,7 @@ export class RegionLookup {
         return NULL_REGION;
     }
 
-    public static getById(id: Number) {
+    static getById(id: Number) {
         for(let i = 0; i < REGIONS.length; ++i) {
             let region = REGIONS[i];
             if(region.id === id) {

@@ -1,6 +1,6 @@
 import {Injectable} from 'angular2/core';
 import Game from "../models/game";
-import Division from "../cfg/divisions";
+import Division from "../models/division";
 import Gender from "../cfg/gender";
 
 interface GamesDAO {
@@ -8,7 +8,7 @@ interface GamesDAO {
 
     findByWeek(week: Number): Promise<Game[]>;
 
-    findGames(regionID: String, division: Division, gender: Gender): Promise<Game[]>;
+    findGames(regionID: String, division: Division): Promise<Game[]>;
 
     findForTeam(teamID: String): Promise<Game[]>;
 

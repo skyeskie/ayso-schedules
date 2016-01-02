@@ -10,4 +10,10 @@ export default class Game {
         public region:String,
         public field:String
     ) {}
+
+    getOpponent(myTeam: Team): Team {
+        if(myTeam.equals(this.awayTeam)) {
+            return this.homeTeam;
+        }
+    }
 }

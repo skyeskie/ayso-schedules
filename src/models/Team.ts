@@ -4,4 +4,8 @@ export default class Team {
         public coach:String,
         public coachTel:String
     ) {}
+
+    equals(o: Team) {
+        return this.code === o.code;
+    }
 }

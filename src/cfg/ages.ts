@@ -1,4 +1,4 @@
-enum Division {
+enum AgeGroup {
     U19 = 1,
     U16,
     U14,
@@ -8,4 +8,4 @@ enum Division {
     U6
 }
 
-export default Division;
+export default AgeGroup;

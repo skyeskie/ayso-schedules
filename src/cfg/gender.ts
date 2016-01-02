@@ -1,17 +1,22 @@
-enum Gender {
-    Girls = 1,
-    Boys = 2,
-    Coed = 3
+export default class Gender {
+    constructor(
+        public short: String,
+        public long: String
+    ) {}
 }
 
-export enum GenderShort {
-    G = 1,
-    B = 2,
-    C = 3
-}
+let genders = new Set<Gender>();
+genders.add(new Gender("B", "Boys"));
+genders.add(new Gender("G", "Girls"));
+genders.add(new Gender("C", "Coed"));
 
-export default Gender;
+export const GENDERS:Set<Gender> = genders;
 
-export function genderToCode(gender: Gender): String {
-    return GenderShort[gender];
-}
+export function findGenderByCode(code: String): Gender {
+    genders.forEach(function(g) {
+        if(g.short === code) {
+            return g;
+        }
+    });
+    return null;
+};
