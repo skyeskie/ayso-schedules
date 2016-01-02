@@ -1,24 +1,23 @@
 {
   "compilerOptions": {
+    "diagnostics": true,
     "target": "es5",
     "module": "system",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removecomments": false,
     "noImplicitAny": false,
-    "outDir": "./build/js/",
-    "rootDir": "./src",
-    "outFile": "./build/_localts.js",
-    "newLine": "\n"
+    "outDir": "./build/ts2js/",
+    "listFiles": true,
+    "outFile": "./build/tsc.all.js",
+    "isolatedModules": true
   },
-  "filesGlob": [
-    "./src/**/*.ts"
-  ],
   "exclude": [
     "node_modules",
     "grunt",
-    "lib"
+    "hooks",
+    "lib",
+    "build"
   ]
 }

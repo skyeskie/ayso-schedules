@@ -5,5 +5,5 @@ export default class Region {
         public name: String,
         public mapFile: String,
         public address: String
-    )
+    ) {}
 }

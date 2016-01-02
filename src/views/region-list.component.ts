@@ -1,7 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
-import {RouteParams} from "angular2/router";
 import REGIONS from '../cfg/regions';
+import Region from '../models/region';
 
 @Component({
     selector: 'regions',
@@ -20,7 +20,15 @@ import REGIONS from '../cfg/regions';
 export default class RegionListComponent {
     constructor(
         private _router:Router,
-        private _routeParams:RouteParams,
         public regions:Region[]
-    )
+    ) {}
+
+    gotoMap(region: Region) {
+        this._router.navigate(['Map', { id: region.id}]);
+
+    }
+
+    gotoFieldMap(region: Region) {
+        this._router.navigate(['Field', { id: region.id}]);
+    }
 }

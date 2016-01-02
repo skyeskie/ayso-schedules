@@ -12,6 +12,6 @@ export enum GenderShort {
 
 export default Gender;
 
-export function genderToCode(gender: Gender): GenderShort {
+export function genderToCode(gender: Gender): String {
     return GenderShort[gender];
 }

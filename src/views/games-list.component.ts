@@ -1,4 +1,7 @@
 import {Component, OnInit} from "angular2/core";
+import {Router} from "angular2/router";
+import Game from '../models/game';
+
 @Component({
     selector: 'game',
     template: `
@@ -33,6 +36,6 @@ export default class GamesListComponent implements OnInit {
     }
 
     onSelect(game: Game) {
-        this._router.navigate(['GameDetail', {id: game.code}])
+        this._router.navigate(['GameDetail', {id: game.id}]);
     }
 }

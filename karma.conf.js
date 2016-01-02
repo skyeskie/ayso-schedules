@@ -17,12 +17,27 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'build/cordova.js',
-            'build/_bower.dev.js',
-            'build/_local.dev.js',
-            'test/**/*.mock.js',
-            //'test/**/*.integ.js',
-            'test/**/*.tst.js'
+            //Setup Karma
+            {pattern: 'node_modules/systemjs/dist/system.src.js', included: true, watched: true},
+            {pattern: 'node_modules/angular2/bundles/angular2.js', included: true, watched: true},
+            {pattern: 'node_modules/angular2/bundles/testing.js', included: true, watched: true},
+            {pattern: 'karma-test-shim.js', included: true, watched: true},
+
+            //Project libs
+            ////Setup
+            //'build/cordova.js',
+            //'build/_bower.dev.js',
+            //'build/_local.dev.js'
+
+            //Project files TODO: Redirect to build/
+            {pattern: 'src/**/*.js', included: true, false: true},
+            {pattern: 'karma-test-shim.js', included: false, watched: true},
+            {pattern: 'src/**/*.html', included: false, watched: true},
+            {pattern: 'src/**/*.css', included: false, watched: true},
+
+            //Maps for dev linking
+            {pattern: 'src/**/*.ts', included: false, watched: false},
+            {pattern: 'src/**/*.js.map', included: false, watched: false}
         ],
 
 
@@ -38,7 +53,6 @@ module.exports = function (config) {
 
 
         // test results reporter to use
-        // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
         reporters: ['progress', 'coverage'],
 

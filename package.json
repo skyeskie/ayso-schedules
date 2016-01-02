@@ -6,8 +6,10 @@
   "license": "GPL-2.0",
   "repository": "https://github.com/s42ky/ayso-schedules.git",
   "scripts": {
-    "tsc": "tsc",
-    "tsc:w": "tsc -w",
+    "clean": "rimraf build",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "karma start karma.conf.js",
     "lite": "lite-server",
     "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
   },
@@ -55,6 +57,8 @@
     "load-grunt-config": "^0.17.2",
     "phantomjs": "^1.9.18",
     "protractor": "^2.5.1",
+    "rimraf": "^2.5.0",
+    "tsd": "^0.6.5",
     "tslint": "^3.2.1",
     "typescript": "^1.7.5"
   }

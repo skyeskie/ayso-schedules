@@ -1,7 +1,9 @@
 import {Component, OnInit} from 'angular2/core';
-import {Team} from '../models/team';
 import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
+
+import Game from '../models/game';
+import Team from '../models/team';
 
 @Component({
     selector: 'game',
@@ -50,14 +52,12 @@ import {RouteParams} from "angular2/router";
 
 export default class GameComponent implements OnInit {
     public game: Game;
-    public homeTeam: Team;
-    public awayTeam: Team;
 
     constructor(
         //private _dao:GameService,
         private _router:Router,
         private _routeParams:RouteParams
-    )
+    ) {}
 
     ngOnInit() {
         let id = this._routeParams.get('id');
@@ -65,10 +65,13 @@ export default class GameComponent implements OnInit {
     }
 
     gotoMap() {
-        this._router.navigate(['Map'], { id: game.map })
+        this._router.navigate(['/map', { region: this.game.region }]);
     }
 
     gotoField() {
-        this._router.navigate(['Field'], { id: game.field })
+        this._router.navigate(['/field', {
+            region: this.game.region,
+            field: this.game.field
+        }]);
     }
 }

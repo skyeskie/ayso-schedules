@@ -3,5 +3,5 @@ export default class Team {
         public code:String,
         public coach:String,
         public coachTel:String
-    )
+    ) {}
 }
