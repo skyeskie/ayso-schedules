@@ -14,7 +14,7 @@ import Region from "../models/region";
 //  <div id="svg-dump"></div>
 //</div>
 
-export class Field implements OnInit {
+export class FieldComponent implements OnInit {
     private region: Region;
 
     constructor(
@@ -24,7 +24,7 @@ export class Field implements OnInit {
 
     ngOnInit() {
         let $field = $('#field');
-        let id = this._routeParams.get("id");
+        let id = this._routeParams.get("region");
         this.region = RegionLookup.getByNumber(parseInt(id, 10));
         //$field.empty();
        // $field.load(this.region.mapFile);
