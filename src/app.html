@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <base href="/">
     <!-- build:style bundle -->
     <link type="text/css" rel="stylesheet" href="./css/lib.css" />
     <link type="text/css" rel="stylesheet" href="./css/ayso.css" />
@@ -35,7 +36,7 @@
     </div>
 
     <!-- build:section recursive views -->
-    <ayso-app></ayso-app>
+    <router-outlet></router-outlet>
     <!-- /build -->
 
     <script type="text/javascript" src="cordova.js"></script>

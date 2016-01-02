@@ -30,7 +30,7 @@ module.exports = function (config) {
             //'build/_local.dev.js'
 
             //Project files TODO: Redirect to build/
-            {pattern: 'src/**/*.js', included: true, false: true},
+            {pattern: 'build/ts2js/**/*.js', included: true, false: true},
             {pattern: 'karma-test-shim.js', included: false, watched: true},
             {pattern: 'src/**/*.html', included: false, watched: true},
             {pattern: 'src/**/*.css', included: false, watched: true},

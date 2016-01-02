@@ -4,6 +4,7 @@ import {RouteParams} from "angular2/router";
 
 import Game from '../models/game';
 import Team from '../models/team';
+import GamesDAO from "../dao/games.interface";
 
 @Component({
     selector: 'game',
@@ -54,14 +55,14 @@ export default class GameComponent implements OnInit {
     public game: Game;
 
     constructor(
-        //private _dao:GameService,
+        private _dao:GamesDAO,
         private _router:Router,
         private _routeParams:RouteParams
     ) {}
 
     ngOnInit() {
         let id = this._routeParams.get('id');
-        //this._dao.getGame(id).then(game => this.game = game)
+        this._dao.getGame(id).then(game => this.game = game);
     }
 
     gotoMap() {
