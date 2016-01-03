@@ -17,7 +17,7 @@ import {RouteParams} from "angular2/router";
 </div>
     `
 })
-export class HomeComponent {
+export class HomeView {
     constructor(
         private _router:Router,
         private _routeParams:RouteParams

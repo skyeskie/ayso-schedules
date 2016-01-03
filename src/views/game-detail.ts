@@ -1,13 +1,14 @@
-import {Component, OnInit} from 'angular2/core';
+import {View, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
+import {DatePipe} from 'angular2/common';
 
 import Game from '../models/game';
 import Team from '../models/team';
 import GamesDAO from "../dao/games.interface";
 
-@Component({
-    selector: 'game',
+@View({
+    pipes: [DatePipe],
     template: `
 <div id="game" class="page">
     <h2>Game Info</h2>
@@ -50,8 +51,8 @@ import GamesDAO from "../dao/games.interface";
 </div>
     `
 })
-
-export default class GameComponent implements OnInit {
+//TODO: Switch to grab teams from Team DAO
+export default class GameDetail implements OnInit {
     public game: Game;
 
     constructor(

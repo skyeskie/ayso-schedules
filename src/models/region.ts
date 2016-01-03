@@ -4,7 +4,8 @@ export default class Region {
         public number: Number,
         public name: String,
         public mapFile: String,
-        public address: String
+        public lat: Number,
+        public lon: Number
     ) {}
 
     /**

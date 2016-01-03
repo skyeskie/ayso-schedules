@@ -1,10 +1,9 @@
-import {Component, OnInit} from 'angular2/core';
+import {View, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import REGIONS from '../cfg/regions';
 import Region from '../models/region';
 
-@Component({
-    selector: 'regions',
+@View({
     template: `
 <div id="fields" data-role="page" class="page">
     <div class="listing" *ngFor="#region of regions">
@@ -17,7 +16,7 @@ import Region from '../models/region';
 `
 })
 
-export default class RegionListComponent {
+export default class RegionListView {
     constructor(
         private _router:Router,
         public regions:Region[]

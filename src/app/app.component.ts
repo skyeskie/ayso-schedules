@@ -1,9 +1,13 @@
-import {Component} from 'angular2/core.d';
+import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-import GameComponent from "../views/game.component";
-import RegionListComponent from "../views/region-list.component";
-import {FieldComponent} from "../views/field.component";
-import {HomeComponent} from "../views/home.component";
+import GameView from "../views/game-detail.ts";
+import RegionListView from "../views/region-list.ts";
+import FieldMapView from "../views/field-map.ts";
+import {HomeView} from "../views/home.ts";
+import FavoritesListView from '../views/favorites-list';
+import {DivisionListView} from '../views/division-list';
+import {DivisionSelectView} from '../views/division-select';
+import {CancellationsView} from '../views/cancellations';
 
 
 @Component({
@@ -13,32 +17,34 @@ import {HomeComponent} from "../views/home.component";
 })
 @RouteConfig([
     {path:'/', useAsDefault: true,
-        name: 'Home', component: HomeComponent},
+        name: 'Home', component: HomeView},
     {path:'/favorites',
-        name: 'FavoritesSchedule', component: HomeComponent},
+        name: 'FavoritesSchedule', component: FavoritesListView},
+    {path:'/divisions',
+        name: 'DivisionSelect', component: DivisionSelectView},
     {path:'/division/:divis/:week',
-        name: 'DivisionSchedule', component: HomeComponent},
+        name: 'DivisionSchedule', component: DivisionListView},
     {path:'/game/:id',
-        name: 'GameDetail', component: GameComponent},
+        name: 'GameDetail', component: GameView},
     {path:'/regions',
-        name: 'RegionList', component: RegionListComponent},
+        name: 'RegionList', component: RegionListView},
     {path:'/region/:region/field',
-        name: 'FieldDetail', component: FieldComponent},
+        name: 'FieldDetail', component: FieldMapView},
     {path:'/region/:region/map',
-        name: 'MapDetail', component: HomeComponent},
+        name: 'MapDetail', component: HomeView},
     {path:'/region/:region/:division/:divis',
-        name: 'XRDivisionSchedule', component: HomeComponent},
+        name: 'XRDivisionSchedule', component: RegionListView},
     {path:'/teams',
-        name: 'TeamSelect', component: HomeComponent},
+        name: 'TeamSelect', component: HomeView},
     {path:'/team/:id',
-        name: 'TeamSchedule', component: HomeComponent},
+        name: 'TeamSchedule', component: HomeView},
     {path:'/week',
-        name: 'WeekSchedule', component: HomeComponent},
+        name: 'WeekSchedule', component: HomeView},
     {path:'/week/:num',
-        name: 'WeekSchedule', component: HomeComponent},
+        name: 'WeekSchedule', component: HomeView},
     {path:'/twitter',
-        name: 'TwitterView', component: HomeComponent},
+        name: 'TwitterView', component: CancellationsView},
     {path:'/settings',
-        name: 'Settings', component: HomeComponent}
+        name: 'Settings', component: HomeView}
 ])
 export class AppComponent { }

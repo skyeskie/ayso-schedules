@@ -34,7 +34,7 @@ import Game from '../models/game';
 })
 //TODO: Decorate saved teams
 //TODO: Fix up save team instructions
-export class FavoritesListViewComponent {
+export default class FavoritesListView {
     public savedTeams:String[];
     public gamesList:Game[];
 

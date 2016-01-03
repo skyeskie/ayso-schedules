@@ -1,11 +1,10 @@
-import {Component, OnInit} from 'angular2/core';
+import {View, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
 import REGIONS, {RegionLookup} from '../cfg/regions';
 import Region from "../models/region";
 
-@Component({
-    selector: 'field',
+@View({
     template: `<div id="field"/>`
 })
 
@@ -14,7 +13,7 @@ import Region from "../models/region";
 //  <div id="svg-dump"></div>
 //</div>
 
-export class FieldComponent implements OnInit {
+export default class FieldMapView implements OnInit {
     private region: Region;
 
     constructor(

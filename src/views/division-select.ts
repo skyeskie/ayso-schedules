@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {View, OnInit} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {Router} from 'angular2/router';
 import {REGIONS, Region} from "../cfg/regions";
@@ -6,8 +6,7 @@ import Gender, { GENDERS } from '../cfg/gender';
 import AgeGroup from '../cfg/ages';
 import Division from '../models/division';
 
-@Component({
-    selector: 'division-select-form',
+@View({
     directives: [NgFor],
     template: `
 <form id="divis" (ngSubmit)="onSubmit" #divisionFilter="ngForm">
@@ -42,7 +41,7 @@ import Division from '../models/division';
    `
 })
 //TODO: Need to convert to actual form binding.
-export class DivisionSelectComponentComponent {
+export class DivisionSelectView {
     //Iterated lists
     public regions:Region[];
     public ages:String[];
