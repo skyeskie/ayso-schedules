@@ -11,7 +11,6 @@ import {HomeComponent} from "../views/home.component";
     template: '<p>TEST</p>',
     directives: [ROUTER_DIRECTIVES]
 })
-
 @RouteConfig([
     {path:'/', useAsDefault: true,
         name: 'Home', component: HomeComponent},
@@ -28,7 +27,7 @@ import {HomeComponent} from "../views/home.component";
     {path:'/region/:region/map',
         name: 'MapDetail', component: HomeComponent},
     {path:'/region/:region/:division/:divis',
-        name: 'XRegionList', component: HomeComponent},
+        name: 'XRDivisionSchedule', component: HomeComponent},
     {path:'/teams',
         name: 'TeamSelect', component: HomeComponent},
     {path:'/team/:id',
@@ -42,5 +41,4 @@ import {HomeComponent} from "../views/home.component";
     {path:'/settings',
         name: 'Settings', component: HomeComponent}
 ])
-
 export class AppComponent { }

@@ -10,9 +10,7 @@ let REGIONS: Region[] = [
 
 let NULL_REGION: Region = new Region(0,0,"","","");
 
-export default REGIONS;
-
-export class RegionLookup {
+class RegionLookup {
     static getByNumber(regionNumber: Number) {
         for(let i = 0; i < REGIONS.length; ++i) {
             let region = REGIONS[i];
@@ -33,3 +31,5 @@ export class RegionLookup {
         return NULL_REGION;
     }
 }
+
+export { REGIONS as default, REGIONS, RegionLookup, Region };

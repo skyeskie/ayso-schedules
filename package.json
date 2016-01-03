@@ -15,19 +15,20 @@
   },
   "dependencies": {
     "angular2": "^2.0.0-beta.0",
-    "systemjs": "^0.19.9",
-    "es6-promise": "^3.0.2",
-    "es6-shim": "^0.33.13",
-    "reflect-metadata": "^0.1.2",
-    "rxjs": "^5.0.0-beta.0",
-    "zone.js": "^0.5.10",
+    "bootstrap": "^4.0.0-alpha.2",
     "cordova": "^5.3.3",
     "cordova-plugin-network-information": "^1.0.1",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.13",
     "grunt-ng-annotate": "^1.0.1",
     "jasmine-core": "^2.3.4",
     "jquery": "^2.1.4",
     "jquery-mobile": "^1.4.1",
-    "plugman": "^1.0.4"
+    "plugman": "^1.0.4",
+    "reflect-metadata": "^0.1.2",
+    "rxjs": "^5.0.0-beta.0",
+    "systemjs": "^0.19.9",
+    "zone.js": "^0.5.10"
   },
   "devDependencies": {
     "angular-jsdoc": "^1.2.1",
