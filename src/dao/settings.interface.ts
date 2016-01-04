@@ -46,6 +46,8 @@ interface SettingsDAO {
      * @param {String} region - the region ID
      */
     setRegion(region: Region): void;
+
+    reset(): void;
 }
 
 export default SettingsDAO;

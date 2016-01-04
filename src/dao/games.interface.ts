@@ -13,6 +13,10 @@ interface GamesDAO {
     findForTeam(teamID: String): Promise<Game[]>;
 
     findForTeams(teamIDs: String[]): Promise<Game[]>;
+
+    reset(): void;
+
+    update(force: boolean): void;
 }
 
 export default GamesDAO;

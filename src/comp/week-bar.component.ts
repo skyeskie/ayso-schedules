@@ -1,6 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {Input} from "angular2/core";
-import WeekCalcService from "../dao/week-calc.service";
+import WeekCalcService from "../dao/week-cache.interface.ts";
 import {NgIf} from "angular2/common";
 
 @Component({
