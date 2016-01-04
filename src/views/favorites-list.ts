@@ -21,12 +21,12 @@ import Game from '../models/game';
         <div *ngIf="gamesList.length===0">
             <h2 style='text-align: center;'>No saved teams</h2>
             <ol>
-                <li><a [route]="TeamSelect">Find Team</a></li>
+                <li><a [routerLink]="TeamSelect">Find Team</a></li>
                 <li>Open to view team page</li>
                 <li>Click the 'Save' button in the top right</li>
             </ol>
             <div class='main-buttons'>
-                <a [route]="TeamSelect" data-role='button'>Find Team</a>
+                <a [routerLink]="TeamSelect" data-role='button'>Find Team</a>
             </div>
         </div>
     </div>
