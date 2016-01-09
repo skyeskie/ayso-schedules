@@ -2,7 +2,7 @@ import Team from '../models/team';
 import Region from "../models/region";
 
 interface SettingsDAO {
-    (): Promise<Team[]>;
+    getSavedTeams(): Promise<Team[]>;
 
     /**
      * @function saveTeam
@@ -50,4 +50,4 @@ interface SettingsDAO {
     reset(): void;
 }
 
-export default SettingsDAO;
+export {SettingsDAO as default, SettingsDAO, Region, Team};

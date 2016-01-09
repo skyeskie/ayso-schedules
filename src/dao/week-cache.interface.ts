@@ -1,4 +1,4 @@
-interface WeekCache
+interface WeekCacheInterface
 {
     getMaxWeeks(): Number;
 
@@ -9,4 +9,4 @@ interface WeekCache
     update(force: boolean): void;
 }
 
-export {WeekCache as default, WeekCache}
+export {WeekCacheInterface as default, WeekCacheInterface}

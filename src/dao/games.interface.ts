@@ -19,4 +19,4 @@ interface GamesDAO {
     update(force: boolean): void;
 }
 
-export default GamesDAO;
+export { GamesDAO as default, GamesDAO, Game, Division, Gender }

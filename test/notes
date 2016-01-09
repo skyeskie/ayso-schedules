@@ -1,0 +1,35 @@
+/* tslint: off */
+import {beforeEachProviders} from 'angular2/testing';
+import {injectAsync} from 'angular2/testing';
+import {TestComponentBuilder} from 'angular2/testing';
+
+//Inject mocks with
+beforeEachProviders(() => [/* dependencies */]);
+//Wrappers for it, describe, etc from jasmine
+
+
+//ASYNC improvements
+it('reason', injectAsync([/* dependencies */], (service) => {
+    //return Promise and expect within resolve
+}));
+//fakeAsync can speed up async as well
+
+
+//Component
+injectAsync([TestComponentBuilder], (tcb) => {
+    tcb.overrideTemplate(Component, 'testing template'); //Then chain createAsync and return
+
+    //Override viewMetadata, directive, providers, viewproviders, etc
+
+    return tcb.createAsync(Component).then((fixture) => {
+
+        //Detect changes
+        fixture.detectChanges();
+
+        fixtrue.debugElement.componentInstance.foo = "bar";
+
+        //query( [ By.css | By.directive ])
+
+
+    });
+});

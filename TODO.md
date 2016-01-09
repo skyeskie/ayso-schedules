@@ -8,9 +8,10 @@ Goal: Initially code complete
 * Create dummy DAO implementations
 * Refine dependency injection
 * Rework forms and bind models
+* Graft Git history to merge into Github repo
 ## Milestone 2
 Goal: Full navigation completeness
-* Write unit tests verifying components
+* Full unit tests verifying components
 * Rework forms and HTML styling
 * Full build tree and packaging
 
