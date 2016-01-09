@@ -1,23 +1,26 @@
-Current:
-* Rough translation of all views
-* Skeleton compile/lint
-* Basic interfaces for all DAOs
-
-## Milestone 1
-Goal: Initially code complete
-* Create dummy DAO implementations
-* Refine dependency injection
-* Rework forms and bind models
-* Graft Git history to merge into Github repo
-## Milestone 2
-Goal: Full navigation completeness
-* Full unit tests verifying components
-* Rework forms and HTML styling
-* Full build tree and packaging
-
-## Milestone 3
-Goal: Fully functional HTML5 app
-* Create full-fledged DAOs
-
-## Release
-* Work in mobile app framework (Cordova/Ionic/etc)
+- [x] Milestone 0
+  - [x] Rough translation of all views
+  - [x] Skeleton compile/lint
+  - [x] Basic interfaces for all DAOs
+- [ ] Milestone 1: Initially code complete
+    - [x] Create dummy DAO implementations
+    - [ ] Refine dependency injection
+    - [ ] Rework forms and bind models
+    - [x] Graft Git history to merge into Github repo
+- [ ] Milestone 2: Full navigation completeness
+    - [ ] Full unit tests verifying components
+    - [ ] Rework forms and HTML styling
+    - [ ] Full build tree and packaging
+- [ ] Release 1.9: Fully functional HTML5 app
+    - [ ] Create full-fledged DAOs
+- [ ] Release 2.0: Android
+    - [ ] Work in mobile app framework (Cordova/Ionic/etc)
+    - [ ] Android build and testing
+- [ ] Release 2.1: Build streamline + other platforms
+    - [ ] Setup continuous integration testing
+    - [ ] Enforce pull constraints to mainline
+    - [ ] Package/release iOS app
+    - [ ] Windows app?
+- [ ] Release 3.0: Tablet and larger screens
+    - [ ] Add tablet view detection
+    - [ ] Put to actual AYSO website
