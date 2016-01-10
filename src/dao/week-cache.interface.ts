@@ -1,8 +1,8 @@
 interface WeekCacheInterface
 {
-    getMaxWeeks(): Number;
+    getMaxWeeks(): Promise<Number>;
 
-    getCurrentWeek(): Number;
+    getCurrentWeek(): Promise<Number>;
 
     reset(): void;
 

@@ -1,12 +1,12 @@
 import WeekCacheInterface from '../week-cache.interface';
 
 export default class MockWeekCacheService implements WeekCacheInterface {
-    getMaxWeeks(): Number {
-        return 5;
+    getMaxWeeks(): Promise<Number> {
+        return new Promise<Number>((resolve) => resolve(5));
     }
 
-    getCurrentWeek(): Number {
-        return 2;
+    getCurrentWeek(): Promise<Number> {
+        return new Promise<Number>((resolve) => resolve(2));
     }
 
     reset(): void {}

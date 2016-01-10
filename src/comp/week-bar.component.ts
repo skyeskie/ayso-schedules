@@ -17,16 +17,23 @@ import {NgIf} from "angular2/common";
 export default class WeekBarComponent {
     private showPrevious: boolean;
     private showNext: boolean;
+    private max: Number;
+    private cur: Number;
 
     @Input() week: Number;
     constructor(
         private _weeks: WeekCalcService
     ) {
-        if(this.week < 1 || this.week > _weeks.getMaxWeeks()) {
-            this.week = _weeks.getCurrentWeek();
-        }
+        Promise.all([ _weeks.getMaxWeeks(), _weeks.getCurrentWeek()]).then((results) => {
+            this.max = results[0];
+            this.cur = results[1];
 
-        this.showPrevious = (this.week === 1);
-        this.showNext = (this.week === _weeks.getMaxWeeks());
+            if(this.week < 1 || this.week > this.max) {
+                this.week = this.cur;
+            }
+
+            this.showPrevious = (this.week === 1);
+            this.showNext = (this.week ===this.max);
+        });
     }
 }
