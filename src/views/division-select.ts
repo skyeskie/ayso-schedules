@@ -1,53 +1,51 @@
 import {View, OnInit} from 'angular2/core';
-import {NgFor} from 'angular2/common';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {Router} from 'angular2/router';
 import {REGIONS, Region} from "../cfg/regions";
 import Gender, { GENDERS } from '../cfg/gender';
 import AgeGroup from '../cfg/ages';
 import Division from '../models/division';
 import {WeekCacheInterface} from '../dao/week-cache.interface';
+import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
 
 @View({
-    directives: [NgFor],
+    directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, ButtonRadio],
     template: `
 <form id="divis" (ngSubmit)="onSubmit" #divisionFilter="ngForm">
     <h2 class="ui-bar ui-bar-d">Select Filter</h2>
     <label for="region">Region</label>
     <div class="btn-group btn-group-justified" role="group">
-        <label class="btn btn-primary" *ngFor="#region of regions">
-            <input type="radio" name="filterAge" [value]="region">Region {{region.number}} ({{region.name}})
+        <label class="btn btn-secondary" *ngFor="#_region of regions" [(ngModel)]="region" *btnRadio="_region">
+            Region {{_region.number}} ({{_region.name}})
         </label>
     </div>
 
     <label>Division</label>
-    <div class="filters divis-select1" data-role="navbar">
-        <label class="btn btn-primary" *ngFor="#age of ages">
-            <input type="radio" name="filterAge" [value]="age">{{age}}
+    <div id="age-select1" class="btn-group">
+        <label class="btn btn-secondary" *ngFor="#age of ages" [(ngModel)]="ageGroup" *btnRadio="age">
+            {{age}}
         </label>
     </div>
 
     <label>Gender</label>
     <div class="filters gender-select" data-role="navbar">
-        <label class="btn btn-primary" *ngFor="#gender of GENDERS">
-            <input type="radio" name="filterAge" [value]="gender">{{gender.long}}
+        <label class="btn btn-secondary" *ngFor="#_gender of GENDERS" [(ngModel)]="gender" *btnRadio="_gender">
+            {{gender.long}}
         </label>
     </div>
 
+    <!-- TODO: Convert this into slider or better widget -->
     <div class="form-group">
         <label for="weekSelect">Week</label>
         <select class="form-control" [(ngModel)]="week">
             <option *ngFor="#w of weeks" [value]="w">{{w}}</option>
         </select>
     </div>
-    <label for="slider-week">Week</label><span class="week-desc"></span><br />
-    <input type="range" name="slider-week" id="slider-week"
-           value="1" min="1" max="3" data-highlight="true" />
 
-    <button id="divis-submit">Go</button>
+    <button type="submit" class="btn btn-primary">Go</button>
 </form>
    `
 })
-//TODO: Need to convert to actual form binding.
 export class DivisionSelectView {
     //Iterated lists
     public regions:Region[];
@@ -58,6 +56,7 @@ export class DivisionSelectView {
     public ageGroup:AgeGroup;
     public gender:Gender;
     public week:Number;
+    public region:Region;
 
     constructor(
         private _router:Router,
