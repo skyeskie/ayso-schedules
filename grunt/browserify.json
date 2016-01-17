@@ -1,0 +1,11 @@
+{
+  "release": {
+    "files": {
+      "build/local.module.js": ["src/**/*.ts"]
+    },
+    "transform": ["tsify"],
+    "options": {
+      "debug": true
+    }
+  }
+}
