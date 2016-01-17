@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="/AysoKS/">
+    <!-- build:style bundle -->
+    <link type="text/css" rel="stylesheet" href="./css/lib.css" />
+    <link type="text/css" rel="stylesheet" href="./css/ayso.css" />
+    <!-- /build -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <title>AYSO Schedules</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    
+    <script src="node_modules/angular2/bundles/angular2-all.umd.dev.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="build/tsc.all.js"></script>
+    <!-- Configure SystemJS -->
+    <script>
+        System.config({
+            packages: {
+                ayso: {
+                    format: 'register',
+                    defaultExtension: 'js'
+                }
+            }
+        });
+        System.import('src/boot').then(null, console.error.bind(console));
+    </script>
+</head>
+<body>
+<!-- Navigation header -->
+<div id="site-header">
+    <div data-role="header" data-id="pageheader" class="pageheader" data-position="fixed">
+        <a class="home" data-icon="back" data-iconpos="notext" href="#index"
+           data-rel="back" data-direction="reverse">Back</a>
+        <h1><a href="#index">AYSO Kansas</a></h1>
+    </div>
+</div>
+
+<!-- build:section recursive views -->
+<router-outlet></router-outlet>
+<!-- /build -->
+
+<!--<script type="text/javascript" src="cordova.js"></script>-->
+
+</body>
+</html>
