@@ -1,11 +1,11 @@
 {
+  "options": {
+    "debug": true,
+    "plugin": ["tsify"]
+  },
   "release": {
     "files": {
-      "build/local.module.js": ["src/**/*.ts"]
-    },
-    "transform": ["tsify"],
-    "options": {
-      "debug": true
+      "build/local.module.js": ["src/app/app.component.ts"]
     }
   }
 }
