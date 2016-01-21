@@ -12,24 +12,10 @@
 
     <title>AYSO Schedules</title>
 
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
-    
-    <script src="node_modules/angular2/bundles/angular2-all.umd.dev.js"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="build/tsc.all.js"></script>
-    <!-- Configure SystemJS -->
-    <script>
-        System.config({
-            packages: {
-                ayso: {
-                    format: 'register',
-                    defaultExtension: 'js'
-                }
-            }
-        });
-        System.import('src/boot').then(null, console.error.bind(console));
-    </script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+    <script src="build/local.module.js"></script>
+
 </head>
 <body>
 <!-- Navigation header -->

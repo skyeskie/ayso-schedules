@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="/">
+    <base href="/AysoKS/">
     <!-- build:style bundle -->
     <link type="text/css" rel="stylesheet" href="./css/lib.css" />
     <link type="text/css" rel="stylesheet" href="./css/ayso.css" />
@@ -12,22 +12,20 @@
 
     <title>AYSO Schedules</title>
 
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
-    
-    <script src="../node_modules/angular2/bundles/angular2-all.umd.dev.js"></script>
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+    <script src="./node_modules/systemjs/dist/system.src.js"></script>
     <!-- Configure SystemJS -->
     <script>
         System.config({
             packages: {
-                ayso: {
+                app: {
                     format: 'register',
                     defaultExtension: 'js'
                 }
             }
         });
-        System.import('src/boot').then(null, console.error.bind(console));
+        System.import('local.module.js').then(null, console.error.bind(console));
     </script>
 </head>
 <body>
