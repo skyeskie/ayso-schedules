@@ -5,8 +5,13 @@ import AYSO_APP_ROUTES from './routes';
 
 @Component({
     selector: 'ayso-app',
-    template: '<p>TEST</p>',
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
+    template: `
+    <main>
+      <router-outlet></router-outlet>
+    </main>`
 })
 @RouteConfig(AYSO_APP_ROUTES)
-export class AppComponent { }
+class AppComponent { }
+
+export { AppComponent, AppComponent as default }

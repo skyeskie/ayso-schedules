@@ -2,15 +2,15 @@
   "compilerOptions": {
     "diagnostics": true,
     "target": "es5",
-    "module": "system",
+    "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": false,
+    "noEmitHelpers": false,
     "outDir": "./build/ts2js/",
     "listFiles": true,
-    "outFile": "./build/tsc.all.js",
     "isolatedModules": true
   },
   "exclude": [
@@ -19,5 +19,10 @@
     "hooks",
     "lib",
     "build"
+  ],
+  "filesGlob": [
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "!./node_modules/**/*.ts"
   ]
 }

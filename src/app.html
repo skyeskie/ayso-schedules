@@ -1,32 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
 <head>
-    <base href="/">
-    <!-- build:style bundle -->
-    <link type="text/css" rel="stylesheet" href="./css/lib.css" />
-    <link type="text/css" rel="stylesheet" href="./css/ayso.css" />
-    <!-- /build -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="description" content="{%= o.webpackConfig.metadata.title %}">
 
     <title>AYSO Schedules</title>
-
-    <!-- Configure SystemJS -->
-    <script>
-        System.config({
-            packages: {
-                ayso: {
-                    format: 'register',
-                    defaultExtension: 'js'
-                }
-            }
-        });
-        System.import('src/boot').then(null, console.error.bind(console));
-    </script>
 </head>
 <body>
-    <!-- Navigation header -->
+    <!-- Navigation header; TODO: Move to View and included-->
     <div id="site-header">
         <div data-role="header" data-id="pageheader" class="pageheader" data-position="fixed">
             <a class="home" data-icon="back" data-iconpos="notext" href="#index"
@@ -35,14 +20,8 @@
         </div>
     </div>
 
-    <!-- build:section recursive views -->
-    <router-outlet></router-outlet>
-    <!-- /build -->
+    <ayso-app>Loading...</ayso-app>
+    <router-outlet>Loading...</router-outlet>
 
-    <script type="text/javascript" src="cordova.js"></script>
-    <!-- build:script bundle -->
-    <script type="text/javascript" src="./js/lib.min.js"></script>
-    <script type="text/javascript" src="./js/ayso.min.js"></script>
-    <!-- /build -->
 </body>
 </html>
