@@ -28,7 +28,8 @@ module.exports = {
     metadata: metadata,
     entry: {
         lib: './src/app/lib.ts',
-        main: './src/app/boot.ts'
+        main: './src/app/boot.ts',
+        bootstrap: 'bootstrap-loader'
     },
     output: {
         path: root('build'),
