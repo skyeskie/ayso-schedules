@@ -54,7 +54,7 @@ module.exports = {
     //Development settings
     stats: { colors: true, reasons: true },
     devtool: 'source-map',
-    debug: true,
+    debug: false,
 
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(true),

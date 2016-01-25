@@ -1,6 +1,4 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
-import {RouteParams} from "angular2/router";
 import {RouterLink} from 'angular2/router';
 
 @Component({
@@ -20,8 +18,5 @@ import {RouterLink} from 'angular2/router';
     `
 })
 export class HomeView {
-    constructor(
-        private _router:Router,
-        private _routeParams:RouteParams
-    ) {}
+    constructor() {}
 }
