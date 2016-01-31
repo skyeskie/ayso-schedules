@@ -9,28 +9,26 @@ let REGIONS: Region[] = [
     new Region(6, 491, "Clearwater", "img/Fields105.svg", 37.503879, -97.490616)
 ];
 
-let NULL_REGION: Region = new Region(0,0,"","",0,0);
-
-class RegionLookup {
-    static getByNumber(regionNumber: Number) {
-        for(let i = 0; i < REGIONS.length; ++i) {
-            let region = REGIONS[i];
-            if(region.number === regionNumber) {
-                return region;
-            }
-        }
-        return NULL_REGION;
+/**
+ *
+ * @param regionNumber
+ * @throws  RangeError if can't find configured region
+ * @returns {Region}
+ */
+function getRegionByNumber(regionNumber: Number) {
+    let match = REGIONS.filter(r => r.number === regionNumber);
+    if(match.length !== 1) {
+        throw new RangeError('No region found for region number ' + regionNumber);
     }
-
-    static getById(id: Number) {
-        for(let i = 0; i < REGIONS.length; ++i) {
-            let region = REGIONS[i];
-            if(region.id === id) {
-                return region;
-            }
-        }
-        return NULL_REGION;
-    }
+    return match[0];
 }
 
-export { REGIONS as default, REGIONS, RegionLookup, Region };
+function getRegionById(id: Number) {
+    let match = REGIONS.filter(r => r.id === id);
+    if(match.length !== 1) {
+        throw new RangeError('No region found for region id' + id);
+    }
+    return match[0];
+}
+
+export { REGIONS as default, REGIONS, getRegionByNumber, getRegionById, Region };

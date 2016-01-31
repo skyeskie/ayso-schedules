@@ -1,22 +1,22 @@
-export default class Gender {
+class Gender {
     constructor(
         public short: String,
         public long: String
     ) {}
 }
 
-let genders = new Set<Gender>();
-genders.add(new Gender("B", "Boys"));
-genders.add(new Gender("G", "Girls"));
-genders.add(new Gender("C", "Coed"));
+let GENDERS: Gender[] = [
+    new Gender("B", "Boys"),
+    new Gender("G", "Girls"),
+    new Gender("C", "Coed")
+];
 
-export const GENDERS:Set<Gender> = genders;
+function findGenderByCode(code: String): Gender {
+    let res = GENDERS.filter(g => (g.short === code));
+    if(res.length !== 1) {
+        throw new RangeError('Invalid gender for code "' + code + '"');
+    }
+    return res[0];
+}
 
-export function findGenderByCode(code: String): Gender {
-    genders.forEach(function(g) {
-        if(g.short === code) {
-            return g;
-        }
-    });
-    return null;
-};
+export { findGenderByCode, Gender as default, Gender, GENDERS }
