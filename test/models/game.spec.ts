@@ -9,7 +9,7 @@ import {
 } from 'angular2/testing';
 import Game from '../../src/models/game';
 
-describe('Game', () => {
+describe('Model: Game', () => {
     it("can recognize a home bye", () => {
         let homeBye = new Game('id', 'home', Game.BYE_TEAM, 1, new Date(), 'region', 'field');
         expect(homeBye.isBye()).toBe(true);

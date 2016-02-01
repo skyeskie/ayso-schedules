@@ -11,7 +11,7 @@ import {
 import {AGES, getAgeGroupByCutoff, AgeGroup} from '../../src/cfg/ages';
 import {expectUniqueness} from '../util/set';
 
-describe('AgeGroup', () => {
+describe('Model: AgeGroup', () => {
     it('should create a group', () => {
         let ag = new AgeGroup(1,20);
         expect(ag.code).toBe(1);

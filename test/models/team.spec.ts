@@ -9,7 +9,7 @@ import {
 } from 'angular2/testing';
 import Team from '../../src/models/team';
 
-describe('Team', () => {
+describe('Model: Team', () => {
     it('can be constructed', () => {
         let t = new Team('code',  'coach', 'coachTel');
         expect(t.coach).toEqual('coach');

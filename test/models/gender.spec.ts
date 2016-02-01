@@ -10,7 +10,7 @@ import {
 import {GENDERS, Gender, findGenderByCode} from '../../src/cfg/gender';
 import {expectUniqueness} from '../util/set';
 
-describe('Gender configuration', () => {
+describe('Config: Genders', () => {
     it('should have unique codes', () => {
         expectUniqueness<String>(GENDERS.map(g => g.short));
     });
@@ -19,12 +19,14 @@ describe('Gender configuration', () => {
         expectUniqueness<String>(GENDERS.map(g => g.long));
     });
 
-    it('should find a definded gender', () => {
-        let g: Gender = GENDERS[0];
-        expect(findGenderByCode(g.short)).toEqual(g);
-    });
+    describe('findGenderByCode', () => {
+        it('should find a definded gender', () => {
+            let g: Gender = GENDERS[0];
+            expect(findGenderByCode(g.short)).toEqual(g);
+        });
 
-    it('should throw an error for undefined lookup', () => {
-        expect(() => { findGenderByCode('BAD_LOOKUP') }).toThrowError(RangeError);
-    })
+        it('should throw an error for undefined lookup', () => {
+            expect(() => { findGenderByCode('BAD_LOOKUP') }).toThrowError(RangeError);
+        })
+    });
 });

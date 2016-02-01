@@ -10,7 +10,7 @@ import {
 
 import {REGIONS, getRegionById, getRegionByNumber, Region} from '../../src/cfg/regions';
 
-describe('Region', () => {
+describe('Model: Region', () => {
     it('should construct correctly', () => {
         let r = new Region(1, 2, "foo", "bar", 3, 4);
         expect(r.id).toBe(1);

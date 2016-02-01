@@ -12,7 +12,7 @@ import {GENDERS} from '../../src/cfg/gender';
 import {AGES} from '../../src/cfg/ages';
 
 
-describe('Division', () => {
+describe('Model: Division', () => {
     it('should display the name given', () => {
         let divis = new Division(GENDERS[0], AGES[0]);
         expect(divis.getDisplayName()).toBe('U19 Boys');
