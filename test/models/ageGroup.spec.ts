@@ -2,10 +2,12 @@ import {
     describe,
     beforeEach,
     beforeEachProviders,
+    expect,
     it,
     inject,
     injectAsync,
-    TestComponentBuilder
+    TestComponentBuilder,
+    xit
 } from 'angular2/testing';
 
 import {AGES, getAgeGroupByCutoff, AgeGroup} from '../../src/cfg/ages';

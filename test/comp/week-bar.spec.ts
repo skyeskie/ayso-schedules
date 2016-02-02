@@ -3,17 +3,18 @@ import {
     beforeEach,
     beforeEachProviders,
     expect,
+    fdescribe,
     it,
     inject,
     injectAsync,
     NgMatchers,
-    TestComponentBuilder
+    TestComponentBuilder,
+    xit
 } from 'angular2/testing';
 
 import {Component, provide} from 'angular2/core';
 import WeekBarComponent from '../../src/comp/week-bar.component';
 import MockWeekCacheService from '../../src/dao/mock/MockWeekCacheService';
-
 
 describe('Comp: WeekBar', () => {
     @Component({
@@ -26,7 +27,7 @@ describe('Comp: WeekBar', () => {
     class TestComponent {
     }
 
-    it('shows the week number', injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+    it('shows the week number', injectAsync([TestComponentBuilder], (tcb) => {
         let wbc = new WeekBarComponent(new MockWeekCacheService());
         return tcb.overrideTemplate(TestComponent, `<week-bar week="3"></week-bar>`)
                   .createAsync(TestComponent).then((f) => {
@@ -42,7 +43,7 @@ describe('Comp: WeekBar', () => {
                 f.detectChanges();
             });
     }));
-    it('hides the back button on week one', injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+    it('hides the back button on week one', injectAsync([TestComponentBuilder], (tcb) => {
         let wbc = new WeekBarComponent(new MockWeekCacheService());
         return tcb.overrideTemplate(TestComponent, `<week-bar week="1"></week-bar>`)
                   .createAsync(TestComponent).then((f) => {
@@ -57,7 +58,7 @@ describe('Comp: WeekBar', () => {
             });
     }));
 
-    it('hides the forward button on the last week', injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+    it('hides the forward button on the last week', injectAsync([TestComponentBuilder], (tcb) => {
         let wbc = new WeekBarComponent(new MockWeekCacheService());
         return tcb.overrideTemplate(TestComponent, `<week-bar week="7"></week-bar>`)
                   .createAsync(TestComponent).then((f) => {
@@ -73,7 +74,7 @@ describe('Comp: WeekBar', () => {
             });
     }));
 
-    it('hides both navigation buttons with only 1 week', injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+    it('hides both navigation buttons with only 1 week', injectAsync([TestComponentBuilder], (tcb) => {
         let mwcs = new MockWeekCacheService();
         mwcs.max = 1;
         mwcs.cur = 1;
@@ -94,7 +95,7 @@ describe('Comp: WeekBar', () => {
     }));
 
     //Can do this without rendering
-    it('clips weeks below 1 to 1', injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+    it('clips weeks below 1 to 1', injectAsync([TestComponentBuilder], (tcb) => {
         let wbc = new WeekBarComponent(new MockWeekCacheService());
         return tcb.overrideTemplate(TestComponent, `<week-bar week="-10"></week-bar>`)
                   .createAsync(TestComponent).then((f) => {
@@ -106,7 +107,7 @@ describe('Comp: WeekBar', () => {
             });
     }));
 
-    it('clips weeks above the max to the last week', injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+    it('clips weeks above the max to the last week', injectAsync([TestComponentBuilder], (tcb) => {
         let wbc = new WeekBarComponent(new MockWeekCacheService());
         return tcb.overrideTemplate(TestComponent, `<week-bar week="42"></week-bar>`)
                   .createAsync(TestComponent).then((f) => {

@@ -2,6 +2,7 @@ import {
     describe,
     beforeEach,
     beforeEachProviders,
+    expect,
     it,
     inject,
     injectAsync,
@@ -10,7 +11,6 @@ import {
 import Division from '../../src/models/division';
 import {GENDERS} from '../../src/cfg/gender';
 import {AGES} from '../../src/cfg/ages';
-
 
 describe('Model: Division', () => {
     it('should display the name given', () => {

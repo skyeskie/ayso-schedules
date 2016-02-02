@@ -27,7 +27,7 @@ var metadata = {
 module.exports = {
     metadata: metadata,
     entry: {
-        lib: './src/app/lib.ts',
+        lib: ['./src/app/lib.ts'],
         main: './src/app/boot.ts',
         bootstrap: 'bootstrap-loader'
     },
@@ -42,7 +42,7 @@ module.exports = {
     },
     module: {
         preLoaders: [
-            { test: /\.ts$/, loader: 'tslint-loader', exclude: [/node_modules/] }
+            { test: /\.ts$/, loader: 'tslint-loader', exclude: [/node_modules/, /typings/] }
         ],
         loaders: [
             { test: /\.ts$/, loader: 'ts-loader' },
@@ -53,7 +53,7 @@ module.exports = {
 
     //Development settings
     stats: { colors: true, reasons: true },
-    devtool: 'source-map',
+    devtool: 'cheap-module-eval-source-map',
     debug: false,
 
     plugins: [
