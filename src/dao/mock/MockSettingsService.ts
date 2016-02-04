@@ -1,38 +1,72 @@
 import SettingsDAO, {Region, Team} from '../settings.interface';
+import {getRegionByNumber} from '../../cfg/regions';
+import {REGIONS} from '../../cfg/regions';
+import MockTeamsService from './MockTeamsService';
+import {Injectable} from 'angular2/core';
 
+@Injectable()
 export default class MockSettingsService implements SettingsDAO {
-    public team1 = new Team('home', 'coach1,', '123');
-    public team2 = new Team('away', 'coach2', '345');
-    public teams = [this.team1, this.team2];
+    constructor(
+        private dao: MockTeamsService
+    ) {}
 
-    public region = new Region(1, 100, 'c','d', 10, 20);
+    public teams = new Set<String>(['A','C']);
+
+    public region = REGIONS[1].number;
+
+    getSavedTeamIDs(): Promise<String[]> {
+        return new Promise<String[]>(resolve => {
+            let teamArray: String[] = [];
+            this.teams.forEach((team) => teamArray.push(team));
+            resolve(teamArray)
+        });
+    }
 
     getSavedTeams(): Promise<Team[]> {
-        return new Promise<Team[]>(resolve =>
-            resolve(this.teams)
-        );
+        return new Promise<Team[]>(resolve => {
+            this.getSavedTeamIDs().then((teamList) => {
+                resolve(this.dao.getTeams(teamList));
+            })
+        });
     }
 
-    saveTeam(team: Team): void {}
+    saveTeam(team: String): void {
+        this.teams.add(team);
+    }
 
-    unSaveTeam(team: Team): void {}
+    unSaveTeam(team: String): void {
+        this.teams.delete(team);
+    }
 
-    isTeamSaved(team: Team): Promise<boolean> {
+    isTeamSaved(team: String): Promise<boolean> {
         return new Promise<Boolean>(resolve =>
-            resolve(true)
+            resolve(this.teams.has(team))
         );
     }
 
-    clearSavedTeams(): void {}
+    clearSavedTeams(): void {
+        this.teams.clear();
+    }
 
-    getRegion(): Promise<Region> {
-        return new Promise<Region>(resolve =>
+    getRegionNumber(): Promise<Number> {
+        return new Promise<Number>(resolve =>
             resolve(this.region)
         );
     }
 
-    setRegion(region: Region): void {}
+    getRegion(): Promise<Region> {
+        return new Promise<Region>(resolve =>
+            resolve(getRegionByNumber(this.region))
+        );
+    }
 
-    reset(): void {}
+    setRegion(region: Number): void {
+        this.region = region;
+    }
+
+    reset(): void {
+        this.region = REGIONS[1].number;
+        this.teams = new Set<String>(['A','C']);
+    }
 
 }

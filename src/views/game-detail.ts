@@ -6,9 +6,11 @@ import {DatePipe} from 'angular2/common';
 import Game from '../models/game';
 import Team from '../models/team';
 import GamesDAO from "../dao/games.interface";
+import {TeamsDAO} from '../dao/teams.interface';
 
 @View({
     pipes: [DatePipe],
+    directives: [],
     template: `
 <div id="game" class="page">
     <h2>Game Info</h2>
@@ -17,10 +19,10 @@ import GamesDAO from "../dao/games.interface";
     </div>
     <div class="home team">
         <h3>Home Team</h3>
-        <h3 class="team-code">{{game.homeTeam.code}}</h3>
+        <h3 class="team-code">{{homeTeam.code}}</h3>
         <div class="coach">
             <strong>Coach</strong><br />
-            <span class="name">{{game.homeTeam.coach}}</span><br />
+            <span class="name">{{homeTeam.coach}}</span><br />
             <a class="tel" href="tel:{{game.homeTeam.coachTel}}"
                data-role="button" data-mini="true" data-inline="true"
                data-icon="arrow-r" data-iconpos="right">Call</a>
@@ -28,10 +30,10 @@ import GamesDAO from "../dao/games.interface";
     </div>
     <div class="away team">
         <h3>Away Team</h3>
-        <h3 class="team-code">{{game.awayTeam.code}}</h3>
+        <h3 class="team-code">{{awayTeam.code}}</h3>
         <div class="coach">
             <strong>Coach</strong><br />
-            <span class="name">{{game.awayTeam.coach}}</span><br />
+            <span class="name">{{awayTeam.coach}}</span><br />
             <a class="tel" href="tel:{{game.awayTeam.coachTel}}"
                data-role="button" data-mini="true" data-inline="true"
                data-icon="arrow-r" data-iconpos="right">Call</a>
@@ -54,16 +56,23 @@ import GamesDAO from "../dao/games.interface";
 //TODO: Switch to grab teams from Team DAO
 export default class GameDetail implements OnInit {
     public game: Game;
+    public homeTeam: Team = new Team('u12a','coach','tel');
+    public awayTeam: Team = new Team('u12b','coach','tel');
 
     constructor(
-        private _dao:GamesDAO,
         private _router:Router,
-        private _routeParams:RouteParams
+        private _routeParams:RouteParams,
+        private _games:GamesDAO,
+        private _teams:TeamsDAO
     ) {}
 
     ngOnInit() {
         let id = this._routeParams.get('id');
-        this._dao.getGame(id).then(game => this.game = game);
+        this._games.getGame(id).then(game => {
+            this.game = game;
+            //this._teams.getTeam(game.homeTeam).then(t => this.homeTeam = t);
+            //this._teams.getTeam(game.awayTeam).then(t => this.awayTeam = t);
+        });
     }
 
     gotoMap() {

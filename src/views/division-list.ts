@@ -1,8 +1,7 @@
 import {View, OnInit} from 'angular2/core';
 import {RouteParams} from "angular2/router";
 
-import {RegionLookup} from "../cfg/regions";
-import Region from "../models/region";
+import {Region, getRegionByNumber} from "../cfg/regions";
 import Game from "../models/game";
 import Division from "../models/division";
 import WeekBarComponent from "../comp/week-bar.component";
@@ -32,7 +31,7 @@ export class DivisionListView {
         private _dao:GamesDAO
     ) {
         let regionID = parseInt(_routeParams.get('id'), 10);
-        this.region = RegionLookup.getByNumber(regionID);
+        this.region = getRegionByNumber(regionID);
         this.division = Division.fromString(_routeParams.get('divis'));
          _dao.findGames(this.region.number, this.division, this.week).then(function(result:Game[]) {
             this.games = result;

@@ -4,6 +4,7 @@ var path = require('path');
 var webpack = require('webpack');
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin  = require('webpack/lib/DefinePlugin');
+var CopyWebpackPlugin  = require('copy-webpack-plugin');
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 
@@ -29,7 +30,8 @@ module.exports = {
     entry: {
         lib: ['./src/app/lib.ts'],
         main: './src/app/boot.ts',
-        bootstrap: 'bootstrap-loader'
+        bootstrap: 'bootstrap-loader',
+        styling: './src/scss/styles.scss'
     },
     output: {
         path: root('build'),
@@ -38,7 +40,7 @@ module.exports = {
         chunkFilename: '[id].chunk.js'
     },
     resolve: {
-        extensions: ['', '.ts', '.js', '.html', '.css', '.scss']
+        extensions: ['', '.ts', '.js', '.html', '.css', '.scss', '.png']
     },
     module: {
         preLoaders: [
@@ -47,7 +49,12 @@ module.exports = {
         loaders: [
             { test: /\.ts$/, loader: 'ts-loader' },
             { test: /\.html$/,  loader: 'raw-loader' },
-            { test: /\.css$/,   loader: 'raw-loader' }
+            { test: /\.png$/, loader: 'file' },
+
+            //Bootstrap
+            { test: /\.css$/, loaders: [ 'style', 'css', 'postcss' ] },
+            { test: /\.scss$/, loaders: [ 'style', 'css', 'postcss', 'sass' ] },
+            { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' }
         ]
     },
 
@@ -59,8 +66,14 @@ module.exports = {
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(true),
         //new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
-        new HtmlWebpackPlugin({ template: 'src/app.html', title: metadata.title, inject: 'body' }),
-        new HtmlWebpackPlugin({ filename: 'test.html' }),
+        new CopyWebpackPlugin([
+            { from: 'src/img', to: 'img' }
+        ]),
+        new HtmlWebpackPlugin({
+            template: 'src/app.html',
+            title: metadata.title,
+            inject: true
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 'ENV': JSON.stringify(metadata.ENV),
@@ -72,7 +85,8 @@ module.exports = {
             '__decorate': 'ts-helper/decorate',
             '__awaiter': 'ts-helper/awaiter',
             '__extends': 'ts-helper/extends',
-            '__param': 'ts-helper/param'
+            '__param': 'ts-helper/param',
+            'jQuery': 'jquery'
             //'Reflect': 'es7-reflect-metadata/dist/browser'
         })
     ],

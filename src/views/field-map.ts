@@ -1,8 +1,7 @@
 import {View, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
-import REGIONS, {RegionLookup} from '../cfg/regions';
-import Region from "../models/region";
+import {REGIONS, getRegionByNumber, Region} from '../cfg/regions';
 
 @View({
     template: `<div id="field"/>`
@@ -22,9 +21,8 @@ export default class FieldMapView implements OnInit {
     ) {}
 
     ngOnInit() {
-        let $field = $('#field');
         let id = this._routeParams.get("region");
-        this.region = RegionLookup.getByNumber(parseInt(id, 10));
+        this.region = getRegionByNumber(parseInt(id, 10));
         //$field.empty();
        // $field.load(this.region.mapFile);
     }

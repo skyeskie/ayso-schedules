@@ -13,6 +13,10 @@ export default class Game {
         public field:String
     ) {}
 
+    hasTeam(teamId: String) {
+        return (this.homeTeam === teamId) || (this.awayTeam === teamId);
+    }
+
     getOpponent(myTeamId: String): String {
         if(myTeamId === this.awayTeam) {
             return this.homeTeam;
@@ -26,7 +30,7 @@ export default class Game {
     }
 
     isBye(): boolean {
-        return (Game.BYE_TEAM === this.awayTeam) || (Game.BYE_TEAM === this.homeTeam);
+        return this.hasTeam(Game.BYE_TEAM);
     }
 
     getTeamWithBye(): String {
