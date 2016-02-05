@@ -6,6 +6,7 @@ import {NgFor} from 'angular2/common';
 import REGIONS from '../cfg/regions';
 import GENDERS from '../cfg/gender';
 import AGES from '../cfg/ages';
+import {Inject} from 'angular2/core';
 
 @Component({
     directives: [NgFor],
@@ -50,12 +51,11 @@ class TeamSelectView implements OnInit {
     constructor(
         private _router:Router,
         private _routeParams:RouteParams,
+        @Inject(TeamsDAO)
         private _dao:TeamsDAO
     ) {}
 
-    ngOnInit() {
-
-    }
+    ngOnInit() {}
 }
 
 export { TeamSelectView as default, TeamSelectView };

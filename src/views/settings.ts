@@ -4,7 +4,9 @@ import SettingsDAO from '../dao/settings.interface';
 import {REGIONS, Region} from '../cfg/regions';
 import {TeamsDAO} from '../dao/teams.interface';
 import GamesDAO from '../dao/games.interface';
-import WeekCache from '../dao/week-cache.interface.ts';
+import {Injectable} from 'angular2/core';
+import {Inject} from 'angular2/core';
+import {WeekCacheInterface} from '../dao/week-cache.interface';
 
 @Component({
     directives:[NgFor],
@@ -40,14 +42,19 @@ import WeekCache from '../dao/week-cache.interface.ts';
     </div>
     `
 })
-//TODO: Form binding and cleanup
+@Injectable()
 export default class SettingsView {
     public regions:Region[];
+    public lastUpdate:String;
 
     constructor(
+        @Inject(SettingsDAO)
         private _settings:SettingsDAO,
+        @Inject(GamesDAO)
         private _games:GamesDAO,
-        private _weekCache:WeekCache,
+        @Inject(WeekCacheInterface)
+        private _weekCache:WeekCacheInterface,
+        @Inject(TeamsDAO)
         private _teams:TeamsDAO
     ) {
         this.regions = REGIONS;

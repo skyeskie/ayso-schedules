@@ -3,11 +3,14 @@ import {getRegionByNumber} from '../../cfg/regions';
 import {REGIONS} from '../../cfg/regions';
 import MockTeamsService from './MockTeamsService';
 import {Injectable} from 'angular2/core';
+import {Inject} from 'angular2/core';
+import {TeamsDAO} from '../teams.interface';
 
 @Injectable()
 export default class MockSettingsService implements SettingsDAO {
     constructor(
-        private dao: MockTeamsService
+        @Inject(MockTeamsService)
+        private dao: TeamsDAO
     ) {}
 
     public teams = new Set<String>(['A','C']);
@@ -18,7 +21,7 @@ export default class MockSettingsService implements SettingsDAO {
         return new Promise<String[]>(resolve => {
             let teamArray: String[] = [];
             this.teams.forEach((team) => teamArray.push(team));
-            resolve(teamArray)
+            resolve(teamArray);
         });
     }
 
@@ -26,7 +29,7 @@ export default class MockSettingsService implements SettingsDAO {
         return new Promise<Team[]>(resolve => {
             this.getSavedTeamIDs().then((teamList) => {
                 resolve(this.dao.getTeams(teamList));
-            })
+            });
         });
     }
 

@@ -4,13 +4,15 @@ import WeekBarComponent from '../comp/week-bar.component';
 import TwoTeamsGamesListComponent from '../comp/games2-list.component';
 import GamesDAO from '../dao/games.interface';
 import Game from '../models/game';
+import {DatePipe} from 'angular2/common';
+import {Inject} from 'angular2/core';
 
 @Component({
     directives: [WeekBarComponent, TwoTeamsGamesListComponent],
     template: `
     <div id="week" class="page">
-        <week-bar [week]="week"/>
-        <two-teams-game-list [games]="games"/>
+        <week-bar [week]="week"></week-bar>
+        <two-teams-game-list [games]="games"></two-teams-game-list>
     </div>
     `
 })
@@ -20,6 +22,7 @@ class WeekScheduleView implements OnInit {
 
     constructor(
         private _routeParams:RouteParams,
+        @Inject(GamesDAO)
         private _dao:GamesDAO
     ) {
         this.week = parseInt(_routeParams.get('num'), 10);

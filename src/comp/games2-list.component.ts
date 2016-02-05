@@ -1,27 +1,26 @@
 import {Component, Input, OnInit} from "angular2/core";
+import {NgFor, NgIf, DatePipe} from "angular2/common";
 import {Router} from "angular2/router";
 import Game from '../models/game';
 import Team from '../models/team';
-import {NgFor, NgIf} from "angular2/common";
-import {DatePipe} from 'angular2/common';
 
 @Component({
     selector: 'two-teams-game-list',
     directives: [NgFor, NgIf],
     pipes: [DatePipe],
     template: `
-<div id="games-list" data-role="page" class="page">
+<div id="games-list" data-role="page" class="page" *ngIf="gamesList">
     <ul data-role="listview" data-theme="c" data-inset="true">
-        <li *ngIf="hasByes()" data-role="list-divider">Byes</li>
-        <li *ngIf="hasByes()">{{byesList}}</li>
+        <li *ngIf="byesList" data-role="list-divider">Byes</li>
+        <li *ngIf="byesList">{{byesList}}</li>
 
         <li *ngFor="#row of gamesList">
-            <div *ngIf="!row.isHeader" (click)="onSelect(game)">
+            <div *ngIf="!row.isHeader" (click)="onSelect(row.game)">
                 <h3 class="width40">{{row.game.field}}</h3>
-                <h3 class="width60 ta-right">{{row.game.HomeTeam}} vs {{row.game.AwayTeam}}</h3>
+                <h3 class="width60 ta-right">{{row.game.homeTeam}} vs {{row.game.awayTeam}}</h3>
             </div>
             <span *ngIf="row.isHeader">
-                {{row.headerTime | DatePipe:'long'}}
+                {{row.headerTime | date:'medium'}}
             </span>
         </li>
         <li *ngIf="hasNoResults()">No results</li>
@@ -29,35 +28,28 @@ import {DatePipe} from 'angular2/common';
 </div>
     `
 })
-class Row {
-    public headerTime: Date;
-    constructor(
-        public game: Game,
-        public isHeader: boolean
-    ) {
-        if(isHeader) {
-            this.headerTime = game.startTime;
-        }
-    }
-}
+export default class TwoTeamsGamesListComponent implements OnInit {
+    public byesList: String;
+    public gamesList: Row[];
 
-export default class TwoTeamsGamesListComponent {
-    public byesList: String = "";
-    public gamesList: Row[] = [];
+    @Input()
+    public games: Game[];
 
-    constructor(@Input() games: Game[]) {
+    ngOnInit() {
         let byes:String[] = [];
 
-        games.sort();
+        this.games.sort();
         let lastTime = new Date(0,0,0,0,0,0);
-        games.forEach(function(game: Game) {
+        this.gamesList = [];
+        this.games.forEach((game: Game) => {
             if(game.isBye()) {
-                byes.push(game.getByeOpponent());
+                byes.push(game.getTeamWithBye());
             } else {
                 if(lastTime !== game.startTime) {
-                    this.gamesList.append(new Row(game, true));
+                    //Add a date/time header
+                    this.gamesList.push(new Row(game, true));
                 }
-                this.gamesList.append(new Row(game, false));
+                this.gamesList.push(new Row(game, false));
             }
         });
 
@@ -71,5 +63,21 @@ export default class TwoTeamsGamesListComponent {
 
     hasByes(): boolean {
         return (this.byesList.length === 0);
+    }
+}
+
+/**
+ * Utility class. Single iterable to handle both a game row
+ * and date/time headers
+ */
+class Row {
+    public headerTime: Date = null;
+    constructor(
+        public game: Game,
+        public isHeader: boolean
+    ) {
+        if(isHeader) {
+            this.headerTime = game.startTime;
+        }
     }
 }

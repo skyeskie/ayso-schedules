@@ -52,6 +52,6 @@ export default class MockTeamsService implements TeamsDAO {
     }
 
     update(force: boolean): void {
-        console.log("Called UPDATE(" + Boolean.toString(force) + ")");
+        console.log("Called UPDATE(" + force + ")");
     }
 }

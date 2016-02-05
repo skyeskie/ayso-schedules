@@ -10,6 +10,8 @@ import {MapView} from '../views/map';
 import {TeamScheduleView} from '../views/team-schedule';
 import {WeekScheduleView} from '../views/week-schedule';
 import {SchedulesMenuView} from '../views/schedules-menu';
+import SettingsView from '../views/settings';
+import {TeamSelectView} from '../views/team-select';
 
 /**
  * Main routing configuration
@@ -39,7 +41,7 @@ let AYSO_APP_ROUTES = [
     {path:'/region/:region/:division/:divis',
         name: 'XRDivisionSchedule', component: RegionListView},
     {path:'/teams',
-        name: 'TeamSelect', component: HomeView},
+        name: 'TeamSelect', component: TeamSelectView},
     {path:'/team/:id',
         name: 'TeamSchedule', component: TeamScheduleView},
     {path:'/week',
@@ -49,7 +51,7 @@ let AYSO_APP_ROUTES = [
     {path:'/twitter',
         name: 'TwitterView', component: CancellationsView},
     {path:'/settings',
-        name: 'Settings', component: HomeView}
+        name: 'Settings', component: SettingsView}
 ];
 
 export default AYSO_APP_ROUTES;

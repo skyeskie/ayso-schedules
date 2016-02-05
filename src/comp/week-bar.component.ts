@@ -34,7 +34,7 @@ export default class WeekBarComponent implements OnInit {
     @Output() weekChange = new EventEmitter();
 
     constructor(
-        @Inject("WeekCacheInterface")
+        @Inject(WeekCacheInterface)
         private _weeks: WeekCacheInterface
     ) {}
 

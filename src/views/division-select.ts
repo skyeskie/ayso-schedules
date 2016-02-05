@@ -1,12 +1,15 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, Inject} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {Router} from 'angular2/router';
+
+import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
+
+import {AGES, AgeGroup} from '../cfg/ages';
+import {GENDERS, Gender} from '../cfg/gender';
 import {REGIONS, Region} from "../cfg/regions";
-import Gender, { GENDERS } from '../cfg/gender';
-import {AgeGroup} from '../cfg/ages';
+
 import Division from '../models/division';
 import {WeekCacheInterface} from '../dao/week-cache.interface';
-import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, ButtonRadio],
@@ -15,22 +18,22 @@ import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
     <h2 class="ui-bar ui-bar-d">Select Filter</h2>
     <label for="region">Region</label>
     <div class="btn-group btn-group-justified" role="group">
-        <label class="btn btn-secondary" *ngFor="#_region of regions" [(ngModel)]="region" *btnRadio="_region">
+        <label class="btn btn-secondary" *ngFor="#_region of regions" [(ngModel)]="region" [btnRadio]="_region">
             Region {{_region.number}} ({{_region.name}})
         </label>
     </div>
 
     <label>Division</label>
     <div id="age-select1" class="btn-group">
-        <label class="btn btn-secondary" *ngFor="#age of ages" [(ngModel)]="ageGroup" *btnRadio="age">
-            {{age}}
+        <label class="btn btn-secondary" *ngFor="#age of ages" [(ngModel)]="ageGroup" [btnRadio]="age">
+            {{age.toString()}}
         </label>
     </div>
 
     <label>Gender</label>
     <div class="filters gender-select" data-role="navbar">
-        <label class="btn btn-secondary" *ngFor="#_gender of GENDERS" [(ngModel)]="gender" *btnRadio="_gender">
-            {{gender.long}}
+        <label class="btn btn-secondary" *ngFor="#_gender of genders" [(ngModel)]="gender" [btnRadio]="_gender">
+            {{_gender.long}}
         </label>
     </div>
 
@@ -49,8 +52,9 @@ import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
 export class DivisionSelectView {
     //Iterated lists
     public regions:Region[];
-    public ages:String[];
-    public weeks:Number[];
+    public ages:AgeGroup[];
+    public weeks:Array<Number> = [];
+    public genders:Gender[];
 
     //Form values
     public ageGroup:AgeGroup;
@@ -60,15 +64,17 @@ export class DivisionSelectView {
 
     constructor(
         private _router:Router,
+        @Inject(WeekCacheInterface)
         private _weekCache:WeekCacheInterface
     ) {
         this.regions = REGIONS;
-        //Extract values from enum.
-        this.ages = Object.keys(AgeGroup).filter(v => isNaN(parseInt(v, 10)));
+        this.ages = AGES;
+        this.genders = GENDERS;
+
         _weekCache.getMaxWeeks().then((max) => {
             this.weeks = new Array<Number>(max);
             for(let i=0; i<max; ++i) {
-                this.weeks[i] = i+1;
+                this.weeks[i] = i + 1;
             }
         });
     }

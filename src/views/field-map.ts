@@ -2,9 +2,14 @@ import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
 import {REGIONS, getRegionByNumber, Region} from '../cfg/regions';
+import {TitleBarComponent} from '../comp/title-bar';
 
 @Component({
-    template: `<div id="field"/>`
+    directives: [TitleBarComponent],
+    template: `
+    <title-bar></title-bar>
+    <div id="field">To be implemented</div>
+    `
 })
 
 //<div id="field-map" data-role="page" class="page">

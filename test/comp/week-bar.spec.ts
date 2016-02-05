@@ -15,13 +15,14 @@ import {
 import {Component, provide} from 'angular2/core';
 import WeekBarComponent from '../../src/comp/week-bar.component';
 import MockWeekCacheService from '../../src/dao/mock/MockWeekCacheService';
+import {WeekCacheInterface} from '../../src/dao/week-cache.interface';
 
 describe('Comp: WeekBar', () => {
     @Component({
         template: '',
         directives: [WeekBarComponent],
         providers: [
-            provide("WeekCacheInterface", {useFactory: () => { return new MockWeekCacheService(); }})
+            provide(WeekCacheInterface, {useFactory: () => { return new MockWeekCacheService(); }})
         ]
     })
     class TestComponent {

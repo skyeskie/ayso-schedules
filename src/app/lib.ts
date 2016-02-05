@@ -19,13 +19,7 @@ if ('production' === process.env.ENV) {
     // Reflect with es7-reflect-metadata/reflect-metadata is added
     // by webpack.prod.config ProvidePlugin
     let ngCore = require('angular2/core');
+    require('zone.js/dist/zone-microtask.min');
     ngCore.enableProdMode();
 }
 // Angular 2
-import 'angular2/platform/browser';
-import 'angular2/platform/common_dom';
-import 'angular2/router';
-import 'angular2/http';
-import 'angular2/core';
-
-import 'jquery';
