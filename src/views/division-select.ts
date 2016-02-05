@@ -1,4 +1,4 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {Router} from 'angular2/router';
 import {REGIONS, Region} from "../cfg/regions";
@@ -8,7 +8,7 @@ import Division from '../models/division';
 import {WeekCacheInterface} from '../dao/week-cache.interface';
 import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
 
-@View({
+@Component({
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, ButtonRadio],
     template: `
 <form id="divis" (ngSubmit)="onSubmit" #divisionFilter="ngForm">

@@ -1,7 +1,7 @@
-import {View} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {RouterLink} from 'angular2/router';
 
-@View({
+@Component({
     directives: [RouterLink],
     template: `
     <div id="schedules" data-role="page" class="page">

@@ -1,4 +1,4 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
 import {TeamsDAO, Team, Region, Division} from '../dao/teams.interface';
@@ -7,7 +7,7 @@ import REGIONS from '../cfg/regions';
 import GENDERS from '../cfg/gender';
 import AGES from '../cfg/ages';
 
-@View({
+@Component({
     directives: [NgFor],
     template: `
     <div id="team" data-role="page" class="page">
@@ -52,9 +52,9 @@ class TeamSelectView implements OnInit {
         private _routeParams:RouteParams,
         private _dao:TeamsDAO
     ) {}
-    
+
     ngOnInit() {
-    
+
     }
 }
 

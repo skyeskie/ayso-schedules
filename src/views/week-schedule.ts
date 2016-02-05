@@ -1,11 +1,11 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {RouteParams} from "angular2/router";
 import WeekBarComponent from '../comp/week-bar.component';
 import TwoTeamsGamesListComponent from '../comp/games2-list.component';
 import GamesDAO from '../dao/games.interface';
 import Game from '../models/game';
 
-@View({
+@Component({
     directives: [WeekBarComponent, TwoTeamsGamesListComponent],
     template: `
     <div id="week" class="page">
@@ -25,9 +25,9 @@ class WeekScheduleView implements OnInit {
         this.week = parseInt(_routeParams.get('num'), 10);
         _dao.findByWeek(this.week).then(games => this.games = games);
     }
-    
+
     ngOnInit() {
-    
+
     }
 }
 

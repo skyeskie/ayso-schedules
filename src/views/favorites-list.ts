@@ -1,10 +1,10 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import SettingsDAO from '../dao/settings.interface';
 import GamesDAO from '../dao/games.interface';
 import Game from '../models/game';
 
-@View({
+@Component({
    template: `
    <div id="favorites" data-role="page" class="page">
         <div class="subheader ui-bar ui-bar-d">

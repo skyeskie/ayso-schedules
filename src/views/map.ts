@@ -1,8 +1,8 @@
-import {View, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, Input} from 'angular2/core';
 import {SebmGoogleMap} from 'angular2-google-maps/core';
 import Region from '../models/region';
 
-@View({
+@Component({
     directives: [SebmGoogleMap],
     template: `
     <div id="map" data-role="page" class="page">

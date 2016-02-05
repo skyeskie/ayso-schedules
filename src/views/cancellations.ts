@@ -1,8 +1,8 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
 
-@View({
+@Component({
    template: `
    <div id="twitter" data-role="page" class="page">
         <div class="ui-bar ui-bar-d">Cancellations</div>

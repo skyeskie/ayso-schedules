@@ -1,9 +1,9 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import REGIONS from '../cfg/regions';
 import Region from '../models/region';
 
-@View({
+@Component({
     template: `
 <div id="fields" data-role="page" class="page">
     <div class="listing" *ngFor="#region of regions">

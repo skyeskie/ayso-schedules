@@ -1,4 +1,4 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
 import {DatePipe} from 'angular2/common';
@@ -8,7 +8,7 @@ import Team from '../models/team';
 import GamesDAO from "../dao/games.interface";
 import {TeamsDAO} from '../dao/teams.interface';
 
-@View({
+@Component({
     pipes: [DatePipe],
     directives: [],
     template: `

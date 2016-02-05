@@ -1,8 +1,8 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
 
-@View({
+@Component({
     template: `
     <div id="setup" data-role="page">
         <img src="img/HomeText.png" alt="AYSO Kansas" />
@@ -41,9 +41,9 @@ class InitialConfigurationView implements OnInit {
         private _router:Router,
         private _routeParams:RouteParams
     ) {}
-    
+
     ngOnInit() {
-    
+
     }
 }
 

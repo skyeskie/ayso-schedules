@@ -1,4 +1,4 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
 import SingleTeamGameListComponent from '../comp/games1-list.component';
@@ -7,7 +7,7 @@ import Game from '../models/game';
 import Team from '../models/team';
 import TeamsDAO from '../dao/teams.interface';
 
-@View({
+@Component({
     directives: [SingleTeamGameListComponent],
     template: `
     <div id="team-detail" data-role="page" class="page">

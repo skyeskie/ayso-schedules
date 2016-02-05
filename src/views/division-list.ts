@@ -1,4 +1,4 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {RouteParams} from "angular2/router";
 
 import {Region, getRegionByNumber} from "../cfg/regions";
@@ -9,7 +9,7 @@ import TwoTeamsGamesListComponent from "../comp/games2-list.component";
 import {NgIf} from "angular2/common";
 import GamesDAO from '../dao/games.interface';
 
-@View({
+@Component({
     directives: [WeekBarComponent, TwoTeamsGamesListComponent, NgIf],
     template: `
     <h2>

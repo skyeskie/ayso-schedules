@@ -1,4 +1,4 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import SettingsDAO from '../dao/settings.interface';
 import {REGIONS, Region} from '../cfg/regions';
@@ -6,7 +6,7 @@ import {TeamsDAO} from '../dao/teams.interface';
 import GamesDAO from '../dao/games.interface';
 import WeekCache from '../dao/week-cache.interface.ts';
 
-@View({
+@Component({
     directives:[NgFor],
     template: `
     <div id="settings" data-role="page" class="page">
@@ -41,7 +41,7 @@ import WeekCache from '../dao/week-cache.interface.ts';
     `
 })
 //TODO: Form binding and cleanup
-class SettingsView {
+export default class SettingsView {
     public regions:Region[];
 
     constructor(
@@ -66,5 +66,3 @@ class SettingsView {
         this._weekCache.update(true);
     }
 }
-
-export { SettingsView as default };
