@@ -12,10 +12,22 @@ import {TitleBarComponent} from '../comp/title-bar';
           data-widget-id="305786822305386496">Tweets by @AYSOKS</a>
         <div class="messages"></div>
     </div>
-    <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js"></script>
     `
 })
 //TODO: Revisit twitter widget
-export class CancellationsView {
-    constructor() {}
+export class CancellationsView implements OnInit {
+    private addScript() {
+        var s = document.createElement('script');
+        s.setAttribute('src', '//platform.twitter.com/widgets.js');
+        s.onload = this.render;
+        document.body.appendChild(s);
+    }
+
+    ngOnInit() {
+        this.addScript();
+    }
+
+    public render() {
+        twttr.widgets.load();
+    }
 }
