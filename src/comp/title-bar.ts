@@ -5,12 +5,12 @@ import {RouterLink} from 'angular2/router';
     selector: 'title-bar',
     directives: [RouterLink],
     template: `
-    <div id="site-header">
-        <div data-role="header" data-id="pageheader" class="pageheader" data-position="fixed">
-            <a [routerLink]="['/Home']">Back</a>
-            <a [routerLink]="['/Home']">AYSO Kansas</a>
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="nav navbar-nav">
+            <!--<a class="nav-item nav-link" [routerLink]="['/Home']">Back</a>-->
+            <a class="nav-item nav-link centered" [routerLink]="['/Home']">AYSO Kansas</a>
         </div>
-    </div>
+    </nav>
     `
 })
 export class TitleBarComponent {}

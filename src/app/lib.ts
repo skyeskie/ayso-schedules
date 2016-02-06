@@ -22,4 +22,3 @@ if ('production' === process.env.ENV) {
     require('zone.js/dist/zone-microtask.min');
     ngCore.enableProdMode();
 }
-// Angular 2

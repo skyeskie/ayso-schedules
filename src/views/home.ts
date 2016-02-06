@@ -8,16 +8,14 @@ import RegionListView from './region-list';
 @Component({
     directives: [RouterLink],
     template: `
-<div id="home" data-role="page">
-    <img src="img/MainLogo.png" alt="AYSO Kansas" />
+    <img class="img-fluid center-block" src="/img/MainLogo.png" alt="AYSO Kansas" />
     <div class="main-buttons">
-        <a [routerLink]="['/SchedulesMenu']" data-role="button">Schedules</a>
-        <a [routerLink]="['/RegionList']" data-role="button">Region Info</a>
-        <a [routerLink]="['/FavoritesSchedule']" data-role="button">My teams</a>
-        <a [routerLink]="['/TwitterView']" data-role="button">Cancellations</a>
-        <a [routerLink]="['/Settings']" data-role="button">Settings</a>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/SchedulesMenu']">Schedules</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/RegionList']">Region Info</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/FavoritesSchedule']">My teams</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/TwitterView']">Cancellations</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/Settings']">Settings</button>
     </div>
-</div>
     `
 })
 export class HomeView {

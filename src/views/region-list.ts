@@ -8,17 +8,19 @@ import {TitleBarComponent} from '../comp/title-bar';
 
 @Component({
     directives:[NgFor, RouterLink, TitleBarComponent],
+    styles: ['.region h2'],
     template: `
     <title-bar></title-bar>
-    <div id="fields" data-role="page" class="page">
-        <div class="listing" *ngFor="#region of regions">
-            <div class='full ui-bar-c'>
-            <h2>Region {{region.number}} - {{region.name}}</h2>
-            <button [routerLink]="['/MapDetail', {region: region.number}]">Directions</button>
-            <button [routerLink]="['FieldDetail', {region: region.number}]">Field Map</button>
+    <div class="text-xs-center">
+        <div class="region card card-block" *ngFor="#region of regions">
+            <h4 class="card-title">Region {{region.number}} - {{region.name}}</h4>
+            <button type="button" class="btn btn-secondary card-link"
+                [routerLink]="['/MapDetail', {region: region.number}]">Directions</button>
+            <button type="button" class="btn btn-secondary card-link"
+                [routerLink]="['FieldDetail', {region: region.number}]">Field Map</button>
         </div>
     </div>
-`
+    `
 })
 
 export default class RegionListView {

@@ -6,14 +6,12 @@ import {TitleBarComponent} from '../comp/title-bar';
     directives: [RouterLink, TitleBarComponent],
     template: `
     <title-bar></title-bar>
-    <div id="schedules" data-role="page" class="page">
-        <img src="img/MainLogo.png" alt="AYSO Kansas" />
-        <div class="main-buttons">
-            <a [routerLink]="['CurWeekSchedule']" data-role="button">This Week</a>
-            <a [routerLink]="['TeamSelect']" data-role="button">Find Team</a>
-            <a [routerLink]="['DivisionSelect']" data-role="button">Advanced Query</a>
-            <a [routerLink]="['FavoritesSchedule']" data-role="button">My teams</a>
-        </div>
+    <div class="main-buttons container">
+        <img class="img-fluid center-block" src="/img/MainLogo.png" alt="AYSO Kansas" />
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['CurWeekSchedule']" data-role="button">This Week</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['TeamSelect']" data-role="button">Find Team</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['DivisionSelect']" data-role="button">Advanced Query</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['FavoritesSchedule']" data-role="button">My teams</button>
     </div>
     `
 })

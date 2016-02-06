@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "angular2/core";
+import {Component, Input, OnChanges} from "angular2/core";
 import {NgFor, NgIf, DatePipe} from "angular2/common";
 import {Router} from "angular2/router";
 import Game from '../models/game';
@@ -9,33 +9,35 @@ import Team from '../models/team';
     directives: [NgFor, NgIf],
     pipes: [DatePipe],
     template: `
-<div id="games-list" data-role="page" class="page" *ngIf="gamesList">
-    <ul data-role="listview" data-theme="c" data-inset="true">
-        <li *ngIf="byesList" data-role="list-divider">Byes</li>
-        <li *ngIf="byesList">{{byesList}}</li>
-
-        <li *ngFor="#row of gamesList">
-            <div *ngIf="!row.isHeader" (click)="onSelect(row.game)">
-                <h3 class="width40">{{row.game.field}}</h3>
-                <h3 class="width60 ta-right">{{row.game.homeTeam}} vs {{row.game.awayTeam}}</h3>
-            </div>
-            <span *ngIf="row.isHeader">
-                {{row.headerTime | date:'medium'}}
-            </span>
-        </li>
-        <li *ngIf="hasNoResults()">No results</li>
+    <ul data-role="listview" class="list-group" *ngIf="byesList">
+        <li class="list-group-item">Byes</li>
+        <li class="list-group-item">{{byesList}}</li>
     </ul>
-</div>
+    <ul data-role="listview" class="list-group">
+        <li class="list-group-item" *ngFor="#row of gamesList">
+            <div class="container" *ngIf="!row.isHeader" (click)="onSelect(row.game)">
+                <div class="col-xs-6">Region {{row.game.region}}, Field {{row.game.field}}</div>
+                <div class="col-xs-6 text-xs-right">{{row.game.homeTeam}} vs {{row.game.awayTeam}}</div>
+            </div>
+            <div class="list-group-item-header" *ngIf="row.isHeader">
+                <h4>{{row.headerTime | date:'medium'}}</h4>
+            </div>
+        </li>
+        <li class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No results</li>
+    </ul>
     `
 })
-export default class TwoTeamsGamesListComponent implements OnInit {
+export default class TwoTeamsGamesListComponent implements OnChanges {
     public byesList: String;
     public gamesList: Row[];
 
-    @Input()
-    public games: Game[];
+    @Input() games: Game[];
 
-    ngOnInit() {
+    ngOnChanges() {
+        this.parseGamesList();
+    }
+
+    parseGamesList() {
         let byes:String[] = [];
 
         this.games.sort();
@@ -48,6 +50,7 @@ export default class TwoTeamsGamesListComponent implements OnInit {
                 if(lastTime !== game.startTime) {
                     //Add a date/time header
                     this.gamesList.push(new Row(game, true));
+                    lastTime = game.startTime;
                 }
                 this.gamesList.push(new Row(game, false));
             }
@@ -63,6 +66,10 @@ export default class TwoTeamsGamesListComponent implements OnInit {
 
     hasByes(): boolean {
         return (this.byesList.length === 0);
+    }
+
+    onSelect(game) {
+        console.log(game);
     }
 }
 

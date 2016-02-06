@@ -9,10 +9,13 @@ import {TitleBarComponent} from '../comp/title-bar';
 
 @Component({
     directives: [ANGULAR2_GOOGLE_MAPS_DIRECTIVES, NgIf, TitleBarComponent],
-    styles: ['.sebm-google-map-container { height: 400px; }'],
+    styles: [
+        '.sebm-google-map-container { height: 400px; }',
+        '.container h2 { font: 2em; }'
+    ],
     template: `
     <title-bar></title-bar>
-    <div>{{markerName}}</div>
+    <h2 class="container m-a-1 text-xs-center">{{markerName}}</h2>
     <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" *ngIf="isDefined()">
         <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [title]="markerName">
         </sebm-google-map-marker>

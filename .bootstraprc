@@ -1,14 +1,13 @@
 bootstrapVersion: 4
 
+useFlexbox: true
+
 styleLoaders:
   - style
   - css
   - sass
 
-styles:
-  normalize: true
-  print: true
+styles: true
 
 scripts:
-  alert: true
   button: true
