@@ -46,6 +46,7 @@ interface SettingsDAO {
      * @function getRegionNumber
      * @desc Gets the saved region number
      * @returns {String} the region ID
+     * @deprecated - use getRegionNumber
      */
     getRegion(): Promise<Region>;
 

@@ -15,7 +15,7 @@ export default class MockSettingsService implements SettingsDAO {
 
     public teams = new Set<String>(['A','C']);
 
-    public region = REGIONS[1].number;
+    public region:Number = REGIONS[1].number;
 
     getSavedTeamIDs(): Promise<String[]> {
         return new Promise<String[]>(resolve => {
@@ -52,6 +52,7 @@ export default class MockSettingsService implements SettingsDAO {
     }
 
     getRegionNumber(): Promise<Number> {
+        console.log('Called getRegionNumber(). Region is: ' + this.region);
         return new Promise<Number>(resolve =>
             resolve(this.region)
         );
@@ -64,6 +65,7 @@ export default class MockSettingsService implements SettingsDAO {
     }
 
     setRegion(region: Number): void {
+        console.log('Called setRegion(' + region + ')');
         this.region = region;
     }
 

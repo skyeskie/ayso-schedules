@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {RouterLink} from 'angular2/router';
 
 @Component({
@@ -14,4 +14,6 @@ import {RouterLink} from 'angular2/router';
     </nav>
     `
 })
-export class TitleBarComponent {}
+class TitleBarComponent {}
+
+export {TitleBarComponent, TitleBarComponent as default}

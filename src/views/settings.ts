@@ -8,9 +8,11 @@ import {Injectable} from 'angular2/core';
 import {Inject} from 'angular2/core';
 import {WeekCacheInterface} from '../dao/week-cache.interface';
 import {TitleBarComponent} from '../comp/title-bar.component';
+import {Control} from 'angular2/common';
+import {FORM_DIRECTIVES} from 'angular2/common';
 
 @Component({
-    directives:[NgFor, TitleBarComponent],
+    directives:[NgFor, TitleBarComponent, FORM_DIRECTIVES],
     template: `
     <title-bar></title-bar>
     <article class="container">
@@ -19,7 +21,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
         <div class="card card-block">
             <label for="select-region" class="card-title">Home Region</label>
             <p>This filters your current week view.</p>
-            <select class="form-control">
+            <select class="form-control" [ngFormControl]="defaultRegion">
                 <option *ngFor="#region of regions" value="{{region.number}}">
                     Region {{region.number}} ({{region.name}})
                 </option>
@@ -51,27 +53,35 @@ import {TitleBarComponent} from '../comp/title-bar.component';
 })
 @Injectable()
 export default class SettingsView {
+    public defaultRegion = new Control('');
+
     public regions:Region[];
     public lastUpdate:String;
 
     constructor(
-        @Inject(SettingsDAO)
-        private _settings:SettingsDAO,
-        @Inject(GamesDAO)
-        private _games:GamesDAO,
-        @Inject(WeekCacheInterface)
-        private _weekCache:WeekCacheInterface,
-        @Inject(TeamsDAO)
-        private _teams:TeamsDAO
+        @Inject(SettingsDAO) private _settings:SettingsDAO,
+        @Inject(GamesDAO)    private _games:GamesDAO,
+        @Inject(WeekCacheInterface) private _weekCache:WeekCacheInterface,
+        @Inject(TeamsDAO)    private _teams:TeamsDAO
     ) {
         this.regions = REGIONS;
+
+        this._settings.getRegionNumber().then(r => this.defaultRegion.updateValue(r.toString()));
+
+        this.defaultRegion.valueChanges.subscribe(val => {
+            console.log('Saving region:' + val);
+            let regionNum:Number = parseInt(val,10);
+            this._settings.setRegion(regionNum);
+        });
     }
 
     doReset(): void {
+        //TODO: Add confirmation
         this._settings.reset();
         this._games.reset();
         this._weekCache.reset();
         this._teams.reset();
+        //TODO: Navigate to init view
     }
 
     forceRefresh(): void {
