@@ -6,7 +6,7 @@ import GamesDAO from '../dao/games.interface';
 import Game from '../models/game';
 import {DatePipe} from 'angular2/common';
 import {Inject} from 'angular2/core';
-import {TitleBarComponent} from '../comp/title-bar';
+import {TitleBarComponent} from '../comp/title-bar.component';
 import {Router} from 'angular2/router';
 
 @Component({

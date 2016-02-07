@@ -1,16 +1,16 @@
 import {Component, OnInit} from 'angular2/core';
-import {TitleBarComponent} from '../comp/title-bar';
+import {TitleBarComponent} from '../comp/title-bar.component';
 
 @Component({
     directives: [TitleBarComponent],
+    styles: [],
     template: `
     <title-bar></title-bar>
-    <div id="twitter" data-role="page" class="page">
-        <div class="ui-bar ui-bar-d">Cancellations</div>
+    <h3 class=" text-xs-center">News and Cancellations</h3>
 
+    <div class="messages text-xs-center">
         <a class="twitter-timeline" href="https://twitter.com/AYSOKS"
           data-widget-id="305786822305386496">Tweets by @AYSOKS</a>
-        <div class="messages"></div>
     </div>
     `
 })

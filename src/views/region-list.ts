@@ -4,7 +4,7 @@ import REGIONS from '../cfg/regions';
 import Region from '../models/region';
 import {NgFor} from 'angular2/common';
 import {RouterLink} from 'angular2/router';
-import {TitleBarComponent} from '../comp/title-bar';
+import {TitleBarComponent} from '../comp/title-bar.component';
 
 @Component({
     directives:[NgFor, RouterLink, TitleBarComponent],

@@ -6,7 +6,7 @@ import {NgFor} from 'angular2/common';
 import {RouterLink} from 'angular2/router';
 import {NgIf} from 'angular2/common';
 import {Inject} from 'angular2/core';
-import {TitleBarComponent} from '../comp/title-bar';
+import {TitleBarComponent} from '../comp/title-bar.component';
 import {OnChanges} from 'angular2/core';
 import TwoTeamsGamesListComponent from '../comp/games2-list.component';
 

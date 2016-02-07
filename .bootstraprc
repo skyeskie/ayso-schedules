@@ -1,6 +1,6 @@
 bootstrapVersion: 4
 
-useFlexbox: true
+useFlexbox: false
 
 styleLoaders:
   - style

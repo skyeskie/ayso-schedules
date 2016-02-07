@@ -5,7 +5,7 @@ import {ANGULAR2_GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
 import Region from '../models/region';
 import {NgIf} from 'angular2/common';
-import {TitleBarComponent} from '../comp/title-bar';
+import {TitleBarComponent} from '../comp/title-bar.component';
 
 @Component({
     directives: [ANGULAR2_GOOGLE_MAPS_DIRECTIVES, NgIf, TitleBarComponent],

@@ -2,7 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
 import {REGIONS, getRegionByNumber, Region} from '../cfg/regions';
-import {TitleBarComponent} from '../comp/title-bar';
+import {TitleBarComponent} from '../comp/title-bar.component';
 
 @Component({
     directives: [TitleBarComponent],

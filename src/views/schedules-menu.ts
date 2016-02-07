@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {RouterLink} from 'angular2/router';
-import {TitleBarComponent} from '../comp/title-bar';
+import {TitleBarComponent} from '../comp/title-bar.component';
 
 @Component({
     directives: [RouterLink, TitleBarComponent],
