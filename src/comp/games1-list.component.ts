@@ -6,21 +6,34 @@ import {RouterLink} from 'angular2/router';
 import {Optional} from 'angular2/core';
 import {GamesDAO} from '../dao/games.interface';
 import {Inject} from 'angular2/core';
+import {OnChanges} from 'angular2/core';
+import {DatePipe} from 'angular2/common';
 
 @Component({
-    directives: [NgFor, RouterLink],
     selector: 'single-team-game-list',
+    directives: [NgFor, RouterLink],
+    styles: [`.team { height: 100%; text-valign: middle}`],
+    pipes: [DatePipe],
     template: `
-<div id="games-list" data-role="page" class="page">
-    <ul data-role="listview" data-theme="c">
-        <li *ngFor="#game of games" [routerLink]="['/GameDetail',{id: game.id}]">
-            {{game.id}} / {{game.dateTime}} TODO: Actually implement this
+    <ul class="list-group">
+        <li class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No games found</li>
+
+        <li class="list-group-item" *ngFor="#game of games">
+            <div class="container">
+                <div class="col-xs-6">
+                    <h5>{{game.startTime | date:'MMMdjm'}}</h5>
+                    <div class="m-l-2">
+                        Region {{game.region}}, Field {{game.field}}
+                    </div>
+                </div>
+                <h4 class="col-xs-5 team text-xs-center" *ngIf="team">
+                    vs {{game.getOpponent(team)}}
+                </h4>
+            </div>
         </li>
     </ul>
-</div>
     `
 })
-
 export default class SingleTeamGameListComponent implements OnInit {
     @Optional()
     @Input() games: Game[];
@@ -36,5 +49,9 @@ export default class SingleTeamGameListComponent implements OnInit {
         if(typeof this.games === 'undefined') {
             this.dao.findForTeam(this.team).then(games => this.games);
         }
+    }
+
+    hasNoResults() {
+        return this.games && this.games.length === 0;
     }
 }
