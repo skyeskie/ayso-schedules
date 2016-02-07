@@ -8,50 +8,50 @@ import Team from '../models/team';
 import GamesDAO from "../dao/games.interface";
 import {TeamsDAO} from '../dao/teams.interface';
 import {Inject} from 'angular2/core';
+import {TitleBarComponent} from '../comp/title-bar.component';
 
 @Component({
     pipes: [DatePipe],
-    directives: [],
+    directives: [TitleBarComponent],
     template: `
-<div id="game" class="page" *ngIf="game">
-    <h2>Game Info</h2>
-    <div class="when">Week <span class="game-week">#{{game?.weekNum}}</span><br />
-        {{game?.dateTime | date:'MMM d, hm'}}
-    </div>
-    <div class="home team">
-        <h3>Home Team</h3>
-        <h3 class="team-code">{{game?.homeTeam}}</h3>
-        <div class="coach" *ngIf="homeTeam">
-            <strong>Coach</strong><br />
-            <span class="name">{{homeTeam?.coach}}</span><br />
-            <a class="tel" href="tel:{{homeTeam.coachTel}}"
-               data-role="button" data-mini="true" data-inline="true"
-               data-icon="arrow-r" data-iconpos="right">Call</a>
+    <title-bar></title-bar>
+    <article class="container" *ngIf="game">
+        <h2 class="text-xs-center">Game Info</h2>
+        <h3 class="col-xs-6">Week #{{game?.weekNum}}</h3>
+        <h3 class="col-xs-6 text-xs-right">{{game?.startTime | date:'MMMdhm'}}</h3>
+        <div class="card card-block col-xs-6">
+            <h4 class="card-title text-muted">Home Team</h4>
+            <h4 class="card-text text-primary">{{game?.homeTeam}}</h4>
+            <div class="coach" *ngIf="homeTeam">
+                <strong>Coach</strong> <span class="name">{{homeTeam?.coach}}</span><br />
+                <a class="tel" href="tel:{{homeTeam.coachTel}}"
+                   data-role="button" data-mini="true" data-inline="true"
+                   data-icon="arrow-r" data-iconpos="right">Call</a>
+            </div>
         </div>
-    </div>
-    <div class="away team">
-        <h3>Away Team</h3>
-        <h3 class="team-code">{{game?.awayTeam}}</h3>
-        <div class="coach" *ngIf="awayTeam">
-            <strong>Coach</strong><br />
-            <span class="name">{{awayTeam.coach}}</span><br />
-            <a class="tel" href="tel:{{awayTeam.coachTel}}"
-               data-role="button" data-mini="true" data-inline="true"
-               data-icon="arrow-r" data-iconpos="right">Call</a>
+        <div class="card card-block col-xs-6">
+            <h4 class="card-title text-muted">Away Team</h4>
+            <h4 class="card-text text-primary">{{game?.awayTeam}}</h4>
+            <div class="coach" *ngIf="awayTeam">
+                <strong>Coach</strong> <span class="name">{{awayTeam.coach}}</span><br />
+                <a class="tel" href="tel:{{awayTeam.coachTel}}"
+                   data-role="button" data-mini="true" data-inline="true"
+                   data-icon="arrow-r" data-iconpos="right">Call</a>
+            </div>
         </div>
-    </div>
-    <ul data-role="listview" data-inset="true">
-        <li class="map-link" (click)="gotoMap()">
-            <strong>Region</strong> <span class="game-region">{{game?.region}}</span>
-            <span class="ui-li-aside">Directions</span>
-        </li>
 
-        <li class="field-link" (click)="gotoField()">
-            <strong>Field</strong> <span class="game-field">{{game?.field}}</span>
-            <span class="ui-li-aside">Field map</span>
-        </li>
-    </ul>
-</div>
+        <div>
+            <button type="button" class="btn btn-secondary btn-block btn-lg">
+                <div class="col-xs-6"><strong>Region</strong> {{game?.region}}</div>
+                <div class="col-xs-6 pull-xs-right">Directions &gt;</div>
+            </button>
+
+            <button type="button" class="btn btn-secondary btn-block btn-lg">
+                <div class="col-xs-6"><strong>Field</strong> {{game?.field}}</div>
+                <div class="col-xs-6 pull-xs-right">Field map &gt;</div>
+            </button>
+        </div>
+    </article>
     `
 })
 //TODO: Switch to grab teams from Team DAO
