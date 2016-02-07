@@ -11,7 +11,24 @@
     "watch": "tsc --watch",
     "test": "karma start karma.conf.js",
     "server": "webpack-dev-server --progress --profile --colors --display-error-details --no-info --content-base build/",
-    "start": "\"npm run server\""
+    "start": "\"npm run server\"",
+    "ghpage": "gh-pages -help",
+    "ghpage:all": "npm run ghpage:prep && npm run ghpage:post",
+    "ghpage:prep": "npm run clean && npm run build && npm run test",
+    "ghpage:post": "npm run ghpage:copy-app && npm run ghpage:copy-coverage",
+    "ghpage:copy-app": "copyup build/*.js build/img/* build/app/* build/pub",
+    "ghpage:copy-coverage": "copyfiles -u 3 'build/coverage/Phantom*/**/*' build/pub/coverage",
+    "ghpage:rename-app": "cp build/pub/index.html build/pub/app.html",
+    "ghpage:clean": "rimraf gh-pages-tmp"
+  },
+  "gh-pages-deploy": {
+    "staticpath": "build/pub",
+    "prep": [
+      "clean",
+      "build",
+      "test"
+    ],
+    "post": []
   },
   "dependencies": {
     "angular2": "^2.0.0-beta.2",
@@ -36,8 +53,10 @@
     "cca": "^0.8.1",
     "concurrently": "^1.0.0",
     "copy-webpack-plugin": "^1.1.1",
+    "copyfiles": "^0.2.1",
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
+    "gh-pages-deploy": "^0.4.0",
     "html-webpack-plugin": "^2.7.1",
     "istanbul-instrumenter-loader": "^0.1.3",
     "jasmine": "^2.3.2",

@@ -2,15 +2,15 @@
   - [x] Rough translation of all views
   - [x] Skeleton compile/lint
   - [x] Basic interfaces for all DAOs
-- [ ] Milestone 1: Initially code complete
+- [x] Milestone 1: Initially code complete
     - [x] Create dummy DAO implementations
-    - [ ] Refine dependency injection
-    - [ ] Rework forms and bind models
+    - [x] Refine dependency injection
+    - [x] Rework forms and bind models
     - [x] Graft Git history to merge into Github repo
-- [ ] Milestone 2: Full navigation completeness
+- [x] Milestone 2: Full navigation completeness
     - [ ] Full unit tests verifying components
-    - [ ] Rework forms and HTML styling
-    - [ ] Full build tree and packaging
+    - [x] Rework forms and HTML styling
+    - [x] Full build tree and packaging
 - [ ] Release 1.9: Fully functional HTML5 app
     - [ ] Create full-fledged DAOs
 - [ ] Release 2.0: Android

@@ -52,8 +52,8 @@ module.exports = {
             { test: /\.png$/, loader: 'file' },
 
             //Bootstrap
-            { test: /\.css$/, loaders: [ 'style', 'css', 'postcss' ] },
-            { test: /\.scss$/, loaders: [ 'style', 'css', 'postcss', 'sass' ] },
+            { test: /\.css$/, loaders: [ 'style-loader', 'css', 'postcss' ] },
+            { test: /\.scss$/, loaders: [ 'style-loader', 'css', 'postcss', 'sass' ] },
             { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' }
         ]
     },
@@ -73,6 +73,12 @@ module.exports = {
             template: 'src/app.html',
             title: metadata.title,
             inject: true
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/app-github.html',
+            title: metadata.title,
+            inject: true,
+            filename: 'app/index.html'
         }),
         new webpack.DefinePlugin({
             'process.env': {
