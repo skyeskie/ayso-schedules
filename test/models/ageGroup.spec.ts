@@ -36,6 +36,23 @@ describe('Model: AgeGroup', () => {
         });
     });
 
+    describe('equals', () => {
+        it('should succeed on the same gender', () => {
+            let r1 = new AgeGroup(1,10);
+            let r2 = new AgeGroup(1,10);
+
+            expect(r1.equals(r1)).toBeTruthy();
+            expect(r1.equals(r2)).toBeTruthy();
+        });
+
+        it('should fail for different genders', () => {
+            let r1 = new AgeGroup(1,10);
+            let r2 = new AgeGroup(2,20);
+            expect(r1.equals(r2)).toBeFalsy();
+            expect(r1.equals(null)).toBeFalsy();
+        });
+    });
+
     describe('configuration', () => {
         it('should have unique codes', () => {
             expectUniqueness<Number>(AGES.map(ag => ag.code));

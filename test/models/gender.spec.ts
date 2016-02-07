@@ -29,4 +29,21 @@ describe('Config: Genders', () => {
             expect(() => { findGenderByCode('BAD_LOOKUP') }).toThrowError(RangeError);
         })
     });
+
+    describe('equals', () => {
+        it('should succeed on the same gender', () => {
+            let r1 = new Gender('A','AAAAA');
+            let r2 = new Gender('A','AAAAA');
+
+            expect(r1.equals(r1)).toBeTruthy();
+            expect(r1.equals(r2)).toBeTruthy();
+        });
+
+        it('should fail for different genders', () => {
+            let r1 = new Gender('A','AAAAA');
+            let r2 = new Gender('B','BBBBB');
+            expect(r1.equals(r2)).toBeFalsy();
+            expect(r1.equals(null)).toBeFalsy();
+        });
+    });
 });

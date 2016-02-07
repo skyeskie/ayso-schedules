@@ -7,4 +7,8 @@ export default class Region {
         public lat: Number,
         public lon: Number
     ) {}
+
+    equals(o: Region) {
+        return o && this.id === o.id;
+    }
 }

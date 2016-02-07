@@ -3,6 +3,10 @@ class Gender {
         public short: String,
         public long: String
     ) {}
+
+    equals(o: Gender) {
+        return o && o.long === this.long;
+    }
 }
 
 let GENDERS: Gender[] = [

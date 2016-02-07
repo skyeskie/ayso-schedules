@@ -44,6 +44,23 @@ describe('Model: Region', () => {
         });
     });
 
+    describe('equals', () => {
+        it('should succeed on the same region', () => {
+            let r1 = new Region(10,100,'','',0,0);
+            let r2 = new Region(10,100,'','',0,0);
+
+            expect(r1.equals(r1)).toBeTruthy();
+            expect(r1.equals(r2)).toBeTruthy();
+        });
+
+        it('should fail for different regions', () => {
+            let r1 = new Region(10,100,'','',0,0);
+            let r2 = new Region(20,100,'','',0,0);
+            expect(r1.equals(r2)).toBeFalsy();
+            expect(r1.equals(null)).toBeFalsy();
+        });
+    });
+
     xdescribe('configuration', () => {
         //TODO: Validate configuration (map exists, coords in range, number formats, etc)
     });
