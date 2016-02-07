@@ -10,43 +10,60 @@ import {REGIONS, Region} from "../cfg/regions";
 
 import Division from '../models/division';
 import {WeekCacheInterface} from '../dao/week-cache.interface';
+import {TitleBarComponent} from '../comp/title-bar.component';
+import {GenderFormComponent} from '../comp/gender-form.component';
 
 @Component({
-    directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, ButtonRadio],
+    directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, TitleBarComponent],
+    styles: [
+        'form#search select { width: 15rem; }',
+        'button[type=submit] { margin-left: 25% }'
+    ],
     template: `
-<form id="divis" (ngSubmit)="onSubmit" #divisionFilter="ngForm">
-    <h2 class="ui-bar ui-bar-d">Select Filter</h2>
-    <label for="region">Region</label>
-    <div class="btn-group btn-group-justified" role="group">
-        <label class="btn btn-secondary" *ngFor="#_region of regions" [(ngModel)]="region" [btnRadio]="_region">
-            Region {{_region.number}} ({{_region.name}})
-        </label>
-    </div>
+    <title-bar></title-bar>
+    <article class="container">
+    <form id="search" (ngSubmit)="onSubmit()">
+        <legend>Filter teams</legend>
+        <p></p>
 
-    <label>Division</label>
-    <div id="age-select1" class="btn-group">
-        <label class="btn btn-secondary" *ngFor="#age of ages" [(ngModel)]="ageGroup" [btnRadio]="age">
-            {{age.toString()}}
-        </label>
-    </div>
+        <fieldset class="form-group row">
+            <label for="regionSelect" class="form-control-label  col-sm-3">Region</label>
+            <div class="col-sm-9">
+                <select id="regionSelect" class="form-control" [(ngModel)]="region">
+                    <option *ngFor="#r of regions" [value]="r">Region {{r.number}} {{r.name}}</option>
+                </select>
+            </div>
+        </fieldset>
 
-    <label>Gender</label>
-    <div class="filters gender-select" data-role="navbar">
-        <label class="btn btn-secondary" *ngFor="#_gender of genders" [(ngModel)]="gender" [btnRadio]="_gender">
-            {{_gender.long}}
-        </label>
-    </div>
+        <fieldset class="form-group row">
+            <label for="divisSelect" class="form-control-label  col-sm-3">Age Group</label>
+            <div class="col-sm-9">
+                <select id="divisSelect" class="form-control" [(ngModel)]="ageGroup">
+                    <option *ngFor="#age of ages" [value]="age">{{age.toString()}}</option>
+                </select>
+            </div>
+        </fieldset>
 
-    <!-- TODO: Convert this into slider or better widget -->
-    <div class="form-group">
-        <label for="weekSelect">Week</label>
-        <select class="form-control" [(ngModel)]="week">
-            <option *ngFor="#w of weeks" [value]="w">{{w}}</option>
-        </select>
-    </div>
+        <fieldset class="form-group row">
+            <label for="genderSelect" class="form-control-label  col-sm-3">Gender</label>
+            <div class="col-sm-9">
+                <select id="genderSelect" class="form-control" [(ngModel)]="gender">
+                    <option *ngFor="#g of genders" [value]="g">{{g.long}}</option>
+                </select>
+            </div>
+        </fieldset>
 
-    <button type="submit" class="btn btn-primary">Go</button>
-</form>
+        <fieldset class="form-group row">
+            <label for="weekSelect" class="form-control-label col-sm-3">Week</label>
+            <div class="col-sm-9">
+                <select id="weekSelect" class="form-control" [(ngModel)]="week">
+                    <option *ngFor="#w of weeks" [value]="w">{{w}}</option>
+                </select>
+            </div>
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Go</button>
+    </form>
+    </article>
    `
 })
 export class DivisionSelectView {
@@ -80,7 +97,13 @@ export class DivisionSelectView {
     }
 
     onSubmit(): void {
+        console.log('Submitting search form');
         let division = new Division(this.gender, this.ageGroup);
-        this._router.navigate(["DivisionSchedule", { divis: division, week: this.week}]);
+        this._router.navigate(["/DivisionSchedule", {
+            ageGroup: this.ageGroup,
+            gender: this.gender,
+            region: this.region,
+            week: this.week,
+        }]);
     }
 }

@@ -20,7 +20,7 @@ import Team from '../models/team';
                 <div class="col-xs-6 text-xs-right">{{row.game.homeTeam}} vs {{row.game.awayTeam}}</div>
             </div>
             <div class="list-group-item-header" *ngIf="row.isHeader">
-                <h4>{{row.headerTime | date:'medium'}}</h4>
+                <h4>{{row.headerTime | date:'MMMdjm'}}</h4>
             </div>
         </li>
         <li class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No results</li>
