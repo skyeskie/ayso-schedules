@@ -51,7 +51,7 @@ import {ChangeDetector} from 'angular2/src/core/change_detection/interfaces';
         <h3 class="text-xs-center">Select Team</h3>
         <div class="container team-list text-justify">
             <button type="button" class="btn btn-secondary m-a-1 btn-sm"
-                *ngFor="#team of teams" [routerLink]="['/GameDetail',{ id: team.code }]">
+                *ngFor="#team of teams" [routerLink]="['/TeamSchedule',{ id: team.code }]">
                 {{team.code}}<span *ngIf="teams.length<10"> - {{team.coach}}</span>
             </button>
         </div>
