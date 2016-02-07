@@ -1,20 +1,21 @@
 import TeamsDAO, {Team, Region, Division} from '../teams.interface';
+import {Gender} from '../../cfg/gender';
 
+function checkPresent(val) {
+    return (typeof val !== 'undefined') && (val !== null);
+}
 
 export default class MockTeamsService implements TeamsDAO {
     public teams: Map<String,Team> = new Map<String,Team>();
-
-    private static getMockData() {
-        let teams = new Map<String,Team>();
-        teams.set('A', new Team('A', 'coachA', 'telA', Division.fromString('U10B')));
-        teams.set('B', new Team('B', 'coachB', 'telB', Division.fromString('U10B')));
-        teams.set('C', new Team('C', 'coachC', 'telC', Division.fromString('U10B')));
-        teams.set('D', new Team('D', 'coachD', 'telD', Division.fromString('U10B')));
-        return teams;
-    }
+    public teamsArray: Team[] = [
+        new Team('A', 'coachA', 'telA', Division.fromString('U10B'), 49),
+        new Team('B', 'coachB', 'telB', Division.fromString('U10B'), 49),
+        new Team('C', 'coachC', 'telC', Division.fromString('U10B'), 49),
+        new Team('D', 'coachD', 'telD', Division.fromString('U10B'), 49),
+    ];
 
     constructor() {
-        this.teams = MockTeamsService.getMockData();
+        this.teamsArray.forEach(team => this.teams.set(team.code, team));
     }
 
     getTeam(id: String): Promise<Team> {
@@ -34,16 +35,25 @@ export default class MockTeamsService implements TeamsDAO {
     }
 
     //TODO: We'll need to actually set teams with region/division/gender
-    findTeams(regionNumber?: Number, division?: Division): Promise<Team[]> {
+    findTeams(regionNumber?: String, ageString?: String, genderLong?: String): Promise<Team[]> {
         return new Promise<Team[]>(resolve => {
-            let ret: Team[] = [];
-            this.teams.forEach((team) => {
-                if((!regionNumber && team.regionNumber === regionNumber) ||
-                    (!division && team.division === division)) {
-                    ret.push(team);
+            resolve(this.teamsArray.filter((team:Team) => {
+                if(checkPresent(regionNumber) && regionNumber !== team.regionNumber.toString()) {
+                    return false;
                 }
-            });
-            return ret;
+
+                if(checkPresent(ageString) && team.division.age.toString() !== ageString) {
+                    console.log('exit on age mismatch: '+ageString+'/'+team.division.age);
+                    return false;
+                }
+
+                if(checkPresent(genderLong) && team.division.gender.long !== genderLong) {
+                    console.log('exit on gender mismatch: '+genderLong+'/'+team.division.gender.long);
+                    return false;
+                }
+
+                return true;
+            }));
         });
     }
 

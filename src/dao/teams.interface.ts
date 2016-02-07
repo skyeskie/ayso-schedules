@@ -8,7 +8,7 @@ interface TeamsDAO {
 
     getTeams(ids: String[]): Promise<Team[]>;
 
-    findTeams(regionNumber?: Number, division?: Division): Promise<Team[]>;
+    findTeams(regionNumber?: String, ageString?: String, genderLong?: String): Promise<Team[]>;
 
     reset(): void;
 
