@@ -1,9 +1,6 @@
 import TeamsDAO, {Team, Region, Division} from '../teams.interface';
 import {Gender} from '../../cfg/gender';
-
-function checkPresent(val) {
-    return (typeof val !== 'undefined') && (val !== null);
-}
+import {checkPresent} from '../../app/util';
 
 export default class MockTeamsService implements TeamsDAO {
     public teams: Map<String,Team> = new Map<String,Team>();

@@ -28,7 +28,7 @@ let AYSO_APP_ROUTES = [
         name: 'FavoritesSchedule', component: FavoritesListView},
     {path:'/search',
         name: 'DivisionSelect', component: DivisionSelectView},
-    {path:'/search/results',
+    {path:'/search/week/:week/results',
         name: 'DivisionSchedule', component: DivisionListView},
     {path:'/game/:id',
         name: 'GameDetail', component: GameView},

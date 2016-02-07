@@ -3,6 +3,7 @@ import Game from "../models/game";
 import Division from "../models/division";
 import Gender from "../cfg/gender";
 import {OpaqueToken} from 'angular2/core';
+import {AgeGroup} from '../models/ageGroup';
 
 interface GamesDAO {
     /**
@@ -22,7 +23,7 @@ interface GamesDAO {
      */
     findByWeek(week: Number): Promise<Game[]>;
 
-    findGames(regionID:Number, division:Division, week:Number): Promise<Game[]>;
+    findGames(regionID:Number, ageGroup:String, gender:String, week:Number): Promise<Game[]>;
 
     /**
      * Lookup all games for a single team

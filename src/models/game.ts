@@ -1,4 +1,5 @@
 import Team from "./team";
+import Division from './division';
 
 export default class Game {
     public static BYE_TEAM = "{BYE}";
@@ -10,7 +11,8 @@ export default class Game {
         public weekNum:Number,
         public startTime:Date,
         public region:String,
-        public field:String
+        public field:String,
+        public divis?:Division
     ) {}
 
     hasTeam(teamId: String) {

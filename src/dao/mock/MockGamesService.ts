@@ -3,6 +3,7 @@ import {Router} from 'angular2/router';
 import {RouteParams} from "angular2/router";
 import GamesDAO, { Game, Division } from '../games.interface';
 import Region from '../../models/region';
+import {checkPresent} from '../../app/util';
 
 
 export default class MockGamesService implements GamesDAO {
@@ -11,12 +12,12 @@ export default class MockGamesService implements GamesDAO {
     public time2c:Date = new Date(2016, 2, 8, 12);
 
     public games: Game[] = [
-        new Game('111', 'A','B', 1, this.time1a, 'R00', 'map'),
-        new Game('112','C','D', 1, this.time1a, 'R00', 'map2'),
-        new Game('121','A','C', 1, this.time1b, 'R00', 'map'),
-        new Game('122','B','D', 1, this.time1b, 'R02', 'map2'),
-        new Game('231','A','D', 2, this.time2c, 'R02', 'map'),
-        new Game('232','C','B', 2, this.time2c, 'R02', 'map2')
+        new Game('111', 'A','B', 1, this.time1a, '49', 'map', Division.fromString('U10B')),
+        new Game('112','C','D', 1, this.time1a, '49', 'map2', Division.fromString('U10B')),
+        new Game('121','A','C', 1, this.time1b, '49', 'map', Division.fromString('U10B')),
+        new Game('122','B','D', 1, this.time1b, '49', 'map2', Division.fromString('U10B')),
+        new Game('231','A','D', 2, this.time2c, '208', 'map', Division.fromString('U10B')),
+        new Game('232','C','B', 2, this.time2c, '208', 'map2', Division.fromString('U10B'))
     ];
 
     getGame(id: String): Promise<Game> {
@@ -35,9 +36,27 @@ export default class MockGamesService implements GamesDAO {
         );
     }
 
-    findGames(regionID:Number, division:Division, week:Number): Promise<Game[]> {
+    findGames(regionNum?:Number, ageGroup?:String, gender?:String, week?:Number): Promise<Game[]> {
         return new Promise<Game[]>(resolve =>
-            resolve(this.games)
+            resolve(this.games.filter((game:Game) => {
+                if(checkPresent(week) && week !== game.weekNum) {
+                    return false;
+                }
+
+                if(checkPresent(regionNum) && regionNum.toString() !== game.region) {
+                    return false;
+                }
+
+                if(checkPresent(ageGroup) && ageGroup !== game.divis.age.code.toString()) {
+                    return false;
+                }
+
+                if(checkPresent(gender) && gender !== game.divis.gender.long) {
+                    return false;
+                }
+
+                return true;
+            }))
         );
     }
 
