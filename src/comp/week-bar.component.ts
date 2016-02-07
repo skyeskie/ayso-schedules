@@ -1,32 +1,76 @@
-import {Component, OnInit} from 'angular2/core';
-import {Input} from "angular2/core";
-import WeekCalcService from "../dao/week-cache.interface.ts";
+import {
+    Component, Input, Inject, Injectable,
+    EventEmitter, OnInit, Output
+} from 'angular2/core';
+import WeekCacheInterface from "../dao/week-cache.interface";
 import {NgIf} from "angular2/common";
+import {MockWeekCacheService} from '../dao/mock/MockWeekCacheService';
+
+const ONE:number =1;
 
 @Component({
     selector: 'week-bar',
-    directives: [NgIf],
+    directives: [NgIf],//TODO: Change from NgIf to NgStyle with invisible
+    styles: [
+        "nav span { font: 2em bold; }"
+    ],
     template: `
-     <div class="week-bar" data-role="header" data-theme="c">
-        <a class="back" data-icon="arrow-l" data-iconpos="notext" *ng-if="showPrevious">Back</a>
-        <h2>Week #{{week}}</h2>
-        <a class="next" data-icon="arrow-r" data-iconpos="notext" *ng-if="showNext">Next</a>
-    </div>
+     <nav class="navbar navbar-light text-xs-center">
+        <button type="button" class="btn btn-primary-outline nav-item nav-link pull-xs-left"
+            *ngIf="showPrevious()" (click)="changePrev()">Back</button>
+        <span class="nav-item">Week #{{week}}</span>
+        <button type="button" class="btn btn-primary-outline nav-item nav-link pull-xs-right"
+            *ngIf="showNext()" (click)="changeNext()">Next</button>
+    </nav>
     `
 })
-export default class WeekBarComponent {
-    private showPrevious: boolean;
-    private showNext: boolean;
+@Injectable()
+export default class WeekBarComponent implements OnInit {
+    max: Number;
+    cur: Number;
 
-    @Input() week: Number;
+    /**
+     * Fires event after ngOnInit
+     * Suitable for actions after the init promises return
+     * @type {EventEmitter<WeekBarComponent>}
+     */
+    onInit = new EventEmitter<WeekBarComponent>();
+
+    @Input() public week: Number;
+
+    @Output() weekChange = new EventEmitter<Number>();
+
     constructor(
-        private _weeks: WeekCalcService
-    ) {
-        if(this.week < 1 || this.week > _weeks.getMaxWeeks()) {
-            this.week = _weeks.getCurrentWeek();
-        }
+        @Inject(WeekCacheInterface)
+        private _weeks: WeekCacheInterface
+    ) {}
 
-        this.showPrevious = (this.week === 1);
-        this.showNext = (this.week === _weeks.getMaxWeeks());
+    ngOnInit() {
+        Promise.all([
+            this._weeks.getMaxWeeks(), this. _weeks.getCurrentWeek()
+        ]).then((results) => {
+            this.max = results[0];
+            this.cur = results[1];
+            if(this.week < 1 || this.week > this.max) {
+                this.week = this.cur;
+            }
+            this.onInit.emit(this);
+        });
+    }
+
+    showPrevious(): boolean {
+        return this.week && (this.week !== 1);
+    }
+
+    showNext(): boolean {
+        return this.week && this.max && (this.week !== this.max);
+    }
+
+    changePrev() {
+        this.weekChange.emit(this.week.valueOf() - ONE);
+    }
+
+    changeNext() {
+        this.weekChange.emit(this.week.valueOf() + ONE);
     }
 }

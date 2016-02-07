@@ -1,23 +1,33 @@
-import {View, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
-import {RouteParams} from "angular2/router";
+import {Component, OnInit} from 'angular2/core';
+import {TitleBarComponent} from '../comp/title-bar.component';
 
-@View({
-   template: `
-   <div id="twitter" data-role="page" class="page">
-        <div class="ui-bar ui-bar-d">Cancellations</div>
+@Component({
+    directives: [TitleBarComponent],
+    styles: [],
+    template: `
+    <title-bar></title-bar>
+    <h3 class=" text-xs-center">News and Cancellations</h3>
 
+    <div class="messages text-xs-center">
         <a class="twitter-timeline" href="https://twitter.com/AYSOKS"
           data-widget-id="305786822305386496">Tweets by @AYSOKS</a>
-        <div class="messages"></div>
     </div>
-    <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js"/>
-   `
+    `
 })
 //TODO: Revisit twitter widget
-export class CancellationsView {
-    constructor(
-        private _router:Router,
-        private _routeParams:RouteParams) {
+export class CancellationsView implements OnInit {
+    private addScript() {
+        var s = document.createElement('script');
+        s.setAttribute('src', '//platform.twitter.com/widgets.js');
+        s.onload = this.render;
+        document.body.appendChild(s);
+    }
+
+    ngOnInit() {
+        this.addScript();
+    }
+
+    public render() {
+        twttr.widgets.load();
     }
 }

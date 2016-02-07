@@ -1,17 +1,17 @@
-import {View} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {RouterLink} from 'angular2/router';
+import {TitleBarComponent} from '../comp/title-bar.component';
 
-@View({
-    directives: [RouterLink],
+@Component({
+    directives: [RouterLink, TitleBarComponent],
     template: `
-    <div id="schedules" data-role="page" class="page">
-        <img src="img/MainLogo.png" alt="AYSO Kansas" />
-        <div class="main-buttons">
-            <a [routerlink]="['CurWeekSchedule']" data-role="button">This Week</a>
-            <a [routerlink]="['TeamSelect']" data-role="button">Find Team</a>
-            <a [routerlink]="['DivisionSelect']" data-role="button">Advanced Query</a>
-            <a [routerlink]="['FavoritesSchedule']" data-role="button">My teams</a>
-        </div>
+    <title-bar></title-bar>
+    <div class="main-buttons container">
+        <img class="img-fluid center-block" src="/img/MainLogo.png" alt="AYSO Kansas" />
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['CurWeekSchedule']" data-role="button">This Week</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['TeamSelect']" data-role="button">Find Team</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['DivisionSelect']" data-role="button">Advanced Query</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['FavoritesSchedule']" data-role="button">My teams</button>
     </div>
     `
 })

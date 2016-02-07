@@ -1,23 +1,56 @@
 import {Component, Input, OnInit} from "angular2/core";
 import {Router} from "angular2/router";
 import Game from '../models/game';
+import {NgFor} from 'angular2/common';
+import {RouterLink} from 'angular2/router';
+import {Optional} from 'angular2/core';
+import {GamesDAO} from '../dao/games.interface';
+import {Inject} from 'angular2/core';
+import {OnChanges} from 'angular2/core';
+import {DatePipe} from 'angular2/common';
 
 @Component({
     selector: 'single-team-game-list',
+    directives: [NgFor, RouterLink],
+    styles: [`.team { height: 100%; text-valign: middle}`],
+    pipes: [DatePipe],
     template: `
-<div id="games-list" data-role="page" class="page">
-    <div class="subheader ui-bar ui-bar-d">
-        <h2></h2>
+    <div class="list-group">
+        <div class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No games found</div>
+
+        <button type="button" class="list-group-item container"
+         *ngFor="#game of games" [routerLink]="['/GameDetail',{id:game.id}]">
+            <div class="col-xs-6">
+                <h5>{{game.startTime | date:'MMMdjm'}}</h5>
+                <div class="m-l-2">
+                    Region {{game.region}}, Field {{game.field}}
+                </div>
+            </div>
+            <h4 class="col-xs-5 team text-xs-center" *ngIf="team">
+                vs {{game.getOpponent(team)}}
+            </h4>
+        </button>
     </div>
-    <ul data-role="listview" data-theme="c">
-        <li *ngFor="#game of games" (click)="onSelect(game)">
-            {{game.code}}
-        </li>
-    </ul>
-</div>
     `
 })
-
-export default class SingleTeamGameListComponent {
+export default class SingleTeamGameListComponent implements OnInit {
+    @Optional()
     @Input() games: Game[];
+
+    @Input() team: String;
+
+    constructor(
+        @Optional() @Inject(GamesDAO)
+        private dao: GamesDAO
+    ) {}
+
+    ngOnInit() {
+        if(typeof this.games === 'undefined') {
+            this.dao.findForTeam(this.team).then(games => this.games);
+        }
+    }
+
+    hasNoResults() {
+        return this.games && this.games.length === 0;
+    }
 }

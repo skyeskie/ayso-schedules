@@ -1,0 +1,15 @@
+{
+  "options": {
+    "sourceMaps": true,
+    "baseUrl": "./build/ts2js/",
+    "paths": {
+      "npm:*": "node_modules"
+    }
+  },
+  "dev": {
+    "files": [{
+      "src": "build/ts2js/app/boot.js",
+      "dest": "build/full.js"
+    }]
+  }
+}

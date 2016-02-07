@@ -1,60 +1,100 @@
-import {View, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
-import {RouteParams} from "angular2/router";
+import {Component, AfterViewInit, Inject, ViewChild} from 'angular2/core';
+import {Router, RouteParams, RouterLink} from 'angular2/router';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
+
 import {TeamsDAO, Team, Region, Division} from '../dao/teams.interface';
-import {NgFor} from 'angular2/common';
-import REGIONS from '../cfg/regions';
-import GENDERS from '../cfg/gender';
-import AGES from '../cfg/ages';
 
-@View({
-    directives: [NgFor],
+import {REGIONS} from '../cfg/regions';
+import {GENDERS,Gender} from '../cfg/gender';
+import {AGES,AgeGroup} from '../cfg/ages';
+import {TitleBarComponent} from '../comp/title-bar.component';
+import {FormBuilder} from 'angular2/common';
+import {ControlGroup} from 'angular2/common';
+import {ChangeDetector} from 'angular2/src/core/change_detection/interfaces';
+
+@Component({
+    directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, RouterLink, TitleBarComponent],
+    styles: ['.team-list: { columns: 3 }'],
     template: `
-    <div id="team" data-role="page" class="page">
-        <div class="ui-bar ui-bar-d">Filter Teams</div>
-        <div class="filters region-select" data-role="navbar">
-            <ul>
-            </ul>
-        </div>
+    <title-bar></title-bar>
+    <article class="container">
+    <form id="team" [ngFormModel]="teamForm">
+        <legend>Filter teams</legend>
+        <fieldset class="form-group row">
+            <label for="regionSelect" class="form-control-label  col-sm-3">Region</label>
+            <div class="col-sm-9">
+                <select id="regionSelect" class="form-control" [ngFormControl]="teamForm.controls.region">
+                    <option *ngFor="#r of regions" [value]="r.number">Region {{r.number}} {{r.name}}</option>
+                </select>
+            </div>
+        </fieldset>
 
-        <div class="filters divis-select1" data-role="navbar">
-            <ul></ul>
-        </div>
+        <fieldset class="form-group row">
+            <label for="divisSelect" class="form-control-label  col-sm-3">Age Group</label>
+            <div class="col-sm-9">
+                <select id="divisSelect" class="form-control" [ngFormControl]="teamForm.controls.age">
+                    <option *ngFor="#age of ages" [value]="age.toString()">{{age.toString()}}</option>
+                </select>
+            </div>
+        </fieldset>
 
-        <div class="filters divis-select2" data-role="navbar">
-            <ul></ul>
-        </div>
+        <fieldset class="form-group row">
+            <label for="genderSelect" class="form-control-label  col-sm-3">Gender</label>
+            <div class="col-sm-9">
+                <select id="genderSelect" class="form-control" [ngFormControl]="teamForm.controls.gender">
+                    <option *ngFor="#g of genders" [value]="g.long">{{g.long}}</option>
+                </select>
+            </div>
+        </fieldset>
 
-        <div class="filters gender-select" data-role="navbar">
-            <ul>
-                <li class="Boys"><a>Boys</a></li>
-                <li class="Girls"><a>Girls</a></li>
-                <li class="Coed"><a>Coed</a></li>
-            </ul>
+        <h3 class="text-xs-center">Select Team</h3>
+        <div class="container team-list text-justify">
+            <button type="button" class="btn btn-secondary m-a-1 btn-sm"
+                *ngFor="#team of teams" [routerLink]="['/TeamSchedule',{ id: team.code }]">
+                {{team.code}}<span *ngIf="teams.length<10"> - {{team.coach}}</span>
+            </button>
         </div>
-
-        <div class="ui-bar ui-bar-d">Select Team</div>
-        <div class="grid-b results">
-            <ul data-role="listview" class="ui-block-a" data-inset="true"></ul>
-            <ul data-role="listview" class="ui-block-b" data-inset="true"></ul>
-            <ul data-role="listview" class="ui-block-c" data-inset="true"></ul>
-        </div>
-    </div>
+    </form>
+    </article>
     `
 })
 //TODO: Enumerate selectors (as form)
 //TODO: Redo results (as links)
-class TeamSelectView implements OnInit {
+class TeamSelectView {
+    private teamForm:ControlGroup;
+
+    //Iterated lists
     public teams: Team[];
+    public regions:Region[];
+    public ages:AgeGroup[];
+    public genders:Gender[];
 
     constructor(
         private _router:Router,
-        private _routeParams:RouteParams,
-        private _dao:TeamsDAO
-    ) {}
-    
-    ngOnInit() {
-    
+        private fb:FormBuilder,
+        @Inject(TeamsDAO)
+        private dao:TeamsDAO
+    ) {
+        this.regions = REGIONS;
+        this.ages = AGES;
+        this.genders = GENDERS;
+        //Create form controls
+        this.teamForm = fb.group({
+            age: null,
+            gender: null,
+            region: null,
+        });
+
+        this.teamForm.valueChanges.subscribe(data => console.log(data));
+        this.teamForm.valueChanges.subscribe(data =>
+            this.updateTeams(data.age, data.gender, data.region)
+        );
+        this.dao.findTeams().then(teams => this.teams = teams);
+    }
+
+    updateTeams(ageString?:String, genderLong?:String, regionNum?:String) {
+        this.dao.findTeams(regionNum, ageString, genderLong).then(teams => this.teams = teams);
     }
 }
 

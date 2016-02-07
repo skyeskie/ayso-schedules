@@ -1,0 +1,13 @@
+bootstrapVersion: 4
+
+useFlexbox: false
+
+styleLoaders:
+  - style
+  - css
+  - sass
+
+styles: true
+
+scripts:
+  button: true

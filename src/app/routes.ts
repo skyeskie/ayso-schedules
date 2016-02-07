@@ -10,6 +10,8 @@ import {MapView} from '../views/map';
 import {TeamScheduleView} from '../views/team-schedule';
 import {WeekScheduleView} from '../views/week-schedule';
 import {SchedulesMenuView} from '../views/schedules-menu';
+import SettingsView from '../views/settings';
+import {TeamSelectView} from '../views/team-select';
 
 /**
  * Main routing configuration
@@ -24,23 +26,21 @@ let AYSO_APP_ROUTES = [
         name: 'SchedulesMenu', component: SchedulesMenuView},
     {path:'/favorites',
         name: 'FavoritesSchedule', component: FavoritesListView},
-    {path:'/divisions',
+    {path:'/search',
         name: 'DivisionSelect', component: DivisionSelectView},
-    {path:'/division/:divis/:week',
+    {path:'/search/week/:week/results',
         name: 'DivisionSchedule', component: DivisionListView},
     {path:'/game/:id',
         name: 'GameDetail', component: GameView},
     {path:'/regions',
         name: 'RegionList', component: RegionListView},
-    {path:'/region/:region/field',
+    {path:'/region/:region/field',//TODO: Full implementation
         name: 'FieldDetail', component: FieldMapView},
-    {path:'/region/:region/map',
+    {path:'/region/:region/map',//TODO: Fill viewport
         name: 'MapDetail', component: MapView},
-    {path:'/region/:region/:division/:divis',
-        name: 'XRDivisionSchedule', component: RegionListView},
     {path:'/teams',
-        name: 'TeamSelect', component: HomeView},
-    {path:'/team/:id',
+        name: 'TeamSelect', component: TeamSelectView},
+    {path:'/team/:id',//TODO: Call and Save/Unsave functionality
         name: 'TeamSchedule', component: TeamScheduleView},
     {path:'/week',
         name: 'CurWeekSchedule', component: WeekScheduleView},
@@ -48,8 +48,8 @@ let AYSO_APP_ROUTES = [
         name: 'WeekSchedule', component: WeekScheduleView},
     {path:'/twitter',
         name: 'TwitterView', component: CancellationsView},
-    {path:'/settings',
-        name: 'Settings', component: HomeView}
+    {path:'/settings',//TODO: Bind to backend
+        name: 'Settings', component: SettingsView}
 ];
 
 export default AYSO_APP_ROUTES;

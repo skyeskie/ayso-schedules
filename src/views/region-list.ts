@@ -1,33 +1,31 @@
-import {View, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
 import REGIONS from '../cfg/regions';
 import Region from '../models/region';
+import {NgFor} from 'angular2/common';
+import {RouterLink} from 'angular2/router';
+import {TitleBarComponent} from '../comp/title-bar.component';
 
-@View({
+@Component({
+    directives:[NgFor, RouterLink, TitleBarComponent],
+    styles: ['.region h2'],
     template: `
-<div id="fields" data-role="page" class="page">
-    <div class="listing" *ngFor="#region of regions">
-        <div class='full ui-bar-c'>
-        <h2>Region {{region.number}} - {{region.name}}</h2>
-        <button (click)="gotoMap(region)">Directions</button>
-        <button (click)="gotoFieldMap(region)">Field Map</button>
+    <title-bar></title-bar>
+    <div class="text-xs-center">
+        <div class="region card card-block" *ngFor="#region of regions">
+            <h4 class="card-title">Region {{region.number}} - {{region.name}}</h4>
+            <button type="button" class="btn btn-secondary card-link"
+                [routerLink]="['/MapDetail', {region: region.number}]">Directions</button>
+            <button type="button" class="btn btn-secondary card-link"
+                [routerLink]="['FieldDetail', {region: region.number}]">Field Map</button>
+        </div>
     </div>
-</div>
-`
+    `
 })
 
 export default class RegionListView {
-    constructor(
-        private _router:Router,
-        public regions:Region[]
-    ) {}
-
-    gotoMap(region: Region) {
-        this._router.navigate(['Map', { id: region.id}]);
-
-    }
-
-    gotoFieldMap(region: Region) {
-        this._router.navigate(['Field', { id: region.id}]);
+    public regions;
+    constructor() {
+        this.regions = REGIONS;
     }
 }

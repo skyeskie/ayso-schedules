@@ -1,63 +1,60 @@
-import {Component, Input, OnInit} from "angular2/core";
+import {Component, Input, OnChanges} from "angular2/core";
+import {NgFor, NgIf, DatePipe} from "angular2/common";
 import {Router} from "angular2/router";
 import Game from '../models/game';
 import Team from '../models/team';
-import {NgFor, NgIf} from "angular2/common";
-import {DatePipe} from 'angular2/common';
+import {RouterLink} from 'angular2/router';
 
 @Component({
     selector: 'two-teams-game-list',
-    directives: [NgFor, NgIf],
+    directives: [NgFor, NgIf, RouterLink],
     pipes: [DatePipe],
     template: `
-<div id="games-list" data-role="page" class="page">
-    <ul data-role="listview" data-theme="c" data-inset="true">
-        <li *ngIf="hasByes()" data-role="list-divider">Byes</li>
-        <li *ngIf="hasByes()">{{byesList}}</li>
-
-        <li *ngFor="#row of gamesList">
-            <div *ngIf="!row.isHeader" (click)="onSelect(game)">
-                <h3 class="width40">{{row.game.field}}</h3>
-                <h3 class="width60 ta-right">{{row.game.HomeTeam}} vs {{row.game.AwayTeam}}</h3>
-            </div>
-            <span *ngIf="row.isHeader">
-                {{row.headerTime | DatePipe:'long'}}
-            </span>
-        </li>
-        <li *ngIf="hasNoResults()">No results</li>
+    <ul data-role="listview" class="list-group" *ngIf="byesList">
+        <li class="list-group-item">Byes</li>
+        <li class="list-group-item">{{byesList}}</li>
     </ul>
-</div>
+    <div class="list-group">
+        <div *ngFor="#row of gamesList">
+            <button type="button" class="container list-group-item"
+             *ngIf="!row.isHeader" [routerLink]="['/GameDetail',{id:row.game.id}]">
+                <div class="col-xs-6">Region {{row.game.region}}, Field {{row.game.field}}</div>
+                <div class="col-xs-6 text-xs-right">{{row.game.homeTeam}} vs {{row.game.awayTeam}}</div>
+            </button>
+            <div class="list-group-item-header m-t-1" *ngIf="row.isHeader">
+                <h4>{{row.headerTime | date:'MMMdjm'}}</h4>
+            </div>
+        </div>
+        <div class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No results</div>
+    </div>
     `
 })
-class Row {
-    public headerTime: Date;
-    constructor(
-        public game: Game,
-        public isHeader: boolean
-    ) {
-        if(isHeader) {
-            this.headerTime = game.startTime;
-        }
+export default class TwoTeamsGamesListComponent implements OnChanges {
+    public byesList: String;
+    public gamesList: Row[];
+
+    @Input() games: Game[];
+
+    ngOnChanges() {
+        this.parseGamesList();
     }
-}
 
-export default class TwoTeamsGamesListComponent {
-    public byesList: String = "";
-    public gamesList: Row[] = [];
-
-    constructor(@Input() games: Game[]) {
+    parseGamesList() {
         let byes:String[] = [];
 
-        games.sort();
+        this.games.sort();
         let lastTime = new Date(0,0,0,0,0,0);
-        games.forEach(function(game: Game) {
+        this.gamesList = [];
+        this.games.forEach((game: Game) => {
             if(game.isBye()) {
-                byes.push(game.getByeOpponent());
+                byes.push(game.getTeamWithBye());
             } else {
                 if(lastTime !== game.startTime) {
-                    this.gamesList.append(new Row(game, true));
+                    //Add a date/time header
+                    this.gamesList.push(new Row(game, true));
+                    lastTime = game.startTime;
                 }
-                this.gamesList.append(new Row(game, false));
+                this.gamesList.push(new Row(game, false));
             }
         });
 
@@ -71,5 +68,25 @@ export default class TwoTeamsGamesListComponent {
 
     hasByes(): boolean {
         return (this.byesList.length === 0);
+    }
+
+    onSelect(game) {
+        console.log(game);
+    }
+}
+
+/**
+ * Utility class. Single iterable to handle both a game row
+ * and date/time headers
+ */
+class Row {
+    public headerTime: Date = null;
+    constructor(
+        public game: Game,
+        public isHeader: boolean
+    ) {
+        if(isHeader) {
+            this.headerTime = game.startTime;
+        }
     }
 }

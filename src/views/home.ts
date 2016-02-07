@@ -1,25 +1,23 @@
-import {Component, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
-import {RouteParams} from "angular2/router";
+import {Component} from 'angular2/core';
+import {RouterLink} from 'angular2/router';
+import {RouteConfig} from 'angular2/router';
+import {SchedulesMenuView} from './schedules-menu';
+import FavoritesListView from './favorites-list';
+import RegionListView from './region-list';
 
 @Component({
-    selector: 'ayso-app',
+    directives: [RouterLink],
     template: `
-<div id="home" data-role="page">
-    <img src="img/MainLogo.png" alt="AYSO Kansas" />
+    <img class="img-fluid center-block" src="/img/MainLogo.png" alt="AYSO Kansas" />
     <div class="main-buttons">
-        <a [routerLink]="['/schedules']" data-role="button">Schedules</a>
-        <a [routerLink]="['/regions']" data-role="button">Region Info</a>
-        <a [routerLink]="['/favorites']" data-role="button">My teams</a>
-        <a [routerLink]="['/twitter']" data-role="button">Cancellations</a>
-        <a [routerLink]="['/settings']" data-role="button">Settings</a>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/SchedulesMenu']">Schedules</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/RegionList']">Region Info</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/FavoritesSchedule']">My teams</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/TwitterView']">Cancellations</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/Settings']">Settings</button>
     </div>
-</div>
     `
 })
 export class HomeView {
-    constructor(
-        private _router:Router,
-        private _routeParams:RouteParams
-    ) {}
+    constructor() {}
 }
