@@ -59,8 +59,6 @@ import {ChangeDetector} from 'angular2/src/core/change_detection/interfaces';
     </article>
     `
 })
-//TODO: Enumerate selectors (as form)
-//TODO: Redo results (as links)
 class TeamSelectView {
     private teamForm:ControlGroup;
 

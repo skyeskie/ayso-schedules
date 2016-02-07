@@ -31,7 +31,6 @@ export default class MockTeamsService implements TeamsDAO {
         );
     }
 
-    //TODO: We'll need to actually set teams with region/division/gender
     findTeams(regionNumber?: String, ageString?: String, genderLong?: String): Promise<Team[]> {
         return new Promise<Team[]>(resolve => {
             resolve(this.teamsArray.filter((team:Team) => {

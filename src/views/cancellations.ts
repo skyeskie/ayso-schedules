@@ -14,7 +14,6 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     </div>
     `
 })
-//TODO: Revisit twitter widget
 export class CancellationsView implements OnInit {
     private addScript() {
         var s = document.createElement('script');

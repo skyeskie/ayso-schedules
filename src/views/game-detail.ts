@@ -54,7 +54,6 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     </article>
     `
 })
-//TODO: Switch to grab teams from Team DAO
 export default class GameDetail implements OnInit {
     public game: Game;
     public homeTeam: Team;
