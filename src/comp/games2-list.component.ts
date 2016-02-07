@@ -3,28 +3,30 @@ import {NgFor, NgIf, DatePipe} from "angular2/common";
 import {Router} from "angular2/router";
 import Game from '../models/game';
 import Team from '../models/team';
+import {RouterLink} from 'angular2/router';
 
 @Component({
     selector: 'two-teams-game-list',
-    directives: [NgFor, NgIf],
+    directives: [NgFor, NgIf, RouterLink],
     pipes: [DatePipe],
     template: `
     <ul data-role="listview" class="list-group" *ngIf="byesList">
         <li class="list-group-item">Byes</li>
         <li class="list-group-item">{{byesList}}</li>
     </ul>
-    <ul data-role="listview" class="list-group">
-        <li class="list-group-item" *ngFor="#row of gamesList">
-            <div class="container" *ngIf="!row.isHeader" (click)="onSelect(row.game)">
+    <div class="list-group">
+        <div *ngFor="#row of gamesList">
+            <button type="button" class="container list-group-item"
+             *ngIf="!row.isHeader" [routerLink]="['/GameDetail',{id:row.game.id}]">
                 <div class="col-xs-6">Region {{row.game.region}}, Field {{row.game.field}}</div>
                 <div class="col-xs-6 text-xs-right">{{row.game.homeTeam}} vs {{row.game.awayTeam}}</div>
-            </div>
-            <div class="list-group-item-header" *ngIf="row.isHeader">
+            </button>
+            <div class="list-group-item-header m-t-1" *ngIf="row.isHeader">
                 <h4>{{row.headerTime | date:'MMMdjm'}}</h4>
             </div>
-        </li>
-        <li class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No results</li>
-    </ul>
+        </div>
+        <div class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No results</div>
+    </div>
     `
 })
 export default class TwoTeamsGamesListComponent implements OnChanges {

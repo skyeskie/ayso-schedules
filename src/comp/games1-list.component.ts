@@ -15,23 +15,22 @@ import {DatePipe} from 'angular2/common';
     styles: [`.team { height: 100%; text-valign: middle}`],
     pipes: [DatePipe],
     template: `
-    <ul class="list-group">
-        <li class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No games found</li>
+    <div class="list-group">
+        <div class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No games found</div>
 
-        <li class="list-group-item" *ngFor="#game of games">
-            <div class="container">
-                <div class="col-xs-6">
-                    <h5>{{game.startTime | date:'MMMdjm'}}</h5>
-                    <div class="m-l-2">
-                        Region {{game.region}}, Field {{game.field}}
-                    </div>
+        <button type="button" class="list-group-item container"
+         *ngFor="#game of games" [routerLink]="['/GameDetail',{id:game.id}]">
+            <div class="col-xs-6">
+                <h5>{{game.startTime | date:'MMMdjm'}}</h5>
+                <div class="m-l-2">
+                    Region {{game.region}}, Field {{game.field}}
                 </div>
-                <h4 class="col-xs-5 team text-xs-center" *ngIf="team">
-                    vs {{game.getOpponent(team)}}
-                </h4>
             </div>
-        </li>
-    </ul>
+            <h4 class="col-xs-5 team text-xs-center" *ngIf="team">
+                vs {{game.getOpponent(team)}}
+            </h4>
+        </button>
+    </div>
     `
 })
 export default class SingleTeamGameListComponent implements OnInit {
