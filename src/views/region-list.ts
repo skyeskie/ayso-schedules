@@ -11,15 +11,17 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     styles: ['.region h2'],
     template: `
     <title-bar></title-bar>
-    <div class="text-xs-center">
-        <div class="region card card-block" *ngFor="#region of regions">
-            <h4 class="card-title">Region {{region.number}} - {{region.name}}</h4>
-            <button type="button" class="btn btn-secondary card-link"
-                [routerLink]="['/MapDetail', {region: region.number}]">Directions</button>
-            <button type="button" class="btn btn-secondary card-link"
-                [routerLink]="['FieldDetail', {region: region.number}]">Field Map</button>
+    <article class="container">
+        <div class="text-xs-center">
+            <div class="region card card-block" *ngFor="#region of regions">
+                <h4 class="card-title">Region {{region.number}} - {{region.name}}</h4>
+                <button type="button" class="btn btn-secondary card-link"
+                    [routerLink]="['/MapDetail', {region: region.number}]">Directions</button>
+                <button type="button" class="btn btn-secondary card-link"
+                    [routerLink]="['FieldDetail', {region: region.number}]">Field Map</button>
+            </div>
         </div>
-    </div>
+    </article>
     `
 })
 

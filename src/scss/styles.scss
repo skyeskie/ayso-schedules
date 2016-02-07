@@ -1,5 +1,4 @@
-body, div.page, #setup, #index,
-#site-header, .pageheader {
+body, ayso-app {
     max-width: 600px;
 }
 
@@ -12,29 +11,8 @@ article.container {
 
 .main-buttons {
     width: 80%;
-    margin: 10px 10%;
-
-    img {
-        margin-bottom: 1em;
-    }
 }
 
 .saved-team {
     color: #009;
-}
-
-#map_canvas {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (min--moz-device-pixel-ratio: 1.5),
-       only screen and (min-resolution: 240dpi) {
-
-    .ui-icon-star.ui-icon-alt {
-        background-image: url('../img/icons-36-yellow.png');
-        background-color: rgba(120,120,0,.6);
-    }
 }

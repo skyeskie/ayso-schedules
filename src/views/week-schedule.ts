@@ -13,8 +13,10 @@ import {Router} from 'angular2/router';
     directives: [WeekBarComponent, TwoTeamsGamesListComponent, TitleBarComponent],
     template: `
     <title-bar></title-bar>
-    <week-bar [week]="week" (weekChange)="navWeek($event)"></week-bar>
-    <two-teams-game-list [games]="games"></two-teams-game-list>
+    <article class="container">
+        <week-bar [week]="week" (weekChange)="navWeek($event)"></week-bar>
+        <two-teams-game-list [games]="games"></two-teams-game-list>
+    </article>
     `
 })
 class WeekScheduleView implements OnInit {

@@ -34,13 +34,13 @@ let AYSO_APP_ROUTES = [
         name: 'GameDetail', component: GameView},
     {path:'/regions',
         name: 'RegionList', component: RegionListView},
-    {path:'/region/:region/field',//TODO: Full implementation
+    {path:'/region/:region/field',
         name: 'FieldDetail', component: FieldMapView},
     {path:'/region/:region/map',//TODO: Fill viewport
         name: 'MapDetail', component: MapView},
     {path:'/teams',
         name: 'TeamSelect', component: TeamSelectView},
-    {path:'/team/:id',//TODO: Call and Save/Unsave functionality
+    {path:'/team/:id',
         name: 'TeamSchedule', component: TeamScheduleView},
     {path:'/week',
         name: 'CurWeekSchedule', component: WeekScheduleView},
@@ -48,7 +48,7 @@ let AYSO_APP_ROUTES = [
         name: 'WeekSchedule', component: WeekScheduleView},
     {path:'/twitter',
         name: 'TwitterView', component: CancellationsView},
-    {path:'/settings',//TODO: Bind to backend
+    {path:'/settings',
         name: 'Settings', component: SettingsView}
 ];
 

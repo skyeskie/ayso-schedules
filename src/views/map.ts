@@ -15,30 +15,22 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     ],
     template: `
     <title-bar></title-bar>
-    <h2 class="container m-a-1 text-xs-center">{{markerName}}</h2>
-    <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="13" *ngIf="isDefined()">
-        <sebm-google-map-marker [latitude]="lat" [longitude]="lng" [title]="markerName">
-        </sebm-google-map-marker>
-    </sebm-google-map>
+    <div class="container" *ngIf="region">
+        <h2 class="m-a-1 text-xs-center">Region {{region.number}} - {{region.name}}</h2>
+        <sebm-google-map [latitude]="region.lat" [longitude]="region.lon" [zoom]="13">
+            <sebm-google-map-marker
+                [latitude]="region.lat" [longitude]="region.lon" [title]="markerName">
+            </sebm-google-map-marker>
+        </sebm-google-map>
+    </div>
     `
 })
 export class MapView {
-    public lat:Number;
-    public lng:Number;
-    public markerName:String;
+    public region: Region;
 
     constructor(
         params:RouteParams
     ) {
-        let region: Region = getRegionByNumber(Number.parseInt(params.get('region'), 10));
-        this.lat = region.lat;
-        this.lng = region.lon;
-        this.markerName = "Region " + region.number;
-    }
-
-    public isDefined() {
-        return (typeof this.lat !== 'undefined')
-            && (typeof this.lng !== 'undefined')
-            && (typeof this.markerName !== 'undefined');
+        this.region = getRegionByNumber(Number.parseInt(params.get('region'), 10));
     }
 }

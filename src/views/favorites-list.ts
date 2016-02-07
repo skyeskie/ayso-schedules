@@ -14,28 +14,30 @@ import TwoTeamsGamesListComponent from '../comp/games2-list.component';
     directives: [NgFor, NgIf, RouterLink, TitleBarComponent, TwoTeamsGamesListComponent],
     template: `
     <title-bar></title-bar>
-    <h3 class="m-a-1 text-xs-center">My Teams' Schedules</h3>
-    <div class="text-xs-center">
-        <button type="button" class="btn btn-primary-outline m-x-2 m-b-2"
-            *ngFor="#team of savedTeams" [routerLink]="['/TeamSchedule', {id: team}]">
-            Team {{team}}
-        </button>
-    </div>
-
-    <two-teams-game-list [games]="gamesList">
-    </two-teams-game-list>
-
-    <div *ngIf="gamesList.length===0">
-        <h2 style='text-align: center;'>No saved teams</h2>
-        <ol>
-            <li><a [routerLink]="['/TeamSelect']">Find Team</a></li>
-            <li>Open to view team page</li>
-            <li>Click the 'Save' button in the top right</li>
-        </ol>
-        <div class='main-buttons'>
-            <a [routerLink]="['/TeamSelect']">Find Team</a>
+    <article class="container">
+        <h3 class="m-a-1 text-xs-center">My Teams' Schedules</h3>
+        <div class="text-xs-center">
+            <button type="button" class="btn btn-primary-outline m-x-2 m-b-2"
+                *ngFor="#team of savedTeams" [routerLink]="['/TeamSchedule', {id: team}]">
+                Team {{team}}
+            </button>
         </div>
-    </div>
+
+        <two-teams-game-list [games]="gamesList">
+        </two-teams-game-list>
+
+        <div *ngIf="gamesList.length===0">
+            <h2 style='text-align: center;'>No saved teams</h2>
+            <ol>
+                <li><a [routerLink]="['/TeamSelect']">Find Team</a></li>
+                <li>Open to view team page</li>
+                <li>Click the 'Save' button in the top right</li>
+            </ol>
+            <div class='main-buttons'>
+                <a [routerLink]="['/TeamSelect']">Find Team</a>
+            </div>
+        </div>
+    </article>
     `
 })
 //TODO: Decorate saved teams

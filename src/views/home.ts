@@ -9,13 +9,13 @@ import RegionListView from './region-list';
     directives: [RouterLink],
     template: `
     <img class="img-fluid center-block" src="/img/MainLogo.png" alt="AYSO Kansas" />
-    <div class="main-buttons">
+    <article class="container main-buttons">
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/SchedulesMenu']">Schedules</button>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/RegionList']">Region Info</button>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/FavoritesSchedule']">My teams</button>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/TwitterView']">Cancellations</button>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/Settings']">Settings</button>
-    </div>
+    </article>
     `
 })
 export class HomeView {

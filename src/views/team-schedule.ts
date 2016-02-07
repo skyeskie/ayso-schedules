@@ -28,7 +28,6 @@ import SettingsDAO from '../dao/settings.interface';
     </article>
   `
 })
-//TODO: Save/unsave
 class TeamScheduleView implements OnInit {
     public isTeamSaved:Boolean = false;
     public teamID:String;

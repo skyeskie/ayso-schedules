@@ -8,10 +8,10 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     <title-bar></title-bar>
     <h3 class=" text-xs-center">News and Cancellations</h3>
 
-    <div class="messages text-xs-center">
+    <article class="container text-xs-center">
         <a class="twitter-timeline" href="https://twitter.com/AYSOKS"
           data-widget-id="305786822305386496">Tweets by @AYSOKS</a>
-    </div>
+    </article>
     `
 })
 export class CancellationsView implements OnInit {
