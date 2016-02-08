@@ -8,17 +8,20 @@ import {AGES, AgeGroup} from '../cfg/ages';
 import {GENDERS, Gender} from '../cfg/gender';
 import {REGIONS, Region} from "../cfg/regions";
 
-import Division from '../models/division';
-import {WeekCacheInterface} from '../dao/week-cache.interface';
+import {checkPresent} from '../app/util';
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {GenderFormComponent} from '../comp/gender-form.component';
-import {checkPresent} from '../app/util';
+import {SettingsDAO} from '../dao/settings.interface';
+import {WeekCacheInterface} from '../dao/week-cache.interface';
+import Division from '../models/division';
 
 @Component({
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, TitleBarComponent],
     styles: [
-        'form#search select { width: 15rem; }',
-        'button[type=submit] { margin-left: 25% }'
+        '#regionSelect, #weekSelect {width: 15rem; }',
+        '#divisSelect { width: 8rem; display: inline-block; }',
+        '#genderSelect { width: 7rem; display: inline-block; }',
+        'button[type=submit] { margin-left: 25% }',
     ],
     template: `
     <title-bar></title-bar>
@@ -29,26 +32,23 @@ import {checkPresent} from '../app/util';
 
         <fieldset class="form-group row">
             <label for="regionSelect" class="form-control-label  col-sm-3">Region</label>
-            <div class="col-sm-9">
+            <div class="col-xs-9">
                 <select id="regionSelect" class="form-control" [(ngModel)]="region">
+                    <option>Any Region</option>
                     <option *ngFor="#r of regions" [value]="r.number">Region {{r.number}} {{r.name}}</option>
                 </select>
             </div>
         </fieldset>
 
         <fieldset class="form-group row">
-            <label for="divisSelect" class="form-control-label  col-sm-3">Age Group</label>
+            <label class="form-control-label  col-sm-3">Division</label>
             <div class="col-sm-9">
                 <select id="divisSelect" class="form-control" [(ngModel)]="ageGroup">
+                    <option>Any</option>
                     <option *ngFor="#age of ages" [value]="age.toString()">{{age.toString()}}</option>
                 </select>
-            </div>
-        </fieldset>
-
-        <fieldset class="form-group row">
-            <label for="genderSelect" class="form-control-label  col-sm-3">Gender</label>
-            <div class="col-sm-9">
                 <select id="genderSelect" class="form-control" [(ngModel)]="gender">
+                    <option>Any</option>
                     <option *ngFor="#g of genders" [value]="g.long">{{g.long}}</option>
                 </select>
             </div>
@@ -78,12 +78,14 @@ export class DivisionSelectView {
     public ageGroup:AgeGroup;
     public gender:Gender;
     public week:Number;
-    public region:Region;
+    public region:Number;
 
     constructor(
         private _router:Router,
         @Inject(WeekCacheInterface)
-        private _weekCache:WeekCacheInterface
+        private _weekCache:WeekCacheInterface,
+        @Inject(SettingsDAO)
+        private _settings:SettingsDAO
     ) {
         this.regions = REGIONS;
         this.ages = AGES;
@@ -98,6 +100,9 @@ export class DivisionSelectView {
 
         //Default to current week
         _weekCache.getCurrentWeek().then(cur => this.week = cur);
+
+        //Default to current region
+        _settings.getRegionNumber().then(n => this.region = n);
     }
 
     onSubmit(): void {

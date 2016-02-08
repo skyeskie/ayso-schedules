@@ -1,7 +1,8 @@
-import {provide, enableProdMode} from 'angular2/core';
-import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
+import {FORM_PROVIDERS} from 'angular2/common';
+import {enableProdMode} from 'angular2/core';
 import {HTTP_PROVIDERS} from 'angular2/http';
+import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
+import {ROUTER_PROVIDERS} from 'angular2/router';
 
 const ENV_PROVIDERS = [];
 
@@ -21,20 +22,14 @@ import {MockWeekCacheService} from '../dao/mock/MockWeekCacheService';
 import {SettingsDAO} from '../dao/settings.interface';
 import MockSettingsService from '../dao/mock/MockSettingsService';
 import {ANGULAR2_GOOGLE_MAPS_PROVIDERS} from 'angular2-google-maps/core';
+import {DataControlService} from '../dao/data-control.service';
 
 document.addEventListener('DOMContentLoaded', function main() {
     bootstrap(AppComponent, [
         ...ENV_PROVIDERS,
         ...ROUTER_PROVIDERS,
         ...ANGULAR2_GOOGLE_MAPS_PROVIDERS,
-        MockTeamsService,
-        provide(GamesDAO, { useClass: MockGamesService }),
-        provide(TeamsDAO, { useClass: MockTeamsService }),
-        provide(WeekCacheInterface, { useClass: MockWeekCacheService}),
-        provide(SettingsDAO, {
-            useClass: MockSettingsService,
-            deps: [MockTeamsService]
-        })
+        ...FORM_PROVIDERS
     ])
      .catch(err => {});
 });

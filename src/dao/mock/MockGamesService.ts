@@ -6,7 +6,7 @@ import Region from '../../models/region';
 import {checkPresent} from '../../app/util';
 
 
-export default class MockGamesService implements GamesDAO {
+class MockGamesService implements GamesDAO {
     public time1a:Date = new Date(2016, 2, 1, 8);
     public time1b:Date = new Date(2016, 2, 1, 10);
     public time2c:Date = new Date(2016, 2, 8, 12);
@@ -81,3 +81,5 @@ export default class MockGamesService implements GamesDAO {
 
     }
 }
+
+export { MockGamesService as default, MockGamesService, GamesDAO }

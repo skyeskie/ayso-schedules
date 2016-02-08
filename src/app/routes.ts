@@ -12,6 +12,7 @@ import {WeekScheduleView} from '../views/week-schedule';
 import {SchedulesMenuView} from '../views/schedules-menu';
 import SettingsView from '../views/settings';
 import {TeamSelectView} from '../views/team-select';
+import {InitialConfigurationView} from '../views/init-config';
 
 /**
  * Main routing configuration
@@ -49,7 +50,9 @@ let AYSO_APP_ROUTES = [
     {path:'/twitter',
         name: 'TwitterView', component: CancellationsView},
     {path:'/settings',
-        name: 'Settings', component: SettingsView}
+        name: 'Settings', component: SettingsView},
+    {path:'/init',
+        name: 'Init', component: InitialConfigurationView }
 ];
 
 export default AYSO_APP_ROUTES;

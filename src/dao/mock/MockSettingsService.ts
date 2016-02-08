@@ -1,15 +1,13 @@
-import SettingsDAO, {Region, Team} from '../settings.interface';
-import {getRegionByNumber} from '../../cfg/regions';
-import {REGIONS} from '../../cfg/regions';
-import MockTeamsService from './MockTeamsService';
-import {Injectable} from 'angular2/core';
-import {Inject} from 'angular2/core';
+import {Inject, Injectable} from 'angular2/core';
+
 import {TeamsDAO} from '../teams.interface';
+import SettingsDAO, {Region, Team} from '../settings.interface';
+import {REGIONS, getRegionByNumber} from '../../cfg/regions';
 
 @Injectable()
-export default class MockSettingsService implements SettingsDAO {
+class MockSettingsService implements SettingsDAO {
     constructor(
-        @Inject(MockTeamsService)
+        @Inject(TeamsDAO)
         private dao: TeamsDAO
     ) {}
 
@@ -75,3 +73,5 @@ export default class MockSettingsService implements SettingsDAO {
     }
 
 }
+
+export { MockSettingsService as default, MockSettingsService, SettingsDAO }

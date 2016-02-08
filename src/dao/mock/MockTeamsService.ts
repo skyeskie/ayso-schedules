@@ -1,8 +1,8 @@
-import TeamsDAO, {Team, Region, Division} from '../teams.interface';
+import TeamsDAO, {Team, Division} from '../teams.interface';
 import {Gender} from '../../cfg/gender';
 import {checkPresent} from '../../app/util';
 
-export default class MockTeamsService implements TeamsDAO {
+class MockTeamsService implements TeamsDAO {
     public teams: Map<String,Team> = new Map<String,Team>();
     public teamsArray: Team[] = [
         new Team('A', 'coachA', 'telA', Division.fromString('U10B'), 49),
@@ -61,3 +61,5 @@ export default class MockTeamsService implements TeamsDAO {
         console.log("Called UPDATE(" + force + ")");
     }
 }
+
+export { MockTeamsService as default, MockTeamsService, TeamsDAO, Team }
