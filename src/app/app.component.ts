@@ -11,6 +11,21 @@ import {CanActivate} from 'angular2/router';
 import {OnActivate} from 'angular2/router';
 import {OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
+import {HomeView} from '../views/home';
+
+@Component({
+    directives: [ROUTER_DIRECTIVES],
+    template: `<router-outlet></router-outlet>`
+})
+@RouteConfig(AYSO_APP_ROUTES)
+@CanActivate((to,from) => {
+    console.log('RoutingHook CanActivate');
+    console.log(from);
+    return true;
+})
+class RoutingHook {
+
+}
 
 @Component({
     selector: 'ayso-app',
@@ -28,20 +43,16 @@ import {Router} from 'angular2/router';
       <router-outlet></router-outlet>
     </main>`
 })
-@RouteConfig(AYSO_APP_ROUTES)
+@RouteConfig([{path:'...', useAsDefault: true, name: 'Root', component: RoutingHook}])
 @CanActivate((to,from) => {
-    console.log(to);
+    console.log('Root CanActivate');
     console.log(from);
-    console.log(this);
     return true;
-    //Looks like will need to override Router here:
-    //https://github.com/angular/angular/blob/4f1f29d7d24ee24c5fdbf3838d602dde48b8e40f/modules/angular2/src/router/router.ts#L146-L182
 })
 class AppComponent {
     constructor(private router:Router) {
         router.subscribe(v => console.log(v));
     }
 }
-
 
 export { AppComponent, AppComponent as default }

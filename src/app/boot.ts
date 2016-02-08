@@ -23,13 +23,17 @@ import {SettingsDAO} from '../dao/settings.interface';
 import MockSettingsService from '../dao/mock/MockSettingsService';
 import {ANGULAR2_GOOGLE_MAPS_PROVIDERS} from 'angular2-google-maps/core';
 import {DataControlService} from '../dao/data-control.service';
+import {provide} from 'angular2/core';
+import {LocationStrategy} from 'angular2/router';
+import {HashLocationStrategy} from 'angular2/router';
 
 document.addEventListener('DOMContentLoaded', function main() {
     bootstrap(AppComponent, [
         ...ENV_PROVIDERS,
         ...ROUTER_PROVIDERS,
         ...ANGULAR2_GOOGLE_MAPS_PROVIDERS,
-        ...FORM_PROVIDERS
+        ...FORM_PROVIDERS,
+        provide(LocationStrategy, {useClass: HashLocationStrategy})
     ])
      .catch(err => {});
 });
