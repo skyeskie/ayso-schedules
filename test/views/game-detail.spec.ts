@@ -2,26 +2,29 @@ import {
     describe,
     beforeEach,
     beforeEachProviders,
+    fdescribe,
     it,
     inject,
     injectAsync,
-    TestComponentBuilder
+    TestComponentBuilder,
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
-import {MockRouter, Router} from '../mocks/Router';
-import {MockRouterLink, RouterLink} from '../mocks/RouterLink';
 import GameDetail from '../../src/views/game-detail';
-import {RouteParams} from 'angular2/router';
-import MockGamesService from '../../src/dao/mock/MockGamesService';
-import MockTeamsService from '../../src/dao/mock/MockTeamsService';
+import {GamesDAO, MockGamesService} from '../../src/dao/mock/MockGamesService';
+import {TeamsDAO, MockTeamsService} from '../../src/dao/mock/MockTeamsService';
+import {TitleBarComponent} from '../../src/comp/title-bar.component';
+import {MOCK_ROUTER_PROVIDERS, MockComponent, RouteParams } from '../mocks/router';
 
-xdescribe('GameDetailView', () => {
-    beforeEachProviders([
-        GameDetail, { deps: [Router, RouteParams, MockGamesService, MockTeamsService]},
-        provide(Router, { useClass: MockRouter }),
-        provide(RouteParams, { useValue: { 'id': 1 }}),
-        MockGamesService,
-        MockTeamsService
+
+
+describe('GameDetailView', () => {
+    beforeEachProviders(() => [
+        provide(TitleBarComponent, { useClass: MockComponent }),
+        ...MOCK_ROUTER_PROVIDERS,
+
+        provide(GamesDAO, {useClass: MockGamesService}),
+        provide(TeamsDAO, {useClass: MockTeamsService}),
+        provide(GameDetail, {deps: [RouteParams, GamesDAO, TeamsDAO]}),
     ]);
 
     it('has a defined rendering', injectAsync([TestComponentBuilder], (tcb) => {

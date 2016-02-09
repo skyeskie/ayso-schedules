@@ -1,11 +1,10 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
-import {RouteParams} from "angular2/router";
+import {RouteParams} from 'angular2/router';
 import {DatePipe} from 'angular2/common';
 
 import Game from '../models/game';
 import Team from '../models/team';
-import GamesDAO from "../dao/games.interface";
+import GamesDAO from '../dao/games.interface';
 import {TeamsDAO} from '../dao/teams.interface';
 import {Inject} from 'angular2/core';
 import {TitleBarComponent} from '../comp/title-bar.component';
@@ -52,7 +51,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
             </button>
         </div>
     </article>
-    `
+    `,
 })
 export default class GameDetail implements OnInit {
     public game: Game;
@@ -60,7 +59,6 @@ export default class GameDetail implements OnInit {
     public awayTeam: Team;
 
     constructor(
-        private _router:Router,
         private _routeParams:RouteParams,
         @Inject(GamesDAO)
         private _games:GamesDAO,
@@ -75,16 +73,5 @@ export default class GameDetail implements OnInit {
             this._teams.getTeam(game.homeTeam).then(t => this.homeTeam = t);
             this._teams.getTeam(game.awayTeam).then(t => this.awayTeam = t);
         });
-    }
-
-    gotoMap() {
-        this._router.navigate(['/map', { region: this.game.region }]);
-    }
-
-    gotoField() {
-        this._router.navigate(['/field', {
-            region: this.game.region,
-            field: this.game.field
-        }]);
     }
 }
