@@ -25,7 +25,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     </article>
     `,
 })
-export class DivisionListView {
+export class SearchResultsView {
     //Only used for displaying filter
     public params:{week?:Number,region?:Number,gender?:String,age?:String} = {};
 

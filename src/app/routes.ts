@@ -5,8 +5,8 @@ import RegionListView from '../views/region-list';
 import FieldMapView from '../views/field-map';
 import {HomeView} from '../views/home';
 import FavoritesListView from '../views/favorites-list';
-import {DivisionListView} from '../views/division-list';
-import {DivisionSelectView} from '../views/division-select';
+import {SearchResultsView} from '../views/search-results';
+import {SearchView} from '../views/search';
 import {CancellationsView} from '../views/cancellations';
 import {MapView} from '../views/map';
 import {TeamScheduleView} from '../views/team-schedule';
@@ -30,9 +30,9 @@ let AYSO_APP_ROUTES = [
     {path:'/favorites',
         name: 'FavoritesSchedule', component: FavoritesListView},
     {path:'/search',
-        name: 'DivisionSelect', component: DivisionSelectView},
+        name: 'DivisionSelect', component: SearchView},
     {path:'/search/week/:week/results',
-        name: 'DivisionSchedule', component: DivisionListView},
+        name: 'DivisionSchedule', component: SearchResultsView},
     {path:'/game/:id',
         name: 'GameDetail', component: GameView},
     {path:'/regions',

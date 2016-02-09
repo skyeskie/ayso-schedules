@@ -67,7 +67,7 @@ import Division from '../models/division';
     </article>
    `,
 })
-export class DivisionSelectView {
+export class SearchView {
     //Iterated lists
     public regions:Region[];
     public ages:AgeGroup[];
