@@ -5,7 +5,7 @@ import {
     it,
     inject,
     injectAsync,
-    TestComponentBuilder
+    TestComponentBuilder,
 } from 'angular2/testing';
 import {HomeView} from '../../src/views/home';
 import {provide} from 'angular2/core';

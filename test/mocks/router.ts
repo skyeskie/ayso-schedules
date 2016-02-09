@@ -56,5 +56,4 @@ let MOCK_ROUTER_PROVIDERS = [
     provide(ApplicationRef, { useClass: MockApplicationRef }),
 ];
 
-
 export { Router, MockRouter, MOCK_ROUTER_PROVIDERS, RouteParams, MockComponent }

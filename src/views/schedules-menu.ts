@@ -17,7 +17,7 @@ import {Inject} from 'angular2/core';
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['DivisionSelect']" data-role="button">Advanced Search</button>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['FavoritesSchedule']" data-role="button">My teams</button>
     </article>
-    `
+    `,
 })
 class SchedulesMenuView {
     public regionNum:Number;

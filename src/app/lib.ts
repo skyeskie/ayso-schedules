@@ -2,6 +2,8 @@
  * Defines library files for creating a library bundle
  */
 
+/* tslint:disable:no-string-literal no-require-imports */
+
 // Polyfills
 import 'es6-shim';
 // (these modules are what are in 'angular2/bundles/angular2-polyfills' so don't use that here)

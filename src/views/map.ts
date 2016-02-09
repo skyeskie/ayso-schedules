@@ -11,7 +11,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     directives: [ANGULAR2_GOOGLE_MAPS_DIRECTIVES, NgIf, TitleBarComponent],
     styles: [
         '.sebm-google-map-container { height: 400px; }',
-        '.container h2 { font: 2em; }'
+        '.container h2 { font: 2em; }',
     ],
     template: `
     <title-bar></title-bar>
@@ -23,7 +23,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
             </sebm-google-map-marker>
         </sebm-google-map>
     </div>
-    `
+    `,
 })
 export class MapView {
     public region: Region;

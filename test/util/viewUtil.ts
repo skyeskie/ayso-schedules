@@ -1,4 +1,4 @@
-import {BrowserDomAdapter} from "angular2/src/platform/browser/browser_adapter";
+import {BrowserDomAdapter} from 'angular2/src/platform/browser/browser_adapter';
 BrowserDomAdapter.makeCurrent();
 
 import {
@@ -7,7 +7,7 @@ import {
     beforeEachProviders,
     it,
     inject,
-    injectAsync
+    injectAsync,
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
 import {MockRouterLink, RouterLink} from '../mocks/RouterLink';

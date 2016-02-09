@@ -8,7 +8,7 @@ import AYSO_APP_ROUTES from './routes';
     template: `
     <main>
       <router-outlet></router-outlet>
-    </main>`
+    </main>`,
 })
 @RouteConfig(AYSO_APP_ROUTES)
 class AppComponent {}

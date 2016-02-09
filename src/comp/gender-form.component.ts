@@ -21,7 +21,7 @@ import {FormBuilder} from 'angular2/common';
             {{gender.long}}
         </label>
     </form>
-    `
+    `,
 })
 export class GenderFormComponent implements AfterViewInit {
     public genders: Gender[] = GENDERS;

@@ -22,7 +22,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
             </div>
         </div>
     </article>
-    `
+    `,
 })
 
 export default class RegionListView {

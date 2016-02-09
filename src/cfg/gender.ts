@@ -10,9 +10,9 @@ class Gender {
 }
 
 let GENDERS: Gender[] = [
-    new Gender("B", "Boys"),
-    new Gender("G", "Girls"),
-    new Gender("C", "Coed")
+    new Gender('B', 'Boys'),
+    new Gender('G', 'Girls'),
+    new Gender('C', 'Coed'),
 ];
 
 function findGenderByCode(code: String): Gender {

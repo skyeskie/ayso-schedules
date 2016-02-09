@@ -1,9 +1,9 @@
+import {NgIf} from 'angular2/common';
 import {Component, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
-import {RouteParams} from "angular2/router";
+import {Router, RouteParams} from 'angular2/router';
+
 import {REGIONS, getRegionByNumber, Region} from '../cfg/regions';
 import {TitleBarComponent} from '../comp/title-bar.component';
-import {NgIf} from 'angular2/common';
 
 @Component({
     directives: [TitleBarComponent, NgIf],
@@ -20,7 +20,7 @@ import {NgIf} from 'angular2/common';
             </div>
         </div>
     </article>
-    `
+    `,
 })
 export default class FieldMapView implements OnInit {
     public id;
@@ -32,7 +32,7 @@ export default class FieldMapView implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.id = this._routeParams.get("region");
+        this.id = this._routeParams.get('region');
         this.region = getRegionByNumber(parseInt(this.id, 10));
     }
 

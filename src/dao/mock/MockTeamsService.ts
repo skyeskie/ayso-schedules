@@ -54,11 +54,11 @@ class MockTeamsService implements TeamsDAO {
     }
 
     reset(): void {
-        console.log("Called RESET");
+        console.log('Called RESET');
     }
 
     update(force: boolean): void {
-        console.log("Called UPDATE(" + force + ")");
+        console.log('Called UPDATE(' + force + ')');
     }
 }
 

@@ -15,8 +15,6 @@ import {TeamsDAO, MockTeamsService} from '../../src/dao/mock/MockTeamsService';
 import {TitleBarComponent} from '../../src/comp/title-bar.component';
 import {MOCK_ROUTER_PROVIDERS, MockComponent, RouteParams } from '../mocks/router';
 
-
-
 describe('GameDetailView', () => {
     beforeEachProviders(() => [
         provide(TitleBarComponent, { useClass: MockComponent }),

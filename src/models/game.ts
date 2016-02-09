@@ -1,8 +1,8 @@
-import Team from "./team";
+import Team from './team';
 import Division from './division';
 
 export default class Game {
-    public static BYE_TEAM = "{BYE}";
+    public static BYE_TEAM = '{BYE}';
 
     constructor(
         public id:String,
@@ -24,7 +24,7 @@ export default class Game {
             return this.homeTeam;
         }
 
-        if(myTeamId === this.homeTeam){
+        if(myTeamId === this.homeTeam) {
             return this.awayTeam;
         }
 

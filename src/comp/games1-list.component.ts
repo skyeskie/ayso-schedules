@@ -1,13 +1,9 @@
-import {Component, Input, OnInit} from "angular2/core";
-import {Router} from "angular2/router";
+import {Component, Input, Inject, OnInit, Optional} from 'angular2/core';
+import {NgFor, DatePipe} from 'angular2/common';
+import {Router, RouterLink} from 'angular2/router';
+
 import Game from '../models/game';
-import {NgFor} from 'angular2/common';
-import {RouterLink} from 'angular2/router';
-import {Optional} from 'angular2/core';
 import {GamesDAO} from '../dao/games.interface';
-import {Inject} from 'angular2/core';
-import {OnChanges} from 'angular2/core';
-import {DatePipe} from 'angular2/common';
 
 @Component({
     selector: 'single-team-game-list',
@@ -31,7 +27,7 @@ import {DatePipe} from 'angular2/common';
             </h4>
         </button>
     </div>
-    `
+    `,
 })
 export default class SingleTeamGameListComponent implements OnInit {
     @Optional()

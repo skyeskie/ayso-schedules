@@ -16,8 +16,8 @@ import RegionListView from './region-list';
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/TwitterView']">Cancellations</button>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/Settings']">Settings</button>
     </article>
-    `
+    `,
 })
 export class HomeView {
-    constructor() {}
+    //HomeView
 }

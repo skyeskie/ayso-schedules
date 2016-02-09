@@ -1,19 +1,18 @@
 import {
     Component, Input, Inject, Injectable,
-    EventEmitter, OnInit, Output
+    EventEmitter, OnInit, Output,
 } from 'angular2/core';
-import WeekCacheInterface from "../dao/week-cache.interface";
-import {NgIf} from "angular2/common";
-import {MockWeekCacheService} from '../dao/mock/MockWeekCacheService';
+import {NgIf} from 'angular2/common';
 
-const ONE:number =1;
+import {MockWeekCacheService} from '../dao/mock/MockWeekCacheService';
+import WeekCacheInterface from '../dao/week-cache.interface';
+
+const ONE = 1;
 
 @Component({
     selector: 'week-bar',
     directives: [NgIf],//TODO: Change from NgIf to NgStyle with invisible
-    styles: [
-        "nav span { font: 2em bold; }"
-    ],
+    styles: ['nav span { font: 2em bold; }'],
     template: `
      <nav class="navbar navbar-light text-xs-center">
         <button type="button" class="btn btn-primary-outline nav-item nav-link pull-xs-left"
@@ -22,7 +21,7 @@ const ONE:number =1;
         <button type="button" class="btn btn-primary-outline nav-item nav-link pull-xs-right"
             *ngIf="showNext()" (click)="changeNext()">Next</button>
     </nav>
-    `
+    `,
 })
 @Injectable()
 export default class WeekBarComponent implements OnInit {

@@ -1,10 +1,9 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
-import {RouteParams} from "angular2/router";
+import {Router, RouteParams} from 'angular2/router';
+
 import GamesDAO, { Game, Division } from '../games.interface';
 import Region from '../../models/region';
 import {checkPresent} from '../../app/util';
-
 
 class MockGamesService implements GamesDAO {
     public time1a:Date = new Date(2016, 2, 1, 8);
@@ -17,7 +16,7 @@ class MockGamesService implements GamesDAO {
         new Game('121','A','C', 1, this.time1b, '49', 'map', Division.fromString('U10B')),
         new Game('122','B','D', 1, this.time1b, '49', 'map2', Division.fromString('U10B')),
         new Game('231','A','D', 2, this.time2c, '208', 'map', Division.fromString('U10B')),
-        new Game('232','C','B', 2, this.time2c, '208', 'map2', Division.fromString('U10B'))
+        new Game('232','C','B', 2, this.time2c, '208', 'map2', Division.fromString('U10B')),
     ];
 
     getGame(id: String): Promise<Game> {
@@ -51,11 +50,8 @@ class MockGamesService implements GamesDAO {
                     return false;
                 }
 
-                if(checkPresent(gender) && gender !== game.divis.gender.long) {
-                    return false;
-                }
-
-                return true;
+                return !(checkPresent(gender) && gender !== game.divis.gender.long
+                );
             }))
         );
     }
@@ -74,11 +70,11 @@ class MockGamesService implements GamesDAO {
     }
 
     reset(): void {
-
+        //No-op
     }
 
     update(force: boolean): void {
-
+        //No-op
     }
 }
 

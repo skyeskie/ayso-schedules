@@ -6,14 +6,14 @@ import {
     it,
     inject,
     injectAsync,
-    TestComponentBuilder
+    TestComponentBuilder,
 } from 'angular2/testing';
 
 import {REGIONS, getRegionById, getRegionByNumber, Region} from '../../src/cfg/regions';
 
 describe('Model: Region', () => {
     it('should construct correctly', () => {
-        let r = new Region(1, 2, "foo", "bar", 3, 4);
+        let r = new Region(1, 2, 'foo', 'bar', 3, 4);
         expect(r.id).toBe(1);
         expect(r.number).toBe(2);
         expect(r.name).toBe('foo');
@@ -24,7 +24,7 @@ describe('Model: Region', () => {
 
     describe('getRegionByNumber', () => {
         it('should throw for invalid lookup', () => {
-            expect(() => { getRegionByNumber(9999) }).toThrowError(RangeError);
+            expect(() => { getRegionByNumber(9999); }).toThrowError(RangeError);
         });
 
         it('should return a lookup', () => {
@@ -35,7 +35,7 @@ describe('Model: Region', () => {
 
     describe('getRegionById', () => {
         it('should throw for invalid lookup', () => {
-            expect(() => { getRegionById(9999) }).toThrowError(RangeError);
+            expect(() => { getRegionById(9999); }).toThrowError(RangeError);
         });
 
         it('should return a lookup', () => {
@@ -62,6 +62,6 @@ describe('Model: Region', () => {
     });
 
     xdescribe('configuration', () => {
-        //TODO: Validate configuration (map exists, coords in range, number formats, etc)
+        //TODO: Validate configuration (map exists, coordinates in range, number formats, etc)
     });
 });

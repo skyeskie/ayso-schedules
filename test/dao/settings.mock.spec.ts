@@ -2,7 +2,7 @@ import {
     describe,
     beforeEachProviders,
     inject,
-    it
+    it,
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
 
@@ -13,7 +13,7 @@ import {TeamsDAO, MockTeamsService} from '../../src/dao/mock/MockTeamsService';
 describe('DAO: SettingsMock', () => {
     beforeEachProviders(() => [
         MockSettingsService,
-        provide(TeamsDAO, {useClass: MockTeamsService})
+        provide(TeamsDAO, {useClass: MockTeamsService}),
     ]);
 
     it('is configured after region is set', inject([MockSettingsService], dao => {

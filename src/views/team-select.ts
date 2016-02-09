@@ -57,16 +57,16 @@ import {ChangeDetector} from 'angular2/src/core/change_detection/interfaces';
         </div>
     </form>
     </article>
-    `
+    `,
 })
 class TeamSelectView {
     private teamForm:ControlGroup;
 
     //Iterated lists
-    public teams: Team[];
-    public regions:Region[];
-    public ages:AgeGroup[];
-    public genders:Gender[];
+    private teams: Team[];
+    private regions:Region[];
+    private ages:AgeGroup[];
+    private genders:Gender[];
 
     constructor(
         private _router:Router,
@@ -79,9 +79,9 @@ class TeamSelectView {
         this.genders = GENDERS;
         //Create form controls
         this.teamForm = fb.group({
-            age: null,
-            gender: null,
-            region: null,
+            age: undefined,
+            gender: undefined,
+            region: undefined,
         });
 
         this.teamForm.valueChanges.subscribe(data => console.log(data));

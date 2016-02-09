@@ -1,6 +1,6 @@
 import {OpaqueToken} from 'angular2/core';
-interface WeekCacheInterface
-{
+
+interface WeekCacheInterface {
     getMaxWeeks(): Promise<Number>;
 
     getCurrentWeek(): Promise<Number>;
@@ -10,6 +10,6 @@ interface WeekCacheInterface
     update(force: boolean): void;
 }
 
-var WeekCacheInterface = new OpaqueToken("WeekCacheInterface");
+var WeekCacheInterface = new OpaqueToken('WeekCacheInterface');
 
 export {WeekCacheInterface as default, WeekCacheInterface}

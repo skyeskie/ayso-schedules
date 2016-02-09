@@ -7,7 +7,7 @@ import {
     inject,
     injectAsync,
     TestComponentBuilder,
-    xit
+    xit,
 } from 'angular2/testing';
 
 import {AGES, getAgeGroupByCutoff, AgeGroup} from '../../src/cfg/ages';
@@ -27,7 +27,7 @@ describe('Model: AgeGroup', () => {
 
     describe('getAgeGroupByCutoff', () => {
         it('should throw for invalid lookup', () => {
-            expect(() => { getAgeGroupByCutoff(-10) }).toThrowError(RangeError)
+            expect(() => { getAgeGroupByCutoff(-10); }).toThrowError(RangeError);
         });
 
         it('should return a lookup', () => {

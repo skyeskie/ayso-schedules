@@ -49,7 +49,7 @@ import {FORM_DIRECTIVES} from 'angular2/common';
         </div>
     </form>
     </article>
-    `
+    `,
 })
 @Injectable()
 export default class SettingsView {

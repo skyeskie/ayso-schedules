@@ -1,9 +1,11 @@
+/* tslint:disable:no-any */
+
 import {CONST_EXPR} from 'angular2/src/facade/lang';
 import {Provider, ApplicationRef, Inject, Type} from 'angular2/core';
 import {RootRouter} from 'angular2/src/router/router';
 import {
     Router, RouteRegistry, Instruction,
-    Location, ROUTER_PRIMARY_COMPONENT
+    Location, ROUTER_PRIMARY_COMPONENT,
 } from 'angular2/router';
 
 import {SettingsDAO} from '../dao/settings.interface';
@@ -12,7 +14,7 @@ import {DataControlService} from '../dao/data-control.service';
 //Constructor requires super() to be called ahead of object-level instantiation
 //Need settings and (appIsConfigured) to be present before super(), so moving to module scope
 let settings:SettingsDAO;
-let appIsConfigured:boolean = false;
+let appIsConfigured = false;
 function executeIntercept(url:string):boolean {
     if(appIsConfigured) {
         return false;
@@ -36,7 +38,7 @@ class InterceptRootRouter extends RootRouter {
         return super.navigate(linkParams);
     }
 
-    navigateByUrl(url: string, _skipLocationChange: boolean = false): Promise<any> {
+    navigateByUrl(url: string, _skipLocationChange = false): Promise<any> {
         if(executeIntercept(url)) {
             return this.navigateToInit(url);
         }
@@ -55,14 +57,13 @@ function interceptRouterFactory(registry, location, primaryComponent, appRef, se
     return rootRouter;
 }
 
-
 const INTERCEPT_ROUTER_PROVIDER = CONST_EXPR(
     new Provider(Router,
     {
         useFactory: interceptRouterFactory,
         deps: CONST_EXPR([
             RouteRegistry, Location, ROUTER_PRIMARY_COMPONENT, ApplicationRef, SettingsDAO
-        ])
+        ]),
     }
 ));
 

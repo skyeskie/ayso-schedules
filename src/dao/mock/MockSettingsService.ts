@@ -13,7 +13,7 @@ class MockSettingsService implements SettingsDAO {
 
     public teams = new Set<String>(['A','C']);
 
-    public region:Number = null;
+    public region:Number = undefined;
 
     getSavedTeamIDs(): Promise<String[]> {
         return new Promise<String[]>(resolve => {
@@ -68,11 +68,11 @@ class MockSettingsService implements SettingsDAO {
     }
 
     isAppConfigured() {
-        return this.region !== null;
+        return typeof this.region !== 'undefined';
     }
 
     reset(): void {
-        this.region = null;
+        this.region = undefined;
         this.teams = new Set<String>(['A','C']);
     }
 

@@ -1,7 +1,9 @@
-import GameView from "../views/game-detail";
-import RegionListView from "../views/region-list";
-import FieldMapView from "../views/field-map";
-import {HomeView} from "../views/home";
+/* tslint:disable:trailing-comma */
+
+import GameView from '../views/game-detail';
+import RegionListView from '../views/region-list';
+import FieldMapView from '../views/field-map';
+import {HomeView} from '../views/home';
 import FavoritesListView from '../views/favorites-list';
 import {DivisionListView} from '../views/division-list';
 import {DivisionSelectView} from '../views/division-select';
@@ -52,7 +54,7 @@ let AYSO_APP_ROUTES = [
     {path:'/settings',
         name: 'Settings', component: SettingsView},
     {path:'/init',
-        name: 'Init', component: InitialConfigurationView }
+        name: 'Init', component: InitialConfigurationView },
 ];
 
 export default AYSO_APP_ROUTES;

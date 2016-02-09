@@ -6,7 +6,7 @@ import {
     it,
     inject,
     injectAsync,
-    TestComponentBuilder
+    TestComponentBuilder,
 } from 'angular2/testing';
 import Division from '../../src/models/division';
 import {GENDERS} from '../../src/cfg/gender';
@@ -18,7 +18,7 @@ describe('Model: Division', () => {
         expect(divis.getDisplayName()).toBe('U19 Boys');
 
         let divis2 = new Division(GENDERS[1], AGES[3]);
-        expect(divis2.getDisplayName()).toBe('U12 Girls')
+        expect(divis2.getDisplayName()).toBe('U12 Girls');
     });
 
     describe('fromString', () => {
@@ -33,16 +33,16 @@ describe('Model: Division', () => {
         });
 
         it('should throw an error on invalid age portion', () => {
-            expect(() => { Division.fromString('U42B') }).toThrowError(RangeError);
+            expect(() => { Division.fromString('U42B'); }).toThrowError(RangeError);
         });
 
         it('should throw an error on invalid gender portion', () => {
-            expect(() => { Division.fromString('U42Z') }).toThrowError(RangeError);
+            expect(() => { Division.fromString('U42Z'); }).toThrowError(RangeError);
         });
 
         it('should throw an error on invalid format', () => {
             console.log('B10 check');
-            expect(() => { Division.fromString('B10') }).toThrowError(RangeError);
-        })
+            expect(() => { Division.fromString('B10'); }).toThrowError(RangeError);
+        });
     });
 });

@@ -7,7 +7,7 @@ var AGES: AgeGroup[] = [
     new AgeGroup(4, 12),
     new AgeGroup(5, 10),
     new AgeGroup(6, 8),
-    new AgeGroup(7, 6)
+    new AgeGroup(7, 6),
 ];
 
 function getAgeGroupByCutoff(cutoff: Number) {

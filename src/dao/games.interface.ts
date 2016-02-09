@@ -1,7 +1,7 @@
 import {Injectable} from 'angular2/core';
-import Game from "../models/game";
-import Division from "../models/division";
-import Gender from "../cfg/gender";
+import Game from '../models/game';
+import Division from '../models/division';
+import Gender from '../cfg/gender';
 import {OpaqueToken} from 'angular2/core';
 import {AgeGroup} from '../models/ageGroup';
 
@@ -55,5 +55,5 @@ interface GamesDAO {
     update(force: boolean): void;
 }
 
-var GamesDAO = new OpaqueToken("GamesDAO");
+var GamesDAO = new OpaqueToken('GamesDAO');
 export { GamesDAO as default, GamesDAO, Game, Division, Gender }

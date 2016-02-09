@@ -1,5 +1,5 @@
 import Team from '../models/team';
-import Region from "../models/region";
+import Region from '../models/region';
 import {OpaqueToken} from 'angular2/core';
 
 interface SettingsDAO {
@@ -46,7 +46,6 @@ interface SettingsDAO {
      * @function getRegionNumber
      * @desc Gets the saved region number
      * @returns {String} the region ID
-     * @deprecated - use getRegionNumber
      */
     getRegion(): Promise<Region>;
 
@@ -62,5 +61,5 @@ interface SettingsDAO {
     reset(): void;
 }
 
-var SettingsDAO = new OpaqueToken("SettingsDAO");
+var SettingsDAO = new OpaqueToken('SettingsDAO');
 export {SettingsDAO as default, SettingsDAO, Region, Team};

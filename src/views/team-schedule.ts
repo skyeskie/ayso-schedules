@@ -10,7 +10,7 @@ import SettingsDAO from '../dao/settings.interface';
 
 @Component({
     directives: [SingleTeamGameListComponent, TitleBarComponent, NgIf],
-    styles: ["h4.card-text { display: inline; }"],
+    styles: ['h4.card-text { display: inline; }'],
     template: `
     <title-bar></title-bar>
     <article class="container">
@@ -26,7 +26,7 @@ import SettingsDAO from '../dao/settings.interface';
 
         <single-team-game-list [games]="games" [team]="teamID"></single-team-game-list>
     </article>
-  `
+  `,
 })
 class TeamScheduleView implements OnInit {
     public isTeamSaved:Boolean = false;
@@ -67,7 +67,7 @@ class TeamScheduleView implements OnInit {
     }
 
     getSavedToggleText() {
-        return (this.isTeamSaved) ? "Unsave" : "Save";
+        return (this.isTeamSaved) ? 'Unsave' : 'Save';
     }
 }
 

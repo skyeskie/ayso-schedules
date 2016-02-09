@@ -1,15 +1,16 @@
 import {Component, OnInit, Inject} from 'angular2/core';
-import {Router, RouteParams} from "angular2/router";
+import {Router, RouteParams} from 'angular2/router';
+import {NgIf} from 'angular2/common';
 
-import {Region, getRegionByNumber} from "../cfg/regions";
-import Game from "../models/game";
-import Division from "../models/division";
-import WeekBarComponent from "../comp/week-bar.component";
-import TwoTeamsGamesListComponent from "../comp/games2-list.component";
-import {NgIf} from "angular2/common";
+import {Region, getRegionByNumber} from '../cfg/regions';
+import Game from '../models/game';
+import Division from '../models/division';
 import GamesDAO from '../dao/games.interface';
 import {AgeGroup} from '../models/ageGroup';
 import {Gender} from '../cfg/gender';
+
+import WeekBarComponent from '../comp/week-bar.component';
+import TwoTeamsGamesListComponent from '../comp/games2-list.component';
 import {TitleBarComponent} from '../comp/title-bar.component';
 
 @Component({
@@ -22,7 +23,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
         <week-bar [week]="params.week"(weekChange)="navWeek($event)"></week-bar>
         <two-teams-game-list [games]="games"></two-teams-game-list>
     </article>
-    `
+    `,
 })
 export class DivisionListView {
     //Only used for displaying filter

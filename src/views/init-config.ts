@@ -2,7 +2,7 @@ import {Component, OnInit} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 import {
     NgFor, FORM_DIRECTIVES,
-    ControlGroup, FormBuilder, Control, Validators
+    ControlGroup, FormBuilder, Control, Validators,
 } from 'angular2/common';
 
 import {DataControlService} from '../dao/data-control.service';
@@ -12,7 +12,7 @@ import {REGIONS, Region} from '../cfg/regions';
     directives: [NgFor, FORM_DIRECTIVES],
     styles: [
         '.form-group label { font: 1.6rem bold }',
-        'div.alert.container { font: 0.7rem; }'
+        'div.alert.container { font: 0.7rem; }',
     ],
     template: `
     <article class="container">
@@ -53,7 +53,7 @@ import {REGIONS, Region} from '../cfg/regions';
             </div>
         </form>
     </article>
-    `
+    `,
 })
 //TODO: Figure out how to route here on first load
 //TODO: Rework as form and save values
@@ -68,7 +68,7 @@ class InitialConfigurationView {
 
     /**
      * Sets the status message in the template
-     * @param title - Bolded prefix
+     * @param title - Bold prefix
      * @param msg - Content set in the message
      * @param statusClass - CSS class applied to the outer div
      * Recommended to use one of Bootstrap 4 `alert-*` classes
@@ -86,7 +86,7 @@ class InitialConfigurationView {
         private fb:FormBuilder
     ) {
         this.regions = REGIONS;
-        //Start DAO background intialization
+        //Start DAO background initialization
         this.setStatus('Status', 'Setting up data', 'alert-info');
         daos.init().then(() => this.finishDataInit(this), e => this.error(e));
 

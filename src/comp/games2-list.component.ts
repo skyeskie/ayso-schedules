@@ -1,9 +1,8 @@
-import {Component, Input, OnChanges} from "angular2/core";
-import {NgFor, NgIf, DatePipe} from "angular2/common";
-import {Router} from "angular2/router";
+import {Component, Input, OnChanges} from 'angular2/core';
+import {NgFor, NgIf, DatePipe} from 'angular2/common';
+import {Router, RouterLink} from 'angular2/router';
 import Game from '../models/game';
 import Team from '../models/team';
-import {RouterLink} from 'angular2/router';
 
 @Component({
     selector: 'two-teams-game-list',
@@ -27,7 +26,7 @@ import {RouterLink} from 'angular2/router';
         </div>
         <div class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No results</div>
     </div>
-    `
+    `,
 })
 export default class TwoTeamsGamesListComponent implements OnChanges {
     public byesList: String;
@@ -59,7 +58,7 @@ export default class TwoTeamsGamesListComponent implements OnChanges {
         });
 
         byes.sort();
-        this.byesList = byes.join(",");
+        this.byesList = byes.join(',');
     }
 
     hasNoResults(): boolean {
@@ -80,7 +79,7 @@ export default class TwoTeamsGamesListComponent implements OnChanges {
  * and date/time headers
  */
 class Row {
-    public headerTime: Date = null;
+    public headerTime: Date = undefined;
     constructor(
         public game: Game,
         public isHeader: boolean

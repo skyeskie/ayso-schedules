@@ -5,7 +5,7 @@ import {
     it,
     inject,
     injectAsync,
-    TestComponentBuilder
+    TestComponentBuilder,
 } from 'angular2/testing';
 import Team from '../../src/models/team';
 
@@ -27,5 +27,5 @@ describe('Model: Team', () => {
         expect(t1.equals(t3)).toBeFalsy();
         expect(t3.equals(t1)).toBeFalsy();
         expect(t1.equals(t1)).toBeTruthy();
-    })
+    });
 });

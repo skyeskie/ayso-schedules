@@ -37,7 +37,9 @@ document.addEventListener('DOMContentLoaded', function main() {
         provide(SettingsDAO, {useClass: MockSettingsService}),
         provide(WeekCacheInterface, { useClass: MockWeekCacheService}),
         DataControlService,
-        INTERCEPT_ROUTER_PROVIDER
+        INTERCEPT_ROUTER_PROVIDER,
     ])
-     .catch(err => {});
+     .catch(err => {
+         //No-op
+     });
 });

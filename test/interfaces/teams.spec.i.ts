@@ -1,3 +1,4 @@
+/* tslint:disable:no-any */
 import {
     describe,
     beforeEach,
@@ -10,17 +11,17 @@ import {
     NgMatchers,
     TestComponentBuilder,
     xdescribe,
-    xit
+    xit,
 } from 'angular2/testing';
 
 import Team from '../../src/models/team';
 
-function teamsInterfaceSpec(dao: any) {
+function teamsInterfaceSpec(impl: any) {
     describe('interface tests', () => {
-        beforeEachProviders(() => [dao]);
+        beforeEachProviders(() => [impl]);
 
         describe('getTeam', () => {
-            it('returns promise of team', injectAsync([dao], (dao) => {
+            it('returns promise of team', injectAsync([impl], (dao) => {
                 console.log(dao);
                 let p = dao.getTeam('A').then((team: Team) => {
                     console.log(team);
@@ -30,7 +31,7 @@ function teamsInterfaceSpec(dao: any) {
                 return p;
             }));
 
-            it('throws on invalid lookup', injectAsync([dao], (dao) => {
+            it('throws on invalid lookup', injectAsync([impl], (dao) => {
                 return dao.getTeam('InvalidTeamId').then((team: Team) => {
                     fail('Should not return successfully');
                 }, (err) => {
@@ -40,20 +41,20 @@ function teamsInterfaceSpec(dao: any) {
         });
 
         describe('getTeams', () => {
-            it('returns list of teams', injectAsync([dao], (dao) => {
+            it('returns list of teams', injectAsync([impl], (dao) => {
                 return dao.getTeams(['C', 'A']).then((teams: Team[]) => {
                     expect(teams.length).toBe(2);
                     expect(teams.map(team => team.code).sort().join(',')).toEqual('A,C');
                 });
             }));
 
-            it('returns empty list for no games', injectAsync([dao], (dao) => {
+            it('returns empty list for no games', injectAsync([impl], (dao) => {
                 return dao.getTeams([]).then((teams: Team[]) => {
                     expect(teams.length).toEqual(0);
                 });
             }));
 
-            it('ignores invalid teams on retrieve', injectAsync([dao], (dao) => {
+            it('ignores invalid teams on retrieve', injectAsync([impl], (dao) => {
                 return dao.getTeams(['Z', 'Q', 'A']).then((teams: Team[]) => {
                     expect(teams.length).toBe(1);
                     expect(teams[0].code).toEqual('A');
@@ -61,11 +62,9 @@ function teamsInterfaceSpec(dao: any) {
             }));
         });
 
-        xdescribe('findTeams', () => {
+        xdescribe('findTeams');
 
-        });
-
-        it('contains update/reset hooks', inject([dao], (dao) => {
+        it('contains update/reset hooks', inject([impl], (dao) => {
             dao.reset();
             dao.update(false);
             dao.update(true);

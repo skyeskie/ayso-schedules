@@ -6,7 +6,7 @@ import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
 
 import {AGES, AgeGroup} from '../cfg/ages';
 import {GENDERS, Gender} from '../cfg/gender';
-import {REGIONS, Region} from "../cfg/regions";
+import {REGIONS, Region} from '../cfg/regions';
 
 import {checkPresent} from '../app/util';
 import {TitleBarComponent} from '../comp/title-bar.component';
@@ -65,7 +65,7 @@ import Division from '../models/division';
         <button type="submit" class="btn btn-primary">Go</button>
     </form>
     </article>
-   `
+   `,
 })
 export class DivisionSelectView {
     //Iterated lists
@@ -108,7 +108,7 @@ export class DivisionSelectView {
     onSubmit(): void {
         console.log('Submitting search form');
         let params:{age?,gender?,region?,week} = {
-            week: this.week,
+            week: this.week
         };
         if(checkPresent(this.ageGroup)) {
             params.age  = this.ageGroup;
@@ -119,6 +119,6 @@ export class DivisionSelectView {
         if(checkPresent(this.region)) {
             params.region = this.region;
         }
-        this._router.navigate(["/DivisionSchedule", params]);
+        this._router.navigate(['/DivisionSchedule', params]);
     }
 }

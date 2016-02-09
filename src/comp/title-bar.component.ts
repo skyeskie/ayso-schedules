@@ -12,7 +12,7 @@ import {RouterLink} from 'angular2/router';
             <a class="nav-item nav-link centered" [routerLink]="['/Home']">AYSO Kansas</a>
         </div>
     </nav>
-    `
+    `,
 })
 class TitleBarComponent {}
 

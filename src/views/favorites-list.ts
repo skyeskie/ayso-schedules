@@ -38,7 +38,7 @@ import TwoTeamsGamesListComponent from '../comp/games2-list.component';
             </div>
         </div>
     </article>
-    `
+    `,
 })
 //TODO: Decorate saved teams
 //TODO: Fix up save team instructions
@@ -51,8 +51,7 @@ export default class FavoritesListView {
         private _favorites:SettingsDAO,
         @Inject(GamesDAO)
         private _gameDao:GamesDAO
-    )
-    {
+    ) {
         _favorites.getSavedTeamIDs()
                   .then(teams => this.savedTeams = teams)
                   .then(teams =>

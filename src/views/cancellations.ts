@@ -12,21 +12,21 @@ import {TitleBarComponent} from '../comp/title-bar.component';
         <a class="twitter-timeline" href="https://twitter.com/AYSOKS"
           data-widget-id="305786822305386496">Tweets by @AYSOKS</a>
     </article>
-    `
+    `,
 })
 export class CancellationsView implements OnInit {
-    private addScript() {
-        var s = document.createElement('script');
-        s.setAttribute('src', '//platform.twitter.com/widgets.js');
-        s.onload = this.render;
-        document.body.appendChild(s);
-    }
-
-    ngOnInit() {
+    public ngOnInit() {
         this.addScript();
     }
 
     public render() {
         twttr.widgets.load();
+    }
+
+    private addScript() {
+        var s = document.createElement('script');
+        s.setAttribute('src', '//platform.twitter.com/widgets.js');
+        s.onload = this.render;
+        document.body.appendChild(s);
     }
 }

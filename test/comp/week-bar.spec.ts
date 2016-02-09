@@ -9,7 +9,7 @@ import {
     injectAsync,
     NgMatchers,
     TestComponentBuilder,
-    xit
+    xit,
 } from 'angular2/testing';
 
 import {Component, provide} from 'angular2/core';
@@ -23,7 +23,7 @@ describe('Comp: WeekBar', () => {
         directives: [WeekBarComponent],
         providers: [
             provide(WeekCacheInterface, {useFactory: () => { return new MockWeekCacheService(); }})
-        ]
+        ],
     })
     class TestComponent {
     }
@@ -76,13 +76,13 @@ describe('Comp: WeekBar', () => {
     }));
 
     it('hides both navigation buttons with only 1 week', injectAsync([TestComponentBuilder], (tcb) => {
-        let mwcs = new MockWeekCacheService();
-        mwcs.max = 1;
-        mwcs.cur = 1;
+        let cache = new MockWeekCacheService();
+        cache.max = 1;
+        cache.cur = 1;
 
-        let wbc = new WeekBarComponent(mwcs);
+        let wbc = new WeekBarComponent(cache);
         return tcb.overrideTemplate(TestComponent, `<week-bar week="1"></week-bar>`)
-                  .overrideProviders(TestComponent, [provide(WeekBarComponent, {useValue: wbc})])
+                  .overrideProviders(TestComponent, [provide(WeekBarComponent, {useValue: cache})])
                   .createAsync(TestComponent).then((f) => {
                 wbc.onInit.subscribe(() => {
                     let elements = f.debugElement.nativeElement.children[0].children[0];
@@ -120,5 +120,5 @@ describe('Comp: WeekBar', () => {
             });
     }));
 
-    xit('defaults to the current week if none specified', () => {});
+    xit('defaults to the current week if none specified');
 });
