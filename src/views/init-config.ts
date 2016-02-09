@@ -1,11 +1,12 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
-import {NgFor, FORM_DIRECTIVES, ControlGroup, FormBuilder} from 'angular2/common';
+import {
+    NgFor, FORM_DIRECTIVES,
+    ControlGroup, FormBuilder, Control, Validators
+} from 'angular2/common';
 
 import {DataControlService} from '../dao/data-control.service';
 import {REGIONS, Region} from '../cfg/regions';
-import {Validators} from 'angular2/common';
-import {Control} from 'angular2/common';
 
 @Component({
     directives: [NgFor, FORM_DIRECTIVES],
@@ -120,7 +121,8 @@ class InitialConfigurationView {
         }
 
         //Check for existing route
-        let redirect = this._routeParams.get('continue');
+        let redirect = this._routeParams.get('url');
+        console.log(this._routeParams);
         if(redirect) {
             this._router.navigateByUrl(redirect);
         } else {

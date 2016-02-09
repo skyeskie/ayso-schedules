@@ -57,6 +57,8 @@ interface SettingsDAO {
      */
     setRegion(region: Number): void;
 
+    isAppConfigured(): boolean;
+
     reset(): void;
 }
 

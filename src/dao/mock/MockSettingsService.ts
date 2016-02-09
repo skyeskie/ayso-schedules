@@ -2,7 +2,7 @@ import {Inject, Injectable} from 'angular2/core';
 
 import {TeamsDAO} from '../teams.interface';
 import SettingsDAO, {Region, Team} from '../settings.interface';
-import {REGIONS, getRegionByNumber} from '../../cfg/regions';
+import {getRegionByNumber} from '../../cfg/regions';
 
 @Injectable()
 class MockSettingsService implements SettingsDAO {
@@ -13,7 +13,7 @@ class MockSettingsService implements SettingsDAO {
 
     public teams = new Set<String>(['A','C']);
 
-    public region:Number = REGIONS[1].number;
+    public region:Number = null;
 
     getSavedTeamIDs(): Promise<String[]> {
         return new Promise<String[]>(resolve => {
@@ -67,8 +67,12 @@ class MockSettingsService implements SettingsDAO {
         this.region = region;
     }
 
+    isAppConfigured() {
+        return this.region !== null;
+    }
+
     reset(): void {
-        this.region = REGIONS[1].number;
+        this.region = null;
         this.teams = new Set<String>(['A','C']);
     }
 

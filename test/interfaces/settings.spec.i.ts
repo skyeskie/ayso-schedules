@@ -14,15 +14,9 @@ import {
 import Team from '../../src/models/team';
 import {SettingsDAO} from '../../src/dao/settings.interface';
 import Region from '../../src/models/region';
-import MockTeamsService from '../../src/dao/mock/MockTeamsService';
 
-function settingsInterfaceSpec(dao: any) {
+function settingsInterfaceSpec(dao: any, providers:any[] = []) {
     describe('interface tests', () => {
-        beforeEachProviders(() => [
-            dao,
-            MockTeamsService
-        ]);
-
         it('saves a team', injectAsync([dao], (dao) => {
             dao.clearSavedTeams();
             return dao.isTeamSaved('A').then((saved) => {
@@ -62,6 +56,10 @@ function settingsInterfaceSpec(dao: any) {
                 let number: Number = vals[1];
                 expect(region.number).toEqual(number);
             })
+        }));
+
+        it('is not configured on initial load', inject([dao], dao => {
+            expect(dao.isAppConfigured()).toBeFalsy();
         }));
 
         it('has a reset', inject([dao], dao => dao.reset()));
