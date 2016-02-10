@@ -14,10 +14,10 @@ if ('production' === process.env.ENV) {
 }
 
 //Begin app component imports
-import {MockGamesService, GamesDAO} from '../dao/mock/MockGamesService';
-import {MockTeamsService, TeamsDAO} from '../dao/mock/MockTeamsService';
-import {MockWeekCacheService, WeekCacheInterface} from '../dao/mock/MockWeekCacheService';
-import {MockSettingsService, SettingsDAO} from '../dao/mock/MockSettingsService';
+import {InMemoryGamesService, GamesDAO} from '../dao/mem/games.mem.service';
+import {InMemoryTeamsService, TeamsDAO} from '../dao/mem/teams.mem.service';
+import {InMemoryWeeksService, WeekCacheInterface} from '../dao/mem/weeks.mem.service';
+import {InMemorySettingsService, SettingsDAO} from '../dao/mem/settings.mem.service';
 import {DataControlService} from '../dao/data-control.service';
 import {INTERCEPT_ROUTER_PROVIDER} from '../comp/intercept-root-router';
 
@@ -32,10 +32,10 @@ document.addEventListener('DOMContentLoaded', function main() {
         ...FORM_PROVIDERS,
 
         //In-app providers
-        provide(GamesDAO, { useClass: MockGamesService }),
-        provide(TeamsDAO, { useClass: MockTeamsService }),
-        provide(SettingsDAO, {useClass: MockSettingsService}),
-        provide(WeekCacheInterface, { useClass: MockWeekCacheService}),
+        provide(GamesDAO, { useClass: InMemoryGamesService }),
+        provide(TeamsDAO, { useClass: InMemoryTeamsService }),
+        provide(SettingsDAO, {useClass: InMemorySettingsService}),
+        provide(WeekCacheInterface, { useClass: InMemoryWeeksService}),
         DataControlService,
         INTERCEPT_ROUTER_PROVIDER,
     ])

@@ -5,7 +5,7 @@ import GamesDAO, { Game, Division } from '../games.interface';
 import Region from '../../models/region';
 import {checkPresent} from '../../app/util';
 
-class MockGamesService implements GamesDAO {
+class InMemoryGamesService implements GamesDAO {
     private games: Game[] = [];
 
     public prepopulate() {
@@ -98,4 +98,4 @@ class MockGamesService implements GamesDAO {
     }
 }
 
-export { MockGamesService as default, MockGamesService, GamesDAO }
+export { InMemoryGamesService as default, InMemoryGamesService, GamesDAO }

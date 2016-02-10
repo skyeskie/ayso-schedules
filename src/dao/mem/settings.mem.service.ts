@@ -5,7 +5,7 @@ import SettingsDAO, {Region, Team} from '../settings.interface';
 import {getRegionByNumber} from '../../cfg/regions';
 
 @Injectable()
-class MockSettingsService implements SettingsDAO {
+class InMemorySettingsService implements SettingsDAO {
     constructor(
         @Inject(TeamsDAO)
         private dao: TeamsDAO
@@ -87,4 +87,4 @@ class MockSettingsService implements SettingsDAO {
 
 }
 
-export { MockSettingsService as default, MockSettingsService, SettingsDAO }
+export { InMemorySettingsService as default, InMemorySettingsService, SettingsDAO }

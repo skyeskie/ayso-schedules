@@ -2,7 +2,7 @@ import WeekCacheInterface from '../week-cache.interface';
 import {Injectable} from 'angular2/core';
 
 @Injectable()
-class MockWeekCacheService implements WeekCacheInterface {
+class InMemoryWeeksService implements WeekCacheInterface {
     public max: Number = 7;
     public cur: Number = 2;
 
@@ -24,4 +24,4 @@ class MockWeekCacheService implements WeekCacheInterface {
     }
 }
 
-export { MockWeekCacheService as default, MockWeekCacheService, WeekCacheInterface }
+export { InMemoryWeeksService as default, InMemoryWeeksService, WeekCacheInterface }

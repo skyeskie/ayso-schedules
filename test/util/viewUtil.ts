@@ -12,8 +12,8 @@ import {
 
 import {provide} from 'angular2/core';
 import GameDetail from '../../src/views/game-detail';
-import {GamesDAO, MockGamesService} from '../../src/dao/mock/MockGamesService';
-import {TeamsDAO, MockTeamsService} from '../../src/dao/mock/MockTeamsService';
+import {GamesDAO, InMemoryGamesService} from '../../src/dao/mem/games.mem.service';
+import {TeamsDAO, InMemoryTeamsService} from '../../src/dao/mem/teams.mem.service';
 import {TitleBarComponent} from '../../src/comp/title-bar.component';
 import {MOCK_ROUTER_PROVIDERS, MockComponent, RouteParams } from '../mocks/router';
 

@@ -4,7 +4,6 @@ import {
 } from 'angular2/core';
 import {NgIf} from 'angular2/common';
 
-import {MockWeekCacheService} from '../dao/mock/MockWeekCacheService';
 import WeekCacheInterface from '../dao/week-cache.interface';
 
 const ONE = 1;

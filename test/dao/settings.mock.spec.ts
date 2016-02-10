@@ -7,13 +7,13 @@ import {
 import {provide} from 'angular2/core';
 
 import {settingsInterfaceSpec} from '../interfaces/settings.spec.i';
-import MockSettingsService from '../../src/dao/mock/MockSettingsService';
-import {TeamsDAO, MockTeamsService} from '../../src/dao/mock/MockTeamsService';
+import MockSettingsService from 'mem/settings.mem.service';
+import {TeamsDAO, InMemoryTeamsService} from 'mem/teams.mem.service';
 
 describe('DAO: SettingsMock', () => {
     beforeEachProviders(() => [
         MockSettingsService,
-        provide(TeamsDAO, {useClass: MockTeamsService}),
+        provide(TeamsDAO, {useClass: InMemoryTeamsService}),
     ]);
 
     it('is configured after region is set', inject([MockSettingsService], dao => {

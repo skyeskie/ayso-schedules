@@ -2,7 +2,7 @@ import TeamsDAO, {Team, Division} from '../teams.interface';
 import {Gender} from '../../cfg/gender';
 import {checkPresent} from '../../app/util';
 
-class MockTeamsService implements TeamsDAO {
+class InMemoryTeamsService implements TeamsDAO {
     public teams: Map<String,Team> = new Map<String,Team>();
     public teamsArray: Team[] = [];
 
@@ -95,4 +95,4 @@ class MockTeamsService implements TeamsDAO {
     }
 }
 
-export { MockTeamsService as default, MockTeamsService, TeamsDAO, Team }
+export { InMemoryTeamsService as default, InMemoryTeamsService, TeamsDAO, Team }

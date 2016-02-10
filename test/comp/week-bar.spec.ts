@@ -14,7 +14,7 @@ import {
 
 import {Component, provide} from 'angular2/core';
 import WeekBarComponent from '../../src/comp/week-bar.component';
-import MockWeekCacheService from '../../src/dao/mock/MockWeekCacheService';
+import MockWeekCacheService from '../../src/dao/mem/weeks.mem.service';
 import {WeekCacheInterface} from '../../src/dao/week-cache.interface';
 
 describe('Comp: WeekBar', () => {
