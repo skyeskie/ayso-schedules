@@ -1,0 +1,5310 @@
+{
+  "Version": "2016-02-08",
+  "Error": "",
+  "Games": [
+    {
+      "ID": "10",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "10:45:00",
+      "Divis": "7B",
+      "Away": "1705B",
+      "Home": "1706B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "11",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:45:00",
+      "Divis": "7B",
+      "Away": "1702B",
+      "Home": "1701B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "12",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:45:00",
+      "Divis": "7B",
+      "Away": "1703B",
+      "Home": "1704B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "13",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:45:00",
+      "Divis": "7B",
+      "Away": "1704B",
+      "Home": "1706B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "14",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "10:45:00",
+      "Divis": "7B",
+      "Away": "1706B",
+      "Home": "1701B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "15",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:45:00",
+      "Divis": "7B",
+      "Away": "1706B",
+      "Home": "1705B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "16",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:45:00",
+      "Divis": "7B",
+      "Away": "1705B",
+      "Home": "1701B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "17",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:45:00",
+      "Divis": "7B",
+      "Away": "1701B",
+      "Home": "1702B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "19",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:15:00",
+      "Divis": "7B",
+      "Away": "1703B",
+      "Home": "1702B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "20",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "12:15:00",
+      "Divis": "7B",
+      "Away": "1706B",
+      "Home": "1703B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "21",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:15:00",
+      "Divis": "7B",
+      "Away": "1701B",
+      "Home": "1705B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "22",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:15:00",
+      "Divis": "7B",
+      "Away": "1705B",
+      "Home": "1702B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "23",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:15:00",
+      "Divis": "7B",
+      "Away": "1703B",
+      "Home": "1705B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "24",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:15:00",
+      "Divis": "7B",
+      "Away": "1702B",
+      "Home": "1703B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "25",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:15:00",
+      "Divis": "7B",
+      "Away": "1706B",
+      "Home": "1702B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "26",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:15:00",
+      "Divis": "7B",
+      "Away": "1704B",
+      "Home": "1705B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "28",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "13:30:00",
+      "Divis": "7B",
+      "Away": "1704B",
+      "Home": "1701B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "29",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "13:30:00",
+      "Divis": "7B",
+      "Away": "1705B",
+      "Home": "1704B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "30",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "13:30:00",
+      "Divis": "7B",
+      "Away": "1702B",
+      "Home": "1706B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "31",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "13:30:00",
+      "Divis": "7B",
+      "Away": "1701B",
+      "Home": "1703B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "32",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "13:30:00",
+      "Divis": "7B",
+      "Away": "1702B",
+      "Home": "1704B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "33",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "13:30:00",
+      "Divis": "7B",
+      "Away": "1701B",
+      "Home": "1704B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "34",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "13:30:00",
+      "Divis": "7B",
+      "Away": "1704B",
+      "Home": "1703B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "35",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "13:30:00",
+      "Divis": "7B",
+      "Away": "1703B",
+      "Home": "1706B",
+      "Field": "049 Field 06B"
+    },
+    {
+      "ID": "118",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "10:45:00",
+      "Divis": "7G",
+      "Away": "1705G",
+      "Home": "1704G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "119",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:45:00",
+      "Divis": "7G",
+      "Away": "1701G",
+      "Home": "1705G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "120",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:45:00",
+      "Divis": "7G",
+      "Away": "1705G",
+      "Home": "1706G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "121",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:45:00",
+      "Divis": "7G",
+      "Away": "1705G",
+      "Home": "1703G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "122",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "10:45:00",
+      "Divis": "7G",
+      "Away": "1701G",
+      "Home": "1703G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "123",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:45:00",
+      "Divis": "7G",
+      "Away": "1705G",
+      "Home": "1701G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "124",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:45:00",
+      "Divis": "7G",
+      "Away": "1701G",
+      "Home": "1702G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "125",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:45:00",
+      "Divis": "7G",
+      "Away": "1701G",
+      "Home": "1704G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "127",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:15:00",
+      "Divis": "7G",
+      "Away": "1702G",
+      "Home": "1701G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "128",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "12:15:00",
+      "Divis": "7G",
+      "Away": "1702G",
+      "Home": "1706G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "129",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:15:00",
+      "Divis": "7G",
+      "Away": "1703G",
+      "Home": "1702G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "130",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:15:00",
+      "Divis": "7G",
+      "Away": "1704G",
+      "Home": "1702G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "131",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:15:00",
+      "Divis": "7G",
+      "Away": "1702G",
+      "Home": "1705G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "132",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:15:00",
+      "Divis": "7G",
+      "Away": "1706G",
+      "Home": "1702G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "133",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:15:00",
+      "Divis": "7G",
+      "Away": "1703G",
+      "Home": "1706G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "134",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:15:00",
+      "Divis": "7G",
+      "Away": "1702G",
+      "Home": "1703G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "136",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "13:30:00",
+      "Divis": "7G",
+      "Away": "1706G",
+      "Home": "1703G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "137",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "13:30:00",
+      "Divis": "7G",
+      "Away": "1703G",
+      "Home": "1704G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "138",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "13:30:00",
+      "Divis": "7G",
+      "Away": "1704G",
+      "Home": "1701G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "139",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "13:30:00",
+      "Divis": "7G",
+      "Away": "1706G",
+      "Home": "1701G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "140",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "13:30:00",
+      "Divis": "7G",
+      "Away": "1704G",
+      "Home": "1706G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "141",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "13:30:00",
+      "Divis": "7G",
+      "Away": "1703G",
+      "Home": "1704G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "142",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "13:30:00",
+      "Divis": "7G",
+      "Away": "1704G",
+      "Home": "1705G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "143",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "13:30:00",
+      "Divis": "7G",
+      "Away": "1706G",
+      "Home": "1705G",
+      "Field": "049 Field 06A"
+    },
+    {
+      "ID": "218",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "1607B",
+      "Home": "1604B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "221",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "1602B",
+      "Home": "1603B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "222",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "1603B",
+      "Home": "1606B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "223",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "1607B",
+      "Home": "1606B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "224",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "1604B",
+      "Home": "1602B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "226",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "10:45:00",
+      "Divis": "6B",
+      "Away": "1603B",
+      "Home": "1601B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "227",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:45:00",
+      "Divis": "6B",
+      "Away": "1606B",
+      "Home": "1603B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "228",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:45:00",
+      "Divis": "6B",
+      "Away": "1601B",
+      "Home": "1607B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "229",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:45:00",
+      "Divis": "6B",
+      "Away": "1602B",
+      "Home": "1604B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "230",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "10:45:00",
+      "Divis": "6B",
+      "Away": "1607B",
+      "Home": "1605B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "231",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:45:00",
+      "Divis": "6B",
+      "Away": "1605B",
+      "Home": "1603B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "232",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:45:00",
+      "Divis": "6B",
+      "Away": "1604B",
+      "Home": "1603B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "233",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:45:00",
+      "Divis": "6B",
+      "Away": "1607B",
+      "Home": "1603B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "235",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:15:00",
+      "Divis": "6B",
+      "Away": "1602B",
+      "Home": "1606B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "237",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:15:00",
+      "Divis": "6B",
+      "Away": "1605B",
+      "Home": "1602B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "238",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:15:00",
+      "Divis": "6B",
+      "Away": "1603B",
+      "Home": "1607B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "239",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:15:00",
+      "Divis": "6B",
+      "Away": "1604B",
+      "Home": "1607B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "240",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:15:00",
+      "Divis": "6B",
+      "Away": "1607B",
+      "Home": "1602B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "241",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:15:00",
+      "Divis": "6B",
+      "Away": "1602B",
+      "Home": "1601B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "242",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:15:00",
+      "Divis": "6B",
+      "Away": "-",
+      "Home": "1601B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "244",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "13:30:00",
+      "Divis": "6B",
+      "Away": "1604B",
+      "Home": "1605B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "245",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "13:30:00",
+      "Divis": "6B",
+      "Away": "1601B",
+      "Home": "1602B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "246",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "13:30:00",
+      "Divis": "6B",
+      "Away": "1604B",
+      "Home": "1606B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "247",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "13:30:00",
+      "Divis": "6B",
+      "Away": "1606B",
+      "Home": "1605B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "248",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "13:30:00",
+      "Divis": "6B",
+      "Away": "1606B",
+      "Home": "1601B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "249",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "13:30:00",
+      "Divis": "6B",
+      "Away": "1604B",
+      "Home": "1601B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "250",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "13:30:00",
+      "Divis": "6B",
+      "Away": "1601B",
+      "Home": "1605B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "251",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "13:30:00",
+      "Divis": "6B",
+      "Away": "1605B",
+      "Home": "1606B",
+      "Field": "049 Field 09B"
+    },
+    {
+      "ID": "253",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "23:59:00",
+      "Divis": "6B",
+      "Away": "1607B",
+      "Home": "-",
+      "Field": "049 Bye"
+    },
+    {
+      "ID": "254",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "23:59:00",
+      "Divis": "6B",
+      "Away": "1605B",
+      "Home": "-",
+      "Field": "049 Bye"
+    },
+    {
+      "ID": "255",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "23:59:00",
+      "Divis": "6B",
+      "Away": "1603B",
+      "Home": "-",
+      "Field": "049 Bye"
+    },
+    {
+      "ID": "256",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "23:59:00",
+      "Divis": "6B",
+      "Away": "1601B",
+      "Home": "-",
+      "Field": "049 Bye"
+    },
+    {
+      "ID": "335",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:45:00",
+      "Divis": "6G",
+      "Away": "1602G",
+      "Home": "1603G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "336",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:45:00",
+      "Divis": "6G",
+      "Away": "1601G",
+      "Home": "1603G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "337",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:45:00",
+      "Divis": "6G",
+      "Away": "1603G",
+      "Home": "1602G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "338",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "10:45:00",
+      "Divis": "6G",
+      "Away": "561G",
+      "Home": "1602G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "339",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:45:00",
+      "Divis": "6G",
+      "Away": "1602G",
+      "Home": "1601G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "340",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:45:00",
+      "Divis": "6G",
+      "Away": "1603G",
+      "Home": "1602G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "341",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:45:00",
+      "Divis": "6G",
+      "Away": "1602G",
+      "Home": "1601G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "343",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:15:00",
+      "Divis": "6G",
+      "Away": "1601G",
+      "Home": "1602G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "346",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:15:00",
+      "Divis": "6G",
+      "Away": "564G",
+      "Home": "1601G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "347",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:15:00",
+      "Divis": "6G",
+      "Away": "1603G",
+      "Home": "1601G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "348",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:15:00",
+      "Divis": "6G",
+      "Away": "262G",
+      "Home": "1603G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "349",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:15:00",
+      "Divis": "6G",
+      "Away": "1601G",
+      "Home": "1603G",
+      "Field": "049 Field 09A"
+    },
+    {
+      "ID": "361",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "11:00:00",
+      "Divis": "6G",
+      "Away": "261G",
+      "Home": "262G",
+      "Field": "105 Pink"
+    },
+    {
+      "ID": "362",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "11:00:00",
+      "Divis": "6G",
+      "Away": "1601G",
+      "Home": "261G",
+      "Field": "105 Pink"
+    },
+    {
+      "ID": "363",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "11:00:00",
+      "Divis": "6G",
+      "Away": "563G",
+      "Home": "262G",
+      "Field": "105 Pink"
+    },
+    {
+      "ID": "364",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "11:00:00",
+      "Divis": "6G",
+      "Away": "262G",
+      "Home": "261G",
+      "Field": "105 Pink"
+    },
+    {
+      "ID": "365",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "11:00:00",
+      "Divis": "6G",
+      "Away": "563G",
+      "Home": "261G",
+      "Field": "105 Pink"
+    },
+    {
+      "ID": "366",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "11:00:00",
+      "Divis": "6G",
+      "Away": "562G",
+      "Home": "261G",
+      "Field": "105 Pink"
+    },
+    {
+      "ID": "367",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "11:00:00",
+      "Divis": "6G",
+      "Away": "561G",
+      "Home": "262G",
+      "Field": "105 Pink"
+    },
+    {
+      "ID": "368",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "11:00:00",
+      "Divis": "6G",
+      "Away": "261G",
+      "Home": "262G",
+      "Field": "105 Pink"
+    },
+    {
+      "ID": "379",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "08:30:00",
+      "Divis": "6G",
+      "Away": "562G",
+      "Home": "561G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "380",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "08:30:00",
+      "Divis": "6G",
+      "Away": "563G",
+      "Home": "561G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "385",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "08:30:00",
+      "Divis": "6G",
+      "Away": "562G",
+      "Home": "563G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "386",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "08:30:00",
+      "Divis": "6G",
+      "Away": "1603G",
+      "Home": "563G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "388",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "09:30:00",
+      "Divis": "6G",
+      "Away": "563G",
+      "Home": "564G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "389",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "09:30:00",
+      "Divis": "6G",
+      "Away": "564G",
+      "Home": "562G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "390",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "09:30:00",
+      "Divis": "6G",
+      "Away": "1602G",
+      "Home": "562G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "391",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "09:30:00",
+      "Divis": "6G",
+      "Away": "561G",
+      "Home": "562G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "392",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "09:30:00",
+      "Divis": "6G",
+      "Away": "262G",
+      "Home": "562G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "393",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "09:30:00",
+      "Divis": "6G",
+      "Away": "561G",
+      "Home": "564G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "394",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "09:30:00",
+      "Divis": "6G",
+      "Away": "261G",
+      "Home": "564G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "395",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "09:30:00",
+      "Divis": "6G",
+      "Away": "564G",
+      "Home": "561G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "399",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:30:00",
+      "Divis": "6G",
+      "Away": "261G",
+      "Home": "561G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "409",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "11:00:00",
+      "Divis": "6G",
+      "Away": "563G",
+      "Home": "562G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "410",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "11:00:00",
+      "Divis": "6G",
+      "Away": "262G",
+      "Home": "564G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "411",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "11:00:00",
+      "Divis": "6G",
+      "Away": "564G",
+      "Home": "563G",
+      "Field": "253 Field 4"
+    },
+    {
+      "ID": "415",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "23:59:00",
+      "Divis": "6G",
+      "Away": "1603G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "416",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "23:59:00",
+      "Divis": "6G",
+      "Away": "262G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "417",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "23:59:00",
+      "Divis": "6G",
+      "Away": "564G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "422",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "23:59:00",
+      "Divis": "6G",
+      "Away": "562G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "446",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "09:30:00",
+      "Divis": "5B",
+      "Away": "551B",
+      "Home": "1501B",
+      "Field": "049 Field 10W"
+    },
+    {
+      "ID": "447",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "09:30:00",
+      "Divis": "5B",
+      "Away": "1505B",
+      "Home": "1501B",
+      "Field": "049 Field 10W"
+    },
+    {
+      "ID": "448",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "09:30:00",
+      "Divis": "5B",
+      "Away": "1502B",
+      "Home": "1501B",
+      "Field": "049 Field 10W"
+    },
+    {
+      "ID": "451",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "10:45:00",
+      "Divis": "5B",
+      "Away": "1501B",
+      "Home": "1502B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "452",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:45:00",
+      "Divis": "5B",
+      "Away": "1502B",
+      "Home": "1503B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "453",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:45:00",
+      "Divis": "5B",
+      "Away": "552B",
+      "Home": "1502B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "454",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:45:00",
+      "Divis": "5B",
+      "Away": "1502B",
+      "Home": "1505B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "455",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "10:45:00",
+      "Divis": "5B",
+      "Away": "1504B",
+      "Home": "1502B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "457",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:45:00",
+      "Divis": "5B",
+      "Away": "1505B",
+      "Home": "1504B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "458",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:45:00",
+      "Divis": "5B",
+      "Away": "1504B",
+      "Home": "1502B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "460",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:15:00",
+      "Divis": "5B",
+      "Away": "554B",
+      "Home": "1505B",
+      "Field": "049 Field 10W"
+    },
+    {
+      "ID": "462",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:15:00",
+      "Divis": "5B",
+      "Away": "1501B",
+      "Home": "1504B",
+      "Field": "049 Field 10W"
+    },
+    {
+      "ID": "469",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:15:00",
+      "Divis": "5B",
+      "Away": "1503B",
+      "Home": "1504B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "470",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "12:15:00",
+      "Divis": "5B",
+      "Away": "1504B",
+      "Home": "1505B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "471",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:15:00",
+      "Divis": "5B",
+      "Away": "553B",
+      "Home": "1505B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "472",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:15:00",
+      "Divis": "5B",
+      "Away": "1501B",
+      "Home": "1503B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "473",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:15:00",
+      "Divis": "5B",
+      "Away": "1505B",
+      "Home": "1503B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "474",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:15:00",
+      "Divis": "5B",
+      "Away": "1503B",
+      "Home": "1504B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "475",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:15:00",
+      "Divis": "5B",
+      "Away": "552B",
+      "Home": "1503B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "476",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:15:00",
+      "Divis": "5B",
+      "Away": "1503B",
+      "Home": "1501B",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "478",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "251B",
+      "Home": "252B",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "479",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "1501B",
+      "Home": "251B",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "480",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "651B",
+      "Home": "251B",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "481",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "554B",
+      "Home": "251B",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "482",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "553B",
+      "Home": "252B",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "483",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "551B",
+      "Home": "251B",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "484",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "651B",
+      "Home": "252B",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "485",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "1505B",
+      "Home": "252B",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "496",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "08:30:00",
+      "Divis": "5B",
+      "Away": "553B",
+      "Home": "552B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "497",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "08:30:00",
+      "Divis": "5B",
+      "Away": "554B",
+      "Home": "552B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "498",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "08:30:00",
+      "Divis": "5B",
+      "Away": "1503B",
+      "Home": "554B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "499",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "08:30:00",
+      "Divis": "5B",
+      "Away": "252B",
+      "Home": "552B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "500",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "08:30:00",
+      "Divis": "5B",
+      "Away": "251B",
+      "Home": "552B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "501",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "08:30:00",
+      "Divis": "5B",
+      "Away": "1502B",
+      "Home": "553B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "502",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "08:30:00",
+      "Divis": "5B",
+      "Away": "251B",
+      "Home": "553B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "503",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "08:30:00",
+      "Divis": "5B",
+      "Away": "554B",
+      "Home": "553B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "505",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "11:00:00",
+      "Divis": "5B",
+      "Away": "651B",
+      "Home": "551B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "506",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "11:00:00",
+      "Divis": "5B",
+      "Away": "551B",
+      "Home": "553B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "507",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "11:00:00",
+      "Divis": "5B",
+      "Away": "252B",
+      "Home": "551B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "508",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "11:00:00",
+      "Divis": "5B",
+      "Away": "1504B",
+      "Home": "551B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "509",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "11:00:00",
+      "Divis": "5B",
+      "Away": "651B",
+      "Home": "554B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "510",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "11:00:00",
+      "Divis": "5B",
+      "Away": "252B",
+      "Home": "554B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "511",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "11:00:00",
+      "Divis": "5B",
+      "Away": "551B",
+      "Home": "554B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "512",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "11:00:00",
+      "Divis": "5B",
+      "Away": "552B",
+      "Home": "551B",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "515",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "252B",
+      "Home": "651B",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "517",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "553B",
+      "Home": "651B",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "519",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "552B",
+      "Home": "651B",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "521",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:00:00",
+      "Divis": "5B",
+      "Away": "251B",
+      "Home": "651B",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "542",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "09:30:00",
+      "Divis": "5G",
+      "Away": "1503G",
+      "Home": "1502G",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "553",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:45:00",
+      "Divis": "5G",
+      "Away": "252G",
+      "Home": "1501G",
+      "Field": "049 Field 10W"
+    },
+    {
+      "ID": "556",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:45:00",
+      "Divis": "5G",
+      "Away": "551G",
+      "Home": "1503G",
+      "Field": "049 Field 10W"
+    },
+    {
+      "ID": "559",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "13:30:00",
+      "Divis": "5G",
+      "Away": "1501G",
+      "Home": "1502G",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "561",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "13:30:00",
+      "Divis": "5G",
+      "Away": "251G",
+      "Home": "1502G",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "562",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "13:30:00",
+      "Divis": "5G",
+      "Away": "1503G",
+      "Home": "1501G",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "564",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "13:30:00",
+      "Divis": "5G",
+      "Away": "553G",
+      "Home": "1502G",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "565",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "13:30:00",
+      "Divis": "5G",
+      "Away": "552G",
+      "Home": "1503G",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "566",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "13:30:00",
+      "Divis": "5G",
+      "Away": "1502G",
+      "Home": "1501G",
+      "Field": "049 Field 10E"
+    },
+    {
+      "ID": "572",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "13:30:00",
+      "Divis": "5G",
+      "Away": "554G",
+      "Home": "1501G",
+      "Field": "049 Field 10W"
+    },
+    {
+      "ID": "573",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "13:30:00",
+      "Divis": "5G",
+      "Away": "1501G",
+      "Home": "1503G",
+      "Field": "049 Field 10W"
+    },
+    {
+      "ID": "577",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "13:00:00",
+      "Divis": "5G",
+      "Away": "1503G",
+      "Home": "251G",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "578",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "13:00:00",
+      "Divis": "5G",
+      "Away": "251G",
+      "Home": "252G",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "579",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "13:00:00",
+      "Divis": "5G",
+      "Away": "553G",
+      "Home": "252G",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "580",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "13:00:00",
+      "Divis": "5G",
+      "Away": "552G",
+      "Home": "251G",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "581",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "13:00:00",
+      "Divis": "5G",
+      "Away": "551G",
+      "Home": "251G",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "582",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "13:00:00",
+      "Divis": "5G",
+      "Away": "554G",
+      "Home": "252G",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "583",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "13:00:00",
+      "Divis": "5G",
+      "Away": "1502G",
+      "Home": "252G",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "584",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "13:00:00",
+      "Divis": "5G",
+      "Away": "252G",
+      "Home": "251G",
+      "Field": "105 Black"
+    },
+    {
+      "ID": "586",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "09:45:00",
+      "Divis": "5G",
+      "Away": "551G",
+      "Home": "552G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "587",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "09:45:00",
+      "Divis": "5G",
+      "Away": "554G",
+      "Home": "551G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "588",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "09:45:00",
+      "Divis": "5G",
+      "Away": "1501G",
+      "Home": "551G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "589",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "09:45:00",
+      "Divis": "5G",
+      "Away": "553G",
+      "Home": "554G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "590",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "09:45:00",
+      "Divis": "5G",
+      "Away": "252G",
+      "Home": "552G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "591",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "09:45:00",
+      "Divis": "5G",
+      "Away": "251G",
+      "Home": "552G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "592",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "09:45:00",
+      "Divis": "5G",
+      "Away": "1501G",
+      "Home": "553G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "593",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "09:45:00",
+      "Divis": "5G",
+      "Away": "554G",
+      "Home": "552G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "595",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:15:00",
+      "Divis": "5G",
+      "Away": "554G",
+      "Home": "553G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "596",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "12:15:00",
+      "Divis": "5G",
+      "Away": "552G",
+      "Home": "553G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "597",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:15:00",
+      "Divis": "5G",
+      "Away": "1503G",
+      "Home": "554G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "598",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:15:00",
+      "Divis": "5G",
+      "Away": "1502G",
+      "Home": "551G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "599",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:15:00",
+      "Divis": "5G",
+      "Away": "252G",
+      "Home": "553G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "600",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:15:00",
+      "Divis": "5G",
+      "Away": "552G",
+      "Home": "551G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "601",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:15:00",
+      "Divis": "5G",
+      "Away": "251G",
+      "Home": "554G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "602",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:15:00",
+      "Divis": "5G",
+      "Away": "551G",
+      "Home": "553G",
+      "Field": "253 Field 5"
+    },
+    {
+      "ID": "608",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:15:00",
+      "Divis": "5G",
+      "Away": "1502G",
+      "Home": "1503G",
+      "Field": "049 Field 10W"
+    },
+    {
+      "ID": "613",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:00:00",
+      "Divis": "5G",
+      "Away": "252G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "614",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "12:00:00",
+      "Divis": "5G",
+      "Away": "1501G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "615",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:00:00",
+      "Divis": "5G",
+      "Away": "552G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "620",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:00:00",
+      "Divis": "5G",
+      "Away": "1503G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "649",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "141B",
+      "Home": "142B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "650",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "446B",
+      "Home": "142B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "651",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "141B",
+      "Home": "143B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "652",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "241B",
+      "Home": "143B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "653",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "541B",
+      "Home": "143B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "654",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "241B",
+      "Home": "142B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "655",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "542B",
+      "Home": "144B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "656",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "142B",
+      "Home": "143B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "658",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "143B",
+      "Home": "144B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "659",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "441B",
+      "Home": "141B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "660",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "142B",
+      "Home": "144B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "661",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "543B",
+      "Home": "141B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "662",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "542B",
+      "Home": "141B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "663",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "543B",
+      "Home": "144B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "664",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "541B",
+      "Home": "142B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "665",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "144B",
+      "Home": "141B",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "667",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "543B",
+      "Home": "241B",
+      "Field": "105 Blue"
+    },
+    {
+      "ID": "669",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "447B",
+      "Home": "241B",
+      "Field": "105 Blue"
+    },
+    {
+      "ID": "671",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "144B",
+      "Home": "241B",
+      "Field": "105 Blue"
+    },
+    {
+      "ID": "673",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "141B",
+      "Home": "241B",
+      "Field": "105 Blue"
+    },
+    {
+      "ID": "676",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "08:30:00",
+      "Divis": "4B",
+      "Away": "541B",
+      "Home": "542B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "677",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "08:30:00",
+      "Divis": "4B",
+      "Away": "241B",
+      "Home": "542B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "678",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "08:30:00",
+      "Divis": "4B",
+      "Away": "448B",
+      "Home": "543B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "679",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "08:30:00",
+      "Divis": "4B",
+      "Away": "142B",
+      "Home": "542B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "680",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "08:30:00",
+      "Divis": "4B",
+      "Away": "142B",
+      "Home": "543B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "681",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "08:30:00",
+      "Divis": "4B",
+      "Away": "143B",
+      "Home": "542B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "682",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "08:30:00",
+      "Divis": "4B",
+      "Away": "143B",
+      "Home": "543B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "683",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "08:30:00",
+      "Divis": "4B",
+      "Away": "241B",
+      "Home": "541B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "686",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "11:30:00",
+      "Divis": "4B",
+      "Away": "543B",
+      "Home": "541B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "688",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "11:30:00",
+      "Divis": "4B",
+      "Away": "144B",
+      "Home": "541B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "690",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "11:30:00",
+      "Divis": "4B",
+      "Away": "141B",
+      "Home": "541B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "692",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "11:30:00",
+      "Divis": "4B",
+      "Away": "542B",
+      "Home": "543B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "703",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "447B",
+      "Home": "448B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "704",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "442B",
+      "Home": "443B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "705",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "541B",
+      "Home": "445B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "706",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "443B",
+      "Home": "448B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "707",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "442B",
+      "Home": "446B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "708",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "448B",
+      "Home": "442B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "709",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "443B",
+      "Home": "441B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "710",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "09:00:00",
+      "Divis": "4B",
+      "Away": "444B",
+      "Home": "445B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "712",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "10:30:00",
+      "Divis": "4B",
+      "Away": "443B",
+      "Home": "444B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "713",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:30:00",
+      "Divis": "4B",
+      "Away": "447B",
+      "Home": "445B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "714",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:30:00",
+      "Divis": "4B",
+      "Away": "444B",
+      "Home": "442B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "715",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:30:00",
+      "Divis": "4B",
+      "Away": "442B",
+      "Home": "449B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "716",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "10:30:00",
+      "Divis": "4B",
+      "Away": "449B",
+      "Home": "447B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "717",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:30:00",
+      "Divis": "4B",
+      "Away": "445B",
+      "Home": "441B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "718",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:30:00",
+      "Divis": "4B",
+      "Away": "446B",
+      "Home": "448B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "719",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:30:00",
+      "Divis": "4B",
+      "Away": "448B",
+      "Home": "449B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "721",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "446B",
+      "Home": "441B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "722",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "143B",
+      "Home": "449B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "723",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "449B",
+      "Home": "441B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "724",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "444B",
+      "Home": "446B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "725",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "441B",
+      "Home": "448B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "726",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "444B",
+      "Home": "449B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "727",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "447B",
+      "Home": "444B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "728",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:00:00",
+      "Divis": "4B",
+      "Away": "441B",
+      "Home": "442B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "730",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "13:30:00",
+      "Divis": "4B",
+      "Away": "445B",
+      "Home": "442B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "731",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "13:30:00",
+      "Divis": "4B",
+      "Away": "144B",
+      "Home": "444B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "732",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "13:30:00",
+      "Divis": "4B",
+      "Away": "542B",
+      "Home": "443B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "733",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "13:30:00",
+      "Divis": "4B",
+      "Away": "441B",
+      "Home": "447B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "734",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "13:30:00",
+      "Divis": "4B",
+      "Away": "445B",
+      "Home": "443B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "735",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "13:30:00",
+      "Divis": "4B",
+      "Away": "446B",
+      "Home": "447B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "736",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "13:30:00",
+      "Divis": "4B",
+      "Away": "449B",
+      "Home": "445B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "737",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "13:30:00",
+      "Divis": "4B",
+      "Away": "443B",
+      "Home": "446B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "742",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "15:00:00",
+      "Divis": "4B",
+      "Away": "445B",
+      "Home": "446B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "743",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "15:00:00",
+      "Divis": "4B",
+      "Away": "448B",
+      "Home": "444B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "744",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "15:00:00",
+      "Divis": "4B",
+      "Away": "449B",
+      "Home": "443B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "745",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "15:00:00",
+      "Divis": "4B",
+      "Away": "442B",
+      "Home": "447B",
+      "Field": "208 Purple"
+    },
+    {
+      "ID": "748",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "23:59:00",
+      "Divis": "4B",
+      "Away": "449B",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "749",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "23:59:00",
+      "Divis": "4B",
+      "Away": "448B",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "750",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "23:59:00",
+      "Divis": "4B",
+      "Away": "446B",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "755",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "23:59:00",
+      "Divis": "4B",
+      "Away": "447B",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "757",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "141G",
+      "Home": "142G",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "758",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "442G",
+      "Home": "141G",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "759",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "444G",
+      "Home": "141G",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "761",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "241G",
+      "Home": "142G",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "762",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "541G",
+      "Home": "142G",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "763",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "445G",
+      "Home": "141G",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "764",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "142G",
+      "Home": "141G",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "770",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "13:30:00",
+      "Divis": "4G",
+      "Away": "441G",
+      "Home": "142G",
+      "Field": "049 Field 08"
+    },
+    {
+      "ID": "785",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "444G",
+      "Home": "241G",
+      "Field": "105 Blue"
+    },
+    {
+      "ID": "787",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "541G",
+      "Home": "241G",
+      "Field": "105 Blue"
+    },
+    {
+      "ID": "789",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "141G",
+      "Home": "241G",
+      "Field": "105 Blue"
+    },
+    {
+      "ID": "791",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "641G",
+      "Home": "241G",
+      "Field": "105 Blue"
+    },
+    {
+      "ID": "793",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "10:00:00",
+      "Divis": "4G",
+      "Away": "445G",
+      "Home": "541G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "794",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:00:00",
+      "Divis": "4G",
+      "Away": "541G",
+      "Home": "542G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "795",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:00:00",
+      "Divis": "4G",
+      "Away": "442G",
+      "Home": "541G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "796",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:00:00",
+      "Divis": "4G",
+      "Away": "142G",
+      "Home": "542G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "797",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "10:00:00",
+      "Divis": "4G",
+      "Away": "141G",
+      "Home": "541G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "798",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:00:00",
+      "Divis": "4G",
+      "Away": "443G",
+      "Home": "542G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "799",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:00:00",
+      "Divis": "4G",
+      "Away": "241G",
+      "Home": "542G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "800",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:00:00",
+      "Divis": "4G",
+      "Away": "542G",
+      "Home": "541G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "811",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "441G",
+      "Home": "443G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "813",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "241G",
+      "Home": "443G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "814",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "141G",
+      "Home": "441G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "816",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "641G",
+      "Home": "442G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "817",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:30:00",
+      "Divis": "4G",
+      "Away": "444G",
+      "Home": "441G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "820",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:00:00",
+      "Divis": "4G",
+      "Away": "241G",
+      "Home": "442G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "821",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "12:00:00",
+      "Divis": "4G",
+      "Away": "142G",
+      "Home": "445G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "822",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:00:00",
+      "Divis": "4G",
+      "Away": "641G",
+      "Home": "445G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "823",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:00:00",
+      "Divis": "4G",
+      "Away": "445G",
+      "Home": "444G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "824",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:00:00",
+      "Divis": "4G",
+      "Away": "445G",
+      "Home": "442G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "825",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:00:00",
+      "Divis": "4G",
+      "Away": "441G",
+      "Home": "445G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "826",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:00:00",
+      "Divis": "4G",
+      "Away": "443G",
+      "Home": "442G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "827",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:00:00",
+      "Divis": "4G",
+      "Away": "443G",
+      "Home": "445G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "829",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "13:30:00",
+      "Divis": "4G",
+      "Away": "542G",
+      "Home": "444G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "831",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "13:30:00",
+      "Divis": "4G",
+      "Away": "542G",
+      "Home": "441G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "832",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "13:30:00",
+      "Divis": "4G",
+      "Away": "442G",
+      "Home": "441G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "833",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "13:30:00",
+      "Divis": "4G",
+      "Away": "444G",
+      "Home": "443G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "834",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "13:30:00",
+      "Divis": "4G",
+      "Away": "641G",
+      "Home": "444G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "835",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "13:30:00",
+      "Divis": "4G",
+      "Away": "541G",
+      "Home": "443G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "836",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "13:30:00",
+      "Divis": "4G",
+      "Away": "442G",
+      "Home": "444G",
+      "Field": "208 Yellow"
+    },
+    {
+      "ID": "848",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "11:00:00",
+      "Divis": "4G",
+      "Away": "441G",
+      "Home": "641G",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "850",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "11:00:00",
+      "Divis": "4G",
+      "Away": "443G",
+      "Home": "641G",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "851",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "11:00:00",
+      "Divis": "4G",
+      "Away": "542G",
+      "Home": "641G",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "853",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "11:00:00",
+      "Divis": "4G",
+      "Away": "142G",
+      "Home": "641G",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "856",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "23:59:00",
+      "Divis": "4G",
+      "Away": "641G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "857",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "23:59:00",
+      "Divis": "4G",
+      "Away": "443G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "858",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "23:59:00",
+      "Divis": "4G",
+      "Away": "142G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "863",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "23:59:00",
+      "Divis": "4G",
+      "Away": "441G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "874",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:00:00",
+      "Divis": "3B",
+      "Away": "132B",
+      "Home": "131B",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "875",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "12:00:00",
+      "Divis": "3B",
+      "Away": "433B",
+      "Home": "131B",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "877",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:00:00",
+      "Divis": "3B",
+      "Away": "631B",
+      "Home": "131B",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "878",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:00:00",
+      "Divis": "3B",
+      "Away": "431B",
+      "Home": "132B",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "879",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:00:00",
+      "Divis": "3B",
+      "Away": "432B",
+      "Home": "132B",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "880",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:00:00",
+      "Divis": "3B",
+      "Away": "531B",
+      "Home": "131B",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "881",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:00:00",
+      "Divis": "3B",
+      "Away": "131B",
+      "Home": "132B",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "889",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "13:30:00",
+      "Divis": "3B",
+      "Away": "431B",
+      "Home": "132B",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "894",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "15:00:00",
+      "Divis": "3B",
+      "Away": "433B",
+      "Home": "132B",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "911",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:00:00",
+      "Divis": "3B",
+      "Away": "631B",
+      "Home": "431B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "913",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:00:00",
+      "Divis": "3B",
+      "Away": "431B",
+      "Home": "433B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "915",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:00:00",
+      "Divis": "3B",
+      "Away": "131B",
+      "Home": "431B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "916",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:00:00",
+      "Divis": "3B",
+      "Away": "431B",
+      "Home": "434B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "919",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "12:00:00",
+      "Divis": "3B",
+      "Away": "431B",
+      "Home": "432B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "921",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "12:00:00",
+      "Divis": "3B",
+      "Away": "131B",
+      "Home": "434B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "923",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "12:00:00",
+      "Divis": "3B",
+      "Away": "131B",
+      "Home": "432B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "926",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:00:00",
+      "Divis": "3B",
+      "Away": "432B",
+      "Home": "431B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "928",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "13:30:00",
+      "Divis": "3B",
+      "Away": "531B",
+      "Home": "433B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "929",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "13:30:00",
+      "Divis": "3B",
+      "Away": "132B",
+      "Home": "434B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "931",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "13:30:00",
+      "Divis": "3B",
+      "Away": "434B",
+      "Home": "432B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "932",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "13:30:00",
+      "Divis": "3B",
+      "Away": "434B",
+      "Home": "433B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "933",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "13:30:00",
+      "Divis": "3B",
+      "Away": "631B",
+      "Home": "433B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "934",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "13:30:00",
+      "Divis": "3B",
+      "Away": "433B",
+      "Home": "432B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "935",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "13:30:00",
+      "Divis": "3B",
+      "Away": "433B",
+      "Home": "434B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "939",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "15:00:00",
+      "Divis": "3B",
+      "Away": "531B",
+      "Home": "431B",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "956",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "13:00:00",
+      "Divis": "3B",
+      "Away": "432B",
+      "Home": "531B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "958",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "13:00:00",
+      "Divis": "3B",
+      "Away": "132B",
+      "Home": "531B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "960",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "13:00:00",
+      "Divis": "3B",
+      "Away": "434B",
+      "Home": "531B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "962",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "13:00:00",
+      "Divis": "3B",
+      "Away": "631B",
+      "Home": "531B",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "964",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "09:00:00",
+      "Divis": "3B",
+      "Away": "434B",
+      "Home": "631B",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "966",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "09:00:00",
+      "Divis": "3B",
+      "Away": "432B",
+      "Home": "631B",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "968",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "09:00:00",
+      "Divis": "3B",
+      "Away": "531B",
+      "Home": "631B",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "970",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "09:00:00",
+      "Divis": "3B",
+      "Away": "132B",
+      "Home": "631B",
+      "Field": "491 Clearwater"
+    },
+    {
+      "ID": "982",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "10:30:00",
+      "Divis": "3G",
+      "Away": "432G",
+      "Home": "131G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "983",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:30:00",
+      "Divis": "3G",
+      "Away": "431G",
+      "Home": "131G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "985",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:30:00",
+      "Divis": "3G",
+      "Away": "431G",
+      "Home": "132G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "986",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "10:30:00",
+      "Divis": "3G",
+      "Away": "433G",
+      "Home": "132G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "987",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:30:00",
+      "Divis": "3G",
+      "Away": "531G",
+      "Home": "132G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "988",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:30:00",
+      "Divis": "3G",
+      "Away": "231G",
+      "Home": "131G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "989",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:30:00",
+      "Divis": "3G",
+      "Away": "132G",
+      "Home": "131G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "993",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "13:30:00",
+      "Divis": "3G",
+      "Away": "131G",
+      "Home": "132G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "995",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "13:30:00",
+      "Divis": "3G",
+      "Away": "231G",
+      "Home": "132G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "1010",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "08:30:00",
+      "Divis": "3G",
+      "Away": "433G",
+      "Home": "231G",
+      "Field": "105 Red"
+    },
+    {
+      "ID": "1012",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "08:30:00",
+      "Divis": "3G",
+      "Away": "131G",
+      "Home": "231G",
+      "Field": "105 Red"
+    },
+    {
+      "ID": "1014",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "08:30:00",
+      "Divis": "3G",
+      "Away": "432G",
+      "Home": "231G",
+      "Field": "105 Red"
+    },
+    {
+      "ID": "1016",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "08:30:00",
+      "Divis": "3G",
+      "Away": "531G",
+      "Home": "231G",
+      "Field": "105 Red"
+    },
+    {
+      "ID": "1029",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:00:00",
+      "Divis": "3G",
+      "Away": "433G",
+      "Home": "431G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1031",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "10:00:00",
+      "Divis": "3G",
+      "Away": "432G",
+      "Home": "431G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1034",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:00:00",
+      "Divis": "3G",
+      "Away": "432G",
+      "Home": "431G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1039",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:00:00",
+      "Divis": "3G",
+      "Away": "531G",
+      "Home": "432G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1041",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "12:00:00",
+      "Divis": "3G",
+      "Away": "431G",
+      "Home": "433G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1042",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "12:00:00",
+      "Divis": "3G",
+      "Away": "432G",
+      "Home": "433G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1045",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "15:00:00",
+      "Divis": "3G",
+      "Away": "231G",
+      "Home": "431G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1046",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "15:00:00",
+      "Divis": "3G",
+      "Away": "132G",
+      "Home": "432G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1050",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "15:00:00",
+      "Divis": "3G",
+      "Away": "131G",
+      "Home": "433G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1051",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "15:00:00",
+      "Divis": "3G",
+      "Away": "132G",
+      "Home": "432G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1052",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "15:00:00",
+      "Divis": "3G",
+      "Away": "531G",
+      "Home": "433G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1054",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "11:30:00",
+      "Divis": "3G",
+      "Away": "433G",
+      "Home": "531G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "1056",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "11:30:00",
+      "Divis": "3G",
+      "Away": "231G",
+      "Home": "531G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "1058",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "11:30:00",
+      "Divis": "3G",
+      "Away": "131G",
+      "Home": "531G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "1060",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "11:30:00",
+      "Divis": "3G",
+      "Away": "431G",
+      "Home": "531G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "1072",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "23:59:00",
+      "Divis": "3G",
+      "Away": "132G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "1073",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "23:59:00",
+      "Divis": "3G",
+      "Away": "531G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "1074",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "23:59:00",
+      "Divis": "3G",
+      "Away": "432G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "1075",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "23:59:00",
+      "Divis": "3G",
+      "Away": "433G",
+      "Home": "-",
+      "Field": "Bye"
+    },
+    {
+      "ID": "1198",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "08:30:00",
+      "Divis": "1G",
+      "Away": "112G",
+      "Home": "111G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "1199",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "08:30:00",
+      "Divis": "1G",
+      "Away": "413G",
+      "Home": "111G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "1200",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "08:30:00",
+      "Divis": "1G",
+      "Away": "412G",
+      "Home": "111G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "1201",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "08:30:00",
+      "Divis": "1G",
+      "Away": "411G",
+      "Home": "111G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "1202",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "08:30:00",
+      "Divis": "1G",
+      "Away": "412G",
+      "Home": "112G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "1203",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "08:30:00",
+      "Divis": "1G",
+      "Away": "511G",
+      "Home": "112G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "1204",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "08:30:00",
+      "Divis": "1G",
+      "Away": "111G",
+      "Home": "112G",
+      "Field": "049 Field 07"
+    },
+    {
+      "ID": "1225",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "08:00:00",
+      "Divis": "1G",
+      "Away": "412G",
+      "Home": "413G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1226",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "08:00:00",
+      "Divis": "1G",
+      "Away": "112G",
+      "Home": "411G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1227",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "08:00:00",
+      "Divis": "1G",
+      "Away": "411G",
+      "Home": "413G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1228",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "08:00:00",
+      "Divis": "1G",
+      "Away": "511G",
+      "Home": "412G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1229",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "08:00:00",
+      "Divis": "1G",
+      "Away": "413G",
+      "Home": "411G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1230",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "08:00:00",
+      "Divis": "1G",
+      "Away": "413G",
+      "Home": "412G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1231",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "08:00:00",
+      "Divis": "1G",
+      "Away": "411G",
+      "Home": "412G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1252",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "13:00:00",
+      "Divis": "1G",
+      "Away": "411G",
+      "Home": "511G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "1254",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "13:00:00",
+      "Divis": "1G",
+      "Away": "112G",
+      "Home": "511G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "1256",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "13:00:00",
+      "Divis": "1G",
+      "Away": "111G",
+      "Home": "511G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "1258",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "13:00:00",
+      "Divis": "1G",
+      "Away": "413G",
+      "Home": "511G",
+      "Field": "253 Field 7"
+    },
+    {
+      "ID": "1262",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "15:00:00",
+      "Divis": "1G",
+      "Away": "511G",
+      "Home": "412G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1264",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "15:00:00",
+      "Divis": "1G",
+      "Away": "112G",
+      "Home": "413G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1266",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "15:00:00",
+      "Divis": "1G",
+      "Away": "111G",
+      "Home": "411G",
+      "Field": "208 Red"
+    },
+    {
+      "ID": "1324",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "11:00:00",
+      "Divis": "6B",
+      "Away": "565B",
+      "Home": "261B",
+      "Field": "105 Green"
+    },
+    {
+      "ID": "1325",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "11:00:00",
+      "Divis": "6B",
+      "Away": "262B",
+      "Home": "261B",
+      "Field": "105 Green"
+    },
+    {
+      "ID": "1326",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "11:00:00",
+      "Divis": "6B",
+      "Away": "562B",
+      "Home": "261B",
+      "Field": "105 Green"
+    },
+    {
+      "ID": "1328",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "11:00:00",
+      "Divis": "6B",
+      "Away": "566B",
+      "Home": "261B",
+      "Field": "105 Green"
+    },
+    {
+      "ID": "1329",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "11:00:00",
+      "Divis": "6B",
+      "Away": "564B",
+      "Home": "262B",
+      "Field": "105 Green"
+    },
+    {
+      "ID": "1330",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "11:00:00",
+      "Divis": "6B",
+      "Away": "563B",
+      "Home": "262B",
+      "Field": "105 Green"
+    },
+    {
+      "ID": "1331",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "11:00:00",
+      "Divis": "6B",
+      "Away": "261B",
+      "Home": "262B",
+      "Field": "105 Green"
+    },
+    {
+      "ID": "1336",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "12:00:00",
+      "Divis": "6B",
+      "Away": "561B",
+      "Home": "262B",
+      "Field": "105 Green"
+    },
+    {
+      "ID": "1342",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "08:30:00",
+      "Divis": "6B",
+      "Away": "561B",
+      "Home": "562B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1343",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "08:30:00",
+      "Divis": "6B",
+      "Away": "561B",
+      "Home": "566B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1344",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "08:30:00",
+      "Divis": "6B",
+      "Away": "564B",
+      "Home": "561B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1345",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "08:30:00",
+      "Divis": "6B",
+      "Away": "564B",
+      "Home": "566B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1346",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "08:30:00",
+      "Divis": "6B",
+      "Away": "561B",
+      "Home": "563B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1347",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "08:30:00",
+      "Divis": "6B",
+      "Away": "261B",
+      "Home": "561B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1348",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "08:30:00",
+      "Divis": "6B",
+      "Away": "561B",
+      "Home": "565B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1349",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "08:30:00",
+      "Divis": "6B",
+      "Away": "566B",
+      "Home": "561B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1351",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "563B",
+      "Home": "564B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1352",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "562B",
+      "Home": "564B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1353",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "566B",
+      "Home": "563B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1354",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "261B",
+      "Home": "563B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1355",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "564B",
+      "Home": "565B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1356",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "565B",
+      "Home": "566B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1357",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "261B",
+      "Home": "564B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1358",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "09:30:00",
+      "Divis": "6B",
+      "Away": "564B",
+      "Home": "562B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1360",
+      "Week": "1",
+      "Jour": "2015-09-19",
+      "Heur": "10:30:00",
+      "Divis": "6B",
+      "Away": "262B",
+      "Home": "566B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1361",
+      "Week": "2",
+      "Jour": "2015-09-26",
+      "Heur": "10:30:00",
+      "Divis": "6B",
+      "Away": "565B",
+      "Home": "563B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1362",
+      "Week": "3",
+      "Jour": "2015-10-03",
+      "Heur": "10:30:00",
+      "Divis": "6B",
+      "Away": "262B",
+      "Home": "565B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1363",
+      "Week": "4",
+      "Jour": "2015-10-10",
+      "Heur": "10:30:00",
+      "Divis": "6B",
+      "Away": "565B",
+      "Home": "562B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1364",
+      "Week": "5",
+      "Jour": "2015-10-17",
+      "Heur": "10:30:00",
+      "Divis": "6B",
+      "Away": "262B",
+      "Home": "562B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1365",
+      "Week": "6",
+      "Jour": "2015-10-24",
+      "Heur": "10:30:00",
+      "Divis": "6B",
+      "Away": "563B",
+      "Home": "562B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1366",
+      "Week": "7",
+      "Jour": "2015-10-31",
+      "Heur": "10:30:00",
+      "Divis": "6B",
+      "Away": "562B",
+      "Home": "566B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1367",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:30:00",
+      "Divis": "6B",
+      "Away": "563B",
+      "Home": "565B",
+      "Field": "253 Field 3"
+    },
+    {
+      "ID": "1088",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "07:30:00",
+      "Divis": "1T",
+      "Away": "111G",
+      "Home": "112G",
+      "Field": "049 Field 02"
+    },
+    {
+      "ID": "1097",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "08:30:00",
+      "Divis": "1T",
+      "Away": "411G",
+      "Home": "413G",
+      "Field": "049 Field 02"
+    },
+    {
+      "ID": "1106",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "09:30:00",
+      "Divis": "1T",
+      "Away": "412G",
+      "Home": "111G",
+      "Field": "049 Field 02"
+    },
+    {
+      "ID": "1115",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "10:30:00",
+      "Divis": "1T",
+      "Away": "112G",
+      "Home": "411G",
+      "Field": "049 Field 02"
+    },
+    {
+      "ID": "1124",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "11:30:00",
+      "Divis": "1T",
+      "Away": "413G",
+      "Home": "412G",
+      "Field": "049 Field 02"
+    },
+    {
+      "ID": "1133",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "12:30:00",
+      "Divis": "1T",
+      "Away": "111G",
+      "Home": "411G",
+      "Field": "049 Field 02"
+    },
+    {
+      "ID": "1142",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "13:30:00",
+      "Divis": "1T",
+      "Away": "112G",
+      "Home": "413G",
+      "Field": "049 Field 02"
+    },
+    {
+      "ID": "1151",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "14:30:00",
+      "Divis": "1T",
+      "Away": "411G",
+      "Home": "412G",
+      "Field": "049 Field 02"
+    },
+    {
+      "ID": "1160",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "15:30:00",
+      "Divis": "1T",
+      "Away": "413G",
+      "Home": "111G",
+      "Field": "049 Field 02"
+    },
+    {
+      "ID": "1169",
+      "Week": "8",
+      "Jour": "2015-11-07",
+      "Heur": "16:30:00",
+      "Divis": "1T",
+      "Away": "412G",
+      "Home": "112G",
+      "Field": "049 Field 02"
+    }
+  ],
+  "Coaches": [
+    {
+      "ID": "19",
+      "Divis": "7B",
+      "TeamNo": "1701B",
+      "Coach": "Milligan, Nicholas",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "20",
+      "Divis": "7B",
+      "TeamNo": "1702B",
+      "Coach": "Vasquez, Heather",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "21",
+      "Divis": "7B",
+      "TeamNo": "1703B",
+      "Coach": "Wiese, Bob",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "22",
+      "Divis": "7B",
+      "TeamNo": "1704B",
+      "Coach": "Madden, Randy",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "23",
+      "Divis": "7B",
+      "TeamNo": "1705B",
+      "Coach": "Walsh, Michael",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "24",
+      "Divis": "7B",
+      "TeamNo": "1706B",
+      "Coach": "Gittrich, Mark",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "32",
+      "Divis": "7G",
+      "TeamNo": "1701G",
+      "Coach": "Butterworth, Blake",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "33",
+      "Divis": "7G",
+      "TeamNo": "1702G",
+      "Coach": "Wentzel, Jennifer",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "34",
+      "Divis": "7G",
+      "TeamNo": "1703G",
+      "Coach": "Wiese, Bob",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "35",
+      "Divis": "7G",
+      "TeamNo": "1704G",
+      "Coach": "Zarchan, Alex",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "36",
+      "Divis": "7G",
+      "TeamNo": "1705G",
+      "Coach": "Shepler, Jeff",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "37",
+      "Divis": "7G",
+      "TeamNo": "1706G",
+      "Coach": "Agard, Eric",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "41",
+      "Divis": "6B",
+      "TeamNo": "1601B",
+      "Coach": "Butterworth, Blake",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "42",
+      "Divis": "6B",
+      "TeamNo": "1602B",
+      "Coach": "Doremus, Tim",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "43",
+      "Divis": "6B",
+      "TeamNo": "1603B",
+      "Coach": "Wiese, Bob",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "44",
+      "Divis": "6B",
+      "TeamNo": "1604B",
+      "Coach": "Koster, Cari",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "45",
+      "Divis": "6B",
+      "TeamNo": "1605B",
+      "Coach": "Lyman, Adam",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "46",
+      "Divis": "6B",
+      "TeamNo": "1606B",
+      "Coach": "Smith, Phillip",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "47",
+      "Divis": "6B",
+      "TeamNo": "1607B",
+      "Coach": "Hawkinson, John",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "58",
+      "Divis": "6G",
+      "TeamNo": "1601G",
+      "Coach": "Brewer, Jeremy",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "59",
+      "Divis": "6G",
+      "TeamNo": "1602G",
+      "Coach": "Agard, Katie",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "60",
+      "Divis": "6G",
+      "TeamNo": "1603G",
+      "Coach": "Dester, Dan",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "71",
+      "Divis": "5B",
+      "TeamNo": "1501B",
+      "Coach": "Allman, Kenny",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "72",
+      "Divis": "5B",
+      "TeamNo": "1502B",
+      "Coach": "Becker, Wayne",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "73",
+      "Divis": "5B",
+      "TeamNo": "1503B",
+      "Coach": "Lyman, Adam",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "74",
+      "Divis": "5B",
+      "TeamNo": "1504B",
+      "Coach": "Phelps, Justen",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "75",
+      "Divis": "5B",
+      "TeamNo": "1505B",
+      "Coach": "Rather, John",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "76",
+      "Divis": "5B",
+      "TeamNo": "251B",
+      "Coach": "Baalman, Troy",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "77",
+      "Divis": "5B",
+      "TeamNo": "252B",
+      "Coach": "Carillo, Angel",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "78",
+      "Divis": "5B",
+      "TeamNo": "551B",
+      "Coach": "McCorgary, Kelly",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "79",
+      "Divis": "5B",
+      "TeamNo": "552B",
+      "Coach": "Wiebe, Paul",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "80",
+      "Divis": "5B",
+      "TeamNo": "553B",
+      "Coach": "Kroupa, Allison",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "81",
+      "Divis": "5B",
+      "TeamNo": "554B",
+      "Coach": "Gello, Chrishawna",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "82",
+      "Divis": "5B",
+      "TeamNo": "651B",
+      "Coach": "TBD",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "90",
+      "Divis": "5G",
+      "TeamNo": "1501G",
+      "Coach": "Sherman, Jason",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "91",
+      "Divis": "5G",
+      "TeamNo": "1502G",
+      "Coach": "Ullmann, Sarah",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "92",
+      "Divis": "5G",
+      "TeamNo": "1503G",
+      "Coach": "Morss, Todd",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "93",
+      "Divis": "5G",
+      "TeamNo": "251G",
+      "Coach": "Guerrero, Alex",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "94",
+      "Divis": "5G",
+      "TeamNo": "252G",
+      "Coach": "Jaynesahkluah, Carol",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "95",
+      "Divis": "5G",
+      "TeamNo": "551G",
+      "Coach": "Brenneis, James",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "96",
+      "Divis": "5G",
+      "TeamNo": "552G",
+      "Coach": "Stafford, Robert",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "97",
+      "Divis": "5G",
+      "TeamNo": "553G",
+      "Coach": "Johnson, Daniel",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "98",
+      "Divis": "5G",
+      "TeamNo": "554G",
+      "Coach": "Sherrill, Jeremy",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "103",
+      "Divis": "4B",
+      "TeamNo": "141B",
+      "Coach": "Barnard, Chris",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "104",
+      "Divis": "4B",
+      "TeamNo": "142B",
+      "Coach": "Hauck, Eric",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "105",
+      "Divis": "4B",
+      "TeamNo": "143B",
+      "Coach": "Gaines, Torance",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "106",
+      "Divis": "4B",
+      "TeamNo": "144B",
+      "Coach": "Flynn, Patrick",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "107",
+      "Divis": "4B",
+      "TeamNo": "241B",
+      "Coach": "Bottolfsen, Nicholas",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "108",
+      "Divis": "4B",
+      "TeamNo": "441B",
+      "Coach": "Bay, Craig",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "109",
+      "Divis": "4B",
+      "TeamNo": "442B",
+      "Coach": "Linares, Carlos",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "110",
+      "Divis": "4B",
+      "TeamNo": "443B",
+      "Coach": "Steven, Johnny",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "111",
+      "Divis": "4B",
+      "TeamNo": "444B",
+      "Coach": "Castillo, Miguel",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "112",
+      "Divis": "4B",
+      "TeamNo": "445B",
+      "Coach": "Murrell, Ben",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "113",
+      "Divis": "4B",
+      "TeamNo": "446B",
+      "Coach": "Stuever, Merritt",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "114",
+      "Divis": "4B",
+      "TeamNo": "447B",
+      "Coach": "Segraves, Andy",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "115",
+      "Divis": "4B",
+      "TeamNo": "448B",
+      "Coach": "Holm, Randy",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "116",
+      "Divis": "4B",
+      "TeamNo": "449B",
+      "Coach": "Gonzalez, Joel",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "119",
+      "Divis": "4B",
+      "TeamNo": "541B",
+      "Coach": "Tiger, Jason",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "120",
+      "Divis": "4B",
+      "TeamNo": "542B",
+      "Coach": "Petrie, David",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "121",
+      "Divis": "4B",
+      "TeamNo": "543B",
+      "Coach": "Staples, Jacob",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "124",
+      "Divis": "4G",
+      "TeamNo": "141G",
+      "Coach": "Smith, Armando",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "125",
+      "Divis": "4G",
+      "TeamNo": "142G",
+      "Coach": "Ullmann, Sarah",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "126",
+      "Divis": "4G",
+      "TeamNo": "241G",
+      "Coach": "Baez, Shaunna",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "127",
+      "Divis": "4G",
+      "TeamNo": "441G",
+      "Coach": "Elsea, Joel",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "128",
+      "Divis": "4G",
+      "TeamNo": "442G",
+      "Coach": "Shea, Scott ",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "129",
+      "Divis": "4G",
+      "TeamNo": "443G",
+      "Coach": "Moore, Nathan",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "130",
+      "Divis": "4G",
+      "TeamNo": "444G",
+      "Coach": "Munyon, James",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "131",
+      "Divis": "4G",
+      "TeamNo": "445G",
+      "Coach": "David Cox",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "133",
+      "Divis": "4G",
+      "TeamNo": "541G",
+      "Coach": "Ammerman, Shane",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "134",
+      "Divis": "4G",
+      "TeamNo": "542G",
+      "Coach": "Wiechman, Aaron",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "135",
+      "Divis": "4G",
+      "TeamNo": "641G",
+      "Coach": "Bielefeld, Angela",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "138",
+      "Divis": "3B",
+      "TeamNo": "131B",
+      "Coach": "Hansson, George",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "139",
+      "Divis": "3B",
+      "TeamNo": "132B",
+      "Coach": "Ullman, Brian",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "142",
+      "Divis": "3B",
+      "TeamNo": "431B",
+      "Coach": "Huie, Anthony",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "143",
+      "Divis": "3B",
+      "TeamNo": "432B",
+      "Coach": "Hickey, Brian",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "144",
+      "Divis": "3B",
+      "TeamNo": "433B",
+      "Coach": "Reyes, Naomi",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "145",
+      "Divis": "3B",
+      "TeamNo": "434B",
+      "Coach": "Nelson, Vic",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "146",
+      "Divis": "3B",
+      "TeamNo": "531B",
+      "Coach": "Veges, Dennis",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "147",
+      "Divis": "3B",
+      "TeamNo": "631B",
+      "Coach": "Carothers, Steven",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "155",
+      "Divis": "3G",
+      "TeamNo": "131G",
+      "Coach": "Harty, Dan",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "156",
+      "Divis": "3G",
+      "TeamNo": "132G",
+      "Coach": "Rhoda, Arlee",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "157",
+      "Divis": "3G",
+      "TeamNo": "231G",
+      "Coach": "Lewis,, Brent",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "158",
+      "Divis": "3G",
+      "TeamNo": "431G",
+      "Coach": "Bay, Craig",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "159",
+      "Divis": "3G",
+      "TeamNo": "432G",
+      "Coach": "Dennis, David",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "160",
+      "Divis": "3G",
+      "TeamNo": "433G",
+      "Coach": "Morrill, Brett",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "161",
+      "Divis": "3G",
+      "TeamNo": "531G",
+      "Coach": "Deckert, Aaron",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "175",
+      "Divis": "1G",
+      "TeamNo": "111G",
+      "Coach": "Spaeth, Dale",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "176",
+      "Divis": "1G",
+      "TeamNo": "112G",
+      "Coach": "Schumann, Tom",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "178",
+      "Divis": "1G",
+      "TeamNo": "411G",
+      "Coach": "Smithhisler, Mike",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "179",
+      "Divis": "1G",
+      "TeamNo": "412G",
+      "Coach": "Hays, Daryl",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "180",
+      "Divis": "1G",
+      "TeamNo": "413G",
+      "Coach": "Bay, Craig",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "181",
+      "Divis": "1G",
+      "TeamNo": "511G",
+      "Coach": "Knoedler, Tiffany",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "193",
+      "Divis": "6G",
+      "TeamNo": "261G",
+      "Coach": "Lopez, Sarah",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "194",
+      "Divis": "6G",
+      "TeamNo": "262G",
+      "Coach": "Beal, Rodney",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "196",
+      "Divis": "6B",
+      "TeamNo": "261B",
+      "Coach": "Dorsey, David",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "197",
+      "Divis": "6B",
+      "TeamNo": "262B",
+      "Coach": "Aramburu, John",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "209",
+      "Divis": "6G",
+      "TeamNo": "561G",
+      "Coach": "Cross, Josh",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "210",
+      "Divis": "6G",
+      "TeamNo": "562G",
+      "Coach": "Scriven, Eric",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "211",
+      "Divis": "6G",
+      "TeamNo": "563G",
+      "Coach": "Johnson, John",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "212",
+      "Divis": "6G",
+      "TeamNo": "564G",
+      "Coach": "Crabbs, Dustin",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "215",
+      "Divis": "6B",
+      "TeamNo": "561B",
+      "Coach": "Ammerman, Shane",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "216",
+      "Divis": "6B",
+      "TeamNo": "562B",
+      "Coach": "Love, Tracy",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "217",
+      "Divis": "6B",
+      "TeamNo": "563B",
+      "Coach": "Roths, Nick",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "218",
+      "Divis": "6B",
+      "TeamNo": "564B",
+      "Coach": "McDaniel, Cameron",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "219",
+      "Divis": "6B",
+      "TeamNo": "565B",
+      "Coach": "Gengler, Tabatha",
+      "Phone": "(000) 000-0000"
+    },
+    {
+      "ID": "220",
+      "Divis": "6B",
+      "TeamNo": "566B",
+      "Coach": "McEntire, Kristin",
+      "Phone": "(000) 000-0000"
+    }
+  ]
+}
