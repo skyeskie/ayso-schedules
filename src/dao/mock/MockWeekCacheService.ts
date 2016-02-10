@@ -14,12 +14,13 @@ class MockWeekCacheService implements WeekCacheInterface {
         return new Promise<Number>((resolve) => resolve(this.cur));
     }
 
-    reset(): void {
+    clear(): Promise<void> {
+        return new Promise<void>(resolve => resolve());
         //No-op
     }
 
-    update(force: boolean): void {
-        //No-op
+    init(weekStarts:Date[]): Promise<void> {
+        return new Promise<void>(resolve => resolve());
     }
 }
 

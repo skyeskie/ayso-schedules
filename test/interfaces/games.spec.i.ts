@@ -14,13 +14,14 @@ import {
 } from 'angular2/testing';
 
 import Game from '../../src/models/game';
+import {GamesDAO} from '../../src/dao/games.interface';
 
 function gamesInterfaceSpec(impl: any) {
     describe('interface tests', () => {
         beforeEachProviders(() => [impl]);
 
         describe('getGame', () => {
-            it('returns promise of game', injectAsync([impl], (dao) => {
+            it('returns promise of game', injectAsync([impl], (dao:GamesDAO) => {
                 let p = dao.getGame('111').then((game) => {
                     expect(game.id).toEqual('111');
                 });
@@ -28,7 +29,7 @@ function gamesInterfaceSpec(impl: any) {
                 return p;
             }));
 
-            it('throws on invalid lookup', injectAsync([impl], (dao) => {
+            it('throws on invalid lookup', injectAsync([impl], (dao:GamesDAO) => {
                 return dao.getGame('InvalidGameId').then((game) => {
                     fail('Should not return successfully');
                 }, (err) => {
@@ -38,7 +39,7 @@ function gamesInterfaceSpec(impl: any) {
         });
 
         describe('findByWeek', () => {
-            it('returns games', injectAsync([impl], (dao) => {
+            it('returns games', injectAsync([impl], (dao:GamesDAO) => {
                 return dao.findByWeek(1).then((games) => {
                     expect(games.length).toBeGreaterThan(1);
                     games.forEach((game: Game) => {
@@ -47,7 +48,7 @@ function gamesInterfaceSpec(impl: any) {
                 });
             }));
 
-            it('returns empty list for no games', injectAsync([impl], (dao) => {
+            it('returns empty list for no games', injectAsync([impl], (dao:GamesDAO) => {
                 return dao.findByWeek(-20).then((games) => {
                     expect(games.length).toEqual(0);
                 });
@@ -55,7 +56,7 @@ function gamesInterfaceSpec(impl: any) {
         });
 
         describe('findForTeam', () => {
-            it('returns games', injectAsync([impl], (dao) => {
+            it('returns games', injectAsync([impl], (dao:GamesDAO) => {
                 return dao.findForTeam('A').then((games) => {
                     expect(games.length).toBeGreaterThan(1);
                     games.forEach(game => {
@@ -64,7 +65,7 @@ function gamesInterfaceSpec(impl: any) {
                 });
             }));
 
-            it('returns empty list for no games', injectAsync([impl], (dao) => {
+            it('returns empty list for no games', injectAsync([impl], (dao:GamesDAO) => {
                 return dao.findForTeam('NotATeam').then((games) => {
                     expect(games.length).toEqual(0);
                 });
@@ -72,7 +73,7 @@ function gamesInterfaceSpec(impl: any) {
         });
 
         describe('findForTeams', () => {
-            it('returns games for 1 team', injectAsync([impl], (dao) => {
+            it('returns games for 1 team', injectAsync([impl], (dao:GamesDAO) => {
                 return dao.findForTeams(['B']).then((games) => {
                     expect(games.length).toBeGreaterThan(1);
                     games.forEach(game => {
@@ -81,7 +82,7 @@ function gamesInterfaceSpec(impl: any) {
                 });
             }));
 
-            it('returns games for 3 teams', injectAsync([impl], (dao) => {
+            it('returns games for 3 teams', injectAsync([impl], (dao:GamesDAO) => {
                 return dao.findForTeams(['A','B','D']).then((games) => {
                     expect(games.length).toBeGreaterThan(1);
                     games.forEach(game => {
@@ -92,13 +93,13 @@ function gamesInterfaceSpec(impl: any) {
                 });
             }));
 
-            it('returns empty list no teams', injectAsync([impl], (dao) => {
+            it('returns empty list no teams', injectAsync([impl], (dao:GamesDAO) => {
                 return dao.findForTeams([]).then((games) => {
                     expect(games.length).toEqual(0);
                 });
             }));
 
-            it('returns ignores invalid teams', injectAsync([impl], (dao) => {
+            it('returns ignores invalid teams', injectAsync([impl], (dao:GamesDAO) => {
                 return dao.findForTeams(['NotATeam', 'StillNotATeam', 'C']).then((games) => {
                     expect(games.length).toBeGreaterThan(1);
                     games.forEach(game => {
@@ -108,12 +109,11 @@ function gamesInterfaceSpec(impl: any) {
             }));
         });
 
-        //Trivial cases only, as implementation-specific
-        it('contains update/reset paths', inject([impl], (dao) => {
-            dao.reset();
-            dao.update(false);
-            dao.update(true);
-        }));
+        describe('clear()', () => {
+            it('returns a promise', inject([impl], (dao:GamesDAO) => {
+                expect(dao.clear()).toBePromise();
+            }));
+        });
     });
 }
 

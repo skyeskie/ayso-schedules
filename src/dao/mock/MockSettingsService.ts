@@ -31,12 +31,14 @@ class MockSettingsService implements SettingsDAO {
         });
     }
 
-    saveTeam(team: String): void {
+    saveTeam(team: String): Promise<void> {
         this.teams.add(team);
+        return new Promise<void>(resolve => resolve());
     }
 
-    unSaveTeam(team: String): void {
+    unSaveTeam(team: String): Promise<void> {
         this.teams.delete(team);
+        return new Promise<void>(resolve => resolve());
     }
 
     isTeamSaved(team: String): Promise<boolean> {
@@ -45,8 +47,9 @@ class MockSettingsService implements SettingsDAO {
         );
     }
 
-    clearSavedTeams(): void {
+    clearSavedTeams(): Promise<void> {
         this.teams.clear();
+        return new Promise<void>(resolve => resolve());
     }
 
     getRegionNumber(): Promise<Number> {
@@ -62,18 +65,24 @@ class MockSettingsService implements SettingsDAO {
         );
     }
 
-    setRegion(region: Number): void {
+    setRegion(region: Number): Promise<void> {
         console.log('Called setRegion(' + region + ')');
         this.region = region;
+        return new Promise<void>(resolve => resolve());
     }
 
-    isAppConfigured() {
+    init(): Promise<void> {
+        return new Promise<void>(resolve => resolve());
+    }
+
+    isAppConfigured(): boolean {
         return typeof this.region !== 'undefined';
     }
 
-    reset(): void {
+    reset(): Promise<void> {
         this.region = undefined;
         this.teams = new Set<String>(['A','C']);
+        return new Promise<void>(resolve => resolve());
     }
 
 }

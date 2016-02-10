@@ -56,7 +56,7 @@ class DataControlService {
      * - Success will return the last updated date
      * - Errors will be fed to the reject callback
      *
-     * Currently no-op. `@Override` this to actually update
+     * If updates required, should set lastUpdate to now
      */
     update(force: Boolean): Promise<Date> {
         return new Promise<Date>(resolve => {

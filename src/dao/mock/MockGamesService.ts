@@ -6,18 +6,25 @@ import Region from '../../models/region';
 import {checkPresent} from '../../app/util';
 
 class MockGamesService implements GamesDAO {
-    public time1a:Date = new Date(2016, 2, 1, 8);
-    public time1b:Date = new Date(2016, 2, 1, 10);
-    public time2c:Date = new Date(2016, 2, 8, 12);
+    private games: Game[] = [];
 
-    public games: Game[] = [
-        new Game('111', 'A','B', 1, this.time1a, '49', 'map', Division.fromString('U10B')),
-        new Game('112','C','D', 1, this.time1a, '49', 'map2', Division.fromString('U10B')),
-        new Game('121','A','C', 1, this.time1b, '49', 'map', Division.fromString('U10B')),
-        new Game('122','B','D', 1, this.time1b, '49', 'map2', Division.fromString('U10B')),
-        new Game('231','A','D', 2, this.time2c, '208', 'map', Division.fromString('U10B')),
-        new Game('232','C','B', 2, this.time2c, '208', 'map2', Division.fromString('U10B')),
-    ];
+    public prepopulate() {
+        let time1a:Date = new Date(2016, 2, 1, 8);
+        let time1b:Date = new Date(2016, 2, 1, 10);
+        let time2c:Date = new Date(2016, 2, 8, 12);
+        this.init([
+            new Game('111', 'A','B', 1, time1a, '49', 'map', Division.fromString('U10B')),
+            new Game('112','C','D', 1, time1a, '49', 'map2', Division.fromString('U10B')),
+            new Game('121','A','C', 1, time1b, '49', 'map', Division.fromString('U10B')),
+            new Game('122','B','D', 1, time1b, '49', 'map2', Division.fromString('U10B')),
+            new Game('231','A','D', 2, time2c, '208', 'map', Division.fromString('U10B')),
+            new Game('232','C','B', 2, time2c, '208', 'map2', Division.fromString('U10B')),
+        ]);
+    }
+
+    constructor() {
+        this.prepopulate();
+    }
 
     getGame(id: String): Promise<Game> {
         return new Promise<Game>((resolve,reject) => {
@@ -69,12 +76,25 @@ class MockGamesService implements GamesDAO {
         );
     }
 
-    reset(): void {
-        //No-op
+    init(games: Game[]): Promise<any> {
+        this.games = games;
+        return new Promise<void>(resolve => resolve());
     }
 
-    update(force: boolean): void {
-        //No-op
+    clear(): Promise<void> {
+        this.games = [];
+        return new Promise<void>(resolve => resolve());
+    }
+
+    update(updates:Map<String,Game>): Promise<void> {
+        return new Promise<void>(resolve => {
+            let gameSet = new Set<Game>();
+            updates.forEach(game => gameSet.add(game));
+            this.games.forEach(game => gameSet.add(game));
+            this.games = [];
+            gameSet.forEach(game => this.games.push(game));
+            resolve();
+        });
     }
 }
 

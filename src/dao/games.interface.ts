@@ -39,20 +39,32 @@ interface GamesDAO {
      */
     findForTeams(teamIDs: String[]): Promise<Game[]>;
 
-    //Note: might need to change these to
-    //      trivial promise, allowing to be chained
     /**
-     * Hook to do a full reset of the DAO
-     * Must reset DAO to first load
+     * Initializes data store with data
+     * If data store is Read-Only, this should be a no-op
+     * @param games - Either array or ID->Game map of all games to enter
+     *
+     *  Optionally, implementation may return init details in promise
      */
-    reset(): void;
+    init(games: Game[]): Promise<any>;
+
+    /**
+     * Clears all saved data.
+     * Promise is returned for chaining actions
+     */
+    clear(): Promise<void>;
 
     /**
      * Hook to have DAO update itself from backend
+     * @param updates - map of ID to updates
+     *  - Will overwrite provided IDs
+     *  - If `null` is provided game, delete entry
      * @param force - true if always check for updates
      *  - otherwise, may use caching
+     *
+     *  Optionally, implementation may return update details in promise
      */
-    update(force: boolean): void;
+    update(updates:Map<String,Game>, force?:Boolean): Promise<any>;
 }
 
 var GamesDAO = new OpaqueToken('GamesDAO');

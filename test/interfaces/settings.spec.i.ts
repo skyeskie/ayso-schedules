@@ -18,7 +18,7 @@ import Region from '../../src/models/region';
 
 function settingsInterfaceSpec(impl: any, providers:any[] = []) {
     describe('interface tests', () => {
-        it('saves a team', injectAsync([impl], (dao) => {
+        it('saves a team', injectAsync([impl], (dao:SettingsDAO) => {
             dao.clearSavedTeams();
             return dao.isTeamSaved('A').then((saved) => {
                 expect(saved).toBeFalsy();
@@ -34,15 +34,14 @@ function settingsInterfaceSpec(impl: any, providers:any[] = []) {
             });
         }));
 
-        it('returns saved teams', injectAsync([impl], (dao) => {
-            return Promise.all([
-                dao.getSavedTeamIDs(),
-                dao.getSavedTeams(),
-            ]).then(values => {
-                let ids = new Set<String>(values[0]);
-                let teams = values[1];
-                teams.forEach((team: Team) => {
-                    expect(ids.has(team.code)).toBeTruthy();
+        it('returns saved teams', injectAsync([impl], (dao:SettingsDAO) => {
+            return dao.getSavedTeams().then(teams => {
+                dao.getSavedTeamIDs().then(ids => {
+                    let idSet = new Set<String>();
+                    ids.forEach(id => idSet.add(id));
+                    teams.forEach((team: Team) => {
+                        expect(idSet.has(team.code)).toBeTruthy();
+                    });
                 });
             });
         }));
@@ -59,7 +58,7 @@ function settingsInterfaceSpec(impl: any, providers:any[] = []) {
             });
         }));
 
-        it('is not configured on initial load', inject([impl], dao => {
+        it('is not configured on initial load', inject([impl], (dao:SettingsDAO) => {
             expect(dao.isAppConfigured()).toBeFalsy();
         }));
 

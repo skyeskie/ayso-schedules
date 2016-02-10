@@ -1,9 +1,10 @@
-/* global: require, process */
+/* global require, process, __dirname */
 
 var path = require('path');
 // Webpack Plugins
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin  = require('webpack/lib/DefinePlugin');
+var webpack = require('webpack');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'test';
 
 // Helper functions
@@ -23,9 +24,9 @@ module.exports = {
         cache: false,
         extensions: ['','.ts','.js','.json','.css','.html']
     },
-    devtool: 'source-map',
     module: {
         loaders: [
+            //{ test: /^karma-webpack\.js$/, loader: 'exports?ngTestInit=testing' },
             {
                 test: /\.ts$/,
                 loader: 'ts-loader',
@@ -60,6 +61,7 @@ module.exports = {
         ]
     },
     stats: { colors: true, reasons: true },
+    devtool: 'inline-sourcemap',
     debug: false,
     plugins: [
         new DefinePlugin({
@@ -75,8 +77,23 @@ module.exports = {
             '__awaiter': 'ts-helper/awaiter',
             '__extends': 'ts-helper/extends',
             '__param': 'ts-helper/param',
-            'Reflect': 'es7-reflect-metadata/dist/browser'
+            'Reflect': 'es7-reflect-metadata/dist/browser',
+
+            '__phantomjs': 'phantomjs-polyfill',
+            '__es6promise': 'es6-promise',
+            '__es6shim': 'es6-shim',
+//
+'__zoneMicro': 'zone.js/lib/browser/zone-microtask.js',
+'__zoneStack': 'zone.js/lib/browser/long-stack-trace-zone.js',
+            '__zoneJasmine': 'zone.js/dist/jasmine-patch.js',
+            'ng2testing':'angular2/testing',
+            'ng2browser': 'angular2/platform/testing/browser'
         })
+        //new webpack.optimize.CommonsChunkPlugin({
+        //    name: 'commons',
+        //    filename: 'karma-webpack.js',
+        //    minChunks: Infinity
+        //})
     ],
     // we need this due to problems with es6-shim
     node: {

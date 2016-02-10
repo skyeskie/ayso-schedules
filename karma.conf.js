@@ -1,6 +1,8 @@
 /* global module, require */
 var path = require('path');
 
+var single = true;
+
 module.exports = function (config) {
     "use strict";
 
@@ -24,9 +26,9 @@ module.exports = function (config) {
         // - Need to figure out how to get karma-webpack.js
         files: [ { pattern: 'karma-webpack.js', watched: false } ],
 
-        // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
+            //'./test/**/*.spec.ts': ['webpack'],
             'karma-webpack.js': ['webpack', 'sourcemap']
         },
 
@@ -54,7 +56,6 @@ module.exports = function (config) {
         // enable / disable colors in the output (reporters and logs)
         colors: true,
 
-
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_INFO,
@@ -73,7 +74,7 @@ module.exports = function (config) {
         singleRun: true,
 
         // Concurrency level
-        // how many browser should be started simultanous
+        // how many browser should be started simultaneously
         concurrency: Infinity
     });
 };

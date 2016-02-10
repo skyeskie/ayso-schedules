@@ -4,15 +4,20 @@ import {checkPresent} from '../../app/util';
 
 class MockTeamsService implements TeamsDAO {
     public teams: Map<String,Team> = new Map<String,Team>();
-    public teamsArray: Team[] = [
-        new Team('A', 'coachA', 'telA', Division.fromString('U10B'), 49),
-        new Team('B', 'coachB', 'telB', Division.fromString('U10B'), 49),
-        new Team('C', 'coachC', 'telC', Division.fromString('U10B'), 49),
-        new Team('D', 'coachD', 'telD', Division.fromString('U10B'), 49),
-    ];
+    public teamsArray: Team[] = [];
+
+    //Mock-specific
+    public prepopulate() {
+        this.init([
+            new Team('A', 'coachA', 'telA', Division.fromString('U10B'), 49),
+            new Team('B', 'coachB', 'telB', Division.fromString('U10B'), 49),
+            new Team('C', 'coachC', 'telC', Division.fromString('U10B'), 49),
+            new Team('D', 'coachD', 'telD', Division.fromString('U10B'), 49),
+        ]);
+    }
 
     constructor() {
-        this.teamsArray.forEach(team => this.teams.set(team.code, team));
+        this.prepopulate();
     }
 
     getTeam(id: String): Promise<Team> {
@@ -53,12 +58,40 @@ class MockTeamsService implements TeamsDAO {
         });
     }
 
-    reset(): void {
-        console.log('Called RESET');
+    /**
+     * @returns {Promise<Number>} length of teams array
+     */
+    init(teams: Team[]): Promise<any> {
+        this.teams.clear();
+        this.teamsArray = teams;
+        this.teamsArray.forEach(team => this.teams.set(team.code, team));
+        return new Promise<Number>(resolve => resolve(this.teamsArray.length));
     }
 
-    update(force: boolean): void {
-        console.log('Called UPDATE(' + force + ')');
+    clear(): Promise<void> {
+        this.teams.clear();
+        this.teamsArray = [];
+        return new Promise<void>(resolve => resolve());
+    }
+
+    update(updates:Map<String,Team>): Promise<any> {
+        let toDelete:Set<String> = new Set<String>();
+        updates.forEach((v,k) => {
+            if(!this.teams.has(k)) {
+                if(v === null) {
+                    //Collect delete entries so that can use a single pass
+                    this.teams.delete(k);
+                    toDelete.add(k);
+                } else {
+                    this.teams.set(k,v);
+                    this.teamsArray.push(v);
+                }
+            }
+        });
+        if(toDelete.size > 0) {
+            this.teamsArray = this.teamsArray.filter((team:Team) => !toDelete.has(team.code));
+        }
+        return new Promise<void>(resolve => resolve());
     }
 }
 

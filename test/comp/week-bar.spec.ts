@@ -120,5 +120,5 @@ describe('Comp: WeekBar', () => {
             });
     }));
 
-    xit('defaults to the current week if none specified');
+    //xit('defaults to the current week if none specified');
 });

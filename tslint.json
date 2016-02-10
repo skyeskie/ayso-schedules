@@ -7,7 +7,6 @@
       "variables-before-functions",
       "public-before-private"
     ],
-    "no-any": true,
     "no-inferrable-types": true,
     "typedef-whitespace": "space",
 
@@ -66,6 +65,7 @@
       "check-accessor",
       "check-constructor"
     ],
+    "no-any": true,
     "object-literal-sort-keys": true,
     "typedef": [
       "call-signature",

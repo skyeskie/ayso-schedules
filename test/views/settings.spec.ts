@@ -14,11 +14,13 @@ import {
 import {ensureViewExists} from '../util/viewUtil';
 
 import SettingsView from '../../src/views/settings';
+import {DataControlService} from '../../src/dao/data-control.service';
 
 describe('View: Settings', () => {
     beforeEachProviders(() => [
         ...MOCK_ROUTER_PROVIDERS,
         ...MOCK_DAO_PROVIDERS,
+        DataControlService,
         SettingsView,
     ]);
 

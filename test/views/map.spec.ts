@@ -16,6 +16,8 @@ import {ensureViewExists} from '../util/viewUtil';
 import {MapView} from '../../src/views/map';
 import {TitleBarComponent} from '../../src/comp/title-bar.component';
 import {ANGULAR2_GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
+import {SebmGoogleMap} from 'angular2-google-maps/core';
+import {SebmGoogleMapMarker} from 'angular2-google-maps/core';
 
 describe('View: Map', () => {
     beforeEachProviders(() => [
@@ -31,6 +33,7 @@ describe('View: Map', () => {
 
     ensureViewExists(MapView, tcb => {
         return tcb.overrideDirective(MapView, TitleBarComponent, MockComponent)
-                  .overrideDirective(MapView, ANGULAR2_GOOGLE_MAPS_DIRECTIVES, MockComponent);
+                  .overrideDirective(MapView, SebmGoogleMap, MockComponent)
+                  .overrideDirective(MapView, SebmGoogleMapMarker, MockComponent);
     });
 });

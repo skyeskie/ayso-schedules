@@ -8,7 +8,7 @@ import {NgIf} from 'angular2/common';
 import {TitleBarComponent} from '../comp/title-bar.component';
 
 @Component({
-    directives: [ANGULAR2_GOOGLE_MAPS_DIRECTIVES, NgIf, TitleBarComponent],
+    directives: [...ANGULAR2_GOOGLE_MAPS_DIRECTIVES, NgIf, TitleBarComponent],
     styles: [
         '.sebm-google-map-container { height: 400px; }',
         '.container h2 { font: 2em; }',

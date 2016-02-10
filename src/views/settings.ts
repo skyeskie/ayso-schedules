@@ -1,15 +1,9 @@
-import {Component, OnInit} from 'angular2/core';
-import {NgFor} from 'angular2/common';
-import SettingsDAO from '../dao/settings.interface';
+import {Component, OnInit, Injectable} from 'angular2/core';
+import {Control, NgFor, FORM_DIRECTIVES} from 'angular2/common';
+
 import {REGIONS, Region} from '../cfg/regions';
-import {TeamsDAO} from '../dao/teams.interface';
-import GamesDAO from '../dao/games.interface';
-import {Injectable} from 'angular2/core';
-import {Inject} from 'angular2/core';
-import {WeekCacheInterface} from '../dao/week-cache.interface';
 import {TitleBarComponent} from '../comp/title-bar.component';
-import {Control} from 'angular2/common';
-import {FORM_DIRECTIVES} from 'angular2/common';
+import {DataControlService} from '../dao/data-control.service';
 
 @Component({
     directives:[NgFor, TitleBarComponent, FORM_DIRECTIVES],
@@ -59,34 +53,24 @@ export default class SettingsView {
     public lastUpdate:String;
 
     constructor(
-        @Inject(SettingsDAO) private _settings:SettingsDAO,
-        @Inject(GamesDAO)    private _games:GamesDAO,
-        @Inject(WeekCacheInterface) private _weekCache:WeekCacheInterface,
-        @Inject(TeamsDAO)    private _teams:TeamsDAO
+        private dataConrol: DataControlService
     ) {
         this.regions = REGIONS;
 
-        this._settings.getRegionNumber().then(r => this.defaultRegion.updateValue(r.toString()));
+        this.dataConrol.settings.getRegionNumber().then(r => this.defaultRegion.updateValue(r.toString()));
 
         this.defaultRegion.valueChanges.subscribe(val => {
             console.log('Saving region:' + val);
             let regionNum:Number = parseInt(val,10);
-            this._settings.setRegion(regionNum);
+            this.dataConrol.settings.setRegion(regionNum);
         });
     }
 
     doReset(): void {
-        //TODO: Add confirmation
-        this._settings.reset();
-        this._games.reset();
-        this._weekCache.reset();
-        this._teams.reset();
-        //TODO: Navigate to init view
+        this.dataConrol.reset();
     }
 
     forceRefresh(): void {
-        this._teams.update(true);
-        this._games.update(true);
-        this._weekCache.update(true);
+        this.dataConrol.update(true);
     }
 }
