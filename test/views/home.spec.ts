@@ -1,3 +1,4 @@
+import {provide} from 'angular2/core';
 import {
     describe,
     beforeEach,
@@ -7,25 +8,19 @@ import {
     injectAsync,
     TestComponentBuilder,
 } from 'angular2/testing';
+import {
+    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS
+} from '../mocks/providers';
+import {ensureViewExists} from '../util/viewUtil';
+
 import {HomeView} from '../../src/views/home';
-import {provide} from 'angular2/core';
-import {RouterLink, MockRouterLink} from '../mocks/RouterLink';
 
-describe('HomeView', () => {
+describe('View: Home', () => {
+    beforeEachProviders(() => [
+        ...MOCK_ROUTER_PROVIDERS,
+        ...MOCK_DAO_PROVIDERS,
+        HomeView,
+    ]);
 
-    xit('should have routes defined for all links', () => {
-        //expect(view).toContainText("Settings");
-        //expect(view.innerText.toContain("Schedules"));
-    });
-
-    it('has a defined rendering', injectAsync([TestComponentBuilder], (tcb) => {
-        return tcb
-            .overrideDirective(HomeView, RouterLink, MockRouterLink)
-            .createAsync(HomeView).then((f) => {
-                f.detectChanges();
-                expect(f.nativeElement).toBeDefined();
-            });
-    }));
-
-    //Could implement generic tests -> ALT text for all images, etc
+    ensureViewExists(HomeView);
 });

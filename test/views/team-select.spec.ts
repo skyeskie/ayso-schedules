@@ -9,20 +9,18 @@ import {
 } from 'angular2/testing';
 
 import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS,
-    MockComponent, RouteParams,
-    GamesDAO, TeamsDAO,
+    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS
 } from '../mocks/providers';
 import {ensureViewExists} from '../util/viewUtil';
 
-import GameDetail from '../../src/views/game-detail';
+import {TeamSelectView} from '../../src/views/team-select';
 
-describe('View: GameDetail', () => {
+describe('View: Cancellations', () => {
     beforeEachProviders(() => [
         ...MOCK_ROUTER_PROVIDERS,
         ...MOCK_DAO_PROVIDERS,
-        provide(GameDetail, {deps: [RouteParams, GamesDAO, TeamsDAO]}),
+        TeamSelectView,
     ]);
 
-    ensureViewExists(GameDetail);
+    ensureViewExists(TeamSelectView);
 });

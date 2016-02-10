@@ -1,6 +1,6 @@
 import {NgIf} from 'angular2/common';
 import {Component, OnInit} from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
+import {RouteParams} from 'angular2/router';
 
 import {REGIONS, getRegionByNumber, Region} from '../cfg/regions';
 import {TitleBarComponent} from '../comp/title-bar.component';
@@ -27,7 +27,6 @@ export default class FieldMapView implements OnInit {
     private region: Region;
 
     constructor(
-        private _router:Router,
         private _routeParams:RouteParams
     ) {}
 

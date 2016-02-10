@@ -26,7 +26,7 @@ import TwoTeamsGamesListComponent from '../comp/games2-list.component';
         <two-teams-game-list [games]="gamesList">
         </two-teams-game-list>
 
-        <div *ngIf="gamesList.length===0">
+        <div *ngIf="gamesList?.length===0">
             <h2 style='text-align: center;'>No saved teams</h2>
             <ol>
                 <li><a [routerLink]="['/TeamSelect']">Find Team</a></li>

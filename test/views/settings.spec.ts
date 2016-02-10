@@ -9,20 +9,18 @@ import {
 } from 'angular2/testing';
 
 import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS,
-    MockComponent, RouteParams,
-    GamesDAO, TeamsDAO,
+    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS
 } from '../mocks/providers';
 import {ensureViewExists} from '../util/viewUtil';
 
-import GameDetail from '../../src/views/game-detail';
+import SettingsView from '../../src/views/settings';
 
-describe('View: GameDetail', () => {
+describe('View: Settings', () => {
     beforeEachProviders(() => [
         ...MOCK_ROUTER_PROVIDERS,
         ...MOCK_DAO_PROVIDERS,
-        provide(GameDetail, {deps: [RouteParams, GamesDAO, TeamsDAO]}),
+        SettingsView,
     ]);
 
-    ensureViewExists(GameDetail);
+    ensureViewExists(SettingsView);
 });
