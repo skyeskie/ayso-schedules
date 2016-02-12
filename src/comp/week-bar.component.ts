@@ -44,16 +44,8 @@ export default class WeekBarComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        Promise.all([
-            this._weeks.getMaxWeeks(), this. _weeks.getCurrentWeek()
-        ]).then((results) => {
-            this.max = results[0];
-            this.cur = results[1];
-            if(this.week < 1 || this.week > this.max) {
-                this.week = this.cur;
-            }
-            this.onInit.emit(this);
-        });
+        this.max = this._weeks.getMaxWeeks();
+        this.cur = this._weeks.getCurrentWeek();
     }
 
     showPrevious(): boolean {

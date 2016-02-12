@@ -2,6 +2,7 @@
 
 var path = require('path');
 // Webpack Plugins
+var CopyWebpackPlugin  = require('copy-webpack-plugin');
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin  = require('webpack/lib/DefinePlugin');
 var webpack = require('webpack');
@@ -88,7 +89,11 @@ module.exports = {
             '__zoneJasmine': 'zone.js/dist/jasmine-patch.js',
             'ng2testing':'angular2/testing',
             'ng2browser': 'angular2/platform/testing/browser'
-        })
+        }),
+        new CopyWebpackPlugin([
+            { from: 'src/img', to: 'img' },
+            { from: 'test/data-2016-02-08.json', to: 'data.json' }
+        ])
         //new webpack.optimize.CommonsChunkPlugin({
         //    name: 'commons',
         //    filename: 'karma-webpack.js',

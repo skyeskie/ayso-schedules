@@ -22,6 +22,10 @@ import {DataControlService} from '../dao/data-control.service';
 import {INTERCEPT_ROUTER_PROVIDER} from '../comp/intercept-root-router';
 
 import AppComponent from './app.component';
+import {IInitializationService} from '../dao/init/initialization.interface';
+import {HttpInitService} from '../dao/init/http.init.service';
+import {StaticInitializationService} from '../dao/init/static.init.service';
+import {Http} from 'angular2/http';
 
 document.addEventListener('DOMContentLoaded', function main() {
     bootstrap(AppComponent, [
@@ -30,8 +34,10 @@ document.addEventListener('DOMContentLoaded', function main() {
         ...ROUTER_PROVIDERS,
         ...ANGULAR2_GOOGLE_MAPS_PROVIDERS,
         ...FORM_PROVIDERS,
+        ...HTTP_PROVIDERS,
 
         //In-app providers
+        provide(IInitializationService, { useClass: HttpInitService}),
         provide(GamesDAO, { useClass: InMemoryGamesService }),
         provide(TeamsDAO, { useClass: InMemoryTeamsService }),
         provide(SettingsDAO, {useClass: InMemorySettingsService}),

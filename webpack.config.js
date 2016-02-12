@@ -67,7 +67,8 @@ module.exports = {
         new webpack.optimize.OccurenceOrderPlugin(true),
         //new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
         new CopyWebpackPlugin([
-            { from: 'src/img', to: 'img' }
+            { from: 'src/img', to: 'img' },
+            { from: 'test/data-2016-02-08.json', to: 'data.json' }
         ]),
         new HtmlWebpackPlugin({
             template: 'src/app.html',

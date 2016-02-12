@@ -57,7 +57,7 @@ import {REGIONS, Region} from '../cfg/regions';
 })
 //TODO: Figure out how to route here on first load
 //TODO: Rework as form and save values
-class InitialConfigurationView {
+class InitialConfigurationView implements OnInit {
     private regions:Region[];
     private statusClass:String;
     private title:String;
@@ -86,14 +86,17 @@ class InitialConfigurationView {
         private fb:FormBuilder
     ) {
         this.regions = REGIONS;
+    }
+
+    ngOnInit() {
         //Start DAO background initialization
         this.setStatus('Status', 'Setting up data', 'alert-info');
-        daos.init().then(() => this.finishDataInit(this), e => this.error(e));
+        this.daos.init().then(() => this.finishDataInit(this), e => this.error(e));
 
         //Initialize Form
-        this.initFormControls.backend = fb.control('', Validators.required);
-        this.initFormControls.regionSelect = fb.control('', Validators.required);
-        this.initForm = fb.group(this.initFormControls);
+        this.initFormControls.backend = this.fb.control('', Validators.required);
+        this.initFormControls.regionSelect = this.fb.control('', Validators.required);
+        this.initForm = this.fb.group(this.initFormControls);
 
         //Wire up region select to DAO
         this.initFormControls.regionSelect.valueChanges.subscribe(v =>
@@ -112,6 +115,7 @@ class InitialConfigurationView {
     }
 
     error(error:Error|{name: string; message: string;}) {
+        console.error(error);
         this.setStatus(error.name, error.message, 'alert-danger');
     }
 

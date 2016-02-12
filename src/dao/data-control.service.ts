@@ -31,8 +31,25 @@ class DataControlService {
      * - Errors will be fed to the reject callback
      */
     init(): Promise<Date> {
-        return new Promise<Date>(resolve => {
-            resolve(this.getLastUpdate());
+        return Promise.all([
+            this.games.init().then(() => {
+                console.log('Games init');
+                return 0;
+            }),
+            this.teams.init().then(() => {
+                console.log('Teams init');
+                return 0;
+            }),
+            this.settings.init().then(() => {
+                console.log('Settings init');
+                return 0;
+            }),
+            //this.weekCache.init().then(() => {
+            //    console.log('Week Cache init');
+            //    return 0;
+            //}),
+        ]).then(() => {
+            return Promise.resolve(new Date());
         });
     }
 

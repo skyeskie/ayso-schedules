@@ -14,22 +14,30 @@ import {
 
 import {Component, provide} from 'angular2/core';
 import WeekBarComponent from '../../src/comp/week-bar.component';
-import MockWeekCacheService from '../../src/dao/mem/weeks.mem.service';
 import {WeekCacheInterface} from '../../src/dao/week-cache.interface';
+import {IInitializationService} from '../../src/dao/init/initialization.interface';
+import {StaticInitializationService} from '../../src/dao/init/static.init.service';
+import {MockWeeksService} from '../mocks/weeks.mock.service';
+
+let providers = [
+    provide(IInitializationService, {useClass: StaticInitializationService}),
+    provide(WeekCacheInterface, {useFactory: () => {
+        return new MockWeeksService(2,7);
+    },}),
+];
 
 describe('Comp: WeekBar', () => {
     @Component({
         template: '',
         directives: [WeekBarComponent],
-        providers: [
-            provide(WeekCacheInterface, {useFactory: () => { return new MockWeekCacheService(); }})
-        ],
+        providers: providers,
     })
     class TestComponent {
     }
 
-    it('shows the week number', injectAsync([TestComponentBuilder], (tcb) => {
-        let wbc = new WeekBarComponent(new MockWeekCacheService());
+    beforeEachProviders(() => [...providers, WeekBarComponent]);
+
+    it('shows the week number', injectAsync([TestComponentBuilder, WeekBarComponent], (tcb, wbc) => {
         return tcb.overrideTemplate(TestComponent, `<week-bar week="3"></week-bar>`)
                   .createAsync(TestComponent).then((f) => {
                 wbc.onInit.subscribe(() => {
@@ -44,8 +52,7 @@ describe('Comp: WeekBar', () => {
                 f.detectChanges();
             });
     }));
-    it('hides the back button on week one', injectAsync([TestComponentBuilder], (tcb) => {
-        let wbc = new WeekBarComponent(new MockWeekCacheService());
+    it('hides the back button on week one', injectAsync([TestComponentBuilder, WeekBarComponent], (tcb, wbc) => {
         return tcb.overrideTemplate(TestComponent, `<week-bar week="1"></week-bar>`)
                   .createAsync(TestComponent).then((f) => {
                 wbc.onInit.subscribe(() => {
@@ -59,8 +66,7 @@ describe('Comp: WeekBar', () => {
             });
     }));
 
-    it('hides the forward button on the last week', injectAsync([TestComponentBuilder], (tcb) => {
-        let wbc = new WeekBarComponent(new MockWeekCacheService());
+    it('hides the forward button on the last week', injectAsync([TestComponentBuilder, WeekBarComponent], (tcb, wbc) => {
         return tcb.overrideTemplate(TestComponent, `<week-bar week="7"></week-bar>`)
                   .createAsync(TestComponent).then((f) => {
                 wbc.onInit.subscribe(() => {
@@ -76,10 +82,7 @@ describe('Comp: WeekBar', () => {
     }));
 
     it('hides both navigation buttons with only 1 week', injectAsync([TestComponentBuilder], (tcb) => {
-        let cache = new MockWeekCacheService();
-        cache.max = 1;
-        cache.cur = 1;
-
+        let cache = new MockWeeksService(1,1);
         let wbc = new WeekBarComponent(cache);
         return tcb.overrideTemplate(TestComponent, `<week-bar week="1"></week-bar>`)
                   .overrideProviders(TestComponent, [provide(WeekBarComponent, {useValue: cache})])
@@ -96,8 +99,7 @@ describe('Comp: WeekBar', () => {
     }));
 
     //Can do this without rendering
-    it('clips weeks below 1 to 1', injectAsync([TestComponentBuilder], (tcb) => {
-        let wbc = new WeekBarComponent(new MockWeekCacheService());
+    it('clips weeks below 1 to 1', injectAsync([TestComponentBuilder, WeekBarComponent], (tcb, wbc) => {
         return tcb.overrideTemplate(TestComponent, `<week-bar week="-10"></week-bar>`)
                   .createAsync(TestComponent).then((f) => {
                 wbc.onInit.subscribe(() => {
@@ -108,8 +110,7 @@ describe('Comp: WeekBar', () => {
             });
     }));
 
-    it('clips weeks above the max to the last week', injectAsync([TestComponentBuilder], (tcb) => {
-        let wbc = new WeekBarComponent(new MockWeekCacheService());
+    it('clips weeks above the max to the last week', injectAsync([TestComponentBuilder, WeekBarComponent], (tcb, wbc) => {
         return tcb.overrideTemplate(TestComponent, `<week-bar week="42"></week-bar>`)
                   .createAsync(TestComponent).then((f) => {
                 wbc.onInit.subscribe(() => {

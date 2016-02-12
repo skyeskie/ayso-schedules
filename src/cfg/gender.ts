@@ -12,7 +12,8 @@ class Gender {
 let GENDERS: Gender[] = [
     new Gender('B', 'Boys'),
     new Gender('G', 'Girls'),
-    new Gender('C', 'Coed'),
+    new Gender('C', 'Coed'),  //TODO: Auto-hide if none present
+    new Gender('T', 'Coed '), //TODO: Figure out where this is coming from
 ];
 
 function findGenderByCode(code: String): Gender {
