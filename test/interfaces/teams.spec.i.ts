@@ -13,26 +13,36 @@ import {
     xdescribe,
     xit,
 } from 'angular2/testing';
+import {provide} from 'angular2/core';
 
-import Team from '../../src/models/team';
-import {TeamsDAO} from '../../src/dao/teams.interface';
+import {TeamsDAO, Team} from '../../src/dao/teams.interface';
+import {IInitializationService} from '../../src/dao/init/initialization.interface';
 
-function teamsInterfaceSpec(impl: any) {
+function teamsInterfaceSpec(impl: any, init: any) {
+    describe('(TeamsDAO)', () => {
+        beforeEachProviders(() => [impl, provide(IInitializationService, {useValue: null})]);
+        it('initializes with no initialization class', injectAsync([impl], (dao:TeamsDAO) => {
+            return dao.init().then(() => {
+                return dao.findTeams();
+            }).then(teams => {
+                expect(teams.length).toBe(0);
+            });
+        }));
+    });
+
     describe('interface tests', () => {
-        beforeEachProviders(() => [impl]);
+        beforeEachProviders(() => [impl, provide(IInitializationService, {useClass: init})]);
 
         describe('getTeam', () => {
-            it('returns promise of team', injectAsync([impl], (dao:TeamsDAO) => {
-                console.log(dao);
-                let p = dao.getTeam('A').then((team: Team) => {
-                    console.log(team);
+            it('resolves to a team', injectAsync([impl], (dao:TeamsDAO) => {
+                return dao.init().then(() => {
+                    return dao.getTeam('A');
+                }).then((team: Team) => {
                     expect(team.code).toEqual('A');
                 });
-                expect(p).toBePromise();
-                return p;
             }));
 
-            it('throws on invalid lookup', injectAsync([impl], (dao:TeamsDAO) => {
+            it('rejects on invalid lookup', injectAsync([impl], (dao:TeamsDAO) => {
                 return dao.getTeam('InvalidTeamId').then((team: Team) => {
                     fail('Should not return successfully');
                 }, (err) => {
@@ -43,20 +53,26 @@ function teamsInterfaceSpec(impl: any) {
 
         describe('getTeams', () => {
             it('returns list of teams', injectAsync([impl], (dao:TeamsDAO) => {
-                return dao.getTeams(['C', 'A']).then((teams: Team[]) => {
+                return dao.init().then(() => {
+                    return dao.getTeams(['C', 'A']);
+                }).then((teams: Team[]) => {
                     expect(teams.length).toBe(2);
                     expect(teams.map(team => team.code).sort().join(',')).toEqual('A,C');
                 });
             }));
 
             it('returns empty list for no games', injectAsync([impl], (dao:TeamsDAO) => {
-                return dao.getTeams([]).then((teams: Team[]) => {
+                return dao.init().then(() => {
+                    return dao.getTeams([]);
+                }).then((teams: Team[]) => {
                     expect(teams.length).toEqual(0);
                 });
             }));
 
             it('ignores invalid teams on retrieve', injectAsync([impl], (dao:TeamsDAO) => {
-                return dao.getTeams(['Z', 'Q', 'A']).then((teams: Team[]) => {
+                return dao.init().then(() => {
+                    return dao.getTeams(['Z', 'Q', 'A']);
+                }).then((teams: Team[]) => {
                     expect(teams.length).toBe(1);
                     expect(teams[0].code).toEqual('A');
                 });

@@ -7,17 +7,15 @@ import {
 import {provide} from 'angular2/core';
 
 import {settingsInterfaceSpec} from '../interfaces/settings.spec.i';
-import MockSettingsService from 'mem/settings.mem.service';
-import {TeamsDAO, InMemoryTeamsService} from 'mem/teams.mem.service';
+import {TeamsDAO, InMemoryTeamsService} from '../../src/dao/mem/teams.mem.service';
+import {InMemorySettingsService} from '../../src/dao/mem/settings.mem.service';
+import {StaticInitializationService} from '../../src/dao/init/static.init.service';
 
 describe('DAO: SettingsMock', () => {
     beforeEachProviders(() => [
-        MockSettingsService,
+        InMemorySettingsService,
         provide(TeamsDAO, {useClass: InMemoryTeamsService}),
     ]);
 
-    it('is configured after region is set', inject([MockSettingsService], dao => {
-        dao.setRegion(49);
-        expect(dao.isAppConfigured()).toBeTruthy();
-    }));
+    settingsInterfaceSpec(InMemorySettingsService, StaticInitializationService);
 });

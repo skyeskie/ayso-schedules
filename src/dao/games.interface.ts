@@ -23,7 +23,7 @@ interface GamesDAO {
      */
     findByWeek(week: Number): Promise<Game[]>;
 
-    findGames(regionID:Number, ageGroup:String, gender:String, week:Number): Promise<Game[]>;
+    findGames(regionID?:Number, ageGroup?:String, gender?:String, week?:Number): Promise<Game[]>;
 
     /**
      * Lookup all games for a single team
@@ -46,7 +46,7 @@ interface GamesDAO {
      *
      *  Optionally, implementation may return init details in promise
      */
-    init(games: Game[]): Promise<any>;
+    init(): Promise<any>;
 
     /**
      * Clears all saved data.

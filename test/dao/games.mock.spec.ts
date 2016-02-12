@@ -1,11 +1,10 @@
 import { describe } from 'angular2/testing';
 import {provide} from 'angular2/core';
 
-import MockGamesService from 'mem/games.mem.service';
-import {TeamsDAO, InMemoryTeamsService} from 'mem/teams.mem.service';
-
 import {gamesInterfaceSpec} from '../interfaces/games.spec.i';
+import {InMemoryGamesService} from '../../src/dao/mem/games.mem.service';
+import {StaticInitializationService, IInitializationService} from '../../src/dao/init/static.init.service';
 
 describe('DAO: GamesMock', () => {
-    gamesInterfaceSpec(MockGamesService);
+    gamesInterfaceSpec(InMemoryGamesService, StaticInitializationService);
 });

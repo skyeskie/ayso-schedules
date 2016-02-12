@@ -41,7 +41,6 @@ describe('Model: Division', () => {
         });
 
         it('should throw an error on invalid format', () => {
-            console.log('B10 check');
             expect(() => { Division.fromString('B10'); }).toThrowError(RangeError);
         });
     });

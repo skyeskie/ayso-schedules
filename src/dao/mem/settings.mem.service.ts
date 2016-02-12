@@ -3,15 +3,20 @@ import {Inject, Injectable} from 'angular2/core';
 import {TeamsDAO} from '../teams.interface';
 import SettingsDAO, {Region, Team} from '../settings.interface';
 import {getRegionByNumber} from '../../cfg/regions';
+import {IInitializationService} from '../init/initialization.interface';
+import {Optional} from 'angular2/core';
+import {SettingsDataType} from '../settings.interface';
 
 @Injectable()
 class InMemorySettingsService implements SettingsDAO {
     constructor(
         @Inject(TeamsDAO)
-        private dao: TeamsDAO
+        private dao: TeamsDAO,
+        @Optional() @Inject(IInitializationService)
+        private initializer?:IInitializationService
     ) {}
 
-    public teams = new Set<String>(['A','C']);
+    public teams = new Set<String>();
 
     public region:Number = undefined;
 
@@ -33,12 +38,12 @@ class InMemorySettingsService implements SettingsDAO {
 
     saveTeam(team: String): Promise<void> {
         this.teams.add(team);
-        return new Promise<void>(resolve => resolve());
+        return Promise.resolve();
     }
 
     unSaveTeam(team: String): Promise<void> {
         this.teams.delete(team);
-        return new Promise<void>(resolve => resolve());
+        return Promise.resolve();
     }
 
     isTeamSaved(team: String): Promise<boolean> {
@@ -49,11 +54,10 @@ class InMemorySettingsService implements SettingsDAO {
 
     clearSavedTeams(): Promise<void> {
         this.teams.clear();
-        return new Promise<void>(resolve => resolve());
+        return Promise.resolve();
     }
 
     getRegionNumber(): Promise<Number> {
-        console.log('Called getRegionNumber(). Region is: ' + this.region);
         return new Promise<Number>(resolve =>
             resolve(this.region)
         );
@@ -66,13 +70,19 @@ class InMemorySettingsService implements SettingsDAO {
     }
 
     setRegion(region: Number): Promise<void> {
-        console.log('Called setRegion(' + region + ')');
         this.region = region;
-        return new Promise<void>(resolve => resolve());
+        return Promise.resolve();
     }
 
     init(): Promise<void> {
-        return new Promise<void>(resolve => resolve());
+        if(this.initializer === null) {
+            return Promise.resolve();
+        }
+
+        return this.initializer.getSettings().then((preset:SettingsDataType) => {
+            this.region = preset.regionNumber;
+            this.teams = new Set<String>(preset.savedTeams);
+        });
     }
 
     isAppConfigured(): boolean {
@@ -81,8 +91,8 @@ class InMemorySettingsService implements SettingsDAO {
 
     reset(): Promise<void> {
         this.region = undefined;
-        this.teams = new Set<String>(['A','C']);
-        return new Promise<void>(resolve => resolve());
+        this.teams = new Set<String>();
+        return Promise.resolve();
     }
 
 }

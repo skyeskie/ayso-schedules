@@ -12,57 +12,126 @@ import {
     TestComponentBuilder,
     xit,
 } from 'angular2/testing';
+import {provide} from 'angular2/core';
+
 import Team from '../../src/models/team';
 import {SettingsDAO} from '../../src/dao/settings.interface';
 import Region from '../../src/models/region';
+import {IInitializationService} from '../../src/dao/init/initialization.interface';
 
-function settingsInterfaceSpec(impl: any, providers:any[] = []) {
-    describe('interface tests', () => {
+function settingsInterfaceSpec(impl: any, init: any) {
+    describe('(SettingsDAO)', () => {
+        beforeEachProviders(() => [
+            provide(IInitializationService, {useValue: null})
+        ]);
+
+        it('initializes with no initialization class', injectAsync([impl], (dao:SettingsDAO) => {
+            return dao.init().then(() => {
+                return dao.getSavedTeamIDs();
+            }).then(teamIDs => {
+                expect(teamIDs.length).toBe(0);
+                return dao.getRegionNumber();
+            }).then(regionNum => {
+                expect(regionNum).not.toBeDefined();
+            });
+        }));
+    });
+
+    describe('(interface)', () => {
+        beforeEachProviders(() => [
+            provide(IInitializationService, {useClass: init})
+        ]);
+
         it('saves a team', injectAsync([impl], (dao:SettingsDAO) => {
-            dao.clearSavedTeams();
-            return dao.isTeamSaved('A').then((saved) => {
-                expect(saved).toBeFalsy();
-                dao.saveTeam('A');
-                dao.isTeamSaved('A').then((saved2) => {
-                    expect(saved2).toBeTruthy();
-                    dao.saveTeam('C');
-                    dao.unSaveTeam('A');
-                    dao.isTeamSaved('A').then((saved3) => {
-                        expect(saved3).toBeFalsy();
-                    });
-                });
+            return dao.clearSavedTeams().then(() => {
+                return dao.isTeamSaved('A');
+            }).then(isSaved => {
+                expect(isSaved).toBeFalsy();
+                return dao.saveTeam('A');
+            }).then(() => {
+                return dao.isTeamSaved('A');
+            }).then(isSaved => {
+                expect(isSaved).toBeTruthy();
+                return dao.saveTeam('A');
+            });
+        }));
+
+        it('unsaves a team', injectAsync([impl], (dao:SettingsDAO) => {
+            return dao.saveTeam('A').then(() => {
+                return dao.isTeamSaved('A');
+            }).then(isSaved => {
+                expect(isSaved).toBeTruthy();
+                return dao.unSaveTeam('A');
+            }).then(() => {
+                return dao.isTeamSaved('A');
+            }).then(isSaved => {
+                expect(isSaved).toBeFalsy();
             });
         }));
 
         it('returns saved teams', injectAsync([impl], (dao:SettingsDAO) => {
-            return dao.getSavedTeams().then(teams => {
-                dao.getSavedTeamIDs().then(ids => {
-                    let idSet = new Set<String>();
-                    ids.forEach(id => idSet.add(id));
-                    teams.forEach((team: Team) => {
-                        expect(idSet.has(team.code)).toBeTruthy();
-                    });
+            let idSet = new Set<String>();
+
+            return dao.init().then(() => {
+                return dao.getSavedTeamIDs();
+            }).then(teamIDs => {
+                expect(teamIDs.length).toBeGreaterThan(1);
+                teamIDs.forEach(id => idSet.add(id));
+                return dao.getSavedTeams();
+            }).then(teams => {
+                teams.forEach((team: Team) => {
+                    expect(idSet.has(team.code)).toBeTruthy();
                 });
             });
         }));
 
         it('saves region', injectAsync([impl], (dao: SettingsDAO) => {
-            dao.setRegion(49);
-            return Promise.all<any>([
-                dao.getRegion(),
-                dao.getRegionNumber(),
-            ]).then(values => {
+            return dao.setRegion(49).then(() => {
+                return Promise.all<any>([
+                    dao.getRegion(),
+                    dao.getRegionNumber(),
+                ]);
+            }).then(values => {
                 let region: Region = values[0];
                 let number: Number = values[1];
+                expect(number).toEqual(49);
                 expect(region.number).toEqual(number);
             });
         }));
 
-        it('is not configured on initial load', inject([impl], (dao:SettingsDAO) => {
-            expect(dao.isAppConfigured()).toBeFalsy();
-        }));
+        describe('isAppConfigured', () => {
+            it('is false on initial load', inject([impl], (dao:SettingsDAO) => {
+                expect(dao.isAppConfigured()).toBeFalsy();
+            }));
 
-        it('has a reset', inject([impl], dao => dao.reset()));
+            it('is true when a region is present', injectAsync([impl], (dao:SettingsDAO) => {
+                return dao.setRegion(49).then(() => {
+                    expect(dao.isAppConfigured()).toBeTruthy();
+                });
+            }));
+
+            it('is false after a reset', injectAsync([impl], (dao:SettingsDAO) => {
+                return dao.setRegion(49).then(() => {
+                    expect(dao.isAppConfigured()).toBeTruthy();
+                    return dao.reset();
+                }).then(() => {
+                    expect(dao.isAppConfigured()).toBeFalsy();
+                });
+            }));
+        });
+
+        it('has no saved teams after reset', injectAsync([impl], (dao:SettingsDAO) => {
+            return dao.init().then(() => {
+                return dao.getSavedTeamIDs();
+            }).then(teamIDs => {
+                expect(teamIDs.length).toBeGreaterThan(0);
+                return dao.reset();
+            }).then(() => {
+                return dao.getSavedTeamIDs();
+            }).then(teamIDs => {
+                expect(teamIDs.length).toBe(0);
+            });
+        }));
     });
 }
 

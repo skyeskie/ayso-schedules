@@ -1,23 +1,18 @@
 import TeamsDAO, {Team, Division} from '../teams.interface';
 import {Gender} from '../../cfg/gender';
 import {checkPresent} from '../../app/util';
+import {Inject, Optional} from 'angular2/core';
+import {IInitializationService} from '../init/initialization.interface';
 
 class InMemoryTeamsService implements TeamsDAO {
     public teams: Map<String,Team> = new Map<String,Team>();
     public teamsArray: Team[] = [];
 
-    //Mock-specific
-    public prepopulate() {
-        this.init([
-            new Team('A', 'coachA', 'telA', Division.fromString('U10B'), 49),
-            new Team('B', 'coachB', 'telB', Division.fromString('U10B'), 49),
-            new Team('C', 'coachC', 'telC', Division.fromString('U10B'), 49),
-            new Team('D', 'coachD', 'telD', Division.fromString('U10B'), 49),
-        ]);
-    }
-
-    constructor() {
-        this.prepopulate();
+    constructor(
+        @Optional() @Inject(IInitializationService)
+        private initializer
+    ) {
+        //No-op
     }
 
     getTeam(id: String): Promise<Team> {
@@ -31,9 +26,8 @@ class InMemoryTeamsService implements TeamsDAO {
     }
 
     getTeams(ids: String[]): Promise<Team[]> {
-        return new Promise<Team[]>(resolve =>
-            resolve(ids.filter(id => this.teams.has(id)).map(id => this.teams.get(id)))
-        );
+        return Promise.resolve(ids.filter(id => this.teams.has(id))
+                                  .map(id => this.teams.get(id)));
     }
 
     findTeams(regionNumber?: String, ageString?: String, genderLong?: String): Promise<Team[]> {
@@ -61,17 +55,22 @@ class InMemoryTeamsService implements TeamsDAO {
     /**
      * @returns {Promise<Number>} length of teams array
      */
-    init(teams: Team[]): Promise<any> {
-        this.teams.clear();
-        this.teamsArray = teams;
-        this.teamsArray.forEach(team => this.teams.set(team.code, team));
-        return new Promise<Number>(resolve => resolve(this.teamsArray.length));
+    init(): Promise<any> {
+        this.clear();
+        if(this.initializer === null) {
+            return Promise.resolve(0);
+        }
+        return this.initializer.getTeams().then(teams => {
+            this.teamsArray = teams;
+            this.teamsArray.forEach(team => this.teams.set(team.code, team));
+            return Promise.resolve(teams.length);
+        });
     }
 
     clear(): Promise<void> {
         this.teams.clear();
         this.teamsArray = [];
-        return new Promise<void>(resolve => resolve());
+        return Promise.resolve();
     }
 
     update(updates:Map<String,Team>): Promise<any> {
@@ -91,7 +90,7 @@ class InMemoryTeamsService implements TeamsDAO {
         if(toDelete.size > 0) {
             this.teamsArray = this.teamsArray.filter((team:Team) => !toDelete.has(team.code));
         }
-        return new Promise<void>(resolve => resolve());
+        return Promise.resolve();
     }
 }
 

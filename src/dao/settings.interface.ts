@@ -2,6 +2,11 @@ import Team from '../models/team';
 import Region from '../models/region';
 import {OpaqueToken} from 'angular2/core';
 
+type SettingsDataType = {
+    regionNumber?:Number
+    savedTeams?:String[]
+};
+
 interface SettingsDAO {
     /**
      * Gets a list of the IDs the saved teams
@@ -67,7 +72,7 @@ interface SettingsDAO {
      * If not required should be no-op
      * If `isAppConfigured()===true`, should be no-op
      */
-    init(): Promise<void>;
+    init(data?:SettingsDataType): Promise<void>;
 
     /**
      * Returns if all required settings are present
@@ -84,4 +89,4 @@ interface SettingsDAO {
 }
 
 var SettingsDAO = new OpaqueToken('SettingsDAO');
-export {SettingsDAO as default, SettingsDAO, Region, Team};
+export {SettingsDAO as default, SettingsDAO, Region, Team, SettingsDataType};

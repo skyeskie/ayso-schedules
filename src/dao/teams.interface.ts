@@ -31,15 +31,13 @@ interface TeamsDAO {
     /**
      * Initializes data store with data
      * If data store is Read-Only, this should be a no-op
-     * @param teams - Array all teams for the DAO
      *
      *  Optionally, implementation may return init details in promise
      */
-    init(teams: Team[]): Promise<any>;
+    init(): Promise<any>;
 
     /**
      * Clears all saved data.
-     * Promise is returned for chaining actions
      */
     clear(): Promise<void>;
 
