@@ -91,15 +91,14 @@ export class SearchView {
         this.ages = AGES;
         this.genders = GENDERS;
 
-        _weekCache.getMaxWeeks().then((max) => {
-            this.weeks = new Array<Number>(max);
-            for(let i=0; i<max; ++i) {
-                this.weeks[i] = i + 1;
-            }
-        });
+        let max = _weekCache.getMaxWeeks();
+        this.weeks = new Array<Number>(max);
+        for(let i=0; i<max; ++i) {
+            this.weeks[i] = i + 1;
+        }
 
         //Default to current week
-        _weekCache.getCurrentWeek().then(cur => this.week = cur);
+        this.week = _weekCache.getCurrentWeek();
 
         //Default to current region
         _settings.getRegionNumber().then(n => this.region = n);

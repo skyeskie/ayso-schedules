@@ -19,6 +19,20 @@ module.exports = function (config) {
     config.set({
         preprocessors: {
             'karma-webpack.js': ['webpack', 'sourcemap', 'coverage']
+        },
+
+        coverageReporter: {
+            dir: 'build/coverage',
+            subdir: function(browser) {
+                return browser.toLowerCase().split(/ /)[0];
+            },
+            reporters: [
+                { type: 'html' },
+                { type: 'text-summary' }
+            ],
+            instrumenterOptions: {
+                istanbul: { noCompact: true }
+            }
         }
     });
 };
