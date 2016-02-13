@@ -94,7 +94,6 @@ class InMemorySettingsService implements SettingsDAO {
         this.teams = new Set<String>();
         return Promise.resolve();
     }
-
 }
 
 export { InMemorySettingsService as default, InMemorySettingsService, SettingsDAO }

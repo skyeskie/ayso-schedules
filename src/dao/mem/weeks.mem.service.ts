@@ -3,9 +3,12 @@ import {Inject, Injectable, Optional} from 'angular2/core';
 import {IInitializationService} from '../init/initialization.interface';
 import WeekCacheInterface from '../week-cache.interface';
 import {calculateCurrentWeek} from '../week-cache.interface';
+import {ClassLogger, Logger, Level} from '../../service/log.decorator';
 
 @Injectable()
 class InMemoryWeeksService implements WeekCacheInterface {
+    @ClassLogger public log: Logger;
+
     private weekStarts:Date[];
     private max:Number = 1;
     private cur:Number = 1;
@@ -33,13 +36,12 @@ class InMemoryWeeksService implements WeekCacheInterface {
 
     init(): Promise<Number> {
         if(this.initializer === null) {
-            console.log('WeekCache -- no initialization found');
+            this.log.warn('WeekCache -- no initialization found');
             return Promise.resolve(1);
         }
 
         return this.initializer.getWeekStarts().then(starts => {
-            console.log('WeekCache -- initializing with: ');
-            console.log(starts);
+            this.log.debug('WeekCache -- initializing with: ', starts);
             this.weekStarts = starts;
             this.max = starts.length;
 

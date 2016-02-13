@@ -8,6 +8,7 @@ import {Control} from 'angular2/common';
 import {ViewChild} from 'angular2/core';
 import {AfterViewInit} from 'angular2/core';
 import {FormBuilder} from 'angular2/common';
+import {ClassLogger, Logger, Level} from '../service/log.decorator';
 
 @Component({
     selector: 'gender-form',
@@ -24,6 +25,7 @@ import {FormBuilder} from 'angular2/common';
     `,
 })
 export class GenderFormComponent implements AfterViewInit {
+    @ClassLogger public log: Logger;
     public genders: Gender[] = GENDERS;
 
     @Output()
@@ -32,11 +34,7 @@ export class GenderFormComponent implements AfterViewInit {
     @ViewChild('genderForm') form;
 
     ngAfterViewInit() {
-        console.log(this.form);
-        this.form.control.valueChanges.subscribe((v) => this.log(v));
-    }
-
-    log(v) {
-        console.log(v);
+        this.log.debug(this.form);
+        this.form.control.valueChanges.subscribe((v) => this.log.debug(v));
     }
 }

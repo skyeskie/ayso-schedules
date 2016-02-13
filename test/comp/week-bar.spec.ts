@@ -73,7 +73,6 @@ describe('Comp: WeekBar', () => {
                     let elements = f.debugElement.nativeElement.children[0].children[0];
                     expect(elements.children.length).toEqual(2);
                     expect(elements.children[1].innerText).not.toEqual('Forward');
-                    console.log(wbc.toString());
                     expect(wbc.showPrevious()).toBeTruthy();
                     expect(wbc.showNext()).toBeFalsy();
                 });

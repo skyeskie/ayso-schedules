@@ -3,8 +3,11 @@ import {Gender} from '../../cfg/gender';
 import {checkPresent} from '../../app/util';
 import {Inject, Optional} from 'angular2/core';
 import {IInitializationService} from '../init/initialization.interface';
+import {ClassLogger, Logger, Level} from '../../service/log.decorator';
 
 class InMemoryTeamsService implements TeamsDAO {
+    @ClassLogger public log: Logger;
+
     public teams: Map<String,Team> = new Map<String,Team>();
     public teamsArray: Team[] = [];
 
@@ -38,12 +41,12 @@ class InMemoryTeamsService implements TeamsDAO {
                 }
 
                 if(checkPresent(ageString) && team.division.age.toString() !== ageString) {
-                    console.log('exit on age mismatch: '+ageString+'/'+team.division.age);
+                    this.log.trace('exit on age mismatch:', ageString,'/', team.division.age);
                     return false;
                 }
 
                 if(checkPresent(genderLong) && team.division.gender.long !== genderLong) {
-                    console.log('exit on gender mismatch: '+genderLong+'/'+team.division.gender.long);
+                    this.log.trace('exit on gender mismatch: ', genderLong, '/', team.division.gender.long);
                     return false;
                 }
 

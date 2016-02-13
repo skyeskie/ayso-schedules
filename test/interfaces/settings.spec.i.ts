@@ -37,7 +37,7 @@ function settingsInterfaceSpec(impl: any, init: any) {
         }));
     });
 
-    describe('(interface)', () => {
+    describe('(SettingsDAO)', () => {
         beforeEachProviders(() => [
             provide(IInitializationService, {useClass: init})
         ]);

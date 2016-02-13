@@ -3,17 +3,18 @@ import {GamesDAO} from './games.interface';
 import {SettingsDAO} from './settings.interface';
 import {TeamsDAO} from './teams.interface';
 import {WeekCacheInterface} from './week-cache.interface';
+import {ClassLogger, Logger, Level} from '../service/log.decorator';
 
 /**
  * This class provides a common interface for updating all the
  * DataAccessObjects used by the App. Several of the methods
  * are included here as NO-OP. This provides a hook for actually
  * performing updates, with an override and different provider
- *
- * TODO: Eventually pull URL(s) to hit from sub-DAOs.
  */
 @Injectable()
 class DataControlService {
+    @ClassLogger public log: Logger;
+
     constructor(
         @Inject(GamesDAO)           public games:GamesDAO,
         @Inject(SettingsDAO)        public settings:SettingsDAO,
@@ -33,19 +34,19 @@ class DataControlService {
     init(): Promise<Date> {
         return Promise.all([
             this.games.init().then(() => {
-                console.log('Games init');
+                this.log.info('Games init');
                 return 0;
             }),
             this.teams.init().then(() => {
-                console.log('Teams init');
+                this.log.info('Teams init');
                 return 0;
             }),
             this.settings.init().then(() => {
-                console.log('Settings init');
+                this.log.info('Settings init');
                 return 0;
             }),
             this.weekCache.init().then(() => {
-                console.log('Week Cache init');
+                this.log.info('Week Cache init');
                 return 0;
             }),
         ]).then(() => {

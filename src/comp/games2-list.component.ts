@@ -4,6 +4,7 @@ import {Router, RouterLink} from 'angular2/router';
 import Game from '../models/game';
 import Team from '../models/team';
 import {checkPresent} from '../app/util';
+import {ClassLogger, Logger, Level} from '../service/log.decorator';
 
 @Component({
     selector: 'two-teams-game-list',
@@ -30,6 +31,8 @@ import {checkPresent} from '../app/util';
     `,
 })
 export default class TwoTeamsGamesListComponent implements OnChanges {
+    @ClassLogger public log: Logger;
+
     public byesList: String = '';
     public gamesList: Row[] = [];
 
@@ -41,7 +44,7 @@ export default class TwoTeamsGamesListComponent implements OnChanges {
 
     parseGamesList() {
         if(!checkPresent(this.games)) {
-            console.warn('No games for Games2List');
+            this.log.warn('No games for Games2List');
             return;
         }
 
@@ -72,10 +75,6 @@ export default class TwoTeamsGamesListComponent implements OnChanges {
 
     hasByes(): boolean {
         return (this.byesList.length === 0);
-    }
-
-    onSelect(game) {
-        console.log(game);
     }
 }
 

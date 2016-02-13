@@ -13,6 +13,7 @@ import {findGenderByCode} from '../../cfg/gender';
 import {AGES} from '../../cfg/ages';
 import {IInitializationService} from './initialization.interface';
 import {SettingsDataType} from '../settings.interface';
+import {ClassLogger, Logger, Level} from '../../service/log.decorator';
 
 //TODO: Make server types match so can remove
 type ServerCoach = {
@@ -36,32 +37,30 @@ const URL = '/data.json';
 
 @Injectable()
 class HttpInitService implements IInitializationService {
+    @ClassLogger public log: Logger;
+
     public remoteObservable:Observable<Response>;
     public dataObservable = new ReplaySubject<ServerJSON>();
 
     //TODO: Figure out this Observervable/Subject mess
     constructor(private http:Http) {
-        console.log('HttpInitService');
+        this.log.log('HttpInitService');
         this.remoteObservable = this.http.get(URL);
-        this.remoteObservable.subscribe(v => console.log(v));
+        this.remoteObservable.subscribe(v => this.log.debug(v));
         this.dataObservable = new ReplaySubject<ServerJSON>(1);
-        console.log(this);
+        this.log.debug(this);
         this.remoteObservable.map((response:Response) => {
             //TODO: Response.ok doesn't seem to be working
             if(response.status < 200 || response.status > 299) {
-                console.error('Response not OK');
-                console.log(response.ok);
+                this.log.error('Response not OK', response);
                 throw new Error(response.status + ' ' + response.statusText);
             }
-            console.log(response);
-            let v = response.json();
-            console.log(v);
-            return v;
+            this.log.debug(response);
+            return response.json();
         }).subscribe(this.dataObservable);
     }
 
     getTeams(): Promise<Team[]> {
-        console.log('getTeams()');
         return this.dataObservable
                    .map((data:ServerJSON) => data.Coaches)
                    .map((coaches:ServerCoach[]) => {
@@ -70,7 +69,6 @@ class HttpInitService implements IInitializationService {
     }
 
     getGames(): Promise<Game[]> {
-        console.log('getGames()');
         return this.dataObservable
                    .map((data:ServerJSON) => data.Games)
                    .map((games:ServerGame[]) => {
@@ -79,7 +77,6 @@ class HttpInitService implements IInitializationService {
     };
 
     getWeekStarts(): Promise<Date[]> {
-        console.log('getWeekStarts()');
         return this.dataObservable.map((data:ServerJSON) => {
             //Slightly convoluted path,
             //Game -> timestamp (numeric) -> sort and unique -> Date object
@@ -90,7 +87,6 @@ class HttpInitService implements IInitializationService {
             ).sort().filter(timestamp => {
                 let result = (timestamp !== lastDate);
                 lastDate = timestamp;
-                console.log(timestamp + ' -> ' + result);
                 return result;
             }).map(timestamp => new Date(timestamp));
        }).toPromise();
@@ -113,9 +109,7 @@ class ModelTranslation {
                 getRegionById(Number.parseInt(coach.TeamNo[0], 10)).number
             );
         } catch (err) {
-            console.error('Team translation error');
-            console.log(coach);
-            console.log(err);
+            console.error('Team translation error', coach, err);
         }
     }
 
@@ -133,9 +127,7 @@ class ModelTranslation {
                 ModelTranslation.divisionFromCode(game.Divis)
             );
         } catch (err) {
-            console.error('Game translation error');
-            console.log(game);
-            console.log(err);
+            console.error('Game translation error', game, err);
         }
     }
 

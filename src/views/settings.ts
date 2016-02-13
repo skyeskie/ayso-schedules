@@ -27,7 +27,7 @@ import {DataControlService} from '../dao/data-control.service';
             <h4 class="card-title">Update data</h4>
             <p>The app normally checks for updates on start.
             Use this if you think you missed an update.</p>
-            <div><strong>Last updated:</strong> {{lastUpdate | date:'MMMdjhm'}}</div>
+            <div><strong>Last updated:</strong> {{lastUpdate | date:'MMMdhm'}}</div>
             <button class="btn btn-info-outline">Update now</button>
             <p id="update-result"></p>
         </div>
