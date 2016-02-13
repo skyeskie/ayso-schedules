@@ -3,6 +3,7 @@ import {NgFor, NgIf, DatePipe} from 'angular2/common';
 import {Router, RouterLink} from 'angular2/router';
 import Game from '../models/game';
 import Team from '../models/team';
+import {checkPresent} from '../app/util';
 
 @Component({
     selector: 'two-teams-game-list',
@@ -29,8 +30,8 @@ import Team from '../models/team';
     `,
 })
 export default class TwoTeamsGamesListComponent implements OnChanges {
-    public byesList: String;
-    public gamesList: Row[];
+    public byesList: String = '';
+    public gamesList: Row[] = [];
 
     @Input() games: Game[];
 
@@ -39,19 +40,23 @@ export default class TwoTeamsGamesListComponent implements OnChanges {
     }
 
     parseGamesList() {
-        let byes:String[] = [];
+        if(!checkPresent(this.games)){
+            console.warn('No games for Games2List');
+            return;
+        }
 
-        this.games.sort();
-        let lastTime = new Date(0,0,0,0,0,0);
+        let byes:String[] = [];
+        this.games.sort(Game.compare);
+        let lastTime = new Date(0,0,0,0,0,0).valueOf();
         this.gamesList = [];
         this.games.forEach((game: Game) => {
             if(game.isBye()) {
                 byes.push(game.getTeamWithBye());
             } else {
-                if(lastTime !== game.startTime) {
+                if(lastTime !== game.startTime.valueOf()) {
                     //Add a date/time header
                     this.gamesList.push(new Row(game, true));
-                    lastTime = game.startTime;
+                    lastTime = game.startTime.valueOf();
                 }
                 this.gamesList.push(new Row(game, false));
             }

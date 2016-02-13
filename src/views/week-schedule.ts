@@ -7,6 +7,9 @@ import {GamesDAO, Game} from '../dao/games.interface';
 import WeekBarComponent from '../comp/week-bar.component';
 import TwoTeamsGamesListComponent from '../comp/games2-list.component';
 import {TitleBarComponent} from '../comp/title-bar.component';
+import {OnInit} from 'angular2/core';
+import {WeekCacheInterface} from '../dao/week-cache.interface';
+import {SettingsDAO} from '../dao/settings.interface';
 
 @Component({
     directives: [WeekBarComponent, TwoTeamsGamesListComponent, TitleBarComponent],
@@ -18,7 +21,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     </article>
     `,
 })
-class WeekScheduleView {
+class WeekScheduleView implements OnInit {
     public week:Number;
     public games:Game[];
 
@@ -26,11 +29,20 @@ class WeekScheduleView {
         private _router:Router,
         private _routeParams:RouteParams,
         @Inject(GamesDAO)
-        private _dao:GamesDAO
+        private _dao:GamesDAO,
+        @Inject(SettingsDAO)
+        private _settings:SettingsDAO
     ) {
-        let n = parseInt(_routeParams.get('num'), 10);
+        //No-op
+    }
+
+    ngOnInit() {
+        let n = parseInt(this._routeParams.get('num'), 10);
         this.week = Number.isNaN(n) ? 1 : n;
-        _dao.findByWeek(this.week).then(games => this.games = games);
+        let self = this;
+        this._settings.getRegionNumber().then((region:Number) => {
+            return this._dao.findByWeek(this.week, region);
+        }).then(res => this.games = res);
     }
 
     navWeek(week) {

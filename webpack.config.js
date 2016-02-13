@@ -60,8 +60,8 @@ module.exports = {
 
     //Development settings
     stats: { colors: true, reasons: true },
-    devtool: 'cheap-module-eval-source-map',
-    debug: false,
+    devtool: 'source-map',
+    debug: true,
 
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(true),

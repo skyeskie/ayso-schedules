@@ -15,6 +15,10 @@ export default class Game {
         public divis?:Division
     ) {}
 
+    static compare(l: Game, r: Game) {
+        return l.startTime.valueOf() - r.startTime.valueOf();
+    }
+
     hasTeam(teamId: String) {
         return (this.homeTeam === teamId) || (this.awayTeam === teamId);
     }

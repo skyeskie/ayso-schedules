@@ -21,7 +21,7 @@ interface GamesDAO {
      *   resolve to empty array
      * @returns Promise<Game[]>
      */
-    findByWeek(week: Number): Promise<Game[]>;
+    findByWeek(week: Number, region?: Number): Promise<Game[]>;
 
     findGames(regionID?:Number, ageGroup?:String, gender?:String, week?:Number): Promise<Game[]>;
 

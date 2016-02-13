@@ -28,9 +28,10 @@ class InMemoryGamesService implements GamesDAO {
             });
     }
 
-    findByWeek(week: Number): Promise<Game[]> {
-        return new Promise<Game[]>(resolve =>
-            resolve(this.games.filter((game) => game.weekNum === week))
+    findByWeek(week: Number, region: Number): Promise<Game[]> {
+        return Promise.resolve(
+            this.games.filter((game:Game) => game.weekNum === week)
+                .filter((game:Game) => region === Number.parseInt(game.region.toString(), 10))
         );
     }
 
