@@ -10,10 +10,10 @@ import {checkPresent} from '../app/util';
     directives: [NgFor, NgIf, RouterLink],
     pipes: [DatePipe],
     template: `
-    <ul data-role="listview" class="list-group" *ngIf="byesList">
-        <li class="list-group-item">Byes</li>
-        <li class="list-group-item">{{byesList}}</li>
-    </ul>
+    <div class="card card-block card-info-outline" *ngIf="byesList">
+        <span class="card-title bold m-r-2">Byes:</span>
+        <span class="card-text">{{byesList}}</span>
+    </div>
     <div class="list-group">
         <div *ngFor="#row of gamesList">
             <button type="button" class="container list-group-item"
@@ -40,7 +40,7 @@ export default class TwoTeamsGamesListComponent implements OnChanges {
     }
 
     parseGamesList() {
-        if(!checkPresent(this.games)){
+        if(!checkPresent(this.games)) {
             console.warn('No games for Games2List');
             return;
         }

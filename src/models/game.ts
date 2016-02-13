@@ -2,7 +2,7 @@ import Team from './team';
 import Division from './division';
 
 export default class Game {
-    public static BYE_TEAM = '{BYE}';
+    public static BYE_TEAM = '-';
 
     constructor(
         public id:String,
