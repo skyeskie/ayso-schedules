@@ -81,14 +81,18 @@ class HttpInitService implements IInitializationService {
     getWeekStarts(): Promise<Date[]> {
         console.log('getWeekStarts()');
         return this.dataObservable.map((data:ServerJSON) => {
-            let lastDate;
+            //Slightly convoluted path,
+            //Game -> timestamp (numeric) -> sort and unique -> Date object
+            //Need to bypass into timestamps because Date objects don't sort
+            let lastDate = 0;
             return data.Games.map(
-                (game:ServerGame) => new Date(game.Jour)
-            ).sort().filter(date => {
-                let result = (date !== lastDate);
-                lastDate = date;
+                (game:ServerGame) => new Date(game.Jour).valueOf()
+            ).sort().filter(timestamp => {
+                let result = (timestamp !== lastDate);
+                lastDate = timestamp;
+                console.log(timestamp + ' -> ' + result);
                 return result;
-            });
+            }).map(timestamp => new Date(timestamp));
        }).toPromise();
     }
 

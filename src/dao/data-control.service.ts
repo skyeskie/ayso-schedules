@@ -44,10 +44,10 @@ class DataControlService {
                 console.log('Settings init');
                 return 0;
             }),
-            //this.weekCache.init().then(() => {
-            //    console.log('Week Cache init');
-            //    return 0;
-            //}),
+            this.weekCache.init().then(() => {
+                console.log('Week Cache init');
+                return 0;
+            }),
         ]).then(() => {
             return Promise.resolve(new Date());
         });
