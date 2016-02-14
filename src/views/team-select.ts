@@ -12,11 +12,13 @@ import {TitleBarComponent} from '../comp/title-bar.component';
 import {FormBuilder} from 'angular2/common';
 import {ControlGroup} from 'angular2/common';
 import {ChangeDetector} from 'angular2/src/core/change_detection/interfaces';
+import {NameSwitchPipe} from '../pipes/name-switch.pipe';
 
 type TeamFormData = {age?:string, gender?:string, region?:number}
 
 @Component({
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, RouterLink, TitleBarComponent],
+    pipes: [NameSwitchPipe],
     styles: ['.team-list: { columns: 3 }'],
     template: `
     <title-bar></title-bar>
@@ -54,7 +56,7 @@ type TeamFormData = {age?:string, gender?:string, region?:number}
         <div class="container team-list text-justify">
             <button type="button" class="btn btn-secondary m-a-1 btn-sm"
                 *ngFor="#team of teams" [routerLink]="['/TeamSchedule',{ id: team.code }]">
-                {{team.code}}<span *ngIf="teams.length<10"> - {{team.coach}}</span>
+                {{team.code}}<span *ngIf="teams.length<10"> - {{team.coach | NameSwitch}}</span>
             </button>
         </div>
     </form>

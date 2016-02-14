@@ -4,12 +4,13 @@ import {Router, RouterLink} from 'angular2/router';
 
 import Game from '../models/game';
 import {GamesDAO} from '../dao/games.interface';
+import {VsAtGameFormatPipe} from '../pipes/vs-at-game.pipe';
 
 @Component({
     selector: 'single-team-game-list',
     directives: [NgFor, RouterLink],
     styles: [`.team { height: 100%; text-valign: middle}`],
-    pipes: [DatePipe],
+    pipes: [DatePipe, VsAtGameFormatPipe],
     template: `
     <div class="list-group">
         <div class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No games found</div>
@@ -23,7 +24,7 @@ import {GamesDAO} from '../dao/games.interface';
                 </div>
             </div>
             <h4 class="col-xs-5 team text-xs-center" *ngIf="team">
-                vs {{game.getOpponent(team)}}
+                {{game | vsAtGame:team }}
             </h4>
         </button>
     </div>

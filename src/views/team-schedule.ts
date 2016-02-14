@@ -7,9 +7,11 @@ import TitleBarComponent from '../comp/title-bar.component';
 import {GamesDAO, Game} from '../dao/games.interface';
 import {TeamsDAO, Team} from '../dao/teams.interface';
 import SettingsDAO from '../dao/settings.interface';
+import {NameSwitchPipe} from '../pipes/name-switch.pipe';
 
 @Component({
     directives: [SingleTeamGameListComponent, TitleBarComponent, NgIf],
+    pipes: [NameSwitchPipe],
     styles: ['h4.card-text { display: inline; }'],
     template: `
     <title-bar></title-bar>
@@ -21,7 +23,7 @@ import SettingsDAO from '../dao/settings.interface';
             </button>
             <button type="button" class="btn btn-sm btn-link card-link pull-xs-right m-x-2"
                 (click)="initCall()" *ngIf="team?.coachTel">Call</button>
-            <h4 class="card-text m-a-1"><b>Coach</b> {{team?.coach}}</h4>
+            <h4 class="card-text m-a-1"><b>Coach</b> {{team?.coach | NameSwitch}}</h4>
         </div>
 
         <single-team-game-list [games]="games" [team]="teamID"></single-team-game-list>

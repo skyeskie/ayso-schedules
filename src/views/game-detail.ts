@@ -8,9 +8,10 @@ import GamesDAO from '../dao/games.interface';
 import {TeamsDAO} from '../dao/teams.interface';
 import {Inject} from 'angular2/core';
 import {TitleBarComponent} from '../comp/title-bar.component';
+import {NameSwitchPipe} from '../pipes/name-switch.pipe';
 
 @Component({
-    pipes: [DatePipe],
+    pipes: [DatePipe, NameSwitchPipe],
     directives: [TitleBarComponent],
     template: `
     <title-bar></title-bar>
@@ -22,7 +23,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
             <h4 class="card-title text-muted">Home Team</h4>
             <h4 class="card-text text-primary">{{game?.homeTeam}}</h4>
             <div class="coach" *ngIf="homeTeam">
-                <strong>Coach</strong> <span class="name">{{homeTeam?.coach}}</span><br />
+                <strong>Coach</strong> <span class="name">{{homeTeam.coach | NameSwitch}}</span><br />
                 <a class="tel" href="tel:{{homeTeam.coachTel}}"
                    data-role="button" data-mini="true" data-inline="true"
                    data-icon="arrow-r" data-iconpos="right">Call</a>
@@ -32,7 +33,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
             <h4 class="card-title text-muted">Away Team</h4>
             <h4 class="card-text text-primary">{{game?.awayTeam}}</h4>
             <div class="coach" *ngIf="awayTeam">
-                <strong>Coach</strong> <span class="name">{{awayTeam.coach}}</span><br />
+                <strong>Coach</strong> <span class="name">{{awayTeam.coach | NameSwitch}}</span><br />
                 <a class="tel" href="tel:{{awayTeam.coachTel}}"
                    data-role="button" data-mini="true" data-inline="true"
                    data-icon="arrow-r" data-iconpos="right">Call</a>
