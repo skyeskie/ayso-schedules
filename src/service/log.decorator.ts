@@ -86,8 +86,6 @@ class Logger {
  */
 
 function ClassLogger(target: Object, property: string): void {
-    console.log(target);
-
     let loggerName = target.constructor.toString().match(/\w+/g)[1];
     let logger = new Logger(loggerName);
 

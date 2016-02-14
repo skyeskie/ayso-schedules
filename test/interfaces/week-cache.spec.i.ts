@@ -51,7 +51,7 @@ function weekCacheInterfaceSpec(impl: any, init?:any) {
         });
 
         it('resets to current 1 and max 1 on clear()', injectAsync([impl], (dao: WeekCacheInterface) => {
-            return dao.clear().then(() => {
+            return dao.init().then(() => dao.clear()).then(() => {
                 expect(dao.getCurrentWeek()).toBe(ONE);
                 expect(dao.getMaxWeeks()).toBe(ONE);
             });

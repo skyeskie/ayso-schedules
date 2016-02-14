@@ -5,6 +5,7 @@ import {
 import {NgIf} from 'angular2/common';
 
 import WeekCacheInterface from '../dao/week-cache.interface';
+import {ClassLogger, Logger, Level} from '../service/log.decorator';
 
 const ONE = 1;
 
@@ -24,8 +25,9 @@ const ONE = 1;
 })
 @Injectable()
 export default class WeekBarComponent implements OnInit {
+    @ClassLogger public log:Logger;
+
     max: Number;
-    cur: Number;
 
     /**
      * Fires event after ngOnInit
@@ -44,8 +46,10 @@ export default class WeekBarComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.max = this._weeks.getMaxWeeks();
-        this.cur = this._weeks.getCurrentWeek();
+        //Make sure the cache is initialized
+        this._weeks.init().then(() => {
+            this.max = this._weeks.getMaxWeeks();
+        });
     }
 
     showPrevious(): boolean {

@@ -8,17 +8,24 @@ import {ClassLogger, Logger, Level} from '../../service/log.decorator';
 class InMemoryTeamsService implements TeamsDAO {
     @ClassLogger public log: Logger;
 
-    public teams: Map<String,Team> = new Map<String,Team>();
-    public teamsArray: Team[] = [];
+    public initialized = false;
+    private initializePromise: Promise<any> = null;
+    private teams: Map<String,Team> = new Map<String,Team>();
+    private teamsArray: Team[] = [];
 
     constructor(
         @Optional() @Inject(IInitializationService)
         private initializer
     ) {
-        //No-op
+        this.initializePromise = this.init();
     }
 
     getTeam(id: String): Promise<Team> {
+        if(!this.initialized) {
+            this.log.debug('Waiting until after init for getTeam()');
+            return this.initializePromise.then(() => this.getTeam(id));
+        }
+
         return new Promise<Team>((resolve, reject) => {
             let team = this.teams.get(id);
             if(typeof team === 'undefined') {
@@ -29,30 +36,39 @@ class InMemoryTeamsService implements TeamsDAO {
     }
 
     getTeams(ids: String[]): Promise<Team[]> {
-        return Promise.resolve(ids.filter(id => this.teams.has(id))
-                                  .map(id => this.teams.get(id)));
+        if(!this.initialized) {
+            this.log.debug('Waiting until after init for getTeams()');
+            return this.initializePromise.then(() => this.getTeams(ids));
+        }
+
+        return Promise.resolve(
+            ids.filter(id => this.teams.has(id)).map(id => this.teams.get(id))
+        );
     }
 
     findTeams(regionNumber?: String, ageString?: String, genderLong?: String): Promise<Team[]> {
-        return new Promise<Team[]>(resolve => {
-            resolve(this.teamsArray.filter((team:Team) => {
-                if(checkPresent(regionNumber) && regionNumber !== team.regionNumber.toString()) {
-                    return false;
-                }
+        if(!this.initialized) {
+            this.log.debug('Waiting until after init for findTeams()');
+            return this.initializePromise.then(() => this.findTeams(regionNumber, ageString, genderLong));
+        }
 
-                if(checkPresent(ageString) && team.division.age.toString() !== ageString) {
-                    this.log.trace('exit on age mismatch:', ageString,'/', team.division.age);
-                    return false;
-                }
+        return Promise.resolve(this.teamsArray.filter((team:Team) => {
+            if(checkPresent(regionNumber) && regionNumber !== team.regionNumber.toString()) {
+                return false;
+            }
 
-                if(checkPresent(genderLong) && team.division.gender.long !== genderLong) {
-                    this.log.trace('exit on gender mismatch: ', genderLong, '/', team.division.gender.long);
-                    return false;
-                }
+            if(checkPresent(ageString) && team.division.age.toString() !== ageString) {
+                this.log.trace('exit on age mismatch:', ageString,'/', team.division.age);
+                return false;
+            }
 
-                return true;
-            }));
-        });
+            if(checkPresent(genderLong) && team.division.gender.long !== genderLong) {
+                this.log.trace('exit on gender mismatch: ', genderLong, '/', team.division.gender.long);
+                return false;
+            }
+
+            return true;
+        }));
     }
 
     /**
@@ -61,11 +77,13 @@ class InMemoryTeamsService implements TeamsDAO {
     init(): Promise<any> {
         this.clear();
         if(this.initializer === null) {
+            this.initialized = true;
             return Promise.resolve(0);
         }
         return this.initializer.getTeams().then(teams => {
             this.teamsArray = teams;
             this.teamsArray.forEach(team => this.teams.set(team.code, team));
+            this.initialized = true;
             return Promise.resolve(teams.length);
         });
     }

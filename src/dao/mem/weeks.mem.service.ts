@@ -9,6 +9,8 @@ import {ClassLogger, Logger, Level} from '../../service/log.decorator';
 class InMemoryWeeksService implements WeekCacheInterface {
     @ClassLogger public log: Logger;
 
+    public initialized = false;
+    private initializePromise: Promise<any> = null;
     private weekStarts:Date[];
     private max:Number = 1;
     private cur:Number = 1;
@@ -18,7 +20,7 @@ class InMemoryWeeksService implements WeekCacheInterface {
         @Inject(IInitializationService)
         private initializer
     ) {
-        //No-op
+        this.initializePromise = this.init();
     }
 
     getMaxWeeks(): Number {
@@ -30,11 +32,17 @@ class InMemoryWeeksService implements WeekCacheInterface {
     }
 
     clear(): Promise<void> {
-        return new Promise<void>(resolve => resolve());
-        //No-op
+        this.cur = 1;
+        this.max = 1;
+        return Promise.resolve();
     }
 
     init(): Promise<Number> {
+        if(this.initializePromise!==null) {
+            //We've already been here
+            return this.initializePromise;
+        }
+
         if(this.initializer === null) {
             this.log.warn('WeekCache -- no initialization found');
             return Promise.resolve(1);
