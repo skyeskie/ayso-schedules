@@ -8,6 +8,10 @@ var CopyWebpackPlugin  = require('copy-webpack-plugin');
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 
+var node_modules_dir = path.join(__dirname, 'node_modules');
+var app_dir          = path.join(__dirname, 'src');
+var test_dr          = path.join(__dirname, 'test');
+
 // Helper functions
 function root(args) {
     "use strict";
@@ -28,9 +32,16 @@ var metadata = {
 module.exports = {
     metadata: metadata,
     entry: {
-        lib: ['./src/app/lib.ts'],
-        main: './src/app/boot.ts',
-        bootstrap: 'bootstrap-loader',
+        main: [
+            //Libraries. Commons chunk will export to lib
+            'es6-shim',
+            'es6-promise',
+            'zone.js/lib/browser/zone-microtask',
+            'es7-reflect-metadata/dist/browser',
+            'bootstrap-loader',
+            //Main app
+            './src/app/boot.ts'
+        ],
         styling: './src/scss/styles.scss'
     },
     output: {
@@ -65,7 +76,13 @@ module.exports = {
 
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(true),
-        //new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js', minChunks: Infinity }),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: 'lib',
+            filename: 'lib.wp.js',
+            minChunks: function(module, count) {
+                "use strict";
+                return module.resource && module.resource.indexOf(app_dir) === -1;
+            }}),
         new CopyWebpackPlugin([
             { from: 'src/img', to: 'img' },
             { from: 'test/data-2016-02-08.json', to: 'data.json' }
@@ -87,9 +104,20 @@ module.exports = {
             '__awaiter': 'ts-helper/awaiter',
             '__extends': 'ts-helper/extends',
             '__param': 'ts-helper/param',
-            'jQuery': 'jquery'
+            'jQuery': 'jquery',
+            'Zone.longStackTraceZone': 'zone.js/lib/zones/long-stack-trace.js',
+            'Error.stackTraceLimit': Infinity
             //'Reflect': 'es7-reflect-metadata/dist/browser'
-        })
+        }),
+        //new webpack.optimize.UglifyJsPlugin({
+        //    beautify: false,
+        //    mangle: false,
+        //    compress : { screw_ie8 : true},
+        //    comments: false
+        //}),
+        new webpack.NoErrorsPlugin()
+        //Possible include:
+        //var WebpackNotifierPlugin = require('webpack-notifier');
     ],
 
     tslint: {
