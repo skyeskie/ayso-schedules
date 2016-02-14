@@ -28,10 +28,10 @@ class InMemoryGamesService implements GamesDAO {
             });
     }
 
-    findByWeek(week: Number, region: Number): Promise<Game[]> {
+    findByWeek(week: Number, region?: number): Promise<Game[]> {
         return Promise.resolve(
             this.games.filter((game:Game) => game.weekNum === week)
-                .filter((game:Game) => region === Number.parseInt(game.region.toString(), 10))
+                .filter((game:Game) => isNaN(region) || region === Number.parseInt(game.region.toString(), 10))
         );
     }
 
