@@ -27,6 +27,7 @@ import {HttpInitService} from '../dao/init/http.init.service';
 import {StaticInitializationService} from '../dao/init/static.init.service';
 import {Http} from 'angular2/http';
 import {LocalStorageSettingsService} from '../dao/ls/settings.ls.service';
+import {ILocalStorage} from '../dao/ls/settings.ls.service';
 
 document.addEventListener('DOMContentLoaded', function main() {
     bootstrap(AppComponent, [
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function main() {
         ...HTTP_PROVIDERS,
 
         //In-app providers
-        provide(Storage, { useValue: window.localStorage }),
+        provide(ILocalStorage, { useValue: window.localStorage }),
         provide(IInitializationService, { useClass: HttpInitService}),
         provide(GamesDAO, { useClass: InMemoryGamesService }),
         provide(TeamsDAO, { useClass: InMemoryTeamsService }),

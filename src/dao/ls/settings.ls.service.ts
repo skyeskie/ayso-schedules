@@ -4,9 +4,20 @@ import {IInitializationService} from '../init/initialization.interface';
 import {TeamsDAO, Team} from '../teams.interface';
 import {getRegionByNumber, Region} from '../../cfg/regions';
 import {Logger, ClassLogger, Level} from '../../service/log.decorator';
+import {OpaqueToken} from 'angular2/core';
 
 const SAVED_TEAMS_KEY = 'ayso-teams';
 const SAVED_REGION_KEY = 'ayso-region';
+
+interface ILocalStorage {
+    clear(): void;
+    getItem(key: string): any;
+    key(index: number): string;
+    removeItem(key: string): void;
+    setItem(key: string, data: string): void;
+}
+
+let ILocalStorage = new OpaqueToken('ILocalStorage');
 
 @Injectable()
 class LocalStorageSettingsService implements SettingsDAO {
@@ -20,7 +31,8 @@ class LocalStorageSettingsService implements SettingsDAO {
     public region:Number = undefined;
 
     constructor(
-        private client:Storage,
+        @Inject(ILocalStorage)
+        private client:ILocalStorage,
         @Inject(TeamsDAO)
         private dao: TeamsDAO,
         @Optional() @Inject(IInitializationService)
@@ -29,7 +41,9 @@ class LocalStorageSettingsService implements SettingsDAO {
         this.log.setLevel(Level.TRACE);
         let savedList = this.client.getItem(SAVED_TEAMS_KEY) || '';
         this.log.info('Retrieved teams from LocalStorage',savedList);
-        this.teams = savedList.split(',');
+        if(savedList) {
+            this.teams = savedList.split(',');
+        }
         this.log.info('Parsed teams into array',this.teams);
     }
 
@@ -66,7 +80,8 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 
     getRegionNumber(): Promise<number> {
-        return Promise.resolve(Number.parseInt(this.client.getItem(SAVED_REGION_KEY),10));
+        let n = Number.parseInt(this.client.getItem(SAVED_REGION_KEY),10);
+        return Promise.resolve(isNaN(n) ? undefined : n);
     }
 
     getRegion(): Promise<Region> {
@@ -88,6 +103,7 @@ class LocalStorageSettingsService implements SettingsDAO {
         }
 
         return this.initializer.getSettings().then((preset:SettingsDataType) => {
+            this.log.debug('Setting from intializer: ', preset);
             this.setRegion(preset.regionNumber);
             this.teams = preset.savedTeams || [];
             this.persistTeams();
@@ -115,4 +131,4 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 }
 
-export { LocalStorageSettingsService as default, LocalStorageSettingsService, SettingsDAO }
+export { LocalStorageSettingsService as default, LocalStorageSettingsService, SettingsDAO, ILocalStorage }

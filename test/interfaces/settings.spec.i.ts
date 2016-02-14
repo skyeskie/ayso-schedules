@@ -22,13 +22,15 @@ import {IInitializationService} from '../../src/dao/init/initialization.interfac
 function settingsInterfaceSpec(impl: any, init: any) {
     describe('(SettingsDAO)', () => {
         beforeEachProviders(() => [
-            provide(IInitializationService, {useValue: null})
+            provide(IInitializationService, {useValue: null}),
+            impl,
         ]);
 
         it('initializes with no initialization class', injectAsync([impl], (dao:SettingsDAO) => {
             return dao.init().then(() => {
                 return dao.getSavedTeamIDs();
             }).then(teamIDs => {
+                console.log(teamIDs);
                 expect(teamIDs.length).toBe(0);
                 return dao.getRegionNumber();
             }).then(regionNum => {
@@ -39,7 +41,8 @@ function settingsInterfaceSpec(impl: any, init: any) {
 
     describe('(SettingsDAO)', () => {
         beforeEachProviders(() => [
-            provide(IInitializationService, {useClass: init})
+            provide(IInitializationService, {useClass: init}),
+            impl,
         ]);
 
         it('saves a team', injectAsync([impl], (dao:SettingsDAO) => {

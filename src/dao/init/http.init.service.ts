@@ -44,7 +44,7 @@ class HttpInitService implements IInitializationService {
 
     //TODO: Figure out this Observervable/Subject mess
     constructor(private http:Http) {
-        this.log.log('HttpInitService');
+        this.log.log('HttpInitService constuctor');
         this.remoteObservable = this.http.get(URL);
         this.remoteObservable.subscribe(v => this.log.debug(v));
         this.dataObservable = new ReplaySubject<ServerJSON>(1);
