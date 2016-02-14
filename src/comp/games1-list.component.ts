@@ -33,7 +33,7 @@ export default class SingleTeamGameListComponent implements OnInit {
     @Optional()
     @Input() games: Game[];
 
-    @Input() team: String;
+    @Input() team: string;
 
     constructor(
         @Optional() @Inject(GamesDAO)
@@ -42,7 +42,7 @@ export default class SingleTeamGameListComponent implements OnInit {
 
     ngOnInit() {
         if(typeof this.games === 'undefined') {
-            this.dao.findForTeam(this.team).then(games => this.games);
+            this.dao.findForTeam(this.team).then((games:Game[]) => this.games);
         }
     }
 

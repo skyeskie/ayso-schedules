@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function main() {
         DataControlService,
         INTERCEPT_ROUTER_PROVIDER,
     ])
-     .catch(err => {
+     .catch((err:any) => {
          //No-op
      });
 });

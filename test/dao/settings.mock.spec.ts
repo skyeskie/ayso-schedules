@@ -13,7 +13,7 @@ import {StaticInitializationService} from '../../src/dao/init/static.init.servic
 
 describe('DAO: SettingsMock', () => {
     beforeEachProviders(() => [
-        provide(TeamsDAO, {useClass: InMemoryTeamsService}),
+        provide(TeamsDAO, {useClass: InMemoryTeamsService})
     ]);
 
     settingsInterfaceSpec(InMemorySettingsService, StaticInitializationService);

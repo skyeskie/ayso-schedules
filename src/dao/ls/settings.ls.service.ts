@@ -21,14 +21,14 @@ let ILocalStorage = new OpaqueToken('ILocalStorage');
 
 @Injectable()
 class LocalStorageSettingsService implements SettingsDAO {
-    public static KEYS = {
+    public static KEYS:any = {
         TEAMS: SAVED_TEAMS_KEY,
         REGION: SAVED_REGION_KEY,
     };
 
     @ClassLogger public log:Logger;
     public teams:string[] = [];
-    public region:Number = undefined;
+    public region:number = undefined;
 
     constructor(
         @Inject(ILocalStorage)
@@ -47,7 +47,7 @@ class LocalStorageSettingsService implements SettingsDAO {
         this.log.info('Parsed teams into array',this.teams);
     }
 
-    getSavedTeamIDs(): Promise<String[]> {
+    getSavedTeamIDs(): Promise<string[]> {
         return Promise.resolve(this.teams);
     }
 
@@ -64,7 +64,7 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 
     unSaveTeam(team: string): Promise<void> {
-        this.teams = this.teams.filter(item => item !== team);
+        this.teams = this.teams.filter((item:string) => item !== team);
         this.persistTeams();
         return Promise.resolve();
     }
@@ -85,7 +85,7 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 
     getRegion(): Promise<Region> {
-        return this.getRegionNumber().then(num => {
+        return this.getRegionNumber().then((num:number) => {
             return Promise.resolve(getRegionByNumber(num));
         });
     }
@@ -103,7 +103,7 @@ class LocalStorageSettingsService implements SettingsDAO {
         }
 
         return this.initializer.getSettings().then((preset:SettingsDataType) => {
-            this.log.debug('Setting from intializer: ', preset);
+            this.log.debug('Setting from initializer: ', preset);
             this.setRegion(preset.regionNumber);
             this.teams = preset.savedTeams || [];
             this.persistTeams();
@@ -123,7 +123,7 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 
     private _isTeamSaved(team: string) {
-        return this.teams.some(item => item === team);
+        return this.teams.some((item:string) => item === team);
     }
 
     private persistTeams() {

@@ -17,7 +17,7 @@ import SettingsView from '../../src/views/settings';
 import {DataControlService} from '../../src/dao/data-control.service';
 
 //TODO: Make custom pipe, at least until Angular2 fixes
-//DatePipe requiers Intl and has limited usage: http://caniuse.com/#search=intl
+//DatePipe requires Intl and has limited usage: http://caniuse.com/#search=intl
 //https://github.com/angular/angular/issues/3333
 xdescribe('View: Settings', () => {
     beforeEachProviders(() => [

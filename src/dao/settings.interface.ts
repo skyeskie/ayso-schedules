@@ -26,20 +26,20 @@ interface SettingsDAO {
      * If team already saved, does no-op to prevent duplicates
      * @param {String} team - unique ID for team
      */
-    saveTeam(team: String): Promise<void>;
+    saveTeam(team: string): Promise<void>;
 
     /**
      * Removes a team from favorites.
      * Checks all items so will remove all if there are duplicates
      * @param {String} team - unique ID of team to remove
      */
-    unSaveTeam(team: String): Promise<void>;
+    unSaveTeam(team: string): Promise<void>;
 
     /**
      * Checks if team is saved
      * @param {String} team - unique ID of team
      */
-    isTeamSaved(team: String): Promise<boolean>;
+    isTeamSaved(team: string): Promise<boolean>;
 
     /**
      * Removes all teams from saved list

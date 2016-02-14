@@ -4,6 +4,7 @@ import {
     beforeEachProviders,
     fdescribe,
     it,
+    TestComponentBuilder,
     xdescribe,
     xit,
 } from 'angular2/testing';
@@ -24,7 +25,7 @@ describe('View: TeamSchedule', () => {
         WeekScheduleView,
     ]);
 
-    ensureViewExists(WeekScheduleView, tcb => {
+    ensureViewExists(WeekScheduleView, (tcb:TestComponentBuilder) => {
         return tcb.overrideDirective(WeekScheduleView, TitleBarComponent, MockComponent)
                   .overrideDirective(WeekScheduleView, TwoTeamsGamesListComponent, MockComponent);
     });

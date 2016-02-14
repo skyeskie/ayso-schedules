@@ -20,13 +20,13 @@ import {Inject} from 'angular2/core';
     `,
 })
 class SchedulesMenuView {
-    public regionNum:Number;
+    public regionNum:number;
 
     constructor(
         @Inject(SettingsDAO)
         dao:SettingsDAO
     ) {
-        dao.getRegionNumber().then(n => this.regionNum = n);
+        dao.getRegionNumber().then((n:number) => this.regionNum = n);
     }
 }
 

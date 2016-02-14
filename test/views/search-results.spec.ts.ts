@@ -4,6 +4,7 @@ import {
     beforeEachProviders,
     fdescribe,
     it,
+    TestComponentBuilder,
     xdescribe,
     xit,
 } from 'angular2/testing';
@@ -24,7 +25,7 @@ describe('View: SearchResults', () => {
         SearchResultsView,
     ]);
 
-    ensureViewExists(SearchResultsView, tcb => {
+    ensureViewExists(SearchResultsView, (tcb:TestComponentBuilder) => {
         return tcb.overrideDirective(SearchResultsView, TitleBarComponent, MockComponent)
                   .overrideDirective(SearchResultsView, TwoTeamsGamesListComponent, MockComponent);
     });

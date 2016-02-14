@@ -23,7 +23,6 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     `,
 })
 export default class FieldMapView implements OnInit {
-    public id;
     private region: Region;
 
     constructor(
@@ -31,8 +30,8 @@ export default class FieldMapView implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.id = this._routeParams.get('region');
-        this.region = getRegionByNumber(parseInt(this.id, 10));
+        let id:string = this._routeParams.get('region');
+        this.region = getRegionByNumber(parseInt(id, 10));
     }
 
     hasMap() {

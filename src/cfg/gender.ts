@@ -1,7 +1,7 @@
 class Gender {
     constructor(
-        public short: String,
-        public long: String
+        public short: string,
+        public long: string
     ) {}
 
     equals(o: Gender) {
@@ -16,8 +16,8 @@ let GENDERS: Gender[] = [
     new Gender('T', 'Coed '), //TODO: Figure out where this is coming from
 ];
 
-function findGenderByCode(code: String): Gender {
-    let res = GENDERS.filter(g => (g.short === code));
+function findGenderByCode(code: string): Gender {
+    let res = GENDERS.filter((g:Gender) => (g.short === code));
     if(res.length !== 1) {
         throw new RangeError('Invalid gender for code "' + code + '"');
     }

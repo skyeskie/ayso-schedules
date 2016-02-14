@@ -4,6 +4,7 @@ import {
     beforeEachProviders,
     fdescribe,
     it,
+    TestComponentBuilder,
     xdescribe,
     xit,
 } from 'angular2/testing';
@@ -24,7 +25,7 @@ describe('View: FavoritesList', () => {
         FavoritesListView,
     ]);
 
-    ensureViewExists(FavoritesListView, tcb => {
+    ensureViewExists(FavoritesListView, (tcb:TestComponentBuilder) => {
         return tcb.overrideDirective(FavoritesListView, TitleBarComponent, MockComponent)
                   .overrideDirective(FavoritesListView, TwoTeamsGamesListComponent, MockComponent);
     });

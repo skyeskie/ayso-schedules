@@ -52,13 +52,13 @@ import {DataControlService} from '../dao/data-control.service';
 })
 @Injectable()
 export default class SettingsView implements OnInit {
-    public defaultRegion = new Control('');
+    public defaultRegion:Control = new Control('');
 
     public regions:Region[];
     public lastUpdate:Date;
 
     constructor(
-        private dataConrol: DataControlService
+        private dataControl: DataControlService
     ) {
         //No-op
     }
@@ -66,21 +66,21 @@ export default class SettingsView implements OnInit {
     ngOnInit() {
         this.regions = REGIONS;
 
-        this.dataConrol.settings.getRegionNumber().then(r => this.defaultRegion.updateValue(r.toString()));
+        this.dataControl.settings.getRegionNumber().then((r:number) => this.defaultRegion.updateValue(r.toString()));
 
-        this.lastUpdate = this.dataConrol.getLastUpdate();
+        this.lastUpdate = this.dataControl.getLastUpdate();
 
-        this.defaultRegion.valueChanges.subscribe(val => {
-            this.dataConrol.settings.setRegion(parseInt(val,10));
+        this.defaultRegion.valueChanges.subscribe((val:string) => {
+            this.dataControl.settings.setRegion(parseInt(val,10));
         });
     }
 
     doReset(): void {
-        this.dataConrol.reset();
+        this.dataControl.reset();
     }
 
     forceRefresh(): void {
-        this.dataConrol.update(true).then(updated => {
+        this.dataControl.update(true).then((updated:Date) => {
             this.lastUpdate = updated;
         });
     }

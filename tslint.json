@@ -8,6 +8,10 @@
       "public-before-private"
     ],
     "no-inferrable-types": true,
+    "typedef": [
+      "call-signature",
+      "member-variable-declaration"
+    ],
     "typedef-whitespace": "space",
 
     "_____Functionality_____": "",

@@ -4,6 +4,7 @@ import {
     beforeEachProviders,
     fdescribe,
     it,
+    TestComponentBuilder,
     xdescribe,
     xit,
 } from 'angular2/testing';
@@ -31,7 +32,7 @@ describe('View: Map', () => {
         provide(MapView, {useClass: MapView, deps: [RouteParams]}),
     ]);
 
-    ensureViewExists(MapView, tcb => {
+    ensureViewExists(MapView, (tcb:TestComponentBuilder) => {
         return tcb.overrideDirective(MapView, TitleBarComponent, MockComponent)
                   .overrideDirective(MapView, SebmGoogleMap, MockComponent)
                   .overrideDirective(MapView, SebmGoogleMapMarker, MockComponent);

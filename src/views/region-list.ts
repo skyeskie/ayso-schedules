@@ -26,7 +26,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
 })
 
 export default class RegionListView {
-    public regions;
+    public regions:Region[];
     constructor() {
         this.regions = REGIONS;
     }

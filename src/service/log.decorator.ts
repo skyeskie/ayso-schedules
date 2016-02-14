@@ -6,12 +6,12 @@ enum Level {
 
 class Logger {
     static GLOBAL_LEVEL:Level = Level.INFO;
-    static Level = Level;
+    static Level:any = Level;
 
     private name:string;
     private level:Level = null;
 
-    constructor(n, l?:Level) {
+    constructor(n:string, l?:Level) {
         this.name = n;
         this.level = l || null;
     }
@@ -48,7 +48,7 @@ class Logger {
         }
     }
 
-    log(...messages) {
+    log(...messages:Object[]) {
         this.info(messages);
     }
 
@@ -102,6 +102,7 @@ function ClassLogger(target: Object, property: string): void {
                   var result = originalMethod.apply(this, arguments);
                   if(typeof result === 'object' && result.hasOwnProperty('_id') &&
                           typeof result.then === 'function') {
+console.log('Applying log to {',loggerName,'->',key,'}');
                       logger.debug(method, arguments, '=> emit Promise #', result._id);
                       result.then(val => logger.debug('Promise (', method, result._id, ') => ', val));
                   } else {

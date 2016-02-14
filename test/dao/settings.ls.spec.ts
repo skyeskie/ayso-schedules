@@ -21,24 +21,24 @@ describe('DAO: LocalStorageSettings', () => {
 
     settingsInterfaceSpec(LocalStorageSettingsService, StaticInitializationService);
 
-    it('Retrieves previously saved data', injectAsync([TeamsDAO], (teams) => {
+    it('Retrieves previously saved data', injectAsync([TeamsDAO], (teams:TeamsDAO) => {
         let ls = new MockLocalStorage();
         ls.setItem(LocalStorageSettingsService.KEYS.TEAMS, 'A,B');
         ls.setItem(LocalStorageSettingsService.KEYS.REGION, '49');
         let dao = new LocalStorageSettingsService(ls, teams);
         return Promise.all([
-            dao.getRegionNumber().then(n => expect(n).toBe(49)),
-            dao.getSavedTeamIDs().then(t => expect(t.join(',')).toEqual('A,B')),
+            dao.getRegionNumber().then((n:number) => expect(n).toBe(49)),
+            dao.getSavedTeamIDs().then((ids:string[]) => expect(ids.join(',')).toEqual('A,B')),
         ]);
     }));
 
-    it('Handles initialization with null', injectAsync([ILocalStorage, TeamsDAO], (ls, teams) => {
+    it('Handles initialization with null', injectAsync([ILocalStorage, TeamsDAO], (ls:ILocalStorage, teams:TeamsDAO) => {
         let init = new StaticInitializationService();
         spyOn(init, 'getSettings').and.returnValue(Promise.resolve({}));
         let dao = new LocalStorageSettingsService(ls, teams, init);
         return dao.init().then(() => Promise.all([
-            dao.getRegionNumber().then(n => expect(n).not.toBeDefined()),
-            dao.getSavedTeamIDs().then(t => expect(t.join(',')).toEqual('')),
+            dao.getRegionNumber().then((n:number) => expect(n).not.toBeDefined()),
+            dao.getSavedTeamIDs().then((ids:string[]) => expect(ids.join(',')).toEqual('')),
         ]));
     }));
 });

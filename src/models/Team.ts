@@ -2,11 +2,11 @@ import Division from './division';
 
 export default class Team {
     constructor(
-        public code:String,
-        public coach:String,
-        public coachTel:String,
+        public code:string,
+        public coach:string,
+        public coachTel:string,
         public division?:Division,
-        public regionNumber?:Number
+        public regionNumber?:number
     ) {}
 
     equals(o: Team) {

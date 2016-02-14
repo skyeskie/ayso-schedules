@@ -2,16 +2,16 @@ import Team from './team';
 import Division from './division';
 
 export default class Game {
-    public static BYE_TEAM = '-';
+    public static BYE_TEAM:string = '-';
 
     constructor(
-        public id:String,
-        public homeTeam:String,
-        public awayTeam:String,
-        public weekNum:Number,
+        public id:string,
+        public homeTeam:string,
+        public awayTeam:string,
+        public weekNum:number,
         public startTime:Date,
-        public region:String,
-        public field:String,
+        public region:number,
+        public field:string,
         public divis?:Division
     ) {}
 
@@ -19,11 +19,11 @@ export default class Game {
         return l.startTime.valueOf() - r.startTime.valueOf();
     }
 
-    hasTeam(teamId: String) {
+    hasTeam(teamId: string) {
         return (this.homeTeam === teamId) || (this.awayTeam === teamId);
     }
 
-    getOpponent(myTeamId: String): String {
+    getOpponent(myTeamId: string): string {
         if(myTeamId === this.awayTeam) {
             return this.homeTeam;
         }
@@ -39,7 +39,7 @@ export default class Game {
         return this.hasTeam(Game.BYE_TEAM);
     }
 
-    getTeamWithBye(): String {
+    getTeamWithBye(): string {
         if(!this.isBye()) {
             throw new RangeError('This game is not a bye.');
         }

@@ -12,11 +12,11 @@ import {expectUniqueness} from '../util/set';
 
 describe('Config: Genders', () => {
     it('should have unique codes', () => {
-        expectUniqueness<String>(GENDERS.map(g => g.short));
+        expectUniqueness<string>(GENDERS.map(g => g.short));
     });
 
     it('should have unique descriptions', () => {
-        expectUniqueness<String>(GENDERS.map(g => g.long));
+        expectUniqueness<string>(GENDERS.map(g => g.long));
     });
 
     describe('findGenderByCode', () => {

@@ -13,14 +13,14 @@ interface WeekCacheInterface {
      * Get the number of weeks in a season
      * @returns number of max weeks
      */
-    getMaxWeeks(): Number;
+    getMaxWeeks(): number;
 
     /**
      * Returns the current week, as determined by game days
      * Week is determined by which week starts the game is between
      * This should always be in the range `[1,maxWeeks]`
      */
-    getCurrentWeek(): Number;
+    getCurrentWeek(): number;
 
     /**
      * Clears underlying data
@@ -44,7 +44,7 @@ var WeekCacheInterface = new OpaqueToken('WeekCacheInterface');
  * - If before season, constrain to first week
  * - If after season, constrain to last week
  */
-function calculateCurrentWeek(starts:Date[], now=new Date()): Number {
+function calculateCurrentWeek(starts:Date[], now=new Date()): number {
     if(starts.length === 0) {
         throw new RangeError('Need at least 1 date object in starts');
     }
@@ -54,7 +54,7 @@ function calculateCurrentWeek(starts:Date[], now=new Date()): Number {
     }
 
     //Count number of starts before now() to get the current week
-    return starts.filter(start => start.valueOf() <= now.valueOf()).length;
+    return starts.filter((start:Date) => start.valueOf() <= now.valueOf()).length;
 }
 
 export {WeekCacheInterface as default, WeekCacheInterface, calculateCurrentWeek}

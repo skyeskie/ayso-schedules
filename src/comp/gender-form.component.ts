@@ -29,12 +29,12 @@ export class GenderFormComponent implements AfterViewInit {
     public genders: Gender[] = GENDERS;
 
     @Output()
-    public change = new EventEmitter();
+    public change:EventEmitter<any> = new EventEmitter();
 
-    @ViewChild('genderForm') form;
+    @ViewChild('genderForm') form:any;
 
     ngAfterViewInit() {
         this.log.debug(this.form);
-        this.form.control.valueChanges.subscribe((v) => this.log.debug(v));
+        this.form.control.valueChanges.subscribe((v:any) => this.log.debug(v));
     }
 }

@@ -23,7 +23,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
 class WeekScheduleView implements OnInit {
     public week:number;
     public games:Game[];
-    public region:Number;
+    public region:number;
 
     constructor(
         private _router:Router,
@@ -45,19 +45,19 @@ class WeekScheduleView implements OnInit {
             this.week = 1;
             pCur = this._week.init()
                        .then(() => this._week.getCurrentWeek())
-                       .then(cur => this.week = cur.valueOf());
+                       .then((cur:number) => this.week = cur);
         } else {
             pCur = Promise.resolve();
         }
 
-        let pRegion = this._settings.getRegionNumber().then(num => this.region = num);
+        let pRegion = this._settings.getRegionNumber().then((num:number) => this.region = num);
 
         Promise.all([pCur, pRegion])
                .then(() => this._games.findByWeek(this.week, this.region))
-               .then(res => this.games = res);
+               .then((res:Game[]) => this.games = res);
     }
 
-    navWeek(week) {
+    navWeek(week:number) {
         this._router.navigate(['/WeekSchedule', {num: week}]);
     }
 }

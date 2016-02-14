@@ -27,18 +27,18 @@ const ONE = 1;
 export default class WeekBarComponent implements OnInit {
     @ClassLogger public log:Logger;
 
-    max: Number;
+    max: number;
 
     /**
      * Fires event after ngOnInit
      * Suitable for actions after the init promises return
      * @type {EventEmitter<WeekBarComponent>}
      */
-    onInit = new EventEmitter<WeekBarComponent>();
+    onInit:EventEmitter<WeekBarComponent> = new EventEmitter<WeekBarComponent>();
 
-    @Input() public week: Number;
+    @Input() public week: number;
 
-    @Output() weekChange = new EventEmitter<Number>();
+    @Output() weekChange:EventEmitter<number> = new EventEmitter<number>();
 
     constructor(
         @Inject(WeekCacheInterface)
@@ -61,10 +61,10 @@ export default class WeekBarComponent implements OnInit {
     }
 
     changePrev() {
-        this.weekChange.emit(this.week.valueOf() - ONE);
+        this.weekChange.emit(this.week - ONE);
     }
 
     changeNext() {
-        this.weekChange.emit(this.week.valueOf() + ONE);
+        this.weekChange.emit(this.week + ONE);
     }
 }

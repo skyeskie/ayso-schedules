@@ -9,14 +9,14 @@ interface TeamsDAO {
      * @param id - `Team.code`
      * Errors in Promise.reject and not thrown
      */
-    getTeam(id: String): Promise<Team>;
+    getTeam(id: string): Promise<Team>;
 
     /**
      * Gets multiple teams by direct lookup
      * @param ids - Array of team codes (`Team.code`)
      * Errors in Promise.reject and not thrown
      */
-    getTeams(ids: String[]): Promise<Team[]>;
+    getTeams(ids: string[]): Promise<Team[]>;
 
     /**
      * Gets multiple teams by search
@@ -26,7 +26,7 @@ interface TeamsDAO {
      * If parameters are undefined or `null`, any value for that field works
      * Errors in Promise.reject and not thrown
      */
-    findTeams(regionNumber?: String, ageString?: String, genderLong?: String): Promise<Team[]>;
+    findTeams(regionNumber?: number, ageString?: string, genderLong?: string): Promise<Team[]>;
 
     /**
      * Initializes data store with data
@@ -49,7 +49,7 @@ interface TeamsDAO {
      *
      *  Optionally, implementation may return update details in promise
      */
-    update(updates:Map<String,Team>): Promise<any>;
+    update(updates?:Map<string,Team>): Promise<any>;
 }
 
 var TeamsDAO = new OpaqueToken('TeamsDAO');

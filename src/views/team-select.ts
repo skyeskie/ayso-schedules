@@ -13,6 +13,8 @@ import {FormBuilder} from 'angular2/common';
 import {ControlGroup} from 'angular2/common';
 import {ChangeDetector} from 'angular2/src/core/change_detection/interfaces';
 
+type TeamFormData = {age?:string, gender?:string, region?:number}
+
 @Component({
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, RouterLink, TitleBarComponent],
     styles: ['.team-list: { columns: 3 }'],
@@ -84,15 +86,15 @@ class TeamSelectView {
             region: undefined,
         });
 
-        this.teamForm.valueChanges.subscribe(data => console.log(data));
-        this.teamForm.valueChanges.subscribe(data =>
+        this.teamForm.valueChanges.subscribe((data:TeamFormData) => console.log(data));
+        this.teamForm.valueChanges.subscribe((data:TeamFormData) =>
             this.updateTeams(data.age, data.gender, data.region)
         );
-        this.dao.findTeams().then(teams => this.teams = teams);
+        this.dao.findTeams().then((teams:Team[]) => this.teams = teams);
     }
 
-    updateTeams(ageString?:String, genderLong?:String, regionNum?:String) {
-        this.dao.findTeams(regionNum, ageString, genderLong).then(teams => this.teams = teams);
+    updateTeams(ageString?:string, genderLong?:string, regionNum?:number) {
+        this.dao.findTeams(regionNum, ageString, genderLong).then((teams:Team[]) => this.teams = teams);
     }
 }
 

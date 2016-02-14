@@ -4,6 +4,7 @@ import {
     beforeEachProviders,
     fdescribe,
     it,
+    TestComponentBuilder,
     xdescribe,
     xit,
 } from 'angular2/testing';
@@ -24,7 +25,7 @@ describe('View: RegionList', () => {
         RegionListView,
     ]);
 
-    ensureViewExists(RegionListView, tcb => {
+    ensureViewExists(RegionListView, (tcb:TestComponentBuilder) => {
         return tcb.overrideDirective(RegionListView, TitleBarComponent, MockComponent);
     });
 });

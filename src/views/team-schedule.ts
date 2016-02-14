@@ -29,8 +29,8 @@ import SettingsDAO from '../dao/settings.interface';
   `,
 })
 class TeamScheduleView implements OnInit {
-    public isTeamSaved:Boolean = false;
-    public teamID:String;
+    public isTeamSaved:boolean = false;
+    public teamID:string;
     public games:Game[];
     public team:Team;
 
@@ -48,9 +48,9 @@ class TeamScheduleView implements OnInit {
 
     ngOnInit() {
         this.teamID = this._routeParams.get('id');
-        this._teamsDao.getTeam(this.teamID).then(team => this.team = team);
-        this._gamesDao.findForTeam(this.teamID).then(games => this.games = games);
-        this._settings.isTeamSaved(this.teamID).then(v => this.isTeamSaved = v);
+        this._teamsDao.getTeam(this.teamID).then((team:Team) => this.team = team);
+        this._gamesDao.findForTeam(this.teamID).then((list:Game[]) => this.games = list);
+        this._settings.isTeamSaved(this.teamID).then((v:boolean) => this.isTeamSaved = v);
     }
 
     initCall() {

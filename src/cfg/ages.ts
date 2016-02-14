@@ -10,8 +10,8 @@ var AGES: AgeGroup[] = [
     new AgeGroup(7, 6),
 ];
 
-function getAgeGroupByCutoff(cutoff: Number) {
-    let match = AGES.filter(ag => ag.cutoff === cutoff);
+function getAgeGroupByCutoff(cutoff: number) {
+    let match = AGES.filter((ag:AgeGroup) => ag.cutoff === cutoff);
     if(match.length !== 1) {
         throw new RangeError('No age group found with cutoff of ' + cutoff);
     }

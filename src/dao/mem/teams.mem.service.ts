@@ -8,25 +8,26 @@ import {ClassLogger, Logger, Level} from '../../service/log.decorator';
 class InMemoryTeamsService implements TeamsDAO {
     @ClassLogger public log: Logger;
 
-    public initialized = false;
+    public initialized:boolean;
     private initializePromise: Promise<any> = null;
-    private teams: Map<String,Team> = new Map<String,Team>();
+    private teams: Map<string,Team> = new Map<string,Team>();
     private teamsArray: Team[] = [];
 
     constructor(
         @Optional() @Inject(IInitializationService)
-        private initializer
+        private initializer: IInitializationService
     ) {
+        this.initialized = false;
         this.initializePromise = this.init();
     }
 
-    getTeam(id: String): Promise<Team> {
+    getTeam(id: string): Promise<Team> {
         if(!this.initialized) {
             this.log.debug('Waiting until after init for getTeam()');
             return this.initializePromise.then(() => this.getTeam(id));
         }
 
-        return new Promise<Team>((resolve, reject) => {
+        return new Promise<Team>((resolve:any, reject:any) => {
             let team = this.teams.get(id);
             if(typeof team === 'undefined') {
                 reject(new RangeError('Could not find team with ID: ' + id));
@@ -35,25 +36,25 @@ class InMemoryTeamsService implements TeamsDAO {
         });
     }
 
-    getTeams(ids: String[]): Promise<Team[]> {
+    getTeams(ids: string[]): Promise<Team[]> {
         if(!this.initialized) {
             this.log.debug('Waiting until after init for getTeams()');
             return this.initializePromise.then(() => this.getTeams(ids));
         }
 
         return Promise.resolve(
-            ids.filter(id => this.teams.has(id)).map(id => this.teams.get(id))
+            ids.filter((id:string) => this.teams.has(id)).map((id:string) => this.teams.get(id))
         );
     }
 
-    findTeams(regionNumber?: String, ageString?: String, genderLong?: String): Promise<Team[]> {
+    findTeams(regionNumber?: number, ageString?: string, genderLong?: string): Promise<Team[]> {
         if(!this.initialized) {
             this.log.debug('Waiting until after init for findTeams()');
             return this.initializePromise.then(() => this.findTeams(regionNumber, ageString, genderLong));
         }
 
         return Promise.resolve(this.teamsArray.filter((team:Team) => {
-            if(checkPresent(regionNumber) && regionNumber !== team.regionNumber.toString()) {
+            if(checkPresent(regionNumber) && regionNumber !== team.regionNumber) {
                 return false;
             }
 
@@ -72,17 +73,17 @@ class InMemoryTeamsService implements TeamsDAO {
     }
 
     /**
-     * @returns {Promise<Number>} length of teams array
+     * @returns {Promise<number>} length of teams array
      */
-    init(): Promise<any> {
+    init(): Promise<number> {
         this.clear();
         if(this.initializer === null) {
             this.initialized = true;
             return Promise.resolve(0);
         }
-        return this.initializer.getTeams().then(teams => {
+        return this.initializer.getTeams().then((teams:Team[]) => {
             this.teamsArray = teams;
-            this.teamsArray.forEach(team => this.teams.set(team.code, team));
+            this.teamsArray.forEach((team:Team) => this.teams.set(team.code, team));
             this.initialized = true;
             return Promise.resolve(teams.length);
         });
@@ -94,9 +95,9 @@ class InMemoryTeamsService implements TeamsDAO {
         return Promise.resolve();
     }
 
-    update(updates:Map<String,Team>): Promise<any> {
-        let toDelete:Set<String> = new Set<String>();
-        updates.forEach((v,k) => {
+    update(updates:Map<string,Team>): Promise<any> {
+        let toDelete:Set<string> = new Set<string>();
+        updates.forEach((v:Team,k:string) => {
             if(!this.teams.has(k)) {
                 if(v === null) {
                     //Collect delete entries so that can use a single pass

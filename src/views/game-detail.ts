@@ -68,10 +68,10 @@ export default class GameDetail implements OnInit {
 
     ngOnInit() {
         let id = this._routeParams.get('id');
-        this._games.getGame(id).then(game => {
+        this._games.getGame(id).then((game:Game) => {
             this.game = game;
-            this._teams.getTeam(game.homeTeam).then(t => this.homeTeam = t);
-            this._teams.getTeam(game.awayTeam).then(t => this.awayTeam = t);
+            this._teams.getTeam(game.homeTeam).then((t:Team) => this.homeTeam = t);
+            this._teams.getTeam(game.awayTeam).then((t:Team) => this.awayTeam = t);
         });
     }
 }

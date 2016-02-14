@@ -71,14 +71,14 @@ export class SearchView {
     //Iterated lists
     public regions:Region[];
     public ages:AgeGroup[];
-    public weeks:Array<Number> = [];
+    public weeks:number[] = [];
     public genders:Gender[];
 
     //Form values
     public ageGroup:AgeGroup;
     public gender:Gender;
-    public week:Number;
-    public region:Number;
+    public week:number;
+    public region:number;
 
     constructor(
         private _router:Router,
@@ -92,7 +92,7 @@ export class SearchView {
         this.genders = GENDERS;
 
         let max = _weekCache.getMaxWeeks();
-        this.weeks = new Array<Number>(max);
+        this.weeks = new Array<number>(max);
         for(let i=0; i<max; ++i) {
             this.weeks[i] = i + 1;
         }
@@ -101,7 +101,7 @@ export class SearchView {
         this.week = _weekCache.getCurrentWeek();
 
         //Default to current region
-        _settings.getRegionNumber().then(n => this.region = n);
+        _settings.getRegionNumber().then((n:number) => this.region = n);
     }
 
     onSubmit(): void {

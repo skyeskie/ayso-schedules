@@ -59,9 +59,9 @@ import {REGIONS, Region} from '../cfg/regions';
 //TODO: Rework as form and save values
 class InitialConfigurationView implements OnInit {
     private regions:Region[];
-    private statusClass:String;
-    private title:String;
-    private message:String;
+    private statusClass:string;
+    private title:string;
+    private message:string;
     private initForm:ControlGroup;
 
     private initFormControls:{backend?:Control,regionSelect?:Control} = {};
@@ -91,7 +91,7 @@ class InitialConfigurationView implements OnInit {
     ngOnInit() {
         //Start DAO background initialization
         this.setStatus('Status', 'Setting up data', 'alert-info');
-        this.daos.init().then(() => this.finishDataInit(this), e => this.error(e));
+        this.daos.init().then(() => this.finishDataInit(this), (e:any) => this.error(e));
 
         //Initialize Form
         this.initFormControls.backend = this.fb.control('', Validators.required);
@@ -99,7 +99,7 @@ class InitialConfigurationView implements OnInit {
         this.initForm = this.fb.group(this.initFormControls);
 
         //Wire up region select to DAO
-        this.initFormControls.regionSelect.valueChanges.subscribe(v =>
+        this.initFormControls.regionSelect.valueChanges.subscribe((v:string) =>
             this.daos.settings.setRegion(parseInt(v,10))
         );
     }

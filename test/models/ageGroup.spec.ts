@@ -55,11 +55,11 @@ describe('Model: AgeGroup', () => {
 
     describe('configuration', () => {
         it('should have unique codes', () => {
-            expectUniqueness<Number>(AGES.map(ag => ag.code));
+            expectUniqueness<number>(AGES.map(ag => ag.code));
         });
 
         xit('should have unique cutoff ages', () => {
-            expectUniqueness<Number>(AGES.map(ag => ag.cutoff));
+            expectUniqueness<number>(AGES.map(ag => ag.cutoff));
         });
     });
 });

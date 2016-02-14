@@ -2,14 +2,14 @@ import Gender, {findGenderByCode} from '../cfg/gender';
 import {AgeGroup, getAgeGroupByCutoff} from '../cfg/ages';
 import {StringJoiner} from 'angular2/src/facade/lang';
 
-const SPACE:String = ' ';
+const SPACE = ' ';
 
 export default class Division {
     /**
      * Configure age and gender from display string
      * @param display - of form U\d\d?[BCG]
      */
-    public static fromString(display: String) {
+    public static fromString(display: string) {
         let matches = display.match(/U?([0-9]+)([A-Z])/i);
         if(matches === null) {
             throw new RangeError('Invalid format for division code');

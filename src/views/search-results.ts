@@ -27,7 +27,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
 })
 export class SearchResultsView {
     //Only used for displaying filter
-    public params:{week?:Number,region?:Number,gender?:String,age?:String} = {};
+    public params:{week?:number,region?:number,gender?:string,age?:string} = {};
 
     public games:Game[]=[];
 
@@ -49,10 +49,10 @@ export class SearchResultsView {
         this.params.age = params.get('age');
 
         dao.findGames(this.params.region, this.params.age, this.params.gender, this.params.week)
-           .then(result => this.games = result);
+           .then((result:Game[]) => this.games = result);
     }
 
-    navWeek(week) {
+    navWeek(week:number) {
         this.params.week = week;
         this._router.navigate(['/DivisionSchedule', this.params]);
     }

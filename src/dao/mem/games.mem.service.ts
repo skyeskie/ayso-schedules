@@ -10,7 +10,7 @@ import {ClassLogger, Logger, Level} from '../../service/log.decorator';
 class InMemoryGamesService implements GamesDAO {
     @ClassLogger public log:Logger;
 
-    public initialized = false;
+    public initialized: boolean;
     private initializePromise: Promise<any> = null;
     private games: Game[] = [];
 
@@ -19,17 +19,18 @@ class InMemoryGamesService implements GamesDAO {
         @Inject(IInitializationService)
         private initializer: IInitializationService
     ) {
+        this.initialized = false;
         this.initializePromise = this.init();
     }
 
-    getGame(id: String): Promise<Game> {
+    getGame(id: string): Promise<Game> {
         if(!this.initialized) {
             this.log.debug('Waiting until after init for getGame()');
             return this.initializePromise.then(() => this.getGame(id));
         }
 
-        return new Promise<Game>((resolve,reject) => {
-                let match = this.games.filter(game => game.id === id);
+        return new Promise<Game>((resolve:any, reject:any) => {
+                let match = this.games.filter((game:Game) => game.id === id);
                 if(match.length === 0) {
                     reject(new RangeError('Game not found for id: ' + id));
                 }
@@ -37,7 +38,7 @@ class InMemoryGamesService implements GamesDAO {
             });
     }
 
-    findByWeek(week: Number, region?: number): Promise<Game[]> {
+    findByWeek(week: number, region?: number): Promise<Game[]> {
         if(!this.initialized) {
             this.log.debug('Waiting until after init for findByWeek()');
             return this.initializePromise.then(() => this.findByWeek(week, region));
@@ -49,7 +50,7 @@ class InMemoryGamesService implements GamesDAO {
         );
     }
 
-    findGames(regionNum?:Number, ageGroup?:String, gender?:String, week?:Number): Promise<Game[]> {
+    findGames(regionNum?:number, ageGroup?:string, gender?:string, week?:number): Promise<Game[]> {
         if(!this.initialized) {
             this.log.debug('Waiting until after init for findGames()');
             return this.initializePromise.then(() => this.findGames(regionNum, ageGroup, gender, week));
@@ -60,7 +61,7 @@ class InMemoryGamesService implements GamesDAO {
                 return false;
             }
 
-            if(checkPresent(regionNum) && regionNum.toString() !== game.region) {
+            if(checkPresent(regionNum) && regionNum !== game.region) {
                 return false;
             }
 
@@ -72,7 +73,7 @@ class InMemoryGamesService implements GamesDAO {
         }));
     }
 
-    findForTeam(teamID: String): Promise<Game[]> {
+    findForTeam(teamID: string): Promise<Game[]> {
         if(!this.initialized) {
             this.log.debug('Waiting until after init for findForTeam()');
             return this.initializePromise.then(() => this.findForTeam(teamID));
@@ -81,17 +82,15 @@ class InMemoryGamesService implements GamesDAO {
         return this.findForTeams([teamID]);
     }
 
-    findForTeams(teamIDs: String[]): Promise<Game[]> {
+    findForTeams(teamIDs: string[]): Promise<Game[]> {
         if(!this.initialized) {
             this.log.debug('Waiting until after init for findForTeams()');
             return this.initializePromise.then(() => this.findForTeams(teamIDs));
         }
 
-        let teams = new Set<String>(teamIDs);
-        return new Promise<Game[]>(resolve =>
-            resolve(this.games.filter(
-                game => teams.has(game.homeTeam) || teams.has(game.awayTeam)
-            ))
+        let teams = new Set<string>(teamIDs);
+        return Promise.resolve(
+            this.games.filter((game:Game) => teams.has(game.homeTeam) || teams.has(game.awayTeam))
         );
     }
 
@@ -104,7 +103,7 @@ class InMemoryGamesService implements GamesDAO {
             this.initialized = true;
             return Promise.resolve(0);
         }
-        return this.initializer.getGames().then(res => {
+        return this.initializer.getGames().then((res:Game[]) => {
             this.games = res;
             this.initialized = true;
         });
@@ -115,15 +114,13 @@ class InMemoryGamesService implements GamesDAO {
         return Promise.resolve();
     }
 
-    update(updates:Map<String,Game>): Promise<Number> {
-        return new Promise<Number>(resolve => {
-            let gameSet = new Set<Game>();
-            updates.forEach(game => gameSet.add(game));
-            this.games.forEach(game => gameSet.add(game));
-            this.games = [];
-            gameSet.forEach(game => this.games.push(game));
-            resolve(this.games.length);
-        });
+    update(updates:Map<string,Game>): Promise<number> {
+        let gameSet:Set<Game> = new Set<Game>();
+        updates.forEach((game:Game) => gameSet.add(game));
+        this.games.forEach((game:Game) => gameSet.add(game));
+        this.games = [];
+        gameSet.forEach((game:Game) => this.games.push(game));
+        return Promise.resolve(this.games.length);
     }
 }
 

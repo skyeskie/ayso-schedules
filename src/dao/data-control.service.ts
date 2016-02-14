@@ -76,10 +76,12 @@ class DataControlService {
      *
      * If updates required, should set lastUpdate to now
      */
-    update(force: Boolean): Promise<Date> {
-        return new Promise<Date>(resolve => {
-            resolve(this.getLastUpdate());
-        });
+    update(force: boolean): Promise<Date> {
+        return Promise.all([
+            this.games.update(),
+            this.teams.update(),
+            this.weekCache.init(),
+        ]).then(() => this.getLastUpdate());
     }
 
     /**
@@ -88,8 +90,13 @@ class DataControlService {
      * Currently no-op except for settings.
      * `@Override` this to actually update
      */
-    reset() {
-        this.settings.reset();
+    reset():Promise<void> {
+        return Promise.all([
+            this.settings.reset(),
+            this.games.clear(),
+            this.teams.clear(),
+            this.weekCache.clear(),
+        ]).then(() => Promise.resolve());
     }
 }
 

@@ -47,7 +47,8 @@ class InterceptRootRouter extends RootRouter {
     }
 }
 
-function interceptRouterFactory(registry, location, primaryComponent, appRef, settingsDAO) {
+function interceptRouterFactory(registry:RouteRegistry, location:Location, primaryComponent:any,
+                                appRef:ApplicationRef, settingsDAO:SettingsDAO) {
     //Need to execute before super() constructor on router
     settings = settingsDAO;
     appIsConfigured = settings.isAppConfigured();

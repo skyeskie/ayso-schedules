@@ -1,7 +1,7 @@
 class AgeGroup {
     constructor(
-        public code: Number,
-        public cutoff: Number
+        public code: number,
+        public cutoff: number
     ) {}
 
     toString() {

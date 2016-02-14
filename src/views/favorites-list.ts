@@ -9,6 +9,7 @@ import {Inject} from 'angular2/core';
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {OnChanges} from 'angular2/core';
 import TwoTeamsGamesListComponent from '../comp/games2-list.component';
+import Team from '../models/Team';
 
 @Component({
     directives: [NgFor, NgIf, RouterLink, TitleBarComponent, TwoTeamsGamesListComponent],
@@ -43,7 +44,7 @@ import TwoTeamsGamesListComponent from '../comp/games2-list.component';
 //TODO: Decorate saved teams
 //TODO: Fix up save team instructions
 export default class FavoritesListView {
-    public savedTeams:String[];
+    public savedTeams:string[];
     public gamesList:Game[];
 
     constructor(
@@ -53,9 +54,7 @@ export default class FavoritesListView {
         private _gameDao:GamesDAO
     ) {
         _favorites.getSavedTeamIDs()
-                  .then(teams => this.savedTeams = teams)
-                  .then(teams =>
-                      this._gameDao.findForTeams(teams).then(games => this.gamesList = games)
-                  );
+                  .then((teams:string[]) => this._gameDao.findForTeams(teams))
+                  .then((games:Game[]) => this.gamesList = games);
     }
 }

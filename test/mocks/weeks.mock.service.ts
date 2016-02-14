@@ -7,11 +7,11 @@ class MockWeeksService implements WeekCacheInterface {
         //No-op
     }
 
-    getMaxWeeks(): Number {
+    getMaxWeeks(): number {
         return this.max;
     }
 
-    getCurrentWeek(): Number {
+    getCurrentWeek(): number {
         return this.cur;
     }
 

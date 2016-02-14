@@ -40,13 +40,12 @@ class HttpInitService implements IInitializationService {
     @ClassLogger public log: Logger;
 
     public remoteObservable:Observable<Response>;
-    public dataObservable = new ReplaySubject<ServerJSON>();
+    public dataObservable:ReplaySubject<ServerJSON> = new ReplaySubject<ServerJSON>();
 
-    //TODO: Figure out this Observervable/Subject mess
+    //TODO: Figure out this Observable/Subject mess
     constructor(private http:Http) {
-        this.log.log('HttpInitService constuctor');
+        this.log.log('HttpInitService constructor');
         this.remoteObservable = this.http.get(URL);
-        this.remoteObservable.subscribe(v => this.log.debug(v));
         this.dataObservable = new ReplaySubject<ServerJSON>(1);
         this.log.debug(this);
         this.remoteObservable.map((response:Response) => {
@@ -84,11 +83,11 @@ class HttpInitService implements IInitializationService {
             let lastDate = 0;
             return data.Games.map(
                 (game:ServerGame) => new Date(game.Jour).valueOf()
-            ).sort().filter(timestamp => {
+            ).sort().filter((timestamp:number) => {
                 let result = (timestamp !== lastDate);
                 lastDate = timestamp;
                 return result;
-            }).map(timestamp => new Date(timestamp));
+            }).map((timestamp:number) => new Date(timestamp));
        }).toPromise();
     }
 
@@ -122,7 +121,7 @@ class ModelTranslation {
                 game.Away,
                 parseInt(game.Week, 10),
                 new Date(Date.parse(game.Jour + ' ' + game.Heur)),
-                location[1],
+                parseInt(location[1],10),
                 location[3],
                 ModelTranslation.divisionFromCode(game.Divis)
             );
@@ -131,7 +130,7 @@ class ModelTranslation {
         }
     }
 
-    static divisionFromCode(divis:String) {
+    static divisionFromCode(divis:string) {
         return new Division(
             findGenderByCode(divis[1]),
             AGES[parseInt(divis[0],10)-1]

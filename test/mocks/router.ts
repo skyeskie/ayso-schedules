@@ -1,4 +1,4 @@
-/* tslint:disable:no-any */
+/* tslint:disable:no-any typedef */
 import {ApplicationRef, Component, Directive, provide} from 'angular2/core';
 import {
     Router, RouterOutlet, Instruction, RouteDefinition, RouterLink,

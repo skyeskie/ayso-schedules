@@ -73,7 +73,7 @@ function settingsInterfaceSpec(impl: any, init: any) {
         }));
 
         it('returns saved teams', injectAsync([impl], (dao:SettingsDAO) => {
-            let idSet = new Set<String>();
+            let idSet = new Set<string>();
 
             return dao.init().then(() => {
                 return dao.getSavedTeamIDs();
@@ -96,9 +96,9 @@ function settingsInterfaceSpec(impl: any, init: any) {
                 ]);
             }).then(values => {
                 let region: Region = values[0];
-                let number: Number = values[1];
-                expect(number).toEqual(49);
-                expect(region.number).toEqual(number);
+                let n: number = values[1];
+                expect(n).toEqual(49);
+                expect(region.number).toEqual(n);
             });
         }));
 

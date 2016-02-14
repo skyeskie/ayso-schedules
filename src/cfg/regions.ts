@@ -15,16 +15,16 @@ let REGIONS: Region[] = [
  * @throws  RangeError if can't find configured region
  * @returns {Region}
  */
-function getRegionByNumber(regionNumber: Number) {
-    let match = REGIONS.filter(r => r.number === regionNumber);
+function getRegionByNumber(regionNumber: number) {
+    let match = REGIONS.filter((r:Region) => r.number === regionNumber);
     if(match.length !== 1) {
         throw new RangeError('No region found for region number ' + regionNumber);
     }
     return match[0];
 }
 
-function getRegionById(id: Number) {
-    let match = REGIONS.filter(r => r.id === id);
+function getRegionById(id: number) {
+    let match = REGIONS.filter((r:Region) => r.id === id);
     if(match.length !== 1) {
         throw new RangeError('No region found for region id' + id);
     }

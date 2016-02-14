@@ -33,7 +33,7 @@ import {ClassLogger, Logger, Level} from '../service/log.decorator';
 export default class TwoTeamsGamesListComponent implements OnChanges {
     @ClassLogger public log: Logger;
 
-    public byesList: String = '';
+    public byesList: string = '';
     public gamesList: Row[] = [];
 
     @Input() games: Game[];
@@ -48,7 +48,7 @@ export default class TwoTeamsGamesListComponent implements OnChanges {
             return;
         }
 
-        let byes:String[] = [];
+        let byes:string[] = [];
         this.games.sort(Game.compare);
         let lastTime = new Date(0,0,0,0,0,0).valueOf();
         this.gamesList = [];

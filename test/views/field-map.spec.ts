@@ -4,6 +4,7 @@ import {
     beforeEachProviders,
     fdescribe,
     it,
+    TestComponentBuilder,
     xdescribe,
     xit,
 } from 'angular2/testing';
@@ -27,7 +28,7 @@ describe('View: FieldMap', () => {
         provide(FieldMapView, {useClass: FieldMapView, deps: [RouteParams]}),
     ]);
 
-    ensureViewExists(FieldMapView, tcb => {
+    ensureViewExists(FieldMapView, (tcb:TestComponentBuilder) => {
         return tcb.overrideDirective(FieldMapView, TitleBarComponent, MockComponent);
     });
 });
