@@ -39,4 +39,3 @@ testing.setBaseTestProviders(
  */
 var testContext = require.context('./test', true, /\.spec\.ts/);
 testContext.keys().forEach(testContext);
-

@@ -18,7 +18,7 @@ class InMemorySettingsService implements SettingsDAO {
 
     public teams = new Set<String>();
 
-    public region:Number = undefined;
+    public region:number = undefined;
 
     getSavedTeamIDs(): Promise<String[]> {
         return new Promise<String[]>(resolve => {
@@ -57,7 +57,7 @@ class InMemorySettingsService implements SettingsDAO {
         return Promise.resolve();
     }
 
-    getRegionNumber(): Promise<Number> {
+    getRegionNumber(): Promise<number> {
         return new Promise<Number>(resolve =>
             resolve(this.region)
         );
@@ -69,7 +69,7 @@ class InMemorySettingsService implements SettingsDAO {
         );
     }
 
-    setRegion(region: Number): Promise<void> {
+    setRegion(region: number): Promise<void> {
         this.region = region;
         return Promise.resolve();
     }

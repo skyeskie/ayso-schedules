@@ -17,7 +17,7 @@ if ('production' === process.env.ENV) {
 import {InMemoryGamesService, GamesDAO} from '../dao/mem/games.mem.service';
 import {InMemoryTeamsService, TeamsDAO} from '../dao/mem/teams.mem.service';
 import {InMemoryWeeksService, WeekCacheInterface} from '../dao/mem/weeks.mem.service';
-import {InMemorySettingsService, SettingsDAO} from '../dao/mem/settings.mem.service';
+import {SettingsDAO} from '../dao/mem/settings.mem.service';
 import {DataControlService} from '../dao/data-control.service';
 import {INTERCEPT_ROUTER_PROVIDER} from '../comp/intercept-root-router';
 
@@ -26,6 +26,7 @@ import {IInitializationService} from '../dao/init/initialization.interface';
 import {HttpInitService} from '../dao/init/http.init.service';
 import {StaticInitializationService} from '../dao/init/static.init.service';
 import {Http} from 'angular2/http';
+import {LocalStorageSettingsService} from '../dao/ls/settings.ls.service';
 
 document.addEventListener('DOMContentLoaded', function main() {
     bootstrap(AppComponent, [
@@ -37,10 +38,11 @@ document.addEventListener('DOMContentLoaded', function main() {
         ...HTTP_PROVIDERS,
 
         //In-app providers
+        provide(Storage, { useValue: window.localStorage }),
         provide(IInitializationService, { useClass: HttpInitService}),
         provide(GamesDAO, { useClass: InMemoryGamesService }),
         provide(TeamsDAO, { useClass: InMemoryTeamsService }),
-        provide(SettingsDAO, {useClass: InMemorySettingsService}),
+        provide(SettingsDAO, {useClass: LocalStorageSettingsService}),
         provide(WeekCacheInterface, { useClass: InMemoryWeeksService}),
         DataControlService,
         INTERCEPT_ROUTER_PROVIDER,

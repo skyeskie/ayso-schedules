@@ -3,8 +3,8 @@ import Region from '../models/region';
 import {OpaqueToken} from 'angular2/core';
 
 type SettingsDataType = {
-    regionNumber?:Number
-    savedTeams?:String[]
+    regionNumber?:number
+    savedTeams?:string[]
 };
 
 interface SettingsDAO {
@@ -12,7 +12,7 @@ interface SettingsDAO {
      * Gets a list of the IDs the saved teams
      * List will have no duplicates
      */
-    getSavedTeamIDs(): Promise<String[]>;
+    getSavedTeamIDs(): Promise<string[]>;
 
     /**
      * Gets the team objects corresponding to the save team IDs
@@ -51,7 +51,7 @@ interface SettingsDAO {
      * Only use this function if just need the Region.number value
      * @returns the region number
      */
-    getRegionNumber(): Promise<Number>;
+    getRegionNumber(): Promise<number>;
 
     /**
      * Gets the saved region object.
@@ -65,7 +65,7 @@ interface SettingsDAO {
      * @desc Persists the current region to configuration
      * @param {String} region - the region ID
      */
-    setRegion(region: Number): Promise<void>;
+    setRegion(region: number): Promise<void>;
 
     /**
      * Perform any backend initialization

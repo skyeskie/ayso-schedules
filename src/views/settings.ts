@@ -28,7 +28,9 @@ import {DataControlService} from '../dao/data-control.service';
             <p>The app normally checks for updates on start.
             Use this if you think you missed an update.</p>
             <div><strong>Last updated:</strong> {{lastUpdate | date:'MMMdhm'}}</div>
-            <button class="btn btn-info-outline">Update now</button>
+            <button type="button" class="btn btn-info-outline" (click)="forceRefresh()">
+                Update now
+            </button>
             <p id="update-result"></p>
         </div>
         <div class="card card-block card-warning-outline">
@@ -39,7 +41,9 @@ import {DataControlService} from '../dao/data-control.service';
                 The app will be as if you first installed it.
             </p>
             <div class="text-xs-center">
-                <button type="button" id="reset" class="btn btn-danger">Reset App</button>
+                <button type="button" id="reset" class="btn btn-danger" (click)="doReset()">
+                    Reset App
+                </button>
             </div>
         </div>
     </form>
@@ -47,7 +51,7 @@ import {DataControlService} from '../dao/data-control.service';
     `,
 })
 @Injectable()
-export default class SettingsView {
+export default class SettingsView implements OnInit {
     public defaultRegion = new Control('');
 
     public regions:Region[];
@@ -56,6 +60,10 @@ export default class SettingsView {
     constructor(
         private dataConrol: DataControlService
     ) {
+        //No-op
+    }
+
+    ngOnInit() {
         this.regions = REGIONS;
 
         this.dataConrol.settings.getRegionNumber().then(r => this.defaultRegion.updateValue(r.toString()));
@@ -63,8 +71,7 @@ export default class SettingsView {
         this.lastUpdate = this.dataConrol.getLastUpdate();
 
         this.defaultRegion.valueChanges.subscribe(val => {
-            let regionNum:Number = parseInt(val,10);
-            this.dataConrol.settings.setRegion(regionNum);
+            this.dataConrol.settings.setRegion(parseInt(val,10));
         });
     }
 

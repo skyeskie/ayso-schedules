@@ -4,9 +4,10 @@ enum Level {
     NONE,
 }
 
-var globalLevel = Level.TRACE;
-
 class Logger {
+    static GLOBAL_LEVEL:Level = Level.INFO;
+    static Level = Level;
+
     private name:string;
     private level:Level = null;
 
@@ -26,7 +27,7 @@ class Logger {
     isEnabled(level:Level) {
         return (this.level !== null) ?
             (level >= this.level) :
-            (level >= globalLevel);
+            (level >= Logger.GLOBAL_LEVEL);
     }
 
     fatal(...messages:Object[]) {
@@ -101,7 +102,13 @@ function ClassLogger(target: Object, property: string): void {
 
               descriptor.value = function() {
                   var result = originalMethod.apply(this, arguments);
-                  logger.debug(method, arguments, '=>', result);
+                  if(typeof result === 'object' && result.hasOwnProperty('_id') &&
+                          typeof result.then === 'function') {
+                      logger.debug(method, arguments, '=> emit Promise #', result._id);
+                      result.then(val => logger.debug('Promise (', method, result._id, ') => ', val));
+                  } else {
+                      logger.debug(method, arguments, '=>', result);
+                  }
                   return result;
               };
 
