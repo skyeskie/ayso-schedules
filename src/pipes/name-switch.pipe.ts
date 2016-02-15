@@ -15,8 +15,6 @@ import {ClassLogger, Logger} from '../service/log.decorator';
 class NameSwitchPipe implements PipeTransform {
     @ClassLogger log:Logger;
 
-    constructor() { this.log.setLevel(Logger.Level.DEBUG); }
-
     transform(name:string): any {
         if(typeof name !== 'string') {
             this.log.warn('Unexpected parameter for pipe', name);

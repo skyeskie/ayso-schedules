@@ -62,4 +62,4 @@ Bugs:
 
 - [ ] If URL to /init already has GET, keep those
 - [x] Region filter doesn't work for /teams
-- [ ] Field/directions don't work for /game/:id
+- [x] Field/directions don't work for /game/:id

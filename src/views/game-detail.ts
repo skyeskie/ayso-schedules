@@ -1,5 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
-import {RouteParams} from 'angular2/router';
+import {RouterLink, RouteParams} from 'angular2/router';
 import {DatePipe} from 'angular2/common';
 
 import Game from '../models/game';
@@ -9,10 +9,11 @@ import {TeamsDAO} from '../dao/teams.interface';
 import {Inject} from 'angular2/core';
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {NameSwitchPipe} from '../pipes/name-switch.pipe';
+import {NgIf} from 'angular2/common';
 
 @Component({
     pipes: [DatePipe, NameSwitchPipe],
-    directives: [TitleBarComponent],
+    directives: [TitleBarComponent, RouterLink, NgIf],
     template: `
     <title-bar></title-bar>
     <article class="container" *ngIf="game">
@@ -40,13 +41,15 @@ import {NameSwitchPipe} from '../pipes/name-switch.pipe';
             </div>
         </div>
 
-        <div>
-            <button type="button" class="btn btn-secondary btn-block btn-lg">
+        <div *ngIf="game && game.region">
+            <button type="button" class="btn btn-secondary btn-block btn-lg"
+                    [routerLink]="['/MapDetail', {region: game.region}]">
                 <div class="col-xs-6"><strong>Region</strong> {{game?.region}}</div>
                 <div class="col-xs-6 pull-xs-right">Directions &gt;</div>
             </button>
 
-            <button type="button" class="btn btn-secondary btn-block btn-lg">
+            <button type="button" class="btn btn-secondary btn-block btn-lg"
+                    [routerLink]="['/FieldDetail', {region: game.region}]">
                 <div class="col-xs-6"><strong>Field</strong> {{game?.field}}</div>
                 <div class="col-xs-6 pull-xs-right">Field map &gt;</div>
             </button>
