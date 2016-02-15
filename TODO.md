@@ -1,26 +1,65 @@
-- [x] Milestone 0
-  - [x] Rough translation of all views
-  - [x] Skeleton compile/lint
-  - [x] Basic interfaces for all DAOs
-- [ ] Milestone 1: Initially code complete
-    - [x] Create dummy DAO implementations
-    - [ ] Refine dependency injection
-    - [ ] Rework forms and bind models
-    - [x] Graft Git history to merge into Github repo
-- [ ] Milestone 2: Full navigation completeness
-    - [ ] Full unit tests verifying components
-    - [ ] Rework forms and HTML styling
-    - [ ] Full build tree and packaging
-- [ ] Release 1.9: Fully functional HTML5 app
-    - [ ] Create full-fledged DAOs
-- [ ] Release 2.0: Android
-    - [ ] Work in mobile app framework (Cordova/Ionic/etc)
-    - [ ] Android build and testing
-- [ ] Release 2.1: Build streamline + other platforms
-    - [ ] Setup continuous integration testing
-    - [ ] Enforce pull constraints to mainline
-    - [ ] Package/release iOS app
-    - [ ] Windows app?
-- [ ] Release 3.0: Tablet and larger screens
-    - [ ] Add tablet view detection
-    - [ ] Put to actual AYSO website
+See Github issues for major milestones
+Remove items if added as Github issue
+
+DAOs
+
+- [ ] Finalize DAO update operation
+- [ ] Persist lastUpdate in HTTP initializer
+- [x] LocalStorage DAOs
+    - [x] Settings
+    - [ ] WeekCache
+    - [ ] ?Teams
+    - [ ] ?Games
+- [ ] SQL storage DAOs
+    - [ ] Games
+    - [ ] Teams
+    - [ ] ?WeekCache
+
+Add pipes
+
+- [x] Name swap (Last, First => First Last)
+      Alternatively handle in Coach->Team transform
+- [ ] Color favorites (2-team list view)
+- [x] Format team in 1-team: at/vs/bye
+- [ ] Add custom DatePipe
+
+TODO:
+
+- [x] default week to current week in WeekView
+- [x] Handle last update
+- [x] Keep region ID numeric
+- [x] Better loading handle
+- [ ] Have single configuration class
+- [ ] re-use angular isBlank() ?
+- [ ] Make sure service calls are in ngOnInit instead of in the constructor
+
+- [ ] Navigate UP instead of just to Home
+- [ ] Adjust backend to use same data models
+
+Typing
+
+- [x] Change all Number,String,etc to primitives
+- [x] Make sure everything is typed
+    - note: done as much as possible for now
+
+Error handling
+
+- [x] Create logging environment
+- [x] Add different error types
+- [ ] ?Switch to use Angular's parseInt
+- [ ] Global error handling display
+    - Option to show console messages?
+    - Offline info (update) or error (twitter, google, init)
+- [ ] Make sure can remove logging in prod (at least some levels)
+
+View
+
+- [ ] Handle no coach (TBD)
+- [ ] Show field better; perhaps in config?
+- [ ] Hide region if default?
+
+Bugs:
+
+- [ ] If URL to /init already has GET, keep those
+- [x] Region filter doesn't work for /teams
+- [ ] Field/directions don't work for /game/:id

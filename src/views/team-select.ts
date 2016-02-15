@@ -14,7 +14,8 @@ import {ControlGroup} from 'angular2/common';
 import {ChangeDetector} from 'angular2/src/core/change_detection/interfaces';
 import {NameSwitchPipe} from '../pipes/name-switch.pipe';
 
-type TeamFormData = {age?:string, gender?:string, region?:number}
+//All form data is string, so this helps make sure we convert it
+type TeamFormData = {age?:string, gender?:string, region?:string}
 
 @Component({
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, RouterLink, TitleBarComponent],
@@ -90,7 +91,7 @@ class TeamSelectView {
 
         this.teamForm.valueChanges.subscribe((data:TeamFormData) => console.log(data));
         this.teamForm.valueChanges.subscribe((data:TeamFormData) =>
-            this.updateTeams(data.age, data.gender, data.region)
+            this.updateTeams(data.age, data.gender, Number.parseInt(data.region, 10))
         );
         this.dao.findTeams().then((teams:Team[]) => this.teams = teams);
     }
