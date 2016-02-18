@@ -8,7 +8,7 @@ import RegionListView from './region-list';
 @Component({
     directives: [RouterLink],
     template: `
-    <img class="img-fluid center-block" src="/img/MainLogo.png" alt="AYSO Kansas" />
+    <img class="img-fluid center-block" src="./img/MainLogo.png" alt="AYSO Kansas" />
     <article class="container main-buttons">
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/SchedulesMenu']">Schedules</button>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/RegionList']">Region Info</button>

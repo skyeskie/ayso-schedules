@@ -10,7 +10,7 @@ import {Inject} from 'angular2/core';
     template: `
     <title-bar></title-bar>
     <article class="main-buttons container">
-        <img class="img-fluid center-block m-b-2" src="/img/HomeText.png" alt="AYSO Kansas" />
+        <img class="img-fluid center-block m-b-2" src="img/HomeText.png" alt="AYSO Kansas" />
         <h2 *ngIf="regionNum">Region {{regionNum}} Schedules</h2>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['CurWeekSchedule']" data-role="button">This Week</button>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['TeamSelect']" data-role="button">Find Team</button>

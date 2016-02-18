@@ -17,8 +17,9 @@ import {ensureViewExists} from '../util/viewUtil';
 import {TitleBarComponent} from '../../src/comp/title-bar.component';
 import {TeamScheduleView} from '../../src/views/team-schedule';
 import SingleTeamGameListComponent from '../../src/comp/games1-list.component';
+import {NameSwitchPipe} from '../../src/pipes/name-switch.pipe';
 
-describe('View: TeamSchedule', () => {
+xdescribe('View: TeamSchedule', () => {
     beforeEachProviders(() => [
         ...MOCK_ROUTER_PROVIDERS,
         ...MOCK_DAO_PROVIDERS,
