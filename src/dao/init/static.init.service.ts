@@ -55,6 +55,16 @@ class StaticInitializationService implements IInitializationService {
     getSettings(): Promise<SettingsDataType> {
         return Promise.resolve(this.settings);
     };
+
+    //No-op since static. Init contains all games
+    getGameUpdates(): Promise<Game[]> {
+        return Promise.resolve([]);
+    };
+
+    //No-op since static. Init contains all teams
+    getTeamUpdates(): Promise<Team[]> {
+        return Promise.resolve([]);
+    };
 }
 
 export { StaticInitializationService, StaticInitializationService as default, IInitializationService };

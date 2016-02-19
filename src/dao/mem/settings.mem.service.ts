@@ -13,7 +13,7 @@ class InMemorySettingsService implements SettingsDAO {
         @Inject(TeamsDAO)
         private dao: TeamsDAO,
         @Optional() @Inject(IInitializationService)
-        private initializer?:IInitializationService
+        private initializer:IInitializationService
     ) {}
 
     public teams:Set<string> = new Set<string>();

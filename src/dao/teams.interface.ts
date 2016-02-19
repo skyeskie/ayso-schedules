@@ -43,13 +43,10 @@ interface TeamsDAO {
 
     /**
      * Hook to have DAO update itself from backend
-     * @param updates - map of ID to updates
-     *  - Will overwrite provided IDs
-     *  - If `null` is provided game, delete entry
      *
      *  Optionally, implementation may return update details in promise
      */
-    update(updates?:Map<string,Team>): Promise<any>;
+    update(): Promise<any>;
 }
 
 var TeamsDAO = new OpaqueToken('TeamsDAO');

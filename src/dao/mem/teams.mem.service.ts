@@ -11,10 +11,9 @@ class InMemoryTeamsService implements TeamsDAO {
     public initialized:boolean;
     private initializePromise: Promise<any> = null;
     private teams: Map<string,Team> = new Map<string,Team>();
-    private teamsArray: Team[] = [];
 
     constructor(
-        @Optional() @Inject(IInitializationService)
+        @Inject(IInitializationService)
         private initializer: IInitializationService
     ) {
         this.initialized = false;
@@ -53,66 +52,56 @@ class InMemoryTeamsService implements TeamsDAO {
             return this.initializePromise.then(() => this.findTeams(regionNumber, ageString, genderLong));
         }
 
-        return Promise.resolve(this.teamsArray.filter((team:Team) => {
+        let results:Team[] = [];
+        this.teams.forEach((team:Team) => {
             if(checkPresent(regionNumber) && regionNumber !== team.regionNumber) {
-                return false;
+                return;
             }
 
             if(checkPresent(ageString) && team.division.age.toString() !== ageString) {
                 this.log.trace('exit on age mismatch:', ageString,'/', team.division.age);
-                return false;
+                return;
             }
 
             if(checkPresent(genderLong) && team.division.gender.long !== genderLong) {
                 this.log.trace('exit on gender mismatch: ', genderLong, '/', team.division.gender.long);
-                return false;
+                return;
             }
 
-            return true;
-        }));
+            //Checks above are for NEGATIVE match and will exit function if met
+            results.push(team);
+        });
+
+        return Promise.resolve(results);
     }
 
     /**
      * @returns {Promise<number>} length of teams array
      */
     init(): Promise<number> {
-        this.clear();
-        if(this.initializer === null) {
-            this.initialized = true;
-            return Promise.resolve(0);
-        }
         return this.initializer.getTeams().then((teams:Team[]) => {
-            this.teamsArray = teams;
-            this.teamsArray.forEach((team:Team) => this.teams.set(team.code, team));
+            teams.forEach((team:Team) => this.teams.set(team.code, team));
             this.initialized = true;
-            return Promise.resolve(teams.length);
+            return teams.length;
         });
     }
 
     clear(): Promise<void> {
         this.teams.clear();
-        this.teamsArray = [];
         return Promise.resolve();
     }
 
-    update(updates:Map<string,Team>): Promise<any> {
-        let toDelete:Set<string> = new Set<string>();
-        updates.forEach((v:Team,k:string) => {
-            if(!this.teams.has(k)) {
-                if(v === null) {
-                    //Collect delete entries so that can use a single pass
-                    this.teams.delete(k);
-                    toDelete.add(k);
+    update(): Promise<any> {
+        return this.initializer.getTeamUpdates().then((updates:Team[]) => {
+            updates.forEach((team:Team) => {
+                if(isNaN(team.regionNumber)) {
+                    this.teams.delete(team.coach);
                 } else {
-                    this.teams.set(k,v);
-                    this.teamsArray.push(v);
+                    this.teams.set(team.code, team);
                 }
-            }
+            });
+            return this.teams.size;
         });
-        if(toDelete.size > 0) {
-            this.teamsArray = this.teamsArray.filter((team:Team) => !toDelete.has(team.code));
-        }
-        return Promise.resolve();
     }
 }
 

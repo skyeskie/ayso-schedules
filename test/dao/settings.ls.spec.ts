@@ -15,6 +15,7 @@ import {MockLocalStorage} from '../mocks/local-storage.mock';
 
 describe('DAO: LocalStorageSettings', () => {
     beforeEachProviders(() => [
+        provide(IInitializationService, { useClass: StaticInitializationService }),
         provide(ILocalStorage, { useClass: MockLocalStorage }),
         provide(TeamsDAO, {useClass: InMemoryTeamsService}),
     ]);

@@ -33,7 +33,7 @@ type ServerJSON = {
 };
 
 //TODO: Move this to Configuration
-const URL = '/data.json';
+const URL = 'data.json';
 
 @Injectable()
 class HttpInitService implements IInitializationService {
@@ -94,6 +94,14 @@ class HttpInitService implements IInitializationService {
     getSettings(): Promise<SettingsDataType> {
         return Promise.resolve({});
     };
+
+    getGameUpdates(): Promise<Game[]> {
+        return this.getGames();
+    }
+
+    getTeamUpdates(): Promise<Team[]> {
+        return this.getTeams();
+    }
 }
 
 //TODO: Make models on server match so can remove this

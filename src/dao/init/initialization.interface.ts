@@ -17,8 +17,8 @@ interface IInitializationService {
 
     //Only games and teams are provided with incremental updates
     //These can probably be rolled into the functions above
-    //getGameUpdates(): Promise<Team[]>;
-    //getTeamUpdates(): Promise<Game[]>;
+    getGameUpdates(): Promise<Game[]>;
+    getTeamUpdates(): Promise<Team[]>;
 }
 
 var IInitializationService = new OpaqueToken('IInitializationService');

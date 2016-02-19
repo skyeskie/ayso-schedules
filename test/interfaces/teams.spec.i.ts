@@ -20,19 +20,6 @@ import {IInitializationService} from '../../src/dao/init/initialization.interfac
 
 function teamsInterfaceSpec(impl: any, init: any) {
     describe('(TeamsDAO)', () => {
-        beforeEachProviders(() => [impl, provide(IInitializationService, {useValue: null})]);
-        it('initializes with no initialization class', injectAsync([impl], (dao:TeamsDAO) => {
-            return dao.init().then(() => {
-                return dao.findTeams();
-            }).then(teams => {
-                expect(teams.length).toBe(0);
-            });
-        }));
-    });
-
-    describe('interface tests', () => {
-        beforeEachProviders(() => [impl, provide(IInitializationService, {useClass: init})]);
-
         describe('getTeam', () => {
             it('resolves to a team', injectAsync([impl], (dao:TeamsDAO) => {
                 return dao.init().then(() => {

@@ -55,15 +55,10 @@ interface GamesDAO {
 
     /**
      * Hook to have DAO update itself from backend
-     * @param updates - map of ID to updates
-     *  - Will overwrite provided IDs
-     *  - If `null` is provided game, delete entry
-     * @param force - true if always check for updates
-     *  - otherwise, may use caching
      *
      *  Optionally, implementation may return update details in promise
      */
-    update(updates?:Map<string,Game>, force?:boolean): Promise<any>;
+    update(): Promise<any>;
 }
 
 var GamesDAO = new OpaqueToken('GamesDAO');

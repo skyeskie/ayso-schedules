@@ -114,13 +114,15 @@ class InMemoryGamesService implements GamesDAO {
         return Promise.resolve();
     }
 
-    update(updates:Map<string,Game>): Promise<number> {
-        let gameSet:Set<Game> = new Set<Game>();
-        updates.forEach((game:Game) => gameSet.add(game));
-        this.games.forEach((game:Game) => gameSet.add(game));
-        this.games = [];
-        gameSet.forEach((game:Game) => this.games.push(game));
-        return Promise.resolve(this.games.length);
+    update(): Promise<number> {
+        return this.initializer.getGameUpdates().then((updates:Game[]) => {
+            let gameSet:Set<Game> = new Set<Game>();
+            updates.forEach((game:Game) => gameSet.add(game));
+            this.games.forEach((game:Game) => gameSet.add(game));
+            this.games = [];
+            gameSet.forEach((game:Game) => this.games.push(game));
+            return Promise.resolve(this.games.length);
+        });
     }
 }
 

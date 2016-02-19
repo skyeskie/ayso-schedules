@@ -17,19 +17,8 @@ import {provide} from 'angular2/core';
 import {GamesDAO, Game} from '../../src/dao/games.interface';
 import {IInitializationService} from '../../src/dao/init/initialization.interface';
 
-function gamesInterfaceSpec(impl: any, init: any) {
+function gamesInterfaceSpec(impl: any) {
     describe('(GamesDao)', () => {
-        beforeEachProviders(() => [impl, provide(IInitializationService, {useValue: null})]);
-        it('initializes with no initialization class', injectAsync([impl], (dao:GamesDAO) => {
-            return dao.findGames().then(games => {
-                expect(games.length).toBe(0);
-            });
-        }));
-    });
-
-    describe('(GamesDao)', () => {
-        beforeEachProviders(() => [impl, provide(IInitializationService, {useClass: init})]);
-
         describe('getGame', () => {
             it('resolves to a game', injectAsync([impl], (dao:GamesDAO) => {
                 return dao.getGame('111').then((game) => {
