@@ -22,8 +22,10 @@ const ONE = 1;
 function weekCacheInterfaceSpec(impl: any, init?:any) {
     describe('(WeekCacheDAO)', () => {
         beforeEachProviders(() => [impl, provide(IInitializationService, {useValue: null})]);
-        it('initializes with no initialization class', injectAsync([impl], (dao:WeekCacheInterface) => {
+        it('requires an initialization class', injectAsync([impl], (dao:WeekCacheInterface) => {
             return dao.init().then(() => {
+                fail('Promise should be rejected with no initialization.');
+            }, () => {
                 expect(dao.getCurrentWeek()).toBe(ONE);
                 expect(dao.getMaxWeeks()).toBe(ONE);
             });

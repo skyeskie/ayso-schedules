@@ -100,8 +100,9 @@ function ClassLogger(target: Object, property: string): void {
 
               descriptor.value = function() {
                   var result = originalMethod.apply(this, arguments);
-                  if(typeof result === 'object' && result.hasOwnProperty('_id') &&
-                          typeof result.then === 'function') {
+                  if(result !== null && typeof result === 'object'
+                      && result.hasOwnProperty('_id') && typeof result.then === 'function') {
+
                       logger.debug(method, arguments, '=> emit Promise #', result._id);
                       result.then(val => logger.debug('Promise (', method, result._id, ') => ', val));
                   } else {

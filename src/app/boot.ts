@@ -28,6 +28,8 @@ import {StaticInitializationService} from '../dao/init/static.init.service';
 import {Http} from 'angular2/http';
 import {LocalStorageSettingsService} from '../dao/ls/settings.ls.service';
 import {ILocalStorage} from '../dao/ls/settings.ls.service';
+import {HashLocationStrategy, LocationStrategy} from 'angular2/router';
+import {LOCAL_STORAGE_DAO_PROVIDERS} from '../dao/ls/dao';
 
 document.addEventListener('DOMContentLoaded', function main() {
     bootstrap(AppComponent, [
@@ -38,13 +40,11 @@ document.addEventListener('DOMContentLoaded', function main() {
         ...FORM_PROVIDERS,
         ...HTTP_PROVIDERS,
 
+        provide(LocationStrategy, { useClass: HashLocationStrategy}),
+
         //In-app providers
-        provide(ILocalStorage, { useValue: window.localStorage }),
         provide(IInitializationService, { useClass: HttpInitService}),
-        provide(GamesDAO, { useClass: InMemoryGamesService }),
-        provide(TeamsDAO, { useClass: InMemoryTeamsService }),
-        provide(SettingsDAO, {useClass: LocalStorageSettingsService}),
-        provide(WeekCacheInterface, { useClass: InMemoryWeeksService}),
+        ...LOCAL_STORAGE_DAO_PROVIDERS,
         DataControlService,
         INTERCEPT_ROUTER_PROVIDER,
     ])

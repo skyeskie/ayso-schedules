@@ -3,11 +3,11 @@ Remove items if added as Github issue
 
 DAOs
 
-- [ ] Finalize DAO update operation
+- [x] Finalize DAO update operation
 - [ ] Persist lastUpdate in HTTP initializer
 - [x] LocalStorage DAOs
     - [x] Settings
-    - [ ] WeekCache
+    - [x] WeekCache
     - [ ] ?Teams
     - [ ] ?Games
 - [ ] SQL storage DAOs
@@ -33,7 +33,7 @@ TODO:
 - [ ] re-use angular isBlank() ?
 - [ ] Make sure service calls are in ngOnInit instead of in the constructor
 
-- [ ] Navigate UP instead of just to Home
+- [ ] Navigate UP (or back?) instead of just to Home
 - [ ] Adjust backend to use same data models
 
 Typing
@@ -63,3 +63,4 @@ Bugs:
 - [ ] If URL to /init already has GET, keep those
 - [x] Region filter doesn't work for /teams
 - [x] Field/directions don't work for /game/:id
+- [ ] One team game list needs sort by date/time
