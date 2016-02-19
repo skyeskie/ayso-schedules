@@ -19,6 +19,7 @@ import {TeamScheduleView} from '../../src/views/team-schedule';
 import SingleTeamGameListComponent from '../../src/comp/games1-list.component';
 import {NameSwitchPipe} from '../../src/pipes/name-switch.pipe';
 
+//TODO: Figure out why pipe not working
 xdescribe('View: TeamSchedule', () => {
     beforeEachProviders(() => [
         ...MOCK_ROUTER_PROVIDERS,
