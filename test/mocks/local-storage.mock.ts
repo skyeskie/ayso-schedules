@@ -1,4 +1,6 @@
-import {ILocalStorage} from '../../src/dao/ls/settings.ls.service';
+import {ILocalStorage} from '../../src/dao/ls/local-storage.interface';
+import {provide} from 'angular2/core';
+
 
 class MockLocalStorage implements ILocalStorage {
     private localStore:any = {};
@@ -24,4 +26,6 @@ class MockLocalStorage implements ILocalStorage {
     }
 }
 
-export { MockLocalStorage, ILocalStorage, MockLocalStorage as default }
+let MOCK_LOCAL_STORAGE_PROVIDER = provide(ILocalStorage, {useClass: MockLocalStorage});
+
+export { MockLocalStorage, ILocalStorage, MockLocalStorage as default, MOCK_LOCAL_STORAGE_PROVIDER }

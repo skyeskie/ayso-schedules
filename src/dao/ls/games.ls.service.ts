@@ -6,21 +6,34 @@ import Region from '../../models/region';
 import {checkPresent} from '../../app/util';
 import {IInitializationService} from '../init/initialization.interface';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
+import {ILocalStorage} from './local-storage.interface';
 
-class InMemoryGamesService implements GamesDAO {
+const SAVED_GAMES_KEY = 'ayso-games';
+
+class LocalStorageGamesService implements GamesDAO {
     @ClassLogger public log:Logger;
 
     public initialized: boolean;
-    private initializePromise: Promise<any> = null;
-    private games: Game[] = [];
+    protected initializePromise: Promise<any> = null;
+    protected games: Game[] = [];
 
     constructor(
+        @Inject(ILocalStorage)
+        protected client: ILocalStorage,
         @Optional()
         @Inject(IInitializationService)
-        private initializer: IInitializationService
+        protected initializer: IInitializationService
     ) {
-        this.initialized = false;
-        this.initializePromise = this.init();
+        let games = this.loadGames();
+
+        if(games === null) {
+            this.initialized = false;
+            this.initializePromise = this.init();
+        } else {
+            this.games = games;
+            this.initialized = true;
+            this.initializePromise = Promise.resolve();
+        }
     }
 
     getGame(id: string): Promise<Game> {
@@ -30,12 +43,12 @@ class InMemoryGamesService implements GamesDAO {
         }
 
         return new Promise<Game>((resolve:any, reject:any) => {
-                let match = this.games.filter((game:Game) => game.id === id);
-                if(match.length === 0) {
-                    reject(new RangeError('Game not found for id: ' + id));
-                }
-                resolve(match[0]);
-            });
+            let match = this.games.filter((game:Game) => game.id === id);
+            if(match.length === 0) {
+                reject(new RangeError('Game not found for id: ' + id));
+            }
+            resolve(match[0]);
+        });
     }
 
     findByWeek(week: number, region?: number): Promise<Game[]> {
@@ -46,7 +59,10 @@ class InMemoryGamesService implements GamesDAO {
 
         return Promise.resolve(
             this.games.filter((game:Game) => game.weekNum === week)
-                .filter((game:Game) => isNaN(region) || region === Number.parseInt(game.region.toString(), 10))
+                .filter((game:Game) => isNaN(region) //Only filter region if have filter
+                    || game.region === null //Byes might have null region
+                    || region === Number.parseInt(game.region.toString(), 10)
+                )
         );
     }
 
@@ -105,6 +121,7 @@ class InMemoryGamesService implements GamesDAO {
         }
         return this.initializer.getGames().then((res:Game[]) => {
             this.games = res;
+            this.persistGames();
             this.initialized = true;
         });
     }
@@ -121,9 +138,34 @@ class InMemoryGamesService implements GamesDAO {
             this.games.forEach((game:Game) => gameSet.add(game));
             this.games = [];
             gameSet.forEach((game:Game) => this.games.push(game));
+            this.persistGames();
             return Promise.resolve(this.games.length);
         });
     }
+
+    private persistGames() {
+        this.client.setItem(SAVED_GAMES_KEY, JSON.stringify(this.games));
+    }
+
+    private loadGames(): Game[] {
+        let savedString = this.client.getItem(SAVED_GAMES_KEY);
+        if(typeof savedString === 'string' && savedString.length > 0) {
+            return JSON.parse(savedString, (key, value) => {
+                if(key === 'startTime') {
+                    return Date.parse(value);
+                }
+                if(key === 'divis') {
+                    return Division.fromString(value);
+                }
+                if(!isNaN(parseInt(key,10))) {
+                    return new Game(value.id, value.homeTeam, value.awayTeam,
+                        value.weekNum, value.startTime, value.region, value.field, value.divis);
+                }
+                return value;
+            });
+        }
+        return null;
+    }
 }
 
-export { InMemoryGamesService as default, InMemoryGamesService, GamesDAO }
+export { LocalStorageGamesService as default, LocalStorageGamesService, GamesDAO }

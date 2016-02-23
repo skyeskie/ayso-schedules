@@ -27,7 +27,6 @@ import {HttpInitService} from '../dao/init/http.init.service';
 import {StaticInitializationService} from '../dao/init/static.init.service';
 import {Http} from 'angular2/http';
 import {LocalStorageSettingsService} from '../dao/ls/settings.ls.service';
-import {ILocalStorage} from '../dao/ls/settings.ls.service';
 import {HashLocationStrategy, LocationStrategy} from 'angular2/router';
 import {LOCAL_STORAGE_DAO_PROVIDERS} from '../dao/ls/dao';
 

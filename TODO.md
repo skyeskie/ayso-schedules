@@ -8,12 +8,13 @@ DAOs
 - [x] LocalStorage DAOs
     - [x] Settings
     - [x] WeekCache
-    - [ ] ?Teams
-    - [ ] ?Games
-- [ ] SQL storage DAOs
-    - [ ] Games
-    - [ ] Teams
-    - [ ] ?WeekCache
+    - [x] Teams
+    - [x] Games
+    - [ ] Make run update if initialized
+    - [ ] Make handle bad data state
+- ~~SQL storage DAOs~~
+    - ~~Games~~
+    - ~~Teams~~
 
 Add pipes
 
@@ -35,6 +36,7 @@ TODO:
 
 - [ ] Navigate UP (or back?) instead of just to Home
 - [ ] Adjust backend to use same data models
+- [ ] Make sure region is not null on byes
 
 Typing
 

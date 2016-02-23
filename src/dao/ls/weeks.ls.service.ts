@@ -4,7 +4,7 @@ import {IInitializationService} from '../init/initialization.interface';
 import WeekCacheInterface from '../week-cache.interface';
 import {calculateCurrentWeek} from '../week-cache.interface';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
-import {ILocalStorage} from './settings.ls.service';
+import {ILocalStorage} from './local-storage.interface';
 
 const SAVED_WEEKS_KEY = 'ayso-week-starts';
 

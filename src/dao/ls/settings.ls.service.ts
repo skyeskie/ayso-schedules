@@ -4,20 +4,10 @@ import {IInitializationService} from '../init/initialization.interface';
 import {TeamsDAO, Team} from '../teams.interface';
 import {getRegionByNumber, Region} from '../../cfg/regions';
 import {Logger, ClassLogger, Level} from '../../service/log.decorator';
-import {OpaqueToken} from 'angular2/core';
+import {ILocalStorage} from './local-storage.interface';
 
-const SAVED_TEAMS_KEY = 'ayso-teams';
+const SAVED_TEAMS_KEY = 'ayso-favorites';
 const SAVED_REGION_KEY = 'ayso-region';
-
-interface ILocalStorage {
-    clear(): void;
-    getItem(key: string): any;
-    key(index: number): string;
-    removeItem(key: string): void;
-    setItem(key: string, data: string): void;
-}
-
-let ILocalStorage = new OpaqueToken('ILocalStorage');
 
 @Injectable()
 class LocalStorageSettingsService implements SettingsDAO {
@@ -131,4 +121,4 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 }
 
-export { LocalStorageSettingsService as default, LocalStorageSettingsService, SettingsDAO, ILocalStorage }
+export { LocalStorageSettingsService as default, LocalStorageSettingsService, SettingsDAO }

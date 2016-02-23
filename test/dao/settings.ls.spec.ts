@@ -10,13 +10,13 @@ import {settingsInterfaceSpec} from '../interfaces/settings.spec.i';
 import {TeamsDAO, InMemoryTeamsService} from '../../src/dao/mem/teams.mem.service';
 
 import {StaticInitializationService, IInitializationService} from '../../src/dao/init/static.init.service';
-import {LocalStorageSettingsService, ILocalStorage} from '../../src/dao/ls/settings.ls.service';
-import {MockLocalStorage} from '../mocks/local-storage.mock';
+import {LocalStorageSettingsService} from '../../src/dao/ls/settings.ls.service';
+import {MOCK_LOCAL_STORAGE_PROVIDER, ILocalStorage, MockLocalStorage} from '../mocks/local-storage.mock';
 
 describe('DAO: LocalStorageSettings', () => {
     beforeEachProviders(() => [
         provide(IInitializationService, { useClass: StaticInitializationService }),
-        provide(ILocalStorage, { useClass: MockLocalStorage }),
+        MOCK_LOCAL_STORAGE_PROVIDER,
         provide(TeamsDAO, {useClass: InMemoryTeamsService}),
     ]);
 

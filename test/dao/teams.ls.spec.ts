@@ -2,14 +2,16 @@ import {describe, beforeEachProviders} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
 import {teamsInterfaceSpec} from '../interfaces/teams.spec.i';
-import {InMemoryTeamsService} from '../../src/dao/mem/teams.mem.service';
 import {StaticInitializationService, IInitializationService} from '../../src/dao/init/static.init.service';
+import {LocalStorageTeamsService} from '../../src/dao/ls/teams.ls.service';
+import {MOCK_LOCAL_STORAGE_PROVIDER} from '../mocks/local-storage.mock';
 
-describe('DAO: TeamsMock', () => {
+describe('DAO: TeamsLocalStorage', () => {
     beforeEachProviders(() => [
-        InMemoryTeamsService,
+        LocalStorageTeamsService,
         provide(IInitializationService, {useClass: StaticInitializationService}),
+        MOCK_LOCAL_STORAGE_PROVIDER,
     ]);
 
-    teamsInterfaceSpec(InMemoryTeamsService, StaticInitializationService);
+    teamsInterfaceSpec(LocalStorageTeamsService, StaticInitializationService);
 });

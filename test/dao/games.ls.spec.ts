@@ -1,15 +1,16 @@
-import {describe, beforeEachProviders} from 'angular2/testing';
+import { describe, beforeEachProviders } from 'angular2/testing';
 import {provide} from 'angular2/core';
-
-import {weekCacheInterfaceSpec} from '../interfaces/week-cache.spec.i';
+import {gamesInterfaceSpec} from '../interfaces/games.spec.i';
+import {LocalStorageGamesService} from '../../src/dao/ls/games.ls.service';
 import {StaticInitializationService, IInitializationService} from '../../src/dao/init/static.init.service';
-import {LocalStorageWeeksService} from '../../src/dao/ls/weeks.ls.service';
 import {MOCK_LOCAL_STORAGE_PROVIDER} from '../mocks/local-storage.mock';
 
-describe('DAO: LocalStorageWeekCache', () => {
+describe('DAO: GamesLocalStorage', () => {
     beforeEachProviders(() => [
+        LocalStorageGamesService,
         provide(IInitializationService, { useClass: StaticInitializationService }),
         MOCK_LOCAL_STORAGE_PROVIDER,
     ]);
-    weekCacheInterfaceSpec(LocalStorageWeeksService, StaticInitializationService);
+
+    gamesInterfaceSpec(LocalStorageGamesService);
 });

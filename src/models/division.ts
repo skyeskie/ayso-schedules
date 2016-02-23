@@ -28,4 +28,8 @@ export default class Division {
         let sj = new StringJoiner([this.age.toString(), SPACE, this.gender.long]);
         return sj.toString();
     }
+
+    toJSON(): string {
+        return this.age.toString() + this.gender.short;
+    }
 }

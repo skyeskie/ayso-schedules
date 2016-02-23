@@ -17,13 +17,21 @@ import {NameSwitchPipe} from '../pipes/name-switch.pipe';
     <title-bar></title-bar>
     <article class="container">
         <div class="card card-block clearfix">
-            <h2 class="text-xs-center card-title">Team {{teamID}}</h2>
-            <button type="button" class="btn btn-sm btn-primary-outline card-link pull-xs-right" (click)="toggleTeamSave()">
+            <button class="btn btn-sm btn-primary-outline pull-sm-right hidden-xs-down"
+                 type="button" (click)="toggleTeamSave()">
                 {{getSavedToggleText()}}
             </button>
-            <button type="button" class="btn btn-sm btn-link card-link pull-xs-right m-x-2"
-                (click)="initCall()" *ngIf="team?.coachTel">Call</button>
-            <h4 class="card-text m-a-1"><b>Coach</b> {{team.coach | NameSwitch}}</h4>
+            <h2 class="text-sm-center card-title">Team {{teamID}}</h2>
+            <h4 class="card-text m-a-1 text-xs-center text-md-left"><b>Coach</b> {{team?.coach | NameSwitch}}</h4>
+            <div class="col-xs-9 col-md-12 inline">
+                <button type="button" class="btn btn-sm btn-link card-link"
+                    (click)="initCall()" *ngIf="team?.coachTel">Call</button>
+            </div>
+            <div class="col-xs-3 inline hidden-sm-up">
+                <button type="button" class="btn btn-sm btn-primary-outline card-link" (click)="toggleTeamSave()">
+                    {{getSavedToggleText()}}
+                </button>
+            </div>
         </div>
 
         <single-team-game-list [games]="games" [team]="teamID"></single-team-game-list>
