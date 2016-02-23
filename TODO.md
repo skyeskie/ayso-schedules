@@ -30,7 +30,7 @@ TODO:
 - [x] Handle last update
 - [x] Keep region ID numeric
 - [x] Better loading handle
-- [ ] Have single configuration class
+- [x] Have single configuration class
 - [ ] re-use angular isBlank() ?
 - [ ] Make sure service calls are in ngOnInit instead of in the constructor
 

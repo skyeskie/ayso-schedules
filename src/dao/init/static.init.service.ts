@@ -27,9 +27,22 @@ class StaticInitializationService implements IInitializationService {
     teams:Team[] = [
         new Team('A', 'coachA', 'telA', Division.fromString('U10B'), 49),
         new Team('B', 'coachB', 'telB', Division.fromString('U10B'), 49),
-        new Team('C', 'coachC', 'telC', Division.fromString('U10B'), 49),
-        new Team('D', 'coachD', 'telD', Division.fromString('U10B'), 49),
+        new Team('C', 'coachC', 'telC', Division.fromString('U10B'), 208),
+        new Team('D', 'coachD', 'telD', Division.fromString('U10B'), 208),
+        new Team('E', 'coachE', 'telE', Division.fromString('U10G'), 49),
+        new Team('F', 'coachA', 'telF', Division.fromString('U12G'), 49),
+        new Team('G', 'coachG', 'telG', Division.fromString('U12B'), 208),
+        new Team('H', 'coachC', 'telH', Division.fromString('U12G'), 49),
     ];
+
+    teamsJSON:String = '[{"code":"A","coach":"coachA","coachTel":"telA","division":"U10B","regionNumber":49},'
+        + '{"code":"B","coach":"coachB","coachTel":"telB","division":"U10B","regionNumber":49},'
+        + '{"code":"C","coach":"coachC","coachTel":"telC","division":"U10B","regionNumber":208},'
+        + '{"code":"D","coach":"coachD","coachTel":"telD","division":"U10B","regionNumber":208},'
+        + '{"code":"E","coach":"coachE","coachTel":"telE","division":"U10G","regionNumber":49},'
+        + '{"code":"F","coach":"coachA","coachTel":"telF","division":"U12G","regionNumber":49},'
+        + '{"code":"G","coach":"coachG","coachTel":"telG","division":"U12B","regionNumber":208},'
+        + '{"code":"H","coach":"coachC","coachTel":"telH","division":"U12G","regionNumber":49}]';
 
     settings:SettingsDataType = {
         regionNumber: 49,

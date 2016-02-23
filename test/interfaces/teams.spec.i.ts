@@ -39,6 +39,13 @@ function teamsInterfaceSpec(impl: any, init: any) {
         });
 
         describe('getTeams', () => {
+            it('functions without an explicit init() call', injectAsync([impl], (dao:TeamsDAO) => {
+                return dao.getTeams(['C', 'A']).then((teams: Team[]) => {
+                    expect(teams.length).toBe(2);
+                    expect(teams.map(team => team.code).sort().join(',')).toEqual('A,C');
+                });
+            }));
+
             it('returns list of teams', injectAsync([impl], (dao:TeamsDAO) => {
                 return dao.init().then(() => {
                     return dao.getTeams(['C', 'A']);
@@ -66,7 +73,40 @@ function teamsInterfaceSpec(impl: any, init: any) {
             }));
         });
 
-        xdescribe('findTeams');
+        describe('findTeams', () => {
+            it('filters on region', injectAsync([impl], (dao:TeamsDAO) => {
+                return dao.findTeams(49).then((teams:Team[]) => {
+                    expect(teams.length).toBeGreaterThan(1);
+                    teams.forEach((team:Team) => expect(team.regionNumber).toBe(49));
+                });
+            }));
+
+            it('filters on age', injectAsync([impl], (dao:TeamsDAO) => {
+                return dao.findTeams(null, 'U10').then((teams:Team[]) => {
+                    expect(teams.length).toBeGreaterThan(1);
+                    teams.forEach((team:Team) =>
+                        expect(team.division.age.toString()).toBe('U10')
+                    );
+                });
+            }));
+
+            it('filters on gender', injectAsync([impl], (dao:TeamsDAO) => {
+                return dao.findTeams(null, null, 'Boys').then((teams:Team[]) => {
+                    expect(teams.length).toBeGreaterThan(1);
+                    teams.forEach((team:Team) => expect(team.division.gender.short).toBe('B'));
+                });
+            }));
+
+            it('returns all teams with null filters', injectAsync([impl, init], (dao:TeamsDAO, data) => {
+                return Promise.all([
+                    dao.findTeams(null, null, null).then((teams:Team[]) => teams.length),
+                    data.getTeams().then((teams:Team[]) => teams.length),
+                ]).then((res) => {
+                    expect(res[0]).toBeGreaterThan(0);
+                    expect(res[0]).toBe(res[1]);
+                });
+            }));
+        });
 
         describe('clear', () => {
             it('returns a promise', inject([impl], (dao:TeamsDAO) => {

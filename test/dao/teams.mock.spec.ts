@@ -8,7 +8,8 @@ import {StaticInitializationService, IInitializationService} from '../../src/dao
 describe('DAO: TeamsMock', () => {
     beforeEachProviders(() => [
         InMemoryTeamsService,
-        provide(IInitializationService, {useClass: StaticInitializationService}),
+        StaticInitializationService,
+        provide(IInitializationService, {useExisting: StaticInitializationService}),
     ]);
 
     teamsInterfaceSpec(InMemoryTeamsService, StaticInitializationService);
