@@ -10,8 +10,8 @@ import {
     xit,
 } from 'angular2/testing';
 
-import {AGES, getAgeGroupByCutoff, AgeGroup} from '../../src/cfg/ages';
 import {expectUniqueness} from '../util/set';
+import {AgeGroup} from '../../src/models/ageGroup';
 
 describe('Model: AgeGroup', () => {
     it('should create a group', () => {
@@ -25,14 +25,14 @@ describe('Model: AgeGroup', () => {
         expect(ag.toString()).toEqual('U42');
     });
 
-    describe('getAgeGroupByCutoff', () => {
+    describe('ctor fromCutoff', () => {
         it('should throw for invalid lookup', () => {
-            expect(() => { getAgeGroupByCutoff(-10); }).toThrowError(RangeError);
+            expect(() => { AgeGroup.fromCutoff(-10); }).toThrowError(RangeError);
         });
 
         it('should return a lookup', () => {
-            let ag = AGES[0];
-            expect(getAgeGroupByCutoff(ag.cutoff)).toEqual(ag);
+            let ag = AgeGroup.AGES[0];
+            expect(AgeGroup.fromCutoff(ag.cutoff)).toEqual(ag);
         });
     });
 
@@ -55,11 +55,11 @@ describe('Model: AgeGroup', () => {
 
     describe('configuration', () => {
         it('should have unique codes', () => {
-            expectUniqueness<number>(AGES.map(ag => ag.code));
+            expectUniqueness<number>(AgeGroup.AGES.map(ag => ag.code));
         });
 
         it('should have unique cutoff ages', () => {
-            expectUniqueness<number>(AGES.map(ag => ag.cutoff));
+            expectUniqueness<number>(AgeGroup.AGES.map(ag => ag.cutoff));
         });
     });
 });

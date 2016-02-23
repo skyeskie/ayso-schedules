@@ -9,7 +9,7 @@ import {Inject} from 'angular2/core';
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {OnChanges} from 'angular2/core';
 import TwoTeamsGamesListComponent from '../comp/games2-list.component';
-import Team from '../models/Team';
+import Team from '../models/team';
 
 @Component({
     directives: [NgFor, NgIf, RouterLink, TitleBarComponent, TwoTeamsGamesListComponent],

@@ -1,6 +1,5 @@
 import {Component} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
-import {getRegionByNumber} from '../cfg/regions';
 import {ANGULAR2_GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
 import Region from '../models/region';
@@ -31,6 +30,6 @@ export class MapView {
     constructor(
         params:RouteParams
     ) {
-        this.region = getRegionByNumber(Number.parseInt(params.get('region'), 10));
+        this.region = Region.fromNumber(Number.parseInt(params.get('region'), 10));
     }
 }

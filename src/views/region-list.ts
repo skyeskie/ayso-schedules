@@ -1,10 +1,9 @@
 import {Component, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
-import REGIONS from '../cfg/regions';
-import Region from '../models/region';
+import {Router, RouterLink} from 'angular2/router';
 import {NgFor} from 'angular2/common';
-import {RouterLink} from 'angular2/router';
+
 import {TitleBarComponent} from '../comp/title-bar.component';
+import {Region} from '../models/region';
 
 @Component({
     directives:[NgFor, RouterLink, TitleBarComponent],
@@ -28,6 +27,6 @@ import {TitleBarComponent} from '../comp/title-bar.component';
 export default class RegionListView {
     public regions:Region[];
     constructor() {
-        this.regions = REGIONS;
+        this.regions = Region.REGIONS;
     }
 }

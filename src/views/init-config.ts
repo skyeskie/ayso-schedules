@@ -6,7 +6,7 @@ import {
 } from 'angular2/common';
 
 import {DataControlService} from '../dao/data-control.service';
-import {REGIONS, Region} from '../cfg/regions';
+import {Region} from '../models/region';
 
 @Component({
     directives: [NgFor, FORM_DIRECTIVES],
@@ -85,7 +85,7 @@ class InitialConfigurationView implements OnInit {
         public daos:DataControlService,
         private fb:FormBuilder
     ) {
-        this.regions = REGIONS;
+        this.regions = Region.REGIONS;
     }
 
     ngOnInit() {

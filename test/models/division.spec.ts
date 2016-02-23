@@ -9,15 +9,14 @@ import {
     TestComponentBuilder,
 } from 'angular2/testing';
 import Division from '../../src/models/division';
-import {GENDERS} from '../../src/cfg/gender';
-import {AGES} from '../../src/cfg/ages';
+import CFG from '../../src/app/cfg';
 
 describe('Model: Division', () => {
     it('should display the name given', () => {
-        let divis = new Division(GENDERS[0], AGES[0]);
+        let divis = new Division(CFG.GENDERS[0], CFG.AGES[0]);
         expect(divis.getDisplayName()).toBe('U19 Boys');
 
-        let divis2 = new Division(GENDERS[1], AGES[3]);
+        let divis2 = new Division(CFG.GENDERS[1], CFG.AGES[3]);
         expect(divis2.getDisplayName()).toBe('U12 Girls');
     });
 

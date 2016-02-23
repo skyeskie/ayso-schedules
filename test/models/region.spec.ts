@@ -8,8 +8,8 @@ import {
     injectAsync,
     TestComponentBuilder,
 } from 'angular2/testing';
+import {Region} from '../../src/models/region';
 
-import {REGIONS, getRegionById, getRegionByNumber, Region} from '../../src/cfg/regions';
 
 describe('Model: Region', () => {
     it('should construct correctly', () => {
@@ -22,25 +22,25 @@ describe('Model: Region', () => {
         expect(r.lon).toBe(4);
     });
 
-    describe('getRegionByNumber', () => {
+    describe('ctor fromNumber', () => {
         it('should throw for invalid lookup', () => {
-            expect(() => { getRegionByNumber(9999); }).toThrowError(RangeError);
+            expect(() => { Region.fromNumber(9999); }).toThrowError(RangeError);
         });
 
         it('should return a lookup', () => {
-            let r = REGIONS[0];
-            expect(getRegionByNumber(r.number)).toEqual(r);
+            let r = Region.REGIONS[0];
+            expect(Region.fromNumber((r.number))).toEqual(r);
         });
     });
 
-    describe('getRegionById', () => {
+    describe('ctor fromId', () => {
         it('should throw for invalid lookup', () => {
-            expect(() => { getRegionById(9999); }).toThrowError(RangeError);
+            expect(() => { Region.fromId(9999); }).toThrowError(RangeError);
         });
 
         it('should return a lookup', () => {
-            let r = REGIONS[0];
-            expect(getRegionById(r.id)).toEqual(r);
+            let r = Region.REGIONS[0];
+            expect(Region.fromId(r.id)).toEqual(r);
         });
     });
 

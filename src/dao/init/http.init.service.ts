@@ -7,13 +7,14 @@ import {Subscriber} from 'rxjs/Subscriber';
 
 import Division from '../../models/division';
 import Game from '../../models/game';
+import Gender from '../../models/gender';
+import Region from '../../models/region';
 import Team from '../../models/team';
-import {getRegionById} from '../../cfg/regions';
-import {findGenderByCode} from '../../cfg/gender';
-import {AGES} from '../../cfg/ages';
+
 import {IInitializationService} from './initialization.interface';
 import {SettingsDataType} from '../settings.interface';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
+import {AgeGroup} from '../../models/ageGroup';
 
 //TODO: Make server types match so can remove
 type ServerCoach = {
@@ -113,7 +114,7 @@ class ModelTranslation {
                 coach.Coach,
                 coach.Phone,
                 ModelTranslation.divisionFromCode(coach.Divis),
-                getRegionById(Number.parseInt(coach.TeamNo[0], 10)).number
+                Region.fromId(Number.parseInt(coach.TeamNo[0], 10)).number
             );
         } catch (err) {
             console.error('Team translation error', coach, err);
@@ -140,8 +141,8 @@ class ModelTranslation {
 
     static divisionFromCode(divis:string) {
         return new Division(
-            findGenderByCode(divis[1]),
-            AGES[parseInt(divis[0],10)-1]
+            Gender.fromCode(divis[1]),
+            AgeGroup.AGES[parseInt(divis[0],10)-1]
         );
     }
 }

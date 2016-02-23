@@ -4,16 +4,14 @@ import {Router} from 'angular2/router';
 
 import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
 
-import {AGES, AgeGroup} from '../cfg/ages';
-import {GENDERS, Gender} from '../cfg/gender';
-import {REGIONS, Region} from '../cfg/regions';
+import {CFG} from '../app/cfg';
 
 import {checkPresent} from '../app/util';
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {GenderFormComponent} from '../comp/gender-form.component';
-import {SettingsDAO} from '../dao/settings.interface';
+import {SettingsDAO, Region} from '../dao/settings.interface';
 import {WeekCacheInterface} from '../dao/week-cache.interface';
-import Division from '../models/division';
+import {Division, AgeGroup, Gender} from '../models/division';
 
 @Component({
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, TitleBarComponent],
@@ -87,9 +85,9 @@ export class SearchView {
         @Inject(SettingsDAO)
         private _settings:SettingsDAO
     ) {
-        this.regions = REGIONS;
-        this.ages = AGES;
-        this.genders = GENDERS;
+        this.regions = CFG.REGIONS;
+        this.ages = CFG.AGES;
+        this.genders = CFG.GENDERS;
 
         let max = _weekCache.getMaxWeeks();
         this.weeks = new Array<number>(max);

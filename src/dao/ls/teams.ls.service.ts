@@ -1,5 +1,5 @@
 import TeamsDAO, {Team, Division} from '../teams.interface';
-import {Gender} from '../../cfg/gender';
+import {Gender} from '../../models/gender';
 import {checkPresent} from '../../app/util';
 import {Inject, Optional} from 'angular2/core';
 import {IInitializationService} from '../init/initialization.interface';

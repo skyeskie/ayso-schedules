@@ -1,9 +1,9 @@
 import {Component, OnInit, Injectable} from 'angular2/core';
 import {Control, DatePipe, NgFor, FORM_DIRECTIVES} from 'angular2/common';
 
-import {REGIONS, Region} from '../cfg/regions';
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {DataControlService} from '../dao/data-control.service';
+import {Region} from '../models/region';
 
 @Component({
     directives:[NgFor, TitleBarComponent, FORM_DIRECTIVES],
@@ -64,7 +64,7 @@ export default class SettingsView implements OnInit {
     }
 
     ngOnInit() {
-        this.regions = REGIONS;
+        this.regions = Region.REGIONS;
 
         this.dataControl.settings.getRegionNumber().then((r:number) => this.defaultRegion.updateValue(r.toString()));
 

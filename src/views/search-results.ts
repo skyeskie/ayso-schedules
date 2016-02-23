@@ -2,12 +2,12 @@ import {Component, OnInit, Inject} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 import {NgIf} from 'angular2/common';
 
-import {Region, getRegionByNumber} from '../cfg/regions';
+import {Region} from '../models/region';
 import Game from '../models/game';
 import Division from '../models/division';
 import GamesDAO from '../dao/games.interface';
 import {AgeGroup} from '../models/ageGroup';
-import {Gender} from '../cfg/gender';
+import {Gender} from '../models/gender';
 
 import WeekBarComponent from '../comp/week-bar.component';
 import TwoTeamsGamesListComponent from '../comp/games2-list.component';
@@ -20,7 +20,7 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     <article class="container">
         <h2>Search Results</h2>
         <h3><span *ngIf="params.region">Region {{params.region}} </span> {{params.age}} {{params.gender}}</h3>
-        <week-bar [week]="params.week"(weekChange)="navWeek($event)"></week-bar>
+        <week-bar [week]="params.week" (weekChange)="navWeek($event)"></week-bar>
         <two-teams-game-list [games]="games"></two-teams-game-list>
     </article>
     `,

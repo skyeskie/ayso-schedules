@@ -7,26 +7,26 @@ import {
     injectAsync,
     TestComponentBuilder,
 } from 'angular2/testing';
-import {GENDERS, Gender, findGenderByCode} from '../../src/cfg/gender';
 import {expectUniqueness} from '../util/set';
+import {Gender} from '../../src/models/gender';
 
 describe('Config: Genders', () => {
     it('should have unique codes', () => {
-        expectUniqueness<string>(GENDERS.map(g => g.short));
+        expectUniqueness<string>(Gender.GENDERS.map(g => g.short));
     });
 
     it('should have unique descriptions', () => {
-        expectUniqueness<string>(GENDERS.map(g => g.long));
+        expectUniqueness<string>(Gender.GENDERS.map(g => g.long));
     });
 
-    describe('findGenderByCode', () => {
+    describe('ctor fromCode', () => {
         it('should find a defined gender', () => {
-            let g: Gender = GENDERS[0];
-            expect(findGenderByCode(g.short)).toEqual(g);
+            let g: Gender = Gender.GENDERS[0];
+            expect(Gender.fromCode(g.short)).toEqual(g);
         });
 
         it('should throw an error for undefined lookup', () => {
-            expect(() => { findGenderByCode('BAD_LOOKUP'); }).toThrowError(RangeError);
+            expect(() => { Gender.fromCode('BAD_LOOKUP'); }).toThrowError(RangeError);
         });
     });
 

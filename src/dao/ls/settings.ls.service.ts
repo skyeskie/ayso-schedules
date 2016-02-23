@@ -2,7 +2,7 @@ import {Inject, Injectable, Optional} from 'angular2/core';
 import {SettingsDAO, SettingsDataType} from '../settings.interface';
 import {IInitializationService} from '../init/initialization.interface';
 import {TeamsDAO, Team} from '../teams.interface';
-import {getRegionByNumber, Region} from '../../cfg/regions';
+import {Region} from '../../models/region';
 import {Logger, ClassLogger, Level} from '../../service/log.decorator';
 import {ILocalStorage} from './local-storage.interface';
 
@@ -76,7 +76,7 @@ class LocalStorageSettingsService implements SettingsDAO {
 
     getRegion(): Promise<Region> {
         return this.getRegionNumber().then((num:number) => {
-            return Promise.resolve(getRegionByNumber(num));
+            return Promise.resolve(Region.fromNumber(num));
         });
     }
 

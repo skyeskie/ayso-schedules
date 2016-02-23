@@ -1,10 +1,10 @@
-import Gender, {findGenderByCode} from '../cfg/gender';
-import {AgeGroup, getAgeGroupByCutoff} from '../cfg/ages';
+import Gender from '../models/gender';
+import {AgeGroup} from '../models/ageGroup';
 import {StringJoiner} from 'angular2/src/facade/lang';
 
 const SPACE = ' ';
 
-export default class Division {
+class Division {
     /**
      * Configure age and gender from display string
      * @param display - of form U\d\d?[BCG]
@@ -14,8 +14,8 @@ export default class Division {
         if(matches === null) {
             throw new RangeError('Invalid format for division code');
         }
-        let code = findGenderByCode(matches[2]);
-        let age = getAgeGroupByCutoff(Number.parseInt(matches[1], 10));
+        let code = Gender.fromCode(matches[2]);
+        let age = AgeGroup.fromCutoff(Number.parseInt(matches[1], 10));
         return new Division(code, age);
     }
 
@@ -33,3 +33,5 @@ export default class Division {
         return this.age.toString() + this.gender.short;
     }
 }
+
+export { Division as default, Division, AgeGroup, Gender }

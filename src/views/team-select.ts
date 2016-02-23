@@ -1,17 +1,16 @@
 import {Component, AfterViewInit, Inject, ViewChild} from 'angular2/core';
 import {Router, RouteParams, RouterLink} from 'angular2/router';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, FormBuilder, ControlGroup} from 'angular2/common';
+import {ChangeDetector} from 'angular2/src/core/change_detection/interfaces';
 import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
 
-import {TeamsDAO, Team, Region, Division} from '../dao/teams.interface';
+import {TeamsDAO, Team, Region} from '../dao/teams.interface';
 
-import {REGIONS} from '../cfg/regions';
-import {GENDERS,Gender} from '../cfg/gender';
-import {AGES,AgeGroup} from '../cfg/ages';
+import {CFG} from '../app/cfg';
+import {AgeGroup} from '../models/ageGroup';
+import {Gender} from '../models/gender';
+
 import {TitleBarComponent} from '../comp/title-bar.component';
-import {FormBuilder} from 'angular2/common';
-import {ControlGroup} from 'angular2/common';
-import {ChangeDetector} from 'angular2/src/core/change_detection/interfaces';
 import {NameSwitchPipe} from '../pipes/name-switch.pipe';
 
 //All form data is string, so this helps make sure we convert it
@@ -79,9 +78,9 @@ class TeamSelectView {
         @Inject(TeamsDAO)
         private dao:TeamsDAO
     ) {
-        this.regions = REGIONS;
-        this.ages = AGES;
-        this.genders = GENDERS;
+        this.regions = CFG.REGIONS;
+        this.ages = CFG.AGES;
+        this.genders = CFG.GENDERS;
         //Create form controls
         this.teamForm = fb.group({
             age: undefined,

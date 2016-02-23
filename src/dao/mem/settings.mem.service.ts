@@ -1,11 +1,8 @@
-import {Inject, Injectable} from 'angular2/core';
+import {Inject, Injectable, Optional} from 'angular2/core';
 
-import {TeamsDAO} from '../teams.interface';
-import SettingsDAO, {Region, Team} from '../settings.interface';
-import {getRegionByNumber} from '../../cfg/regions';
+import {TeamsDAO, Team} from '../teams.interface';
+import SettingsDAO, {Region, SettingsDataType} from '../settings.interface';
 import {IInitializationService} from '../init/initialization.interface';
-import {Optional} from 'angular2/core';
-import {SettingsDataType} from '../settings.interface';
 
 @Injectable()
 class InMemorySettingsService implements SettingsDAO {
@@ -54,7 +51,7 @@ class InMemorySettingsService implements SettingsDAO {
     }
 
     getRegion(): Promise<Region> {
-        return Promise.resolve(getRegionByNumber(this.region));
+        return Promise.resolve(Region.fromNumber(this.region));
     }
 
     setRegion(region: number): Promise<void> {

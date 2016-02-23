@@ -3,12 +3,12 @@ import {COMMON_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 
 import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
 
-import {GENDERS, Gender} from '../cfg/gender';
 import {Control} from 'angular2/common';
 import {ViewChild} from 'angular2/core';
 import {AfterViewInit} from 'angular2/core';
 import {FormBuilder} from 'angular2/common';
 import {ClassLogger, Logger, Level} from '../service/log.decorator';
+import {Gender} from '../models/gender';
 
 @Component({
     selector: 'gender-form',
@@ -26,7 +26,7 @@ import {ClassLogger, Logger, Level} from '../service/log.decorator';
 })
 export class GenderFormComponent implements AfterViewInit {
     @ClassLogger public log: Logger;
-    public genders: Gender[] = GENDERS;
+    public genders: Gender[] = Gender.GENDERS;
 
     @Output()
     public change:EventEmitter<any> = new EventEmitter();
