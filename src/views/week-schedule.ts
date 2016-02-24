@@ -1,4 +1,3 @@
-import {DatePipe} from 'angular2/common';
 import {Component, Inject, OnInit} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 

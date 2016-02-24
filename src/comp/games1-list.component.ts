@@ -1,16 +1,17 @@
 import {Component, Input, Inject, OnInit, Optional} from 'angular2/core';
-import {NgFor, DatePipe} from 'angular2/common';
+import {NgFor} from 'angular2/common';
 import {Router, RouterLink} from 'angular2/router';
 
 import Game from '../models/game';
 import {GamesDAO} from '../dao/games.interface';
 import {VsAtGameFormatPipe} from '../pipes/vs-at-game.pipe';
+import {DateMedPipe} from '../pipes/date-med.pipe';
 
 @Component({
     selector: 'single-team-game-list',
     directives: [NgFor, RouterLink],
     styles: [`.team { height: 100%; text-valign: middle}`],
-    pipes: [DatePipe, VsAtGameFormatPipe],
+    pipes: [DateMedPipe, VsAtGameFormatPipe],
     template: `
     <div class="list-group">
         <div class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No games found</div>
@@ -18,7 +19,7 @@ import {VsAtGameFormatPipe} from '../pipes/vs-at-game.pipe';
         <button type="button" class="list-group-item container"
          *ngFor="#game of games" [routerLink]="['/GameDetail',{id:game.id}]">
             <div class="col-xs-6">
-                <h5>{{game.startTime | date:'MMMdjm'}}</h5>
+                <h5>{{game.startTime | dateMed}}</h5>
                 <div class="m-l-2">
                     Region {{game.region}}, Field {{game.field}}
                 </div>

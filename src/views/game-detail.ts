@@ -1,6 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
 import {RouterLink, RouteParams} from 'angular2/router';
-import {DatePipe} from 'angular2/common';
 
 import Game from '../models/game';
 import Team from '../models/team';
@@ -10,16 +9,17 @@ import {Inject} from 'angular2/core';
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {NameSwitchPipe} from '../pipes/name-switch.pipe';
 import {NgIf} from 'angular2/common';
+import {DateMedPipe} from '../pipes/date-med.pipe';
 
 @Component({
-    pipes: [DatePipe, NameSwitchPipe],
+    pipes: [DateMedPipe, NameSwitchPipe],
     directives: [TitleBarComponent, RouterLink, NgIf],
     template: `
     <title-bar></title-bar>
     <article class="container" *ngIf="game">
         <h2 class="text-xs-center">Game Info</h2>
         <h3 class="col-xs-6">Week #{{game?.weekNum}}</h3>
-        <h3 class="col-xs-6 text-xs-right">{{game?.startTime | date:'MMMdhm'}}</h3>
+        <h3 class="col-xs-6 text-xs-right">{{game?.startTime | dateMed}}</h3>
         <div class="card card-block col-xs-6">
             <h4 class="card-title text-muted">Home Team</h4>
             <h4 class="card-text text-primary">{{game?.homeTeam}}</h4>

@@ -1,15 +1,16 @@
 import {Component, Input, OnChanges} from 'angular2/core';
-import {NgFor, NgIf, DatePipe} from 'angular2/common';
+import {NgFor, NgIf} from 'angular2/common';
 import {Router, RouterLink} from 'angular2/router';
 import Game from '../models/game';
 import Team from '../models/team';
 import {checkPresent} from '../app/util';
 import {ClassLogger, Logger, Level} from '../service/log.decorator';
+import {DateMedPipe} from '../pipes/date-med.pipe';
 
 @Component({
     selector: 'two-teams-game-list',
     directives: [NgFor, NgIf, RouterLink],
-    pipes: [DatePipe],
+    pipes: [DateMedPipe],
     template: `
     <div class="card card-block card-info-outline" *ngIf="byesList">
         <span class="card-title bold m-r-2">Byes:</span>
@@ -23,7 +24,7 @@ import {ClassLogger, Logger, Level} from '../service/log.decorator';
                 <div class="col-xs-6 text-xs-right">{{row.game.homeTeam}} vs {{row.game.awayTeam}}</div>
             </button>
             <div class="list-group-item-header m-t-1" *ngIf="row.isHeader">
-                <h4>{{row.headerTime | date:'MMMdjm'}}</h4>
+                <h4>{{row.headerTime | dateMed}}</h4>
             </div>
         </div>
         <div class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No results</div>

@@ -19,6 +19,11 @@ class VsAtGameFormatPipe implements PipeTransform {
     @ClassLogger log:Logger;
 
     transform(game:Game, args:string[]): string {
+        if(!(game instanceof Game)) {
+            this.log.debug('Invalid game to vs/at pipe');
+            return '';
+        }
+
         if(game.isBye()) {
             return 'BYE';
         }

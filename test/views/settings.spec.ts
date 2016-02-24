@@ -19,7 +19,7 @@ import {DataControlService} from '../../src/dao/data-control.service';
 //TODO: Make custom pipe, at least until Angular2 fixes
 //DatePipe requires Intl and has limited usage: http://caniuse.com/#search=intl
 //https://github.com/angular/angular/issues/3333
-xdescribe('View: Settings', () => {
+describe('View: Settings', () => {
     beforeEachProviders(() => [
         ...MOCK_ROUTER_PROVIDERS,
         ...MOCK_DAO_PROVIDERS,

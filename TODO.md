@@ -22,7 +22,7 @@ Add pipes
       Alternatively handle in Coach->Team transform
 - [ ] Color favorites (2-team list view)
 - [x] Format team in 1-team: at/vs/bye
-- [ ] Add custom DatePipe
+- [x] Add custom DatePipe
 
 TODO:
 

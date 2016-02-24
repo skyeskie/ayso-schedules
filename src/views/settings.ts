@@ -1,13 +1,14 @@
 import {Component, OnInit, Injectable} from 'angular2/core';
-import {Control, DatePipe, NgFor, FORM_DIRECTIVES} from 'angular2/common';
+import {Control, NgFor, FORM_DIRECTIVES} from 'angular2/common';
 
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {DataControlService} from '../dao/data-control.service';
 import {Region} from '../models/region';
+import {DateMedPipe} from '../pipes/date-med.pipe';
 
 @Component({
     directives:[NgFor, TitleBarComponent, FORM_DIRECTIVES],
-    pipes:[DatePipe],
+    pipes:[DateMedPipe],
     template: `
     <title-bar></title-bar>
     <article class="container">
@@ -27,7 +28,7 @@ import {Region} from '../models/region';
             <h4 class="card-title">Update data</h4>
             <p>The app normally checks for updates on start.
             Use this if you think you missed an update.</p>
-            <div><strong>Last updated:</strong> {{lastUpdate | date:'MMMdhm'}}</div>
+            <div><strong>Last updated:</strong> {{lastUpdate | dateMed}}</div>
             <button type="button" class="btn btn-info-outline" (click)="forceRefresh()">
                 Update now
             </button>
