@@ -11,10 +11,18 @@ import Gender from '../../models/gender';
 import Region from '../../models/region';
 import Team from '../../models/team';
 
-import {IInitializationService} from './initialization.interface';
+import {IBackend} from './backend.interface.ts';
 import {SettingsDataType} from '../settings.interface';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
 import {AgeGroup} from '../../models/ageGroup';
+import {Inject} from 'angular2/core';
+import {ILocalStorage} from '../ls/local-storage.interface';
+import {RequestOptions} from 'angular2/http';
+import {URLSearchParams} from 'angular2/http';
+import {Request} from 'angular2/http';
+import {RequestMethod} from 'angular2/http';
+import {GamesDAO} from '../games.interface';
+import {CFG} from '../../app/cfg';
 
 //TODO: Make server types match so can remove
 type ServerCoach = {
@@ -33,31 +41,49 @@ type ServerJSON = {
     Coaches:ServerCoach[],
 };
 
-//TODO: Move this to Configuration
-const URL = 'data.json';
+const DATA_VERSION_KEY = 'ayso-data-version';
 
 @Injectable()
-class HttpInitService implements IInitializationService {
+class HttpInitService implements IBackend {
     @ClassLogger public log: Logger;
 
     public remoteObservable:Observable<Response>;
     public dataObservable:ReplaySubject<ServerJSON> = new ReplaySubject<ServerJSON>();
 
-    //TODO: Figure out this Observable/Subject mess
-    constructor(private http:Http) {
-        this.log.log('HttpInitService constructor');
-        this.remoteObservable = this.http.get(URL);
+    constructor(
+        private http:Http,
+        @Inject(ILocalStorage)
+        private ls:ILocalStorage
+    ) {
+        this.log.setLevel(Level.DEBUG);
+    }
+
+    init(curVersion: string = null): Promise<void> {
+        if(curVersion === null) {
+            //Get full data
+            this.remoteObservable = this.http.get(CFG.URL);
+        } else {
+            //Get update
+            let params = new URLSearchParams();
+            params.set('lastUpdate', curVersion);
+            this.remoteObservable = this.http.get(CFG.URL, new RequestOptions({search: params}));
+        }
+
         this.dataObservable = new ReplaySubject<ServerJSON>(1);
-        this.log.debug(this);
+
         this.remoteObservable.map((response:Response) => {
-            //TODO: Response.ok doesn't seem to be working
             if(response.status < 200 || response.status > 299) {
                 this.log.error('Response not OK', response);
                 throw new Error(response.status + ' ' + response.statusText);
             }
             this.log.debug(response);
-            return response.json();
+            let data = response.json();
+            this.ls.setItem(DATA_VERSION_KEY, data.Version);
+            return data;
         }).subscribe(this.dataObservable);
+
+        //Pulled by observable, so just return promise immediately
+        return Promise.resolve();
     }
 
     getTeams(): Promise<Team[]> {
@@ -96,12 +122,8 @@ class HttpInitService implements IInitializationService {
         return Promise.resolve({});
     };
 
-    getGameUpdates(): Promise<Game[]> {
-        return this.getGames();
-    }
-
-    getTeamUpdates(): Promise<Team[]> {
-        return this.getTeams();
+    getDataVersion(): Promise<string> {
+        return this.dataObservable.map((data:ServerJSON) => data.Version).toPromise();
     }
 }
 
@@ -147,4 +169,4 @@ class ModelTranslation {
     }
 }
 
-export { HttpInitService as default, HttpInitService, IInitializationService }
+export { HttpInitService as default, HttpInitService, IBackend }

@@ -1,8 +1,12 @@
 import {Injectable, Inject} from 'angular2/core';
-import {GamesDAO} from './games.interface';
-import {SettingsDAO} from './settings.interface';
-import {TeamsDAO} from './teams.interface';
+
+import {GamesDAO, Game} from './games.interface';
+import {SettingsDAO, SettingsDataType} from './settings.interface';
+import {TeamsDAO, Team} from './teams.interface';
 import {WeekCacheInterface} from './week-cache.interface';
+import {IBackend, generateWeekStarts} from './init/backend.interface.ts';
+import {ILocalStorage, LS_KEYS} from './ls/local-storage.interface';
+
 import {ClassLogger, Logger, Level} from '../service/log.decorator';
 
 /**
@@ -19,39 +23,23 @@ class DataControlService {
         @Inject(GamesDAO)           public games:GamesDAO,
         @Inject(SettingsDAO)        public settings:SettingsDAO,
         @Inject(TeamsDAO)           public teams:TeamsDAO,
-        @Inject(WeekCacheInterface) public weekCache:WeekCacheInterface
+        @Inject(WeekCacheInterface) public weekCache:WeekCacheInterface,
+        @Inject(IBackend)           public backend:IBackend,
+        @Inject(ILocalStorage)      public ls:ILocalStorage
     ) {
+        this.log.setLevel(Level.DEBUG);
     }
 
     /**
      * Full initialization of DAOs. Expects DAOs to have no local caching
      * @post DAO objects initialized with data and ready to receive queries
      * - At this point, app update should leave local caches intact
-     * @returns {Promise<Date>} for  success/completion
-     * - Success will return the last updated date
+     * @returns {Promise<string>} for  success/completion
+     * - Success will return the last updated version
      * - Errors will be fed to the reject callback
      */
-    init(): Promise<Date> {
-        return Promise.all([
-            this.games.init().then(() => {
-                this.log.info('Games init');
-                return 0;
-            }),
-            this.teams.init().then(() => {
-                this.log.info('Teams init');
-                return 0;
-            }),
-            this.settings.init().then(() => {
-                this.log.info('Settings init');
-                return 0;
-            }),
-            this.weekCache.init().then(() => {
-                this.log.info('Week Cache init');
-                return 0;
-            }),
-        ]).then(() => {
-            return Promise.resolve(new Date());
-        });
+    init(): Promise<string> {
+        return this.update();
     }
 
     /**
@@ -62,8 +50,8 @@ class DataControlService {
      * If update() is no-op, this should return now. Otherwise the
      * value should be persisted.
      */
-    getLastUpdate(): Date {
-        return new Date();
+    getLastUpdate(): string {
+        return this.ls.getItem(LS_KEYS.DATA_VERSION);
     }
 
     /**
@@ -76,12 +64,34 @@ class DataControlService {
      *
      * If updates required, should set lastUpdate to now
      */
-    update(force: boolean): Promise<Date> {
-        return Promise.all([
-            this.games.update(),
-            this.teams.update(),
-            this.weekCache.init(),
-        ]).then(() => this.getLastUpdate());
+    update(force = false): Promise<string> {
+        let lastUpdate = null;
+
+        if(!force) {
+            lastUpdate = this.getLastUpdate();
+        }
+
+        return this.backend.init(lastUpdate).then(() => {
+            return Promise.all([
+                this.backend.getGames().then((games:Game[]) => {
+                    this.games.add(games);
+                }),
+                this.backend.getTeams().then((teams:Team[]) => {
+                    //this.teams.add(teams);
+                }),
+                this.backend.getSettings().then((settings:SettingsDataType) => {
+                    this.settings.init(settings);
+                }),
+            ]);
+        }).then(() => this.backend.getWeekStarts()).then((starts) => {
+            if(starts === null) {
+                return generateWeekStarts(this.games).then((dates) => this.weekCache.init(dates));
+            }
+            this.weekCache.init(starts);
+        }).then(() => this.backend.getDataVersion()).then((version:string) => {
+            this.setLastUpdate(version);
+            return version;
+        });
     }
 
     /**
@@ -97,6 +107,10 @@ class DataControlService {
             this.teams.clear(),
             this.weekCache.clear(),
         ]).then(() => Promise.resolve());
+    }
+
+    private setLastUpdate(version: string) {
+        this.ls.setItem(LS_KEYS.DATA_VERSION, version);
     }
 }
 

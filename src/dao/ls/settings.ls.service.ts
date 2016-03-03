@@ -1,21 +1,13 @@
 import {Inject, Injectable, Optional} from 'angular2/core';
 import {SettingsDAO, SettingsDataType} from '../settings.interface';
-import {IInitializationService} from '../init/initialization.interface';
+import {IBackend} from '../init/backend.interface.ts';
 import {TeamsDAO, Team} from '../teams.interface';
 import {Region} from '../../models/region';
 import {Logger, ClassLogger, Level} from '../../service/log.decorator';
-import {ILocalStorage} from './local-storage.interface';
-
-const SAVED_TEAMS_KEY = 'ayso-favorites';
-const SAVED_REGION_KEY = 'ayso-region';
+import {ILocalStorage, LS_KEYS} from './local-storage.interface';
 
 @Injectable()
 class LocalStorageSettingsService implements SettingsDAO {
-    public static KEYS:any = {
-        TEAMS: SAVED_TEAMS_KEY,
-        REGION: SAVED_REGION_KEY,
-    };
-
     @ClassLogger public log:Logger;
     public teams:string[] = [];
     public region:number = undefined;
@@ -24,12 +16,10 @@ class LocalStorageSettingsService implements SettingsDAO {
         @Inject(ILocalStorage)
         private client:ILocalStorage,
         @Inject(TeamsDAO)
-        private dao: TeamsDAO,
-        @Optional() @Inject(IInitializationService)
-        private initializer?:IInitializationService
+        private dao: TeamsDAO
     ) {
-        this.log.setLevel(Level.TRACE);
-        let savedList = this.client.getItem(SAVED_TEAMS_KEY) || '';
+        this.log.setLevel(Logger.Level.DEBUG);
+        let savedList = this.client.getItem(LS_KEYS.USER_TEAMS) || '';
         this.log.info('Retrieved teams from LocalStorage',savedList);
         if(savedList) {
             this.teams = savedList.split(',');
@@ -70,45 +60,43 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 
     getRegionNumber(): Promise<number> {
-        let n = Number.parseInt(this.client.getItem(SAVED_REGION_KEY),10);
+        let n = Number.parseInt(this.client.getItem(LS_KEYS.MAIN_REGION),10);
         return Promise.resolve(isNaN(n) ? undefined : n);
     }
 
     getRegion(): Promise<Region> {
         return this.getRegionNumber().then((num:number) => {
+            this.log.info('Looking up region', num, Region.REGIONS);
             return Promise.resolve(Region.fromNumber(num));
         });
     }
 
     setRegion(region: number): Promise<void> {
         if(!isNaN(region)) {
-            this.client.setItem(SAVED_REGION_KEY, region.toString());
+            this.client.setItem(LS_KEYS.MAIN_REGION, region.toString());
         }
         return Promise.resolve();
     }
 
-    init(): Promise<void> {
-        if(this.initializer === null) {
-            return Promise.resolve();
+    init(preset?:SettingsDataType): Promise<void> {
+        this.log.debug('Setting from initializer: ', preset);
+        this.setRegion(preset.regionNumber);
+        if(typeof preset.savedTeams !== 'undefined') {
+            this.teams = preset.savedTeams;
         }
-
-        return this.initializer.getSettings().then((preset:SettingsDataType) => {
-            this.log.debug('Setting from initializer: ', preset);
-            this.setRegion(preset.regionNumber);
-            this.teams = preset.savedTeams || [];
-            this.persistTeams();
-        });
+        this.persistTeams();
+        return Promise.resolve();
     }
 
     isAppConfigured(): boolean {
-        return !isNaN(Number.parseInt(this.client.getItem(SAVED_REGION_KEY), 10));
+        return !isNaN(Number.parseInt(this.client.getItem(LS_KEYS.MAIN_REGION), 10));
     }
 
     reset(): Promise<void> {
         this.region = undefined;
         this.teams = [];
-        this.client.removeItem(SAVED_REGION_KEY);
-        this.client.removeItem(SAVED_TEAMS_KEY);
+        this.client.removeItem(LS_KEYS.MAIN_REGION);
+        this.client.removeItem(LS_KEYS.USER_TEAMS);
         return Promise.resolve();
     }
 
@@ -117,7 +105,7 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 
     private persistTeams() {
-        this.client.setItem(SAVED_TEAMS_KEY, this.teams.join(','));
+        this.client.setItem(LS_KEYS.MAIN_REGION, this.teams.join(','));
     }
 }
 

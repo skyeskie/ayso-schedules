@@ -14,37 +14,21 @@ import {
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
 
-import Team from '../../src/models/team';
-import {SettingsDAO} from '../../src/dao/settings.interface';
-import Region from '../../src/models/region';
-import {IInitializationService} from '../../src/dao/init/initialization.interface';
+import {SettingsDAO, Region, Team} from '../../src/dao/settings.interface';
+import {IBackend} from '../../src/dao/init/backend.interface.ts';
+import {StaticInitializationService} from '../../src/dao/init/static.init.service';
+import {CFG} from '../../src/app/cfg';
 
-function settingsInterfaceSpec(impl: any, init: any) {
-    describe('(SettingsDAO)', () => {
-        beforeEachProviders(() => [
-            provide(IInitializationService, {useValue: null}),
-            impl,
-        ]);
+let mockData = new StaticInitializationService();
+function init(dao:SettingsDAO): Promise<any> {
+    return mockData.getSettings().then((preset) => dao.init(preset));
+}
 
-        //TODO: Either remove from spec or fix
-        xit('initializes with no initialization class', injectAsync([impl], (dao:SettingsDAO) => {
-            return dao.init().then(() => {
-                return dao.getSavedTeamIDs();
-            }).then(teamIDs => {
-                console.log(teamIDs);
-                expect(teamIDs.length).toBe(0);
-                return dao.getRegionNumber();
-            }).then(regionNum => {
-                expect(regionNum).not.toBeDefined();
-            });
-        }));
-    });
+function settingsInterfaceSpec(impl: any) {
+    console.log(CFG);
 
     describe('(SettingsDAO)', () => {
-        beforeEachProviders(() => [
-            provide(IInitializationService, {useClass: init}),
-            impl,
-        ]);
+        beforeEachProviders(() => [impl]);
 
         it('saves a team', injectAsync([impl], (dao:SettingsDAO) => {
             return dao.clearSavedTeams().then(() => {
@@ -76,9 +60,7 @@ function settingsInterfaceSpec(impl: any, init: any) {
         it('returns saved teams', injectAsync([impl], (dao:SettingsDAO) => {
             let idSet = new Set<string>();
 
-            return dao.init().then(() => {
-                return dao.getSavedTeamIDs();
-            }).then(teamIDs => {
+            return init(dao).then(() => dao.getSavedTeamIDs()).then(teamIDs => {
                 expect(teamIDs.length).toBeGreaterThan(1);
                 teamIDs.forEach(id => idSet.add(id));
                 return dao.getSavedTeams();
@@ -125,16 +107,13 @@ function settingsInterfaceSpec(impl: any, init: any) {
         });
 
         it('has no saved teams after reset', injectAsync([impl], (dao:SettingsDAO) => {
-            return dao.init().then(() => {
-                return dao.getSavedTeamIDs();
-            }).then(teamIDs => {
-                expect(teamIDs.length).toBeGreaterThan(0);
-                return dao.reset();
-            }).then(() => {
-                return dao.getSavedTeamIDs();
-            }).then(teamIDs => {
-                expect(teamIDs.length).toBe(0);
-            });
+            return init(dao).then(() => dao.getSavedTeamIDs())
+                            .then(teamIDs => {
+                                expect(teamIDs.length).toBeGreaterThan(0);
+                                return dao.reset();
+                            })
+                            .then(() => dao.getSavedTeamIDs())
+                            .then(teamIDs => expect(teamIDs.length).toBe(0));
         }));
     });
 }

@@ -2,15 +2,13 @@ import {Inject, Injectable, Optional} from 'angular2/core';
 
 import {TeamsDAO, Team} from '../teams.interface';
 import SettingsDAO, {Region, SettingsDataType} from '../settings.interface';
-import {IInitializationService} from '../init/initialization.interface';
+import {IBackend} from '../init/backend.interface.ts';
 
 @Injectable()
 class InMemorySettingsService implements SettingsDAO {
     constructor(
         @Inject(TeamsDAO)
-        private dao: TeamsDAO,
-        @Optional() @Inject(IInitializationService)
-        private initializer:IInitializationService
+        private dao: TeamsDAO
     ) {}
 
     public teams:Set<string> = new Set<string>();
@@ -59,15 +57,14 @@ class InMemorySettingsService implements SettingsDAO {
         return Promise.resolve();
     }
 
-    init(): Promise<void> {
-        if(this.initializer === null) {
-            return Promise.resolve();
+    init(preset:SettingsDataType): Promise<void> {
+        this.region = preset.regionNumber;
+        this.teams = new Set<string>();
+        if(typeof preset.savedTeams !== 'undefined') {
+            preset.savedTeams.forEach((team:string) => this.teams.add(team));
         }
 
-        return this.initializer.getSettings().then((preset:SettingsDataType) => {
-            this.region = preset.regionNumber;
-            this.teams = new Set<string>(preset.savedTeams);
-        });
+        return Promise.resolve();
     }
 
     isAppConfigured(): boolean {

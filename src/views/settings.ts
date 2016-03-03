@@ -8,7 +8,7 @@ import {DateMedPipe} from '../pipes/date-med.pipe';
 
 @Component({
     directives:[NgFor, TitleBarComponent, FORM_DIRECTIVES],
-    pipes:[DateMedPipe],
+    //pipes:[DateMedPipe],
     template: `
     <title-bar></title-bar>
     <article class="container">
@@ -28,7 +28,7 @@ import {DateMedPipe} from '../pipes/date-med.pipe';
             <h4 class="card-title">Update data</h4>
             <p>The app normally checks for updates on start.
             Use this if you think you missed an update.</p>
-            <div><strong>Last updated:</strong> {{lastUpdate | dateMed}}</div>
+            <div><strong>Last updated:</strong> {{lastUpdate}}</div>
             <button type="button" class="btn btn-info-outline" (click)="forceRefresh()">
                 Update now
             </button>
@@ -56,7 +56,7 @@ export default class SettingsView implements OnInit {
     public defaultRegion:Control = new Control('');
 
     public regions:Region[];
-    public lastUpdate:Date;
+    public lastUpdate:string;
 
     constructor(
         private dataControl: DataControlService
@@ -81,7 +81,7 @@ export default class SettingsView implements OnInit {
     }
 
     forceRefresh(): void {
-        this.dataControl.update(true).then((updated:Date) => {
+        this.dataControl.update(true).then((updated:string) => {
             this.lastUpdate = updated;
         });
     }

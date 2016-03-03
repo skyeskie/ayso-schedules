@@ -1,12 +1,10 @@
 import {Inject, Injectable, Optional} from 'angular2/core';
 
-import {IInitializationService} from '../init/initialization.interface';
+import {IBackend} from '../init/backend.interface.ts';
 import WeekCacheInterface from '../week-cache.interface';
 import {calculateCurrentWeek} from '../week-cache.interface';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
-import {ILocalStorage} from './local-storage.interface';
-
-const SAVED_WEEKS_KEY = 'ayso-week-starts';
+import {ILocalStorage, LS_KEYS} from './local-storage.interface';
 
 @Injectable()
 class LocalStorageWeeksService implements WeekCacheInterface {
@@ -21,20 +19,9 @@ class LocalStorageWeeksService implements WeekCacheInterface {
 
     constructor(
         @Inject(ILocalStorage)
-        private client:ILocalStorage,
-        @Inject(IInitializationService)
-        private initializer: IInitializationService
+        private client:ILocalStorage
     ) {
-        let starts = this.loadWeekStarts();
-
-        if(starts === null) {
-            this.initialized = false;
-            this.initializePromise = this.init();
-        } else {
-            this.weekStarts = starts;
-            this.initialized = true;
-            this.initializePromise = Promise.resolve();
-        }
+        this.loadWeekStarts();
     }
 
     getMaxWeeks(): number {
@@ -49,45 +36,34 @@ class LocalStorageWeeksService implements WeekCacheInterface {
         this.cur = 1;
         this.max = 1;
         this.weekStarts = [];
-        this.client.removeItem(SAVED_WEEKS_KEY);
+        this.client.removeItem(LS_KEYS.WEEKS_CACHE);
         return Promise.resolve();
     }
 
-    init(): Promise<number> {
-        if(this.initializePromise!==null) {
-            //We've already been here
-            return this.initializePromise;
-        }
+    init(starts: Date[]): Promise<number> {
+        this.weekStarts = starts;
+        this.max = starts.length;
 
-        if(this.initializer === null) {
-            return Promise.reject<number>(
-                new ReferenceError('Could not initialize the weeks cache')
-            );
-        }
+        this.cur = calculateCurrentWeek(starts);
+        this.persistWeekStarts();
 
-        return this.initializer.getWeekStarts().then((starts:Date[]) => {
-            this.weekStarts = starts;
-            this.max = starts.length;
-
-            this.cur = calculateCurrentWeek(starts);
-            this.persistWeekStarts();
-
-            return Promise.resolve(this.max);
-        });
+        return Promise.resolve(this.max);
     }
 
-    private loadWeekStarts(): Date[] {
-        let savedString = this.client.getItem(SAVED_WEEKS_KEY);
+    private loadWeekStarts(): void {
+        let savedString = this.client.getItem(LS_KEYS.WEEKS_CACHE);
         if(typeof savedString === 'string' && savedString.length > 0) {
             let timestamps = savedString.split(',');
-            return timestamps.map((timestamp:string) => Number.parseInt(timestamp, 10))
-                             .map((timestamp:number) => new Date(timestamp));
+            this.weekStarts = timestamps.map((timestamp:string) => Number.parseInt(timestamp, 10))
+                                        .map((timestamp:number) => new Date(timestamp));
+            this.max = this.weekStarts.length;
+
+            this.cur = calculateCurrentWeek(this.weekStarts);
         }
-        return null;
     }
 
     private persistWeekStarts() {
-        this.client.setItem(SAVED_WEEKS_KEY,
+        this.client.setItem(LS_KEYS.WEEKS_CACHE,
             this.weekStarts.map((date:Date) => date.valueOf()).join(',')
         );
     }

@@ -14,30 +14,31 @@ import {
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
 import {WeekCacheInterface} from '../../src/dao/week-cache.interface';
-import {IInitializationService} from '../../src/dao/init/initialization.interface';
+import {IBackend} from '../../src/dao/init/backend.interface.ts';
 import {calculateCurrentWeek} from '../../src/dao/week-cache.interface';
 
 const ONE = 1;
+const BEFORE_DATE = new Date(2015,1,1);
+const AFTER_DATE = new Date(2017,1,1);
+const DATE_BETWEEN_3_4 = new Date(2016, 1, 18);
+
+const dates = [
+    new Date(2016, 1,  1), //1
+    new Date(2016, 1,  8), //2
+    new Date(2016, 1, 15), //3
+    new Date(2016, 2, 20), //7
+    new Date(2016, 2,  5), //6
+    new Date(2016, 2,  1), //4
+    new Date(2016, 2,  3), //5
+];
 
 function weekCacheInterfaceSpec(impl: any, init?:any) {
     describe('(WeekCacheDAO)', () => {
-        beforeEachProviders(() => [impl, provide(IInitializationService, {useValue: null})]);
-        it('requires an initialization class', injectAsync([impl], (dao:WeekCacheInterface) => {
-            return dao.init().then(() => {
-                fail('Promise should be rejected with no initialization.');
-            }, () => {
-                expect(dao.getCurrentWeek()).toBe(ONE);
-                expect(dao.getMaxWeeks()).toBe(ONE);
-            });
-        }));
-    });
-
-    describe('(WeekCacheDAO)', () => {
-        beforeEachProviders(() => [impl, provide(IInitializationService, {useClass: init})]);
+        beforeEachProviders(() => [impl, provide(IBackend, {useClass: init})]);
 
         describe('getMaxWeeks', () => {
             it('should return be greater than 0', injectAsync([impl], (dao: WeekCacheInterface) => {
-                return dao.init().then(() => {
+                return dao.init(dates).then(() => {
                     expect(dao.getMaxWeeks()).toBeGreaterThan(1);
                 });
             }));
@@ -45,7 +46,7 @@ function weekCacheInterfaceSpec(impl: any, init?:any) {
 
         describe('getCurrentWeek', () => {
             it('should be in the range [1, maxWeeks]', injectAsync([impl], (dao: WeekCacheInterface) => {
-                return dao.init().then(() => {
+                return dao.init(dates).then(() => {
                     expect(dao.getCurrentWeek()).toBeGreaterThan(0);
                     expect(dao.getCurrentWeek()).toBeLessThan(dao.getMaxWeeks().valueOf() + ONE);
                 });
@@ -53,7 +54,7 @@ function weekCacheInterfaceSpec(impl: any, init?:any) {
         });
 
         it('resets to current 1 and max 1 on clear()', injectAsync([impl], (dao: WeekCacheInterface) => {
-            return dao.init().then(() => dao.clear()).then(() => {
+            return dao.init(dates).then(() => dao.clear()).then(() => {
                 expect(dao.getCurrentWeek()).toBe(ONE);
                 expect(dao.getMaxWeeks()).toBe(ONE);
             });
@@ -63,20 +64,6 @@ function weekCacheInterfaceSpec(impl: any, init?:any) {
 }
 
 describe('Util: calculateCurrentWeek', () => {
-    const BEFORE_DATE = new Date(2015,1,1);
-    const AFTER_DATE = new Date(2017,1,1);
-    const DATE_BETWEEN_3_4 = new Date(2016, 1, 18);
-
-    let dates = [
-        new Date(2016, 1,  1), //1
-        new Date(2016, 1,  8), //2
-        new Date(2016, 1, 15), //3
-        new Date(2016, 2, 20), //7
-        new Date(2016, 2,  5), //6
-        new Date(2016, 2,  1), //4
-        new Date(2016, 2,  3), //5
-    ];
-
     it('throws and error with no weeks given', () => {
         expect(() => calculateCurrentWeek([])).toThrowError(RangeError);
     });

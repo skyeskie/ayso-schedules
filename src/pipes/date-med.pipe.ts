@@ -3,6 +3,17 @@ import {StringJoiner} from 'angular2/src/facade/lang';
 
 import {ClassLogger, Logger} from '../service/log.decorator';
 
+//
+//
+//So this pipe puts for custom format: '
+/**
+ * DatePipe requires Intl and has limited usage: http://caniuse.com/#search=intl
+ * Issue: https://github.com/angular/angular/issues/3333
+ *
+ * Until fixed, using fixed manual format.
+ *
+ * Returned format: 'Mon 12, 3:45'
+ */
 @Pipe({name: 'dateMed'})
 class DateMedPipe implements PipeTransform {
     @ClassLogger log:Logger;

@@ -26,6 +26,7 @@ let CFG = {
     AGES: AgeGroup.AGES,
     GENDERS: Gender.GENDERS,
     REGIONS: Region.REGIONS,
+    URL: 'data.json',
 };
 
 export { CFG as default, CFG }

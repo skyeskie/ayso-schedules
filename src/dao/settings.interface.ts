@@ -72,7 +72,7 @@ interface SettingsDAO {
      * If not required should be no-op
      * If `isAppConfigured()===true`, should be no-op
      */
-    init(data?:SettingsDataType): Promise<void>;
+    init(data:SettingsDataType): Promise<void>;
 
     /**
      * Returns if all required settings are present

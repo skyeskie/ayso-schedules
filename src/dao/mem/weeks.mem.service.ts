@@ -1,6 +1,6 @@
 import {Inject, Injectable, Optional} from 'angular2/core';
 
-import {IInitializationService} from '../init/initialization.interface';
+import {IBackend} from '../init/backend.interface.ts';
 import WeekCacheInterface from '../week-cache.interface';
 import {calculateCurrentWeek} from '../week-cache.interface';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
@@ -14,15 +14,6 @@ class InMemoryWeeksService implements WeekCacheInterface {
     private weekStarts:Date[];
     private max:number = 1;
     private cur:number = 1;
-
-    constructor(
-        @Optional()
-        @Inject(IInitializationService)
-        private initializer: IInitializationService
-    ) {
-        this.initialized = false;
-        this.initializePromise = this.init();
-    }
 
     getMaxWeeks(): number {
         return this.max;
@@ -38,27 +29,12 @@ class InMemoryWeeksService implements WeekCacheInterface {
         return Promise.resolve();
     }
 
-    init(): Promise<number> {
-        if(this.initializePromise!==null) {
-            //We've already been here
-            return this.initializePromise;
-        }
+    init(starts: Date[]): Promise<number> {
+        this.weekStarts = starts;
+        this.max = starts.length;
+        this.cur = calculateCurrentWeek(starts);
 
-        if(this.initializer === null) {
-            return Promise.reject<number>(
-                new ReferenceError('Could not initialize the weeks cache')
-            );
-        }
-
-        return this.initializer.getWeekStarts().then((starts:Date[]) => {
-            this.log.debug('WeekCache -- initializing with: ', starts);
-            this.weekStarts = starts;
-            this.max = starts.length;
-
-            this.cur = calculateCurrentWeek(starts);
-
-            return Promise.resolve(this.max);
-        });
+        return Promise.resolve(this.max);
     }
 }
 

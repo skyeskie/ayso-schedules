@@ -5,10 +5,10 @@ import {InMemoryGamesService, GamesDAO} from '../../src/dao/mem/games.mem.servic
 import {InMemoryTeamsService, TeamsDAO} from '../../src/dao/mem/teams.mem.service';
 import {InMemoryWeeksService, WeekCacheInterface} from '../../src/dao/mem/weeks.mem.service';
 import {InMemorySettingsService, SettingsDAO} from '../../src/dao/mem/settings.mem.service';
-import {StaticInitializationService, IInitializationService} from '../../src/dao/init/static.init.service';
+import {StaticInitializationService, IBackend} from '../../src/dao/init/static.init.service';
 
 let MOCK_DAO_PROVIDERS = [
-    provide(IInitializationService, { useClass: StaticInitializationService }),
+    provide(IBackend, { useClass: StaticInitializationService }),
     provide(GamesDAO, { useClass: InMemoryGamesService }),
     provide(TeamsDAO, { useClass: InMemoryTeamsService }),
     provide(SettingsDAO, {useClass: InMemorySettingsService}),

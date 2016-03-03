@@ -30,7 +30,7 @@ interface WeekCacheInterface {
     /**
      * Initializes the cache
      */
-    init(): Promise<any>;
+    init(starts: Date[]): Promise<any>;
 }
 
 var WeekCacheInterface = new OpaqueToken('WeekCacheInterface');

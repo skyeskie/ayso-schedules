@@ -46,10 +46,7 @@ export default class WeekBarComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        //Make sure the cache is initialized
-        this._weeks.init().then(() => {
-            this.max = this._weeks.getMaxWeeks();
-        });
+        this.max = this._weeks.getMaxWeeks();
     }
 
     showPrevious(): boolean {

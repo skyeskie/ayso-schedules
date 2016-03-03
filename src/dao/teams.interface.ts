@@ -29,24 +29,11 @@ interface TeamsDAO {
     findTeams(regionNumber?: number, ageString?: string, genderLong?: string): Promise<Team[]>;
 
     /**
-     * Initializes data store with data
-     * If data store is Read-Only, this should be a no-op
-     *
-     *  Optionally, implementation may return init details in promise
-     */
-    init(): Promise<any>;
-
-    /**
      * Clears all saved data.
      */
     clear(): Promise<void>;
 
-    /**
-     * Hook to have DAO update itself from backend
-     *
-     *  Optionally, implementation may return update details in promise
-     */
-    update(): Promise<any>;
+    add(teams:Team[]): Promise<any>;
 }
 
 var TeamsDAO = new OpaqueToken('TeamsDAO');

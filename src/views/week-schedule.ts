@@ -41,19 +41,13 @@ class WeekScheduleView implements OnInit {
         this.week = parseInt(this._routeParams.get('num'), 10);
         let pCur;
         if(isNaN(this.week)) {
-            this.week = 1;
-            pCur = this._week.init()
-                       .then(() => this._week.getCurrentWeek())
-                       .then((cur:number) => this.week = cur);
-        } else {
-            pCur = Promise.resolve();
+            this.week = this._week.getCurrentWeek() || 1;
         }
 
-        let pRegion = this._settings.getRegionNumber().then((num:number) => this.region = num);
-
-        Promise.all([pCur, pRegion])
-               .then(() => this._games.findByWeek(this.week, this.region))
-               .then((res:Game[]) => this.games = res);
+        this._settings.getRegionNumber()
+                      .then((num:number) => this.region = num)
+                      .then(() => this._games.findByWeek(this.week, this.region))
+                      .then((res:Game[]) => this.games = res);
     }
 
     navWeek(week:number) {

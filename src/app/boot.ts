@@ -22,7 +22,7 @@ import {DataControlService} from '../dao/data-control.service';
 import {INTERCEPT_ROUTER_PROVIDER} from '../comp/intercept-root-router';
 
 import AppComponent from './app.component';
-import {IInitializationService} from '../dao/init/initialization.interface';
+import {IBackend} from '../dao/init/backend.interface.ts';
 import {HttpInitService} from '../dao/init/http.init.service';
 import {StaticInitializationService} from '../dao/init/static.init.service';
 import {Http} from 'angular2/http';
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function main() {
         provide(LocationStrategy, { useClass: HashLocationStrategy}),
 
         //In-app providers
-        provide(IInitializationService, { useClass: HttpInitService}),
+        provide(IBackend, { useClass: HttpInitService}),
         ...LOCAL_STORAGE_DAO_PROVIDERS,
         DataControlService,
         INTERCEPT_ROUTER_PROVIDER,

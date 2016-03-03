@@ -16,12 +16,12 @@ import {
 import {Component, provide} from 'angular2/core';
 import WeekBarComponent from '../../src/comp/week-bar.component';
 import {WeekCacheInterface} from '../../src/dao/week-cache.interface';
-import {IInitializationService} from '../../src/dao/init/initialization.interface';
+import {IBackend} from '../../src/dao/init/backend.interface.ts';
 import {StaticInitializationService} from '../../src/dao/init/static.init.service';
 import {MockWeeksService} from '../mocks/weeks.mock.service';
 
 let providers = [
-    provide(IInitializationService, {useClass: StaticInitializationService}),
+    provide(IBackend, {useClass: StaticInitializationService}),
     provide(WeekCacheInterface, {useFactory: () => {
         return new MockWeeksService(2,7);
     },}),
