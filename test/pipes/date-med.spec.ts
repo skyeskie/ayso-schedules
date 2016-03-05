@@ -19,6 +19,11 @@ describe('Pipe: MedDateFormat', () => {
         expect(pipe.transform(d)).toEqual('Sept 2, 2:30');
     });
 
+    it('shows two zeros on the hour', () => {
+        let d = new Date(2016, 9, 2, 14, 0, 0);
+        expect(pipe.transform(d)).toEqual('Sept 2, 2:00');
+    });
+
     it('returns empty for invalid inputs', () => {
         expect(pipe.transform(undefined)).toEqual('');
         expect(pipe.transform(null)).toEqual('');

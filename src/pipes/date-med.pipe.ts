@@ -39,7 +39,11 @@ class DateMedPipe implements PipeTransform {
         }
         sb.add(hours.toString());
         sb.add(':');
-        sb.add(date.getMinutes().toString());
+        let minutes = date.getMinutes();
+        if(minutes < 10) {
+            sb.add('0');
+        }
+        sb.add(minutes.toString());
 
         return sb.toString();
     }

@@ -77,7 +77,7 @@ class DataControlService {
                     this.games.add(games);
                 }),
                 this.backend.getTeams().then((teams:Team[]) => {
-                    //this.teams.add(teams);
+                    this.teams.add(teams);
                 }),
                 this.backend.getSettings().then((settings:SettingsDataType) => {
                     this.settings.init(settings);
