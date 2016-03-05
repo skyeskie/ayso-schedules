@@ -19,7 +19,7 @@ DAOs
 Add pipes
 
 - [x] Name swap (Last, First => First Last)
-      Alternatively handle in Coach->Team transform
+      ~~Alternatively handle in Coach->Team transform~~
 - [ ] Color favorites (2-team list view)
 - [x] Format team in 1-team: at/vs/bye
 - [x] Add custom DatePipe
@@ -43,6 +43,13 @@ Typing
 - [x] Change all Number,String,etc to primitives
 - [x] Make sure everything is typed
     - note: done as much as possible for now
+
+Native
+
+- [ ] Wait for deviceready event
+- [ ] Include cordova javascript
+- [ ] Click vs touch?
+- [ ] Handle offline status
 
 Error handling
 

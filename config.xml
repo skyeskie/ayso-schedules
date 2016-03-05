@@ -1,9 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget  xmlns="http://www.w3.org/ns/widgets"
         xmlns:cdv="http://cordova.apache.org/ns/1.0"
-        id="org.ayso4u.schedules"
-         version="2.0.0"
-         versionCode="200">
+        id="org.aysoks.schedules"
+         version="2.0.0-alpha.3">
     <name>AysoKS</name>
     <description>
         An app to view schedule information for Wichita-area AYSO regions.
@@ -13,9 +12,11 @@
     </author>
 
     <content src="index.html" />
-    <plugin name="cordova-plugin-whitelist" version="1" />
 
-    <access origin="http://ayso4u.org" />
+    <icon src="icons/icon1024.png" width="1024" height="1024" />
+
+    <access origin="http://aysoks.org" subdomains="true" />
+    <access origin="https://aysoks.org" subdomains="true" />
     <access origin="https://twitter.com" subdomains="true" browserOnly="true" />
     <access origin="http://*.google.com" />
     <access origin="https://*.google.com" />
@@ -23,14 +24,21 @@
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+
+    <preference name="Orientation" value="portrait" />
+
+    <engine name="android" spec="~4.1.1" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <preference name="KeepRunning" value="false"/>
     </platform>
     <platform name="ios">
+        <preference name="EnableViewportScale" value="true"/>
+        <preference name="target-device" value="handset" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+
+    <plugin name="cordova-plugin-whitelist" spec="1" />
 </widget>
