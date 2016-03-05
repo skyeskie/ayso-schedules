@@ -8,6 +8,7 @@ import {IBackend, generateWeekStarts} from './init/backend.interface.ts';
 import {ILocalStorage, LS_KEYS} from './ls/local-storage.interface';
 
 import {ClassLogger, Logger, Level} from '../service/log.decorator';
+import {CFG} from '../app/cfg';
 
 /**
  * This class provides a common interface for updating all the
@@ -18,6 +19,8 @@ import {ClassLogger, Logger, Level} from '../service/log.decorator';
 @Injectable()
 class DataControlService {
     @ClassLogger public log: Logger;
+
+    lastFetchTimestamp: number = 0;
 
     constructor(
         @Inject(GamesDAO)           public games:GamesDAO,
@@ -56,19 +59,27 @@ class DataControlService {
 
     /**
      * Updates all underlying DAOs
-     * @param force
+     * @param force - If true, will always get full data download
      * @post DAO objects updated to latest version
+     * - lastUpdate set to data version
+     * - caches timestamp of update
      * @returns {Promise<Date>} for  success/completion
      * - Success will return the last updated date
      * - Errors will be fed to the reject callback
      *
-     * If updates required, should set lastUpdate to now
+     * Backend call only within configurable threshold
      */
     update(force = false): Promise<string> {
         let lastUpdate = null;
 
         if(!force) {
+            let timestamp = (new Date()).valueOf();
+            let updateDiff = timestamp - this.lastFetchTimestamp;
             lastUpdate = this.getLastUpdate();
+
+            if(lastUpdate !== null && updateDiff < CFG.UPDATE_CACHE_TIME) {
+                return Promise.resolve(lastUpdate);
+            }
         }
 
         return this.backend.init(lastUpdate).then(() => {
@@ -89,6 +100,7 @@ class DataControlService {
             }
             this.weekCache.init(starts);
         }).then(() => this.backend.getDataVersion()).then((version:string) => {
+            this.lastFetchTimestamp = (new Date()).valueOf();
             this.setLastUpdate(version);
             return version;
         });

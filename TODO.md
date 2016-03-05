@@ -4,14 +4,13 @@ Remove items if added as Github issue
 DAOs
 
 - [x] Finalize DAO update operation
-- [ ] Persist lastUpdate in HTTP initializer
+- [x] Persist lastUpdate in HTTP initializer
 - [x] LocalStorage DAOs
     - [x] Settings
     - [x] WeekCache
     - [x] Teams
     - [x] Games
-    - [ ] Make run update if initialized
-    - [ ] Make handle bad data state
+    - [x] Make run update if initialized
 - ~~SQL storage DAOs~~
     - ~~Games~~
     - ~~Teams~~
@@ -60,6 +59,7 @@ Error handling
     - Option to show console messages?
     - Offline info (update) or error (twitter, google, init)
 - [ ] Make sure can remove logging in prod (at least some levels)
+- [ ] Make handle bad data state
 
 View
 
