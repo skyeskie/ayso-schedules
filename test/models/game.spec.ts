@@ -38,11 +38,11 @@ describe('Model: Game', () => {
 
     it('throws error when finding opponent for team not playing', () => {
         let game = new Game('id', 'home', 'away', 1, new Date(), 10, 'field');
-        expect(() => { game.getOpponent('foo'); }).toThrowError(RangeError);
+        expect(() => { game.getOpponent('foo'); }).toThrowErrorOfType('RangeError');
     });
 
     it('throws error when getting bye team and no bye', () => {
         let game = new Game('id', 'home', 'away', 1, new Date(), 10, 'field');
-        expect(() => { game.getTeamWithBye(); }).toThrowError(RangeError);
+        expect(() => { game.getTeamWithBye(); }).toThrowErrorOfType('RangeError');
     });
 });

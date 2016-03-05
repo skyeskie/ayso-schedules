@@ -27,6 +27,8 @@ let CFG = {
     GENDERS: Gender.GENDERS,
     REGIONS: Region.REGIONS,
     URL: 'data.json',
+    //No-op to make sure this is initialized
+    init: () => {},
 };
 
 export { CFG as default, CFG }

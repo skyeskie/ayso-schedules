@@ -1,9 +1,11 @@
 import {ILocalStorage} from '../../src/dao/ls/local-storage.interface';
 import {provide} from 'angular2/core';
-
+import {ClassLogger, Logger} from '../../src/service/log.decorator';
 
 class MockLocalStorage implements ILocalStorage {
-    private localStore:any = {};
+    @ClassLogger log: Logger;
+
+    localStore:any = {};
 
     key(index: number): string {
         return localStorage[index];
@@ -14,6 +16,7 @@ class MockLocalStorage implements ILocalStorage {
     }
 
     setItem(key: string, value: any): void {
+        this.log.info('Setting',key,value);
         this.localStore[key] = value;
     }
 

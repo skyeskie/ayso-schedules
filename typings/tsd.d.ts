@@ -2,3 +2,4 @@
 /// <reference path="jquery/jquery.d.ts" />
 /// <reference path="jasmine/jasmine.d.ts" />
 /// <reference path="twitter/twitter.d.ts" />
+/// <reference path="jasmine-expect/jasmine-expect.d.ts" />

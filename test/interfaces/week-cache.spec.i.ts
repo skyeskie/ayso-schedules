@@ -65,7 +65,7 @@ function weekCacheInterfaceSpec(impl: any, init?:any) {
 
 describe('Util: calculateCurrentWeek', () => {
     it('throws and error with no weeks given', () => {
-        expect(() => calculateCurrentWeek([])).toThrowError(RangeError);
+        expect(() => calculateCurrentWeek([])).toThrowErrorOfType('RangeError');
     });
 
     it('returns 1 if before first week', () => {

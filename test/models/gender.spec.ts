@@ -26,7 +26,7 @@ describe('Config: Genders', () => {
         });
 
         it('should throw an error for undefined lookup', () => {
-            expect(() => { Gender.fromCode('BAD_LOOKUP'); }).toThrowError(RangeError);
+            expect(() => { Gender.fromCode('BAD_LOOKUP'); }).toThrowErrorOfType('RangeError');
         });
     });
 

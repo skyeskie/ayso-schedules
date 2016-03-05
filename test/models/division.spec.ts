@@ -32,15 +32,15 @@ describe('Model: Division', () => {
         });
 
         it('should throw an error on invalid age portion', () => {
-            expect(() => { Division.fromString('U42B'); }).toThrowError(RangeError);
+            expect(() => { Division.fromString('U42B'); }).toThrowErrorOfType('RangeError');
         });
 
         it('should throw an error on invalid gender portion', () => {
-            expect(() => { Division.fromString('U42Z'); }).toThrowError(RangeError);
+            expect(() => { Division.fromString('U42Z'); }).toThrowErrorOfType('RangeError');
         });
 
         it('should throw an error on invalid format', () => {
-            expect(() => { Division.fromString('B10'); }).toThrowError(RangeError);
+            expect(() => { Division.fromString('B10'); }).toThrowErrorOfType('RangeError');
         });
     });
 });

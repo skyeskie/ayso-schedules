@@ -25,7 +25,7 @@ function init(dao:SettingsDAO): Promise<any> {
 }
 
 function settingsInterfaceSpec(impl: any) {
-    console.log(CFG);
+    CFG.init();
 
     describe('(SettingsDAO)', () => {
         beforeEachProviders(() => [impl]);

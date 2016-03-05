@@ -28,7 +28,7 @@ function init(dao:GamesDAO): Promise<any> {
 }
 
 function gamesInterfaceSpec(impl: any) {
-    console.log(CFG);
+    CFG.init();
     describe('(GamesDao)', () => {
         describe('getGame', () => {
             it('resolves to a game', injectAsync([impl], (dao:GamesDAO) => {
@@ -50,7 +50,7 @@ function gamesInterfaceSpec(impl: any) {
         describe('findByWeek', () => {
             it('returns games', injectAsync([impl], (dao:GamesDAO) => {
                 return init(dao).then(() => dao.findByWeek(1)).then((games) => {
-                    expect(games.length).toBe(8);
+                    expect(games).toBeArrayOfSize(8);
                     games.forEach((game: Game) => {
                         expect(game.weekNum).toEqual(1);
                     });
@@ -67,28 +67,28 @@ function gamesInterfaceSpec(impl: any) {
         describe('findGames', () => {
             it('filters on region', injectAsync([impl], (dao:GamesDAO) => {
                 return init(dao).then(() => dao.findGames(49)).then((games:Game[]) => {
-                    expect(games.length).toBe(8);
+                    expect(games).toBeArrayOfSize(8);
                     games.forEach((game:Game) => expect(game.region).toEqual(49));
                 });
             }));
 
             it('filters on age', injectAsync([impl], (dao:GamesDAO) => {
                 return init(dao).then(() => dao.findGames(null, 'U10')).then((games:Game[]) => {
-                    expect(games.length).toBe(6);
+                    expect(games).toBeArrayOfSize(6);
                     games.forEach((game:Game) => expect(game.divis.age.toString()).toEqual('U10'));
                 });
             }));
 
             it('filters on gender', injectAsync([impl], (dao:GamesDAO) => {
                 return init(dao).then(() => dao.findGames(null, null, 'Boys')).then((games:Game[]) => {
-                    expect(games.length).toBe(6);
+                    expect(games).toBeArrayOfSize(6);
                     games.forEach((game:Game) => expect(game.divis.gender.short).toEqual('B'));
                 });
             }));
 
             it('filters on week num', injectAsync([impl], (dao:GamesDAO) => {
                 return init(dao).then(() => dao.findGames(null, null, null, 2)).then((games:Game[]) => {
-                    expect(games.length).toBe(4);
+                    expect(games).toBeArrayOfSize(4);
                     games.forEach((game:Game) => expect(game.weekNum).toEqual(2));
                 });
             }));
@@ -109,16 +109,16 @@ function gamesInterfaceSpec(impl: any) {
         describe('findForTeam', () => {
             it('returns games', injectAsync([impl], (dao:GamesDAO) => {
                 return init(dao).then(() => dao.findForTeam('A')).then((games) => {
-                    expect(games.length).toBe(3);
+                    expect(games).toBeArrayOfSize(3);
                     games.forEach(game => {
-                        expect(game.hasTeam('A')).toBeTruthy();
+                        expect(game.hasTeam('A')).toBeTrue();
                     });
                 });
             }));
 
             it('returns empty list for no games', injectAsync([impl], (dao:GamesDAO) => {
                 return dao.findForTeam('NotATeam').then((games) => {
-                    expect(games.length).toEqual(0);
+                    expect(games).toBeEmptyArray();
                 });
             }));
         });
@@ -126,20 +126,20 @@ function gamesInterfaceSpec(impl: any) {
         describe('findForTeams', () => {
             it('returns games for 1 team', injectAsync([impl], (dao:GamesDAO) => {
                 return init(dao).then(() => dao.findForTeams(['B'])).then((games) => {
-                    expect(games.length).toBe(3);
+                    expect(games).toBeArrayOfSize(3);
                     games.forEach(game => {
-                        expect(game.hasTeam('B')).toBeTruthy();
+                        expect(game.hasTeam('B')).toBeTrue();
                     });
                 });
             }));
 
             it('returns games for 3 teams', injectAsync([impl], (dao:GamesDAO) => {
                 return init(dao).then(() => dao.findForTeams(['A','B','D'])).then((games) => {
-                    expect(games.length).toBe(6);
+                    expect(games).toBeArrayOfSize(6);
                     games.forEach(game => {
                         expect(game.hasTeam('A')
                             || game.hasTeam('B')
-                            || game.hasTeam('D')).toBeTruthy();
+                            || game.hasTeam('D')).toBeTrue();
                     });
                 });
             }));
@@ -153,11 +153,57 @@ function gamesInterfaceSpec(impl: any) {
             it('returns ignores invalid teams', injectAsync([impl], (dao:GamesDAO) => {
                 return init(dao).then(() => dao.findForTeams(['NotATeam', 'StillNotATeam', 'C']))
                                 .then((games) => {
-                                    expect(games.length).toBe(3);
+                                    expect(games).toBeArrayOfSize(3);
                                     games.forEach(game => {
-                                        expect(game.hasTeam('C')).toBeTruthy();
+                                        expect(game.hasTeam('C')).toBeTrue();
                                     });
                                 });
+            }));
+        });
+
+        describe('add', () => {
+            it('adds a game', injectAsync([impl], (dao:GamesDAO) => {
+                let games = [ mockData.games[0] ];
+                return dao.add(games).then(() => dao.findGames()).then((daoGames:Game[]) => {
+                    expect(daoGames).toBeArrayOfSize(1);
+                    expect(daoGames[0]).toEqual(games[0]);
+                });
+            }));
+
+            it('keeps existing games on add', injectAsync([impl], (dao:GamesDAO) => {
+                let game1:Game = mockData.games[0];
+                let game2:Game = mockData.games[1];
+
+                return dao.add([game1]).then(() => dao.findGames()).then((daoGames:Game[]) => {
+                    expect(daoGames).toBeArrayOfSize(1);
+                }).then(() => dao.add([game2])).then(() => dao.findGames()).then((games:Game[]) => {
+                    expect(games).toBeArrayOfSize(2);
+                });
+            }));
+
+            it('replaces games instead of adding duplicate IDs', injectAsync([impl], (dao:GamesDAO) => {
+                let game1:Game = mockData.games[0];
+                let game1b:Game = new Game(game1.id, game1.homeTeam, 'REPLACED',
+                    game1.weekNum, game1.startTime, game1.region, game1.field, game1.divis);
+
+                return dao.add([game1]).then(() => dao.findGames()).then((daoGames:Game[]) => {
+                    expect(daoGames).toBeArrayOfSize(1);
+                    expect(daoGames[0].awayTeam).toEqual(game1.awayTeam);
+                }).then(() => dao.add([game1b])).then(() => dao.findGames()).then((games:Game[]) => {
+                    expect(games).toBeArrayOfSize(1);
+                    expect(games[0].awayTeam).toEqual('REPLACED');
+                });
+            }));
+
+            it('can remove a game', injectAsync([impl], (dao:GamesDAO) => {
+                let addGame:Game = mockData.games[0];
+                let remGame:Game = new Game(addGame.id, null, null, null, null, null, null, null);
+
+                return dao.add([addGame]).then(() => dao.findGames()).then((daoGames:Game[]) => {
+                    expect(daoGames).toBeArrayOfSize(1);
+                }).then(() => dao.add([remGame])).then(() => dao.findGames()).then((games:Game[]) => {
+                    expect(games).toBeArrayOfSize(0);
+                });
             }));
         });
 

@@ -27,7 +27,7 @@ describe('Model: AgeGroup', () => {
 
     describe('ctor fromCutoff', () => {
         it('should throw for invalid lookup', () => {
-            expect(() => { AgeGroup.fromCutoff(-10); }).toThrowError(RangeError);
+            expect(() => { AgeGroup.fromCutoff(-10); }).toThrowErrorOfType('RangeError');
         });
 
         it('should return a lookup', () => {

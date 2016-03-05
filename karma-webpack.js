@@ -19,6 +19,8 @@ require('zone.js/lib/browser/zone-microtask.js');
 require('zone.js/lib/browser/long-stack-trace-zone.js');
 require('zone.js/dist/jasmine-patch.js');
 
+require('jasmine-expect');
+
 // Setup test environment
 var testing = require('angular2/testing');
 var browser = require('angular2/platform/testing/browser');

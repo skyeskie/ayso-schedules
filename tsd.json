@@ -12,10 +12,13 @@
       "commit": "6d3c9f422fe385f4f34d3be4c7920476163c87ec"
     },
     "jasmine/jasmine.d.ts": {
-      "commit": "717a5fdb079f8dd7c19f1b22f7f656dd990f0ccf"
+      "commit": "2736167fdafc8c20e24e11ea1fb574d3e79f2832"
     },
     "twitter/twitter.d.ts": {
       "commit": "4ec3c5bf291bc02f49eb30c1077340b235165c67"
+    },
+    "jasmine-expect/jasmine-expect.d.ts": {
+      "commit": "2736167fdafc8c20e24e11ea1fb574d3e79f2832"
     }
   }
 }

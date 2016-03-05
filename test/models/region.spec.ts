@@ -10,7 +10,6 @@ import {
 } from 'angular2/testing';
 import {Region} from '../../src/models/region';
 
-
 describe('Model: Region', () => {
     it('should construct correctly', () => {
         let r = new Region(1, 2, 'foo', 'bar', 3, 4);
@@ -24,7 +23,7 @@ describe('Model: Region', () => {
 
     describe('ctor fromNumber', () => {
         it('should throw for invalid lookup', () => {
-            expect(() => { Region.fromNumber(9999); }).toThrowError(RangeError);
+            expect(() => { Region.fromNumber(9999); }).toThrowErrorOfType('RangeError');
         });
 
         it('should return a lookup', () => {
@@ -35,7 +34,7 @@ describe('Model: Region', () => {
 
     describe('ctor fromId', () => {
         it('should throw for invalid lookup', () => {
-            expect(() => { Region.fromId(9999); }).toThrowError(RangeError);
+            expect(() => { Region.fromId(9999); }).toThrowErrorOfType('RangeError');
         });
 
         it('should return a lookup', () => {

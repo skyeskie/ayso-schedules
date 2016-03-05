@@ -53,7 +53,6 @@ describe('DAO: TeamsLocalStorage', () => {
                 return init.getTeams().then((teams:Team[]) => {
                     dao.add(teams);
                 }).then(() => {
-                    console.log(mock.getItem('ayso-teams'));
                     expect(mock.getItem('ayso-teams')).toEqual(init.teamsJSON);
                 });
             }
