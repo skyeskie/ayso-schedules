@@ -25,7 +25,7 @@ export class CancellationsView implements OnInit {
 
     private addScript() {
         var s = document.createElement('script');
-        s.setAttribute('src', '//platform.twitter.com/widgets.js');
+        s.setAttribute('src', 'https://platform.twitter.com/widgets.js');
         s.onload = this.render;
         document.body.appendChild(s);
     }

@@ -49,7 +49,7 @@ Native
 - [x] Include cordova javascript
 - [ ] Click vs touch?
 - [ ] Handle offline status
-- [ ] Site whitelisting -- google maps, twitter, ayso
+- [x] Site whitelisting -- google maps, twitter, ayso
 - [ ] Native formatting
     - Adjust down Twitter bootstrap
     - Switch for Ionic

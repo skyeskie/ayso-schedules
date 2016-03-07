@@ -15,17 +15,23 @@
 
     <icon src="icons/icon512.png" />
 
-    <access origin="http://aysoks.org" subdomains="true" />
-    <access origin="https://aysoks.org" subdomains="true" />
-    <access origin="https://twitter.com" subdomains="true" browserOnly="true" />
-    <access origin="http://*.google.com" />
-    <access origin="https://*.google.com" />
+    <!-- Legacy security. Preferred is Content-Security-Policy in HTML meta tag -->
+    <access origin="http://*.aysoks.org" />
+    <access origin="https://*.aysoks.org" />
+    <access origin="https://*.twitter.com" />
+    <access origin="https://*.twimg.com" />
+    <access origin="http://*.googleapis.com" />
+    <access origin="https://*.googleapis.com" />
+    <access origin="http://*.gstatic.com" />
+    <access origin="https://*.gstatic.com" />
 
+    <!-- Allow to open other apps (web browser, telephone, map) -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="geo:*" />
 
+    <!-- Locked for now. TODO: Once can handle both, allow default -->
     <preference name="Orientation" value="portrait" />
 
     <engine name="android" spec="~4.1.1" />

@@ -11,9 +11,9 @@
     "watch": "tsc --watch",
     "test": "karma start karma.conf.js",
     "server": "webpack-dev-server --progress --profile --colors --display-error-details --no-info --content-base build/",
-    "start": "\"npm run server\"",
+    "start": "npm run build && npm run cordova",
     "cordova": "npm run cordova:init && npm run cordova:android",
-    "cordova:init": "mkdir -p hooks platforms plugins www && cordova prepare",
+    "cordova:init": "(mkdir hooks platforms plugins www || pwd) && cordova prepare",
     "cordova:make": "cordova compile",
     "cordova:android": "cordova run android"
   },
