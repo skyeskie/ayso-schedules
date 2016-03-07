@@ -45,10 +45,14 @@ Typing
 
 Native
 
-- [ ] Wait for deviceready event
-- [ ] Include cordova javascript
+- [x] Wait for deviceready event
+- [x] Include cordova javascript
 - [ ] Click vs touch?
 - [ ] Handle offline status
+- [ ] Site whitelisting -- google maps, twitter, ayso
+- [ ] Native formatting
+    - Adjust down Twitter bootstrap
+    - Switch for Ionic
 
 Error handling
 

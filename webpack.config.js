@@ -5,6 +5,7 @@ var webpack = require('webpack');
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin  = require('webpack/lib/DefinePlugin');
 var CopyWebpackPlugin  = require('copy-webpack-plugin');
+var CordovaPlugin = require('webpack-cordova-plugin');
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 
@@ -115,7 +116,13 @@ module.exports = {
         //    compress : { screw_ie8 : true},
         //    comments: false
         //}),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new CordovaPlugin({
+            config: 'config.xml',
+            src: 'index.html',
+            platform: 'android',
+            version: 'true'
+        })
         //Possible include:
         //var WebpackNotifierPlugin = require('webpack-notifier');
     ],

@@ -11,9 +11,9 @@
         Scott Yeskie
     </author>
 
-    <content src="index.html" />
+    <content src="index.html"/>
 
-    <icon src="icons/icon1024.png" width="1024" height="1024" />
+    <icon src="icons/icon512.png" />
 
     <access origin="http://aysoks.org" subdomains="true" />
     <access origin="https://aysoks.org" subdomains="true" />

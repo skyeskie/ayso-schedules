@@ -30,7 +30,13 @@ import {LocalStorageSettingsService} from '../dao/ls/settings.ls.service';
 import {HashLocationStrategy, LocationStrategy} from 'angular2/router';
 import {LOCAL_STORAGE_DAO_PROVIDERS} from '../dao/ls/dao';
 
-document.addEventListener('DOMContentLoaded', function main() {
+let hasInit = false;
+function initApp() {
+    if(hasInit) {
+        return;
+    }
+
+    hasInit = true;
     bootstrap(AppComponent, [
         //External providers
         ...ENV_PROVIDERS,
@@ -47,7 +53,12 @@ document.addEventListener('DOMContentLoaded', function main() {
         DataControlService,
         INTERCEPT_ROUTER_PROVIDER,
     ])
-     .catch((err:any) => {
-         //No-op
-     });
-});
+    .catch((err:any) => {
+        //No-op
+    });
+}
+
+//Browser
+document.addEventListener('DOMContentLoaded', initApp);
+//Cordova / mobile
+document.addEventListener('deviceready', initApp);
