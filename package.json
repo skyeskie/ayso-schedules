@@ -7,7 +7,9 @@
   "repository": "https://github.com/s42ky/ayso-schedules.git",
   "scripts": {
     "clean": "rimraf build",
-    "build": "webpack --progress --profile --colors --display-error-details --display-cached",
+    "build": "webpack --progress --colors --display-error-details --display-cached",
+    "build:profile": "webpack --progress --profile --colors --display-error-details --display-cached --devo",
+    "build:android": "webpack --progress --profile --colors --display-error-details --display-cached --devo --android",
     "watch": "tsc --watch",
     "test": "karma start karma.conf.js",
     "server": "webpack-dev-server --progress --profile --colors --display-error-details --no-info --content-base build/",
@@ -41,6 +43,7 @@
     "concurrently": "^1.0.0",
     "copy-webpack-plugin": "^1.1.1",
     "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.7.1",
     "imports-loader": "^0.6.5",

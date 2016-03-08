@@ -3,6 +3,7 @@ body, ayso-app {
 }
 
 @import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins/breakpoints";
 
 article.container {
     //Including pad-all-1
@@ -15,4 +16,30 @@ article.container {
 
 .saved-team {
     color: #009;
+}
+
+//Responsive font size. Default bootstrap is 16px
+//Using html body to get higher priority than default
+@include media-breakpoint-down(xs) {
+    html body {
+        font-size: 12px;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    html body {
+        font-size: 14px;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    html body {
+        font-size: 16px;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    html body {
+        font-size: 20px;
+    }
 }

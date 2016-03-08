@@ -1,37 +1,41 @@
-/* global require, __dirname, process */
+/* global require, __dirname, process, ENV, PLATFORM */
 
+var multiCfg = require('./cfg/webpack.configurations.js');
 var path = require('path');
-var webpack = require('webpack');
-var ProvidePlugin = require('webpack/lib/ProvidePlugin');
-var DefinePlugin  = require('webpack/lib/DefinePlugin');
-var CopyWebpackPlugin  = require('copy-webpack-plugin');
-var CordovaPlugin = require('webpack-cordova-plugin');
-var HtmlWebpackPlugin  = require('html-webpack-plugin');
-var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var node_modules_dir = path.join(__dirname, 'node_modules');
-var app_dir          = path.join(__dirname, 'src');
-var test_dr          = path.join(__dirname, 'test');
+var environment = (typeof ENV !== 'undefined') ? ENV : 'development';
+var platform = (typeof PLATFORM !== 'undefined') ? PLATFORM : 'browser';
 
-// Helper functions
 function root(args) {
     "use strict";
     args = Array.prototype.slice.call(arguments, 0);
     return path.join.apply(path, [__dirname].concat(args));
 }
 
-var metadata = {
-    title: 'Ayso KS',
-    baseUrl: '/',
-    description: 'Scheduling app for Wichita-area AYSO regions',
-    ENV: ENV,
-    //Dev server settings
-    host: 'localhost',
-    port: '1080'
-};
+process.argv.forEach(function(arg) {
+    "use strict";
+    if(arg === '--android') {
+        platform = 'android';
+    }
+    if(arg === '--browser') {
+        platform = 'browser';
+    }
+    if(arg === '--karma' || arg === '--test') {
+        environment = 'test';
+    }
+    if(arg === '--devo' || arg === '--development') {
+        environment = 'development';
+    }
+    if(arg === '--prod' || arg === '--production') {
+        environment = 'production';
+    }
+});
+
+var cfg = multiCfg(environment, platform);
 
 module.exports = {
-    metadata: metadata,
+    metadata: cfg.metadata,
     entry: {
         main: [
             //Libraries. Commons chunk will export to lib
@@ -52,20 +56,21 @@ module.exports = {
         chunkFilename: '[id].chunk.js'
     },
     resolve: {
-        extensions: ['', '.ts', '.js', '.html', '.css', '.scss', '.png']
+        extensions: ['', '.ts', '.js', '.html', '.css', '.scss', '.png'],
+        cache: cfg.resolveCache
     },
     module: {
         preLoaders: [
             { test: /\.ts$/, loader: 'tslint-loader', exclude: [/node_modules/, /typings/] }
         ],
         loaders: [
-            { test: /\.ts$/, loader: 'ts-loader' },
-            { test: /\.html$/,  loader: 'raw-loader' },
+            { test: /\.ts$/, loader: 'ts-loader', query: cfg.tsLoaderQuery },
+            { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('src/app.html'), root('node_modules')] },
             { test: /\.png$/, loader: 'file' },
 
             //Bootstrap
-            { test: /\.css$/, loaders: [ 'style', 'css', 'postcss' ] },
-            { test: /\.scss$/, loaders: [ 'style', 'css', 'postcss', 'sass' ] },
+            { test: /\.css$/, loader: ExtractTextPlugin.extract([ 'css', 'postcss' ]) },
+            { test: /\.scss$/, loader: ExtractTextPlugin.extract([ 'css', 'postcss', 'sass' ]) },
             { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' }
         ]
     },
@@ -75,66 +80,21 @@ module.exports = {
     devtool: 'source-map',
     debug: true,
 
-    plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(true),
-        new webpack.optimize.CommonsChunkPlugin({
-            names: 'lib',
-            filename: 'lib.wp.js',
-            minChunks: function(module, count) {
-                "use strict";
-                return module.resource && module.resource.indexOf(app_dir) === -1;
-            }}),
-        new CopyWebpackPlugin([
-            { from: 'src/img', to: 'img' },
-            { from: 'test/data-2016-02-08.json', to: 'data.json' }
-        ]),
-        new HtmlWebpackPlugin({
-            template: 'src/app.html',
-            title: metadata.title,
-            inject: true
-        }),
-        new webpack.DefinePlugin({
-            'process.env': {
-                'ENV': JSON.stringify(metadata.ENV),
-                'NODE_ENV': JSON.stringify(metadata.ENV)
-            }
-        }),
-        new ProvidePlugin({
-            '__metadata': 'ts-helper/metadata',
-            '__decorate': 'ts-helper/decorate',
-            '__awaiter': 'ts-helper/awaiter',
-            '__extends': 'ts-helper/extends',
-            '__param': 'ts-helper/param',
-            'jQuery': 'jquery',
-            'Zone.longStackTraceZone': 'zone.js/lib/zones/long-stack-trace.js',
-            'Error.stackTraceLimit': Infinity
-            //'Reflect': 'es7-reflect-metadata/dist/browser'
-        }),
-        //new webpack.optimize.UglifyJsPlugin({
-        //    beautify: false,
-        //    mangle: false,
-        //    compress : { screw_ie8 : true},
-        //    comments: false
-        //}),
-        new webpack.NoErrorsPlugin(),
-        new CordovaPlugin({
-            config: 'config.xml',
-            src: 'index.html',
-            platform: 'android',
-            version: 'true'
-        })
-        //Possible include:
-        //var WebpackNotifierPlugin = require('webpack-notifier');
-    ],
+    plugins: cfg.plugins,
 
     tslint: {
         emitErrors: false,
         failOnHint: false
     },
 
+    noParse: [
+        /zone\.js\/dist\/.+/,
+        /angular2\/bundles\/.+/
+    ],
+
     devServer: {
-        port: metadata.port,
-        host: metadata.host,
+        port: cfg.metadata.port,
+        host: cfg.metadata.host,
         historyApiFallback: true,
         watchOptions: { aggregateTimeout: 300, poll: 1000 }
     },
