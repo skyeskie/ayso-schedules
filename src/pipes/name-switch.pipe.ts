@@ -13,7 +13,7 @@ import {ClassLogger, Logger} from '../service/log.decorator';
  */
 @Pipe({name: 'NameSwitch'})
 class NameSwitchPipe implements PipeTransform {
-    @ClassLogger log:Logger;
+    @ClassLogger() public log:Logger;
 
     transform(name:string): any {
         if(typeof name !== 'string') {

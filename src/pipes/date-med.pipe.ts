@@ -16,7 +16,7 @@ import {ClassLogger, Logger} from '../service/log.decorator';
  */
 @Pipe({name: 'dateMed'})
 class DateMedPipe implements PipeTransform {
-    @ClassLogger log:Logger;
+    @ClassLogger() log:Logger;
 
     months: string[] = [
         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'

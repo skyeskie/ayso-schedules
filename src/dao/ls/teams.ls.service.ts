@@ -9,7 +9,7 @@ import {ILocalStorage} from './local-storage.interface';
 const TEAMS_CACHE_KEY = 'ayso-teams';
 
 class LocalStorageTeamsService implements TeamsDAO {
-    @ClassLogger public log: Logger;
+    @ClassLogger() public log: Logger;
 
     public initialized:boolean;
     private initializePromise: Promise<any> = null;

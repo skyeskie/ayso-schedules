@@ -14,7 +14,7 @@ import {DataControlService} from '../dao/data-control.service';
 })
 @RouteConfig(AYSO_APP_ROUTES)
 class AppComponent {
-    @ClassLogger private log: Logger;
+    @ClassLogger() public log: Logger;
     constructor(control: DataControlService) {
         this.log.info('Main app constructor');
         control.update();

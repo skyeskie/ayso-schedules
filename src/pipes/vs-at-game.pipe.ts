@@ -16,7 +16,7 @@ import {ClassLogger, Logger} from '../service/log.decorator';
  */
 @Pipe({name: 'vsAtGame'})
 class VsAtGameFormatPipe implements PipeTransform {
-    @ClassLogger log:Logger;
+    @ClassLogger() public log:Logger;
 
     transform(game:Game, args:string[]): string {
         if(!(game instanceof Game)) {

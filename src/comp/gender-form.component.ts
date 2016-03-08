@@ -25,7 +25,7 @@ import {Gender} from '../models/gender';
     `,
 })
 export class GenderFormComponent implements AfterViewInit {
-    @ClassLogger public log: Logger;
+    @ClassLogger() public log: Logger;
     public genders: Gender[] = Gender.GENDERS;
 
     @Output()

@@ -7,7 +7,7 @@ import {WeekCacheInterface} from './week-cache.interface';
 import {IBackend, generateWeekStarts} from './init/backend.interface.ts';
 import {ILocalStorage, LS_KEYS} from './ls/local-storage.interface';
 
-import {ClassLogger, Logger, Level} from '../service/log.decorator';
+import {ClassLogger, Logger} from '../service/log.decorator';
 import {CFG} from '../app/cfg';
 
 /**
@@ -18,7 +18,7 @@ import {CFG} from '../app/cfg';
  */
 @Injectable()
 class DataControlService {
-    @ClassLogger public log: Logger;
+    @ClassLogger(Logger.Level.DEBUG) public log: Logger;
 
     lastFetchTimestamp: number = 0;
 
@@ -30,7 +30,7 @@ class DataControlService {
         @Inject(IBackend)           public backend:IBackend,
         @Inject(ILocalStorage)      public ls:ILocalStorage
     ) {
-        this.log.setLevel(Level.DEBUG);
+        //No-op
     }
 
     /**

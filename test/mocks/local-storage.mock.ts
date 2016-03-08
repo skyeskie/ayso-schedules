@@ -3,7 +3,7 @@ import {provide} from 'angular2/core';
 import {ClassLogger, Logger} from '../../src/service/log.decorator';
 
 class MockLocalStorage implements ILocalStorage {
-    @ClassLogger log: Logger;
+    @ClassLogger() public log: Logger;
 
     localStore:any = {};
 

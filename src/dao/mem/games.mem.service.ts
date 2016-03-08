@@ -8,12 +8,8 @@ import {IBackend} from '../init/backend.interface.ts';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
 
 class InMemoryGamesService implements GamesDAO {
-    @ClassLogger public log:Logger;
+    @ClassLogger() public log:Logger;
     protected games: Map<string,Game> = new Map<string,Game>();
-
-    constructor() {
-        this.log.setLevel(Logger.Level.DEBUG);
-    }
 
     getGame(id: string): Promise<Game> {
         return new Promise<Game>((resolve:any, reject:any) => {

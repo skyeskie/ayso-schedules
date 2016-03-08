@@ -8,7 +8,7 @@ import {ILocalStorage, LS_KEYS} from './local-storage.interface';
 
 @Injectable()
 class LocalStorageWeeksService implements WeekCacheInterface {
-    @ClassLogger public log: Logger;
+    @ClassLogger() public log: Logger;
 
     public initialized:boolean;
     private initializePromise: Promise<any> = null;

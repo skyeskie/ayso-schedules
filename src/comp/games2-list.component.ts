@@ -32,7 +32,7 @@ import {DateMedPipe} from '../pipes/date-med.pipe';
     `,
 })
 export default class TwoTeamsGamesListComponent implements OnChanges {
-    @ClassLogger public log: Logger;
+    @ClassLogger() public log: Logger;
 
     public byesList: string = '';
     public gamesList: Row[] = [];

@@ -7,7 +7,7 @@ import {
     injectAsync,
     TestComponentBuilder,
 } from 'angular2/testing';
-import Team from '../../src/models/team';
+import Team from 'team';
 
 describe('Model: Team', () => {
     it('can be constructed', () => {

@@ -8,8 +8,24 @@ class Logger {
     static GLOBAL_LEVEL:Level = Level.INFO;
     static Level:any = Level;
 
+    private static loggers:Map<string,Logger> = new Map<string,Logger>();
+
     private name:string;
     private level:Level = null;
+
+    public static get(name:string, level?:Level): Logger {
+        if(!Logger.loggers.has(name)) {
+            Logger.loggers.set(name, new Logger(name));
+        }
+
+        let logger:Logger = Logger.loggers.get(name);
+
+        if(level !== null && typeof level !== 'undefined') {
+            logger.setLevel(level);
+        }
+
+        return logger;
+    }
 
     constructor(n:string, l?:Level) {
         this.name = n;
@@ -85,34 +101,36 @@ class Logger {
  * </code>
  */
 
-function ClassLogger(target: Object, property: string): void {
-    let loggerName = target.constructor.toString().match(/\w+/g)[1];
-    let logger = new Logger(loggerName);
+function ClassLogger(level?: Level) {
+    return function (target:Object, property:string):void {
+        let loggerName = target.constructor.toString().match(/\w+/g)[1];
+        let logger = Logger.get(loggerName, level);
 
-    target[property] = logger;
+        target[property] = logger;
 
-    Object.keys(target)
-          .filter(key => typeof target[key] === 'function')
-          .forEach(key => {
-              let method = key + '()';
-              let descriptor = Object.getOwnPropertyDescriptor(target, key);
-              let originalMethod = descriptor.value;
+        Object.keys(target)
+              .filter(key => typeof target[key] === 'function')
+              .forEach(key => {
+                  let method = key + '()';
+                  let descriptor = Object.getOwnPropertyDescriptor(target, key);
+                  let originalMethod = descriptor.value;
 
-              descriptor.value = function() {
-                  var result = originalMethod.apply(this, arguments);
-                  if(result !== null && typeof result === 'object'
-                      && result.hasOwnProperty('_id') && typeof result.then === 'function') {
+                  descriptor.value = function () {
+                      var result = originalMethod.apply(this, arguments);
+                      if (result !== null && typeof result === 'object'
+                          && result.hasOwnProperty('_id') && typeof result.then === 'function') {
 
-                      logger.debug(method, arguments, '=> emit Promise #', result._id);
-                      result.then(val => logger.debug('Promise (', method, result._id, ') => ', val));
-                  } else {
-                      logger.debug(method, arguments, '=>', result);
-                  }
-                  return result;
-              };
+                          logger.debug(method, arguments, '=> emit Promise #', result._id);
+                          result.then(val => logger.debug('Promise (', method, result._id, ') => ', val));
+                      } else {
+                          logger.debug(method, arguments, '=>', result);
+                      }
+                      return result;
+                  };
 
-              Object.defineProperty(target, key, descriptor);
-          });
+                  Object.defineProperty(target, key, descriptor);
+              });
+    };
 }
 
 export {ClassLogger as default, ClassLogger, Logger, Level}

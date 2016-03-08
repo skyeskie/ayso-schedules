@@ -8,7 +8,7 @@ import {ILocalStorage, LS_KEYS} from './local-storage.interface';
 
 @Injectable()
 class LocalStorageSettingsService implements SettingsDAO {
-    @ClassLogger public log:Logger;
+    @ClassLogger() public log:Logger;
     public teams:string[] = [];
     public region:number = undefined;
 
@@ -18,7 +18,6 @@ class LocalStorageSettingsService implements SettingsDAO {
         @Inject(TeamsDAO)
         private dao: TeamsDAO
     ) {
-        this.log.setLevel(Logger.Level.DEBUG);
         let savedList = this.client.getItem(LS_KEYS.USER_TEAMS) || '';
         this.log.info('Retrieved teams from LocalStorage',savedList);
         if(savedList) {

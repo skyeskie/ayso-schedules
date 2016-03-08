@@ -6,7 +6,7 @@ import {IBackend} from '../init/backend.interface.ts';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
 
 class InMemoryTeamsService implements TeamsDAO {
-    @ClassLogger public log: Logger;
+    @ClassLogger() public log: Logger;
 
     public initialized:boolean;
     private initializePromise: Promise<any> = null;

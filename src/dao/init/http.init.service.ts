@@ -45,17 +45,20 @@ const DATA_VERSION_KEY = 'ayso-data-version';
 
 @Injectable()
 class HttpInitService implements IBackend {
-    @ClassLogger public log: Logger;
+    @ClassLogger(Level.DEBUG) public log: Logger;
 
     public remoteObservable:Observable<Response>;
     public dataObservable:ReplaySubject<ServerJSON> = new ReplaySubject<ServerJSON>();
 
+    private http:Http;
+    private ls:ILocalStorage;
+
     constructor(
-        private http:Http,
-        @Inject(ILocalStorage)
-        private ls:ILocalStorage
+        http:Http,
+        @Inject(ILocalStorage) ls:ILocalStorage
     ) {
-        this.log.setLevel(Level.DEBUG);
+        this.http = http;
+        this.ls = ls;
     }
 
     init(curVersion: string = null): Promise<void> {

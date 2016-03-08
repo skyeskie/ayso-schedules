@@ -11,7 +11,7 @@ import {InMemoryGamesService} from '../mem/games.mem.service';
 import {LS_KEYS} from './local-storage.interface';
 
 class LocalStorageGamesService extends InMemoryGamesService {
-    @ClassLogger public log:Logger;
+    @ClassLogger() public log:Logger;
 
     constructor(
         @Inject(ILocalStorage)

@@ -25,7 +25,7 @@ const ONE = 1;
 })
 @Injectable()
 export default class WeekBarComponent implements OnInit {
-    @ClassLogger public log:Logger;
+    @ClassLogger() public log:Logger;
 
     max: number;
 
