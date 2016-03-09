@@ -9,11 +9,11 @@ AgeGroup.configure(4, 12);
 AgeGroup.configure(5, 10);
 AgeGroup.configure(6, 8);
 AgeGroup.configure(7, 6);
+AgeGroup.configure(8, 5);
 
 Gender.configure('B', 'Boys');
 Gender.configure('G', 'Girls');
-Gender.configure('C', 'Coed');  //TODO: Auto-hide if none present
-Gender.configure('T', 'Coed '); //TODO: Figure out where this is coming from
+//Gender.configure('C', 'Coed');  //TODO: Auto-hide if none present
 
 //          ID  /  Number  /  Name   /   Field Map       /   Latitude / Longitude
 Region.configure(1, 49, 'Stryker', './img/Fields049.svg', 37.737437, -97.213361);
@@ -29,7 +29,7 @@ let CFG = {
     URL: 'http://aysoks.org/app/json.php5',
     UPDATE_CACHE_TIME: 3600, //One hour
     init: () => {
-        //No-op to make sure this is initialized
+        //No-op function to make sure this is initialized
     },
 };
 

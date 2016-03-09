@@ -28,6 +28,7 @@
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.13",
     "es7-reflect-metadata": "^1.4.0",
+    "ionicons": "^2.0.1",
     "jquery": "^2.1.4",
     "jquery-mobile": "^1.4.1",
     "ng2-bootstrap": "^0.53.0",

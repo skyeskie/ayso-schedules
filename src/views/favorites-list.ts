@@ -56,7 +56,7 @@ export default class FavoritesListView {
         _favorites.getSavedTeamIDs()
                   .then((teams:string[]) => {
                       this.savedTeams = teams;
-                      return this._gameDao.findForTeams(teams)
+                      return this._gameDao.findForTeams(teams);
                   })
                   .then((games:Game[]) => this.gamesList = games);
     }

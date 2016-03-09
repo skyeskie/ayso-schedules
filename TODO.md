@@ -47,12 +47,12 @@ Native
 
 - [x] Wait for deviceready event
 - [x] Include cordova javascript
-- [ ] Click vs touch?
+- [x] Click vs touch? -- handled by libraries
 - [ ] Handle offline status
 - [x] Site whitelisting -- google maps, twitter, ayso
 - [ ] Native formatting
-    - Adjust down Twitter bootstrap
-    - Switch for Ionic
+    - OR Adjust down Twitter bootstrap
+    - OR Switch for Ionic
 
 Error handling
 
