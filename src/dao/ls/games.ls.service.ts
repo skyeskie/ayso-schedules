@@ -33,10 +33,11 @@ class LocalStorageGamesService extends InMemoryGamesService {
     }
 
     private persistGames() {
-        this.log.info('Saving games', this.games);
+        this.log.debug('Saving games', this.games);
         let gameArray = [];
         let i = this.games.values();
         for(let game:IteratorResult<Game> = i.next(); !game.done; game = i.next()) {
+            this.log.trace('Saving game', game.value);
             gameArray.push(game.value);
         }
         this.client.setItem(LS_KEYS.GAMES_CACHE, JSON.stringify(gameArray));
@@ -48,7 +49,7 @@ class LocalStorageGamesService extends InMemoryGamesService {
             this.games.clear();
             JSON.parse(savedString, (key, value) => {
                 if(key === 'startTime') {
-                    return Date.parse(value);
+                    return new Date(value);
                 }
                 if(key === 'divis') {
                     return Division.fromString(value);

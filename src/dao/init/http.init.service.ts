@@ -45,7 +45,7 @@ const DATA_VERSION_KEY = 'ayso-data-version';
 
 @Injectable()
 class HttpInitService implements IBackend {
-    @ClassLogger(Level.DEBUG) public log: Logger;
+    @ClassLogger() public log: Logger;
 
     public remoteObservable:Observable<Response>;
     public dataObservable:ReplaySubject<ServerJSON> = new ReplaySubject<ServerJSON>();
@@ -106,19 +106,7 @@ class HttpInitService implements IBackend {
     };
 
     getWeekStarts(): Promise<Date[]> {
-        return this.dataObservable.map((data:ServerJSON) => {
-            //Slightly convoluted path,
-            //Game -> timestamp (numeric) -> sort and unique -> Date object
-            //Need to bypass into timestamps because Date objects don't sort
-            let lastDate = 0;
-            return data.Games.map(
-                (game:ServerGame) => new Date(game.Jour).valueOf()
-            ).sort().filter((timestamp:number) => {
-                let result = (timestamp !== lastDate);
-                lastDate = timestamp;
-                return result;
-            }).map((timestamp:number) => new Date(timestamp));
-       }).toPromise();
+        return Promise.resolve<Date[]>(null);
     }
 
     getSettings(): Promise<SettingsDataType> {

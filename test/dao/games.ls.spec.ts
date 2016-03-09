@@ -42,6 +42,7 @@ describe('DAO: GamesLocalStorage', () => {
                 let dao = new LocalStorageGamesService(mock);
                 return dao.findGames().then((games:Game[]) => {
                     expect(games).toBeArrayOfSize(init.games.length);
+                    //TODO: Make sure matches
                 });
             }
         ));

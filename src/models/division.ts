@@ -1,10 +1,13 @@
 import Gender from '../models/gender';
 import {AgeGroup} from '../models/ageGroup';
 import {StringJoiner} from 'angular2/src/facade/lang';
+import {ClassLogger, Logger} from '../service/log.decorator';
 
 const SPACE = ' ';
 
 class Division {
+    @ClassLogger() public log:Logger;
+
     /**
      * Configure age and gender from display string
      * @param display - of form U\d\d?[BCG]
@@ -30,6 +33,10 @@ class Division {
     }
 
     toJSON(): string {
+        if(typeof this.age !== 'object' || typeof this.gender !== 'object') {
+            this.log.warn('Cannot save division; not well formed', this);
+            return '';
+        }
         return this.age.toString() + this.gender.short;
     }
 }

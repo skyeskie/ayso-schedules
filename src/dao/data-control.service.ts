@@ -4,7 +4,7 @@ import {GamesDAO, Game} from './games.interface';
 import {SettingsDAO, SettingsDataType} from './settings.interface';
 import {TeamsDAO, Team} from './teams.interface';
 import {WeekCacheInterface} from './week-cache.interface';
-import {IBackend, generateWeekStarts} from './init/backend.interface.ts';
+import {IBackend} from './init/backend.interface.ts';
 import {ILocalStorage, LS_KEYS} from './ls/local-storage.interface';
 
 import {ClassLogger, Logger} from '../service/log.decorator';
@@ -18,7 +18,7 @@ import {CFG} from '../app/cfg';
  */
 @Injectable()
 class DataControlService {
-    @ClassLogger(Logger.Level.DEBUG) public log: Logger;
+    @ClassLogger() public log: Logger;
 
     lastFetchTimestamp: number = 0;
 
@@ -82,9 +82,12 @@ class DataControlService {
             }
         }
 
+        let gamesData:Game[] = [];
+
         return this.backend.init(lastUpdate).then(() => {
             return Promise.all([
                 this.backend.getGames().then((games:Game[]) => {
+                    gamesData = games;
                     this.games.add(games);
                 }),
                 this.backend.getTeams().then((teams:Team[]) => {
@@ -94,11 +97,25 @@ class DataControlService {
                     this.settings.init(settings);
                 }),
             ]);
-        }).then(() => this.backend.getWeekStarts()).then((starts) => {
+        }).then(() => this.backend.getWeekStarts()).then((starts:Date[]) => {
+            //Backend doesn't provide, so need to handle ourselves
             if(starts === null) {
-                return generateWeekStarts(this.games).then((dates) => this.weekCache.init(dates));
+                if(gamesData.length === 0 && this.weekCache.isInit()) {
+                    //No game updates, so can use existing week cache
+                    return Promise.resolve();
+                }
+                //Regenerate week cache from all games
+                return this.generateWeekStarts().then((dates:Date[]) => this.weekCache.init(dates));
             }
-            this.weekCache.init(starts);
+            //Empty array indicates no week cache update
+            if(starts.length !== 0) {
+                return this.weekCache.init(starts);
+            }
+            //Make sure we're initialized
+            if(!this.weekCache.isInit()) {
+                this.log.warn('Week cache not initialized. Attempting to fix');
+                return this.generateWeekStarts().then((dates:Date[]) => this.weekCache.init(dates));
+            }
         }).then(() => this.backend.getDataVersion()).then((version:string) => {
             this.lastFetchTimestamp = (new Date()).valueOf();
             this.setLastUpdate(version);
@@ -123,6 +140,42 @@ class DataControlService {
 
     private setLastUpdate(version: string) {
         this.ls.setItem(LS_KEYS.DATA_VERSION, version);
+    }
+
+    /**
+     * If week starts are not provided by backend method, convenience function to generate
+     * them from the full games listing.
+     * @param gameDAO - for access to get full games list
+     * - We can't use the data from init() because that might be an incremental update and
+     * the WeekCache is setup to only do a full inintialization.
+     *
+     * Generation procedure:
+     * - Get game start for each game
+     * - Blank out hour, minute, second, millisecond
+     * - Convert to timestamp (for sorting)
+     * - Sort
+     * - Take unique items
+     * - convert back to Date objects
+     */
+    private generateWeekStarts(): Promise<Date[]> {
+        let lastUpdate = 0;
+        return this.games.findGames().then((games:Game[]) => {
+            return games.map<Date>((game: Game) =>  game.startTime).map<number>((date:Date) => {
+                if(!(date instanceof Date)) {
+                    this.log.warn('Invalid date for generateWeekStarts: ', date);
+                    return 0;
+                }
+                date.setHours(0);
+                date.setMinutes(0);
+                date.setSeconds(0);
+                date.setMilliseconds(0);
+                return date.valueOf();
+            }).sort().filter((timestamp:number) => {
+                let keep = timestamp !== lastUpdate;
+                lastUpdate = timestamp;
+                return keep;
+            }).map<Date>((timestamp:number) => new Date(timestamp));
+        });
     }
 }
 

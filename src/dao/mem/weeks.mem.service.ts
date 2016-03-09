@@ -11,7 +11,7 @@ class InMemoryWeeksService implements WeekCacheInterface {
 
     public initialized:boolean;
     private initializePromise: Promise<any> = null;
-    private weekStarts:Date[];
+    private weekStarts:Date[] = [];
     private max:number = 1;
     private cur:number = 1;
 
@@ -35,6 +35,10 @@ class InMemoryWeeksService implements WeekCacheInterface {
         this.cur = calculateCurrentWeek(starts);
 
         return Promise.resolve(this.max);
+    }
+
+    isInit(): boolean {
+        return (this.weekStarts.length > 0);
     }
 }
 

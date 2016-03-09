@@ -25,41 +25,15 @@ interface IBackend {
 
     getTeams(): Promise<Team[]>;
     getGames(): Promise<Game[]>;
-    getWeekStarts(): Promise<Date[]>;
     getSettings(): Promise<SettingsDataType>;
-}
 
-/**
- * If week starts are not provided by backend method, convenience function to generate
- * them from the full games listing.
- * @param gameDAO - for access to get full games list
- * - We can't use the data from init() because that might be an incremental update and
- * the WeekCache is setup to only do a full inintialization.
- *
- * Generation procedure:
- * - Get game start for each game
- * - Blank out hour, minute, second, millisecond
- * - Convert to timestamp (for sorting)
- * - Sort
- * - Take unique items
- * - convert back to Date objects
- */
-function generateWeekStarts(gameDAO: GamesDAO): Promise<Date[]> {
-    return gameDAO.findGames().then((games:Game[]) => {
-        let lastUpdate = 0;
-        return games.map<Date>((game: Game) => game.startTime).map<number>((date:Date) => {
-            date.setHours(0);
-            date.setMinutes(0);
-            date.setSeconds(0);
-            date.setMilliseconds(0);
-            return date.valueOf();
-        }).sort().filter((timestamp:number) => {
-            let keep = timestamp !== lastUpdate;
-            lastUpdate = timestamp;
-            return keep;
-        }).map<Date>((timestamp:number) => new Date(timestamp));
-    });
+    /**
+     * @return Date[] - Full initialization; sets week cache with values
+     * @return empty array - Keep existing week cache
+     * @return null - Have the `DataControlService` handle the week cache
+     */
+    getWeekStarts(): Promise<Date[]>;
 }
 
 var IBackend = new OpaqueToken('IBackend');
-export { IBackend as default, IBackend, generateWeekStarts }
+export { IBackend as default, IBackend }

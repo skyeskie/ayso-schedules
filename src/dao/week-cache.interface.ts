@@ -27,6 +27,8 @@ interface WeekCacheInterface {
      */
     clear(): Promise<void>;
 
+    isInit(): boolean;
+
     /**
      * Initializes the cache
      */

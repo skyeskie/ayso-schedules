@@ -19,6 +19,10 @@ class MockWeeksService implements WeekCacheInterface {
         return Promise.resolve();
     }
 
+    isInit(): boolean {
+        return true;
+    }
+
     init(): Promise<void> {
         return Promise.resolve();
     }

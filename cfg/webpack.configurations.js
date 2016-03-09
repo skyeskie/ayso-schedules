@@ -135,7 +135,7 @@ var cfg = {
     },
 
     development: { //ENV
-        devtool: 'cheap-module-eval-source-map',
+        devtool: 'inline-source-map',
         debug: false,
         plugins: [
             plugins.ordering, plugins.commons, plugins.extractCss, plugins.copy,

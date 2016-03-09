@@ -13,7 +13,7 @@ class LocalStorageWeeksService implements WeekCacheInterface {
     public initialized:boolean;
     private initializePromise: Promise<any> = null;
 
-    private weekStarts:Date[];
+    private weekStarts:Date[] = [];
     private max:number = 1;
     private cur:number = 1;
 
@@ -48,6 +48,10 @@ class LocalStorageWeeksService implements WeekCacheInterface {
         this.persistWeekStarts();
 
         return Promise.resolve(this.max);
+    }
+
+    isInit(): boolean {
+        return (this.weekStarts.length > 0);
     }
 
     private loadWeekStarts(): void {
