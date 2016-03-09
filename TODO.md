@@ -19,7 +19,6 @@ Add pipes
 
 - [x] Name swap (Last, First => First Last)
       ~~Alternatively handle in Coach->Team transform~~
-- [ ] Color favorites (2-team list view)
 - [x] Format team in 1-team: at/vs/bye
 - [x] Add custom DatePipe
 
@@ -32,8 +31,10 @@ TODO:
 - [x] Have single configuration class
 - [ ] re-use angular isBlank() ?
 - [ ] Make sure service calls are in ngOnInit instead of in the constructor
-
 - [ ] Navigate UP (or back?) instead of just to Home
+
+Backend
+
 - [ ] Adjust backend to use same data models
 - [ ] Make sure region is not null on byes
 
@@ -48,11 +49,7 @@ Native
 - [x] Wait for deviceready event
 - [x] Include cordova javascript
 - [x] Click vs touch? -- handled by libraries
-- [ ] Handle offline status
 - [x] Site whitelisting -- google maps, twitter, ayso
-- [ ] Native formatting
-    - OR Adjust down Twitter bootstrap
-    - OR Switch for Ionic
 
 Error handling
 
@@ -68,7 +65,7 @@ Error handling
 View
 
 - [ ] Handle no coach (TBD)
-- [ ] Show field better; perhaps in config?
+- [x] ~~Show field better; perhaps in config?~~~~
 - [ ] Hide region if default?
 
 Bugs:
