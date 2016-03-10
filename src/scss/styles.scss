@@ -5,6 +5,10 @@ body, ayso-app {
 @import "../../node_modules/bootstrap/scss/variables";
 @import "../../node_modules/bootstrap/scss/mixins/breakpoints";
 
+//Import IonIcons
+$ionicons-font-path: "../../node_modules/ionicons/fonts";
+@import "../../node_modules/ionicons/scss/ionicons";
+
 article.container {
     //Including pad-all-1
     padding: $spacer-y $spacer-x !important;
@@ -16,6 +20,11 @@ article.container {
 
 .saved-team {
     color: #009;
+}
+
+form label {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 //Responsive font size. Default bootstrap is 16px

@@ -71,7 +71,7 @@ module.exports = {
             //Bootstrap
             { test: /\.css$/, loader: ExtractTextPlugin.extract([ 'css', 'postcss' ]) },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract([ 'css', 'postcss', 'sass' ]) },
-            { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' }
+            { test: /\.(woff2?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file?name=./fonts/[name]-[hash:6].[ext]' }
         ]
     },
 
