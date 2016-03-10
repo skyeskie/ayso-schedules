@@ -29,7 +29,7 @@ class DateMedPipe implements PipeTransform {
         }
 
         let sb = new StringJoiner();
-        sb.add(this.months[date.getMonth() - 1]);
+        sb.add(this.months[date.getMonth()]);
         sb.add(' ');
         sb.add(date.getDate().toString()); //day of month
         sb.add(', ');
