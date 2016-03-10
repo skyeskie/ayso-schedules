@@ -1,10 +1,10 @@
 import {Inject, Injectable, Optional} from 'angular2/core';
 
-import {IBackend} from '../init/backend.interface.ts';
+import {IBackend} from '../backend.interface';
 import WeekCacheInterface from '../week-cache.interface';
 import {calculateCurrentWeek} from '../week-cache.interface';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
-import {ILocalStorage, LS_KEYS} from './local-storage.interface';
+import {ILocalStorage, LS_KEYS} from './../../service/local-storage.interface';
 
 @Injectable()
 class LocalStorageWeeksService implements WeekCacheInterface {

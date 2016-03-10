@@ -18,13 +18,13 @@ import {InMemoryGamesService, GamesDAO} from '../dao/mem/games.mem.service';
 import {InMemoryTeamsService, TeamsDAO} from '../dao/mem/teams.mem.service';
 import {InMemoryWeeksService, WeekCacheInterface} from '../dao/mem/weeks.mem.service';
 import {SettingsDAO} from '../dao/mem/settings.mem.service';
-import {DataControlService} from '../dao/data-control.service';
-import {INTERCEPT_ROUTER_PROVIDER} from '../comp/intercept-root-router';
+import {DataControlService} from '../service/data-control.service';
+import {INTERCEPT_ROUTER_PROVIDER} from '../service/intercept-root-router';
 
 import AppComponent from './app.component';
-import {IBackend} from '../dao/init/backend.interface.ts';
-import {HttpInitService} from '../dao/init/http.init.service';
-import {StaticInitializationService} from '../dao/init/static.init.service';
+import {IBackend} from '../dao/backend.interface';
+import {HttpInitService} from '../service/backend/http.backend';
+import {StaticInitializationService} from '../service/backend/static.backend';
 import {Http} from 'angular2/http';
 import {LocalStorageSettingsService} from '../dao/ls/settings.ls.service';
 import {HashLocationStrategy, LocationStrategy} from 'angular2/router';

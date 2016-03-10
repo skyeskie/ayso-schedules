@@ -1,10 +1,10 @@
 import {Inject, Injectable, Optional} from 'angular2/core';
 import {SettingsDAO, SettingsDataType} from '../settings.interface';
-import {IBackend} from '../init/backend.interface.ts';
+import {IBackend} from '../backend.interface';
 import {TeamsDAO, Team} from '../teams.interface';
 import {Region} from '../../models/region';
 import {Logger, ClassLogger, Level} from '../../service/log.decorator';
-import {ILocalStorage, LS_KEYS} from './local-storage.interface';
+import {ILocalStorage, LS_KEYS} from './../../service/local-storage.interface';
 
 @Injectable()
 class LocalStorageSettingsService implements SettingsDAO {

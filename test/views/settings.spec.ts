@@ -14,7 +14,7 @@ import {
 import {ensureViewExists} from '../util/viewUtil';
 
 import SettingsView from '../../src/views/settings';
-import {DataControlService} from '../../src/dao/data-control.service';
+import {DataControlService} from '../../src/service/data-control.service';
 import {MOCK_LOCAL_STORAGE_PROVIDER} from '../mocks/local-storage.mock';
 
 describe('View: Settings', () => {

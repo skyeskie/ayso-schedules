@@ -16,8 +16,8 @@ import {
 import {provide} from 'angular2/core';
 
 import {TeamsDAO, Team} from '../../src/dao/teams.interface';
-import {IBackend} from '../../src/dao/init/backend.interface.ts';
-import {StaticInitializationService} from '../../src/dao/init/static.init.service';
+import {IBackend} from '../../src/dao/backend.interface';
+import {StaticInitializationService} from '../../src/service/backend/static.backend';
 
 let mockData = new StaticInitializationService();
 function init(dao:TeamsDAO): Promise<any> {

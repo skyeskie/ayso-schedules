@@ -16,8 +16,8 @@ import {
 import {Component, provide} from 'angular2/core';
 import WeekBarComponent from '../../src/comp/week-bar.component';
 import {WeekCacheInterface} from '../../src/dao/week-cache.interface';
-import {IBackend} from '../../src/dao/init/backend.interface.ts';
-import {StaticInitializationService} from '../../src/dao/init/static.init.service';
+import {IBackend} from '../../src/dao/backend.interface';
+import {StaticInitializationService} from '../../src/service/backend/static.backend';
 import {MockWeeksService} from '../mocks/weeks.mock.service';
 
 let providers = [

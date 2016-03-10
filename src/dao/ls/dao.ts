@@ -4,7 +4,7 @@ import {LocalStorageTeamsService, TeamsDAO} from './teams.ls.service';
 import {LocalStorageGamesService, GamesDAO} from './games.ls.service';
 import {LocalStorageSettingsService, SettingsDAO} from './settings.ls.service';
 import {LocalStorageWeeksService, WeekCacheInterface} from './weeks.ls.service';
-import {ILocalStorage} from './local-storage.interface';
+import {ILocalStorage} from './../../service/local-storage.interface';
 
 const LOCAL_STORAGE_TEAM_DAO_PROVIDER = provide(TeamsDAO, {useClass: LocalStorageTeamsService});
 const LOCAL_STORAGE_GAME_DAO_PROVIDER = provide(GamesDAO, {useClass: LocalStorageGamesService});

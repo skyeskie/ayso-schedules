@@ -9,7 +9,7 @@ import {provide} from 'angular2/core';
 import {settingsInterfaceSpec} from '../interfaces/settings.spec.i';
 import {TeamsDAO, InMemoryTeamsService} from '../../src/dao/mem/teams.mem.service';
 import {InMemorySettingsService} from '../../src/dao/mem/settings.mem.service';
-import {StaticInitializationService} from '../../src/dao/init/static.init.service';
+import {StaticInitializationService} from '../../src/service/backend/static.backend';
 
 describe('DAO: SettingsMock', () => {
     beforeEachProviders(() => [

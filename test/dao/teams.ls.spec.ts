@@ -2,7 +2,7 @@ import {describe, beforeEachProviders, injectAsync, it} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
 import {teamsInterfaceSpec} from '../interfaces/teams.spec.i';
-import {StaticInitializationService, IBackend} from '../../src/dao/init/static.init.service';
+import {StaticInitializationService, IBackend} from '../../src/service/backend/static.backend';
 import {LocalStorageTeamsService} from '../../src/dao/ls/teams.ls.service';
 import {MOCK_LOCAL_STORAGE_PROVIDER, MockLocalStorage} from '../mocks/local-storage.mock';
 import Team from '../../src/models/team';

@@ -5,7 +5,7 @@ import {
     ControlGroup, FormBuilder, Control, Validators,
 } from 'angular2/common';
 
-import {DataControlService} from '../dao/data-control.service';
+import {DataControlService} from '../service/data-control.service';
 import {Region} from '../models/region';
 
 @Component({

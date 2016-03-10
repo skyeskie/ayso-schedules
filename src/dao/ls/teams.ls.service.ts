@@ -1,10 +1,10 @@
 import TeamsDAO, {Team, Division} from '../teams.interface';
 import {Gender} from '../../models/gender';
-import {checkPresent} from '../../app/util';
+import {checkPresent} from '../../service/util';
 import {Inject, Optional} from 'angular2/core';
-import {IBackend} from '../init/backend.interface.ts';
+import {IBackend} from '../backend.interface';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
-import {ILocalStorage} from './local-storage.interface';
+import {ILocalStorage} from './../../service/local-storage.interface';
 
 const TEAMS_CACHE_KEY = 'ayso-teams';
 

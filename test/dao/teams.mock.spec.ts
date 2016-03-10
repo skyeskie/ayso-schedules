@@ -3,7 +3,7 @@ import {provide} from 'angular2/core';
 
 import {teamsInterfaceSpec} from '../interfaces/teams.spec.i';
 import {InMemoryTeamsService} from '../../src/dao/mem/teams.mem.service';
-import {StaticInitializationService, IBackend} from '../../src/dao/init/static.init.service';
+import {StaticInitializationService, IBackend} from '../../src/service/backend/static.backend';
 
 describe('DAO: TeamsMock', () => {
     beforeEachProviders(() => [

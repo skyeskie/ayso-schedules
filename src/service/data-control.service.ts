@@ -1,15 +1,16 @@
 import {Injectable, Inject} from 'angular2/core';
-
-import {GamesDAO, Game} from './games.interface';
-import {SettingsDAO, SettingsDataType} from './settings.interface';
-import {TeamsDAO, Team} from './teams.interface';
-import {WeekCacheInterface} from './week-cache.interface';
-import {IBackend} from './init/backend.interface.ts';
-import {ILocalStorage, LS_KEYS} from './ls/local-storage.interface';
-
-import {ClassLogger, Logger} from '../service/log.decorator';
-import {CFG} from '../app/cfg';
 import {Router} from 'angular2/router';
+
+import {GamesDAO, Game} from './../dao/games.interface';
+import {SettingsDAO, SettingsDataType} from './../dao/settings.interface';
+import {TeamsDAO, Team} from './../dao/teams.interface';
+import {WeekCacheInterface} from './../dao/week-cache.interface';
+import {IBackend} from './../dao/backend.interface';
+
+import {ILocalStorage, LS_KEYS} from './local-storage.interface';
+import {ClassLogger, Logger} from './log.decorator';
+
+import {CFG} from '../app/cfg';
 
 /**
  * This class provides a common interface for updating all the

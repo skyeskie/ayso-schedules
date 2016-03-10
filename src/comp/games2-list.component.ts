@@ -3,7 +3,7 @@ import {NgFor, NgIf} from 'angular2/common';
 import {Router, RouterLink} from 'angular2/router';
 import Game from '../models/game';
 import Team from '../models/team';
-import {checkPresent} from '../app/util';
+import {checkPresent} from '../service/util';
 import {ClassLogger, Logger, Level} from '../service/log.decorator';
 import {DateMedPipe} from '../pipes/date-med.pipe';
 

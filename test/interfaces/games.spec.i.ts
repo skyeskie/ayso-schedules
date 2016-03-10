@@ -15,8 +15,8 @@ import {
 import {provide} from 'angular2/core';
 
 import {GamesDAO, Game} from '../../src/dao/games.interface';
-import {IBackend} from '../../src/dao/init/backend.interface.ts';
-import {StaticInitializationService} from '../../src/dao/init/static.init.service';
+import {IBackend} from '../../src/dao/backend.interface';
+import {StaticInitializationService} from '../../src/service/backend/static.backend';
 import {CFG} from '../../src/app/cfg';
 
 let mockData = new StaticInitializationService();

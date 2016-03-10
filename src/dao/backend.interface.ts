@@ -1,10 +1,10 @@
 import {Observable} from 'rxjs/Observable';
 import {OpaqueToken} from 'angular2/core';
 
-import Team from '../../models/team';
-import Game from '../../models/game';
-import {SettingsDataType} from './../settings.interface.ts';
-import {GamesDAO} from '../games.interface';
+import Team from '../models/team';
+import Game from '../models/game';
+import {SettingsDataType} from './settings.interface';
+import {GamesDAO} from './games.interface';
 
 /**
  * Interface for DAOs to load initial data for saving to local storage

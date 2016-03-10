@@ -1,5 +1,5 @@
-import {IBackend} from './backend.interface.ts';
-import {SettingsDataType} from '../settings.interface';
+import {IBackend} from './../../dao/backend.interface';
+import {SettingsDataType} from '../../dao/settings.interface';
 
 import Game from '../../models/game';
 import {Division, Gender, AgeGroup} from '../../models/division';

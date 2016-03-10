@@ -2,12 +2,12 @@ import {describe, beforeEachProviders, it, xit} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
 import {weekCacheInterfaceSpec} from '../interfaces/week-cache.spec.i';
-import {StaticInitializationService, IBackend} from '../../src/dao/init/static.init.service';
+import {StaticInitializationService, IBackend} from '../../src/service/backend/static.backend';
 import {LocalStorageWeeksService} from '../../src/dao/ls/weeks.ls.service';
 import {MOCK_LOCAL_STORAGE_PROVIDER} from '../mocks/local-storage.mock';
 import {injectAsync} from 'angular2/testing';
 import {MockLocalStorage} from '../mocks/local-storage.mock';
-import {LS_KEYS} from '../../src/dao/ls/local-storage.interface';
+import {LS_KEYS} from '../../src/service/local-storage.interface';
 
 describe('DAO: LocalStorageWeekCache', () => {
     beforeEachProviders(() => [

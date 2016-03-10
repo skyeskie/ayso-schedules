@@ -1,4 +1,4 @@
-import {ILocalStorage} from '../../src/dao/ls/local-storage.interface';
+import {ILocalStorage} from '../../src/service/local-storage.interface';
 import {provide} from 'angular2/core';
 import {ClassLogger, Logger} from '../../src/service/log.decorator';
 

@@ -2,9 +2,9 @@ import { describe, beforeEachProviders, injectAsync, it, xit } from 'angular2/te
 import {provide} from 'angular2/core';
 import {gamesInterfaceSpec} from '../interfaces/games.spec.i';
 import {LocalStorageGamesService} from '../../src/dao/ls/games.ls.service';
-import {StaticInitializationService, IBackend} from '../../src/dao/init/static.init.service';
+import {StaticInitializationService, IBackend} from '../../src/service/backend/static.backend';
 import {MOCK_LOCAL_STORAGE_PROVIDER, MockLocalStorage} from '../mocks/local-storage.mock';
-import {LS_KEYS} from '../../src/dao/ls/local-storage.interface';
+import {LS_KEYS} from '../../src/service/local-storage.interface';
 import Game from '../../src/models/game';
 
 describe('DAO: GamesLocalStorage', () => {

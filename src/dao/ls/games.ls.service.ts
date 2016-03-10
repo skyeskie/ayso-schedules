@@ -3,12 +3,11 @@ import {Router, RouteParams} from 'angular2/router';
 
 import GamesDAO, { Game, Division } from '../games.interface';
 import Region from '../../models/region';
-import {checkPresent} from '../../app/util';
-import {IBackend} from '../init/backend.interface.ts';
+import {checkPresent} from '../../service/util';
+import {IBackend} from '../backend.interface';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
-import {ILocalStorage} from './local-storage.interface';
+import {ILocalStorage, LS_KEYS} from './../../service/local-storage.interface';
 import {InMemoryGamesService} from '../mem/games.mem.service';
-import {LS_KEYS} from './local-storage.interface';
 
 class LocalStorageGamesService extends InMemoryGamesService {
     @ClassLogger() public log:Logger;

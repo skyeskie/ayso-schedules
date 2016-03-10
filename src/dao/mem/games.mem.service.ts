@@ -3,8 +3,8 @@ import {Router, RouteParams} from 'angular2/router';
 
 import GamesDAO, { Game, Division } from '../games.interface';
 import Region from '../../models/region';
-import {checkPresent} from '../../app/util';
-import {IBackend} from '../init/backend.interface.ts';
+import {checkPresent} from '../../service/util';
+import {IBackend} from '../backend.interface';
 import {ClassLogger, Logger, Level} from '../../service/log.decorator';
 
 class InMemoryGamesService implements GamesDAO {

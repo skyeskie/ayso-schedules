@@ -2,7 +2,7 @@ import {Component, OnInit, Injectable} from 'angular2/core';
 import {Control, COMMON_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 
 import {TitleBarComponent} from '../comp/title-bar.component';
-import {DataControlService} from '../dao/data-control.service';
+import {DataControlService} from '../service/data-control.service';
 import {Region} from '../models/region';
 import {DateMedPipe} from '../pipes/date-med.pipe';
 

@@ -14,7 +14,7 @@ import {
 } from 'angular2/testing';
 import {provide} from 'angular2/core';
 import {WeekCacheInterface} from '../../src/dao/week-cache.interface';
-import {IBackend} from '../../src/dao/init/backend.interface.ts';
+import {IBackend} from '../../src/dao/backend.interface';
 import {calculateCurrentWeek} from '../../src/dao/week-cache.interface';
 
 const ONE = 1;

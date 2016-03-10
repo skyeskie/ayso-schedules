@@ -9,7 +9,7 @@ import {
 } from 'angular2/router';
 
 import {SettingsDAO} from '../dao/settings.interface';
-import {DataControlService} from '../dao/data-control.service';
+import {DataControlService} from './data-control.service';
 
 //Constructor requires super() to be called ahead of object-level instantiation
 //Need settings and (appIsConfigured) to be present before super(), so moving to module scope

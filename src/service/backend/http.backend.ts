@@ -1,27 +1,23 @@
 import {Http, Response} from 'angular2/http';
-import {Injectable} from 'angular2/core';
+import {Inject, Injectable} from 'angular2/core';
 import {Observable} from 'rxjs/Observable';
+
+import {RequestOptions, URLSearchParams} from 'angular2/http';
 
 import {ReplaySubject} from 'rxjs/Rx';
 import {Subscriber} from 'rxjs/Subscriber';
 
-import Division from '../../models/division';
+import {Division, AgeGroup, Gender} from '../../models/division';
 import Game from '../../models/game';
-import Gender from '../../models/gender';
 import Region from '../../models/region';
 import Team from '../../models/team';
 
-import {IBackend} from './backend.interface.ts';
-import {SettingsDataType} from '../settings.interface';
-import {ClassLogger, Logger, Level} from '../../service/log.decorator';
-import {AgeGroup} from '../../models/ageGroup';
-import {Inject} from 'angular2/core';
-import {ILocalStorage} from '../ls/local-storage.interface';
-import {RequestOptions} from 'angular2/http';
-import {URLSearchParams} from 'angular2/http';
-import {Request} from 'angular2/http';
-import {RequestMethod} from 'angular2/http';
-import {GamesDAO} from '../games.interface';
+import {ILocalStorage} from '../local-storage.interface';
+import {IBackend} from './../../dao/backend.interface';
+import {SettingsDataType} from '../../dao/settings.interface';
+import {GamesDAO} from '../../dao/games.interface';
+
+import {ClassLogger, Logger, Level} from '../log.decorator';
 import {CFG} from '../../app/cfg';
 
 //TODO: Make server types match so can remove

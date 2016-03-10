@@ -10,10 +10,10 @@ import {provide} from 'angular2/core';
 import {settingsInterfaceSpec} from '../interfaces/settings.spec.i';
 import {TeamsDAO, InMemoryTeamsService} from '../../src/dao/mem/teams.mem.service';
 
-import {StaticInitializationService, IBackend} from '../../src/dao/init/static.init.service';
+import {StaticInitializationService, IBackend} from '../../src/service/backend/static.backend';
 import {LocalStorageSettingsService} from '../../src/dao/ls/settings.ls.service';
 import {MOCK_LOCAL_STORAGE_PROVIDER, ILocalStorage, MockLocalStorage} from '../mocks/local-storage.mock';
-import {LS_KEYS} from '../../src/dao/ls/local-storage.interface';
+import {LS_KEYS} from '../../src/service/local-storage.interface';
 
 describe('DAO: LocalStorageSettings', () => {
     beforeEachProviders(() => [
