@@ -3,7 +3,7 @@ var path = require('path');
 
 var single = true;
 ENV = 'test';
-var testWebpackConfig = require('./webpack.config.js');
+var testWebpackConfig = require('./webpack.test.config.js');
 
 module.exports = function (config) {
     "use strict";

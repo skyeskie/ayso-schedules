@@ -16,7 +16,7 @@ import Team from '../models/team';
     template: `
     <title-bar></title-bar>
     <article class="container">
-        <h3 class="m-a-1 text-xs-center">My Teams' Schedules</h3>
+        <h4 class="m-a-1 text-primary text-xs-center">My Teams' Schedules</h4>
         <div class="text-xs-center">
             <button type="button" class="btn btn-primary-outline m-x-2 m-b-2"
                 *ngFor="#team of savedTeams" [routerLink]="['/TeamSchedule', {id: team}]">
@@ -24,18 +24,18 @@ import Team from '../models/team';
             </button>
         </div>
 
-        <two-teams-game-list [games]="gamesList">
+        <two-teams-game-list [games]="gamesList" *ngIf="gamesList?.length > 0">
         </two-teams-game-list>
 
-        <div *ngIf="gamesList?.length===0">
-            <h2 style='text-align: center;'>No saved teams</h2>
-            <ol>
-                <li><a [routerLink]="['/TeamSelect']">Find Team</a></li>
-                <li>Open to view team page</li>
-                <li>Click the 'Save' button in the top right</li>
-            </ol>
-            <div class='main-buttons'>
-                <a [routerLink]="['/TeamSelect']">Find Team</a>
+        <div *ngIf="gamesList?.length===0" class="card card-block card-warning-outline m-t-2">
+            <h5 class="card-title text-warning">No saved teams</h5>
+            <div class="card-text">
+            <p>Add some teames as favorites:</p>
+                <ol>
+                    <li><a [routerLink]="['/TeamSelect']">Find Team</a></li>
+                    <li>Open to view team page</li>
+                    <li>Click the 'Save' button in the top right</li>
+                </ol>
             </div>
         </div>
     </article>
