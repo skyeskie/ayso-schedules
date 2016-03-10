@@ -11,15 +11,13 @@ import {Region} from '../models/region';
 @Component({
     directives: [NgFor, FORM_DIRECTIVES],
     styles: [
-        '.form-group label { font: 1.6rem bold }',
         'div.alert.container { font: 0.7rem; }',
+        'div.card-info-outline ul { margin-bottom: 0; }',
     ],
     template: `
     <article class="container">
         <img src="img/HomeText.png" alt="AYSO Kansas" class="img-fluid center-block m-b-2" />
         <form [ngFormModel]="initForm" (ngSubmit)="onSubmit()">
-            <h4 class="text-primary">Setup App</h4>
-
             <div class="card card-block card-info-outline">
                 <p>This app covers all divisions <strong>except</strong>:</p>
                 <ul>
@@ -31,11 +29,11 @@ import {Region} from '../models/region';
             </div>
 
             <div class="card card-block">
+                <h4 class="text-primary">Setup App</h4>
                 <p class="text-muted card-title">Configure the app for first run.</p>
                 <fieldset class="form-group">
-                    <label for="init-region" class="text-info">Select region</label>
                     <select id="init-region" class="form-control" [ngFormControl]="initForm.controls.regionSelect">
-                        <option class="text-muted">Select your region...</option>
+                        <option class="text-muted" value="">Select your region...</option>
                         <option *ngFor="#region of regions" [value]="region.number">
                             Region {{region.number}} ({{region.name}})
                         </option>
@@ -43,20 +41,18 @@ import {Region} from '../models/region';
                 </fieldset>
 
                 <div class="alert {{statusClass}} container">
-                    <h5 class="col-xs-4">Load Games</h5>
-                    <p class="col-xs-8"><strong>{{title}}:</strong> {{message}}</p>
+                    <h6 class="col-med-4">Loading Game Data</h6>
+                    <p class="col-med-8"><strong>{{title}}:</strong> {{message}}</p>
                     <input type="hidden" [ngFormControl]="initForm.controls.backend"/>
                 </div>
 
-                <button type="submit" class="btn btn-secondary center-block"
+                <button type="submit" class="btn center-block" [class.btn-success]="initForm?.valid"
                     [disabled]="!initForm?.valid">Finish</button>
             </div>
         </form>
     </article>
     `,
 })
-//TODO: Figure out how to route here on first load
-//TODO: Rework as form and save values
 class InitialConfigurationView implements OnInit {
     private regions:Region[];
     private statusClass:string;
@@ -109,7 +105,7 @@ class InitialConfigurationView implements OnInit {
      * @param self - Used because `this` is not in scope
      */
     finishDataInit(self:InitialConfigurationView) {
-        self.setStatus('Success', 'Finished loading data', 'alert-success');
+        self.setStatus('Success', 'Offline viewing enabled', 'alert-success');
         //Mark hidden form object as valid
         this.initFormControls.backend.updateValue(true);
     }
