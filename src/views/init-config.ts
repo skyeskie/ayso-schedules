@@ -30,7 +30,7 @@ import {Region} from '../models/region';
 
             <div class="card card-block">
                 <h4 class="text-primary">Setup App</h4>
-                <p class="text-muted card-title">Configure the app for first run.</p>
+                <p class="text-muted card-title">One-time setup to prepare the app for use</p>
                 <fieldset class="form-group">
                     <select id="init-region" class="form-control" [ngFormControl]="initForm.controls.regionSelect">
                         <option class="text-muted" value="">Select your region...</option>

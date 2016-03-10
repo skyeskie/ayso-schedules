@@ -1,4 +1,5 @@
 import {Component, Inject, OnInit} from 'angular2/core';
+import {NgIf} from 'angular2/common';
 import {Router, RouteParams} from 'angular2/router';
 
 import {GamesDAO, Game} from '../dao/games.interface';
@@ -10,13 +11,11 @@ import TwoTeamsGamesListComponent from '../comp/games2-list.component';
 import {TitleBarComponent} from '../comp/title-bar.component';
 
 @Component({
-    directives: [WeekBarComponent, TwoTeamsGamesListComponent, TitleBarComponent],
+    directives: [WeekBarComponent, TwoTeamsGamesListComponent, TitleBarComponent, NgIf],
     template: `
     <title-bar></title-bar>
-    <article class="container">
-        <week-bar [week]="week" (weekChange)="navWeek($event)"></week-bar>
-        <two-teams-game-list [games]="games"></two-teams-game-list>
-    </article>
+    <week-bar [week]="week" (weekChange)="navWeek($event)"></week-bar>
+    <two-teams-game-list [games]="games" *ngIf="games"></two-teams-game-list>
     `,
 })
 class WeekScheduleView implements OnInit {

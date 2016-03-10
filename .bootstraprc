@@ -11,3 +11,4 @@ styles: true
 
 scripts:
   button: true
+  util: true

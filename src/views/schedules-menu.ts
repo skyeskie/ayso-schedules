@@ -11,11 +11,18 @@ import {Inject} from 'angular2/core';
     <title-bar></title-bar>
     <article class="main-buttons container">
         <img class="img-fluid center-block m-b-2" src="img/HomeText.png" alt="AYSO Kansas" />
-        <h2 *ngIf="regionNum">Region {{regionNum}} Schedules</h2>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['CurWeekSchedule']" data-role="button">This Week</button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['TeamSelect']" data-role="button">Find Team</button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['DivisionSelect']" data-role="button">Advanced Search</button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['FavoritesSchedule']" data-role="button">My teams</button>
+        <h4 class="text-primary text-xs-center m-b-2">
+            <b>Schedules</b> <small *ngIf="regionNum" class="text-muted">Region {{regionNum}}</small>
+        </h4>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['CurWeekSchedule']">This Week</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['TeamSelect']">Find Team</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['DivisionSelect']">Advanced Search</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['MapDetail', {region: regionNum}]"
+            *ngIf="regionNum">Directions
+        </button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['FieldDetail', {region: regionNum}]"
+            *ngIf="regionNum">Field Map
+        </button>
     </article>
     `,
 })

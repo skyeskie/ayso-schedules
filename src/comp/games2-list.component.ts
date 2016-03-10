@@ -11,20 +11,21 @@ import {DateMedPipe} from '../pipes/date-med.pipe';
     selector: 'two-teams-game-list',
     directives: [NgFor, NgIf, RouterLink],
     pipes: [DateMedPipe],
+    styles: ['.card.card-block { padding: 0.4rem 1rem; }'],
     template: `
-    <div class="card card-block card-info-outline" *ngIf="byesList">
-        <span class="card-title bold m-r-2">Byes:</span>
-        <span class="card-text">{{byesList}}</span>
-    </div>
     <div class="list-group">
+        <div class="list-group-item bg-faded" *ngIf="byesList">
+            <h6 class="list-group-item-heading text-xs-center">Byes</h6>
+        </div>
+        <div class="list-group-item text-xs-center" *ngIf="byesList">{{byesList}}</div>
         <div *ngFor="#row of gamesList">
             <button type="button" class="container list-group-item"
              *ngIf="!row.isHeader" [routerLink]="['/GameDetail',{id:row.game.id}]">
                 <div class="col-xs-6">Region {{row.game.region}}, Field {{row.game.field}}</div>
                 <div class="col-xs-6 text-xs-right">{{row.game.homeTeam}} vs {{row.game.awayTeam}}</div>
             </button>
-            <div class="list-group-item-header m-t-1" *ngIf="row.isHeader">
-                <h4>{{row.headerTime | dateMed}}</h4>
+            <div class="list-group-item bg-faded" *ngIf="row.isHeader">
+                <h6 class="list-group-item-heading text-xs-center">{{row.headerTime | dateMed}}</h6>
             </div>
         </div>
         <div class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No results</div>

@@ -49,8 +49,8 @@ describe('Comp: WeekBar', () => {
                         expect(elements.children[0].innerText).toEqual('Back');
                         expect(elements.children[1].innerText).toEqual('Week #3');
                         expect(elements.children[2].innerText).toEqual('Next');
-                        expect(wbc.showPrevious()).toBeTruthy();
-                        expect(wbc.showNext()).toBeTruthy();
+                        expect(wbc.hidePrevious()).toBeFalse();
+                        expect(wbc.hideNext()).toBeFalse();
                     });
                     f.detectChanges();
                 });
@@ -64,8 +64,8 @@ describe('Comp: WeekBar', () => {
                         let elements = f.debugElement.nativeElement.children[0].children[0];
                         expect(elements.children.length).toEqual(2);
                         expect(elements.children[0].innerText).not.toEqual('Back');
-                        expect(wbc.showPrevious()).toBeFalsy();
-                        expect(wbc.showNext()).toBeTruthy();
+                        expect(wbc.hidePrevious()).toBeTrue();
+                        expect(wbc.hideNext()).toBeFalse();
                     });
                     f.detectChanges();
                 });
@@ -81,8 +81,8 @@ describe('Comp: WeekBar', () => {
                     let elements = f.debugElement.nativeElement.children[0].children[0];
                     expect(elements.children.length).toEqual(2);
                     expect(elements.children[1].innerText).not.toEqual('Forward');
-                    expect(wbc.showPrevious()).toBeTruthy();
-                    expect(wbc.showNext()).toBeFalsy();
+                    expect(wbc.hidePrevious()).toBeFalse();
+                    expect(wbc.hideNext()).toBeTrue();
                 });
                 f.detectChanges();
             });
@@ -100,8 +100,8 @@ describe('Comp: WeekBar', () => {
                         let elements = f.debugElement.nativeElement.children[0].children[0];
                         expect(elements.children.length).toEqual(1);
                         expect(elements.children[0].innerText).toEqual('Week #1');
-                        expect(wbc.showPrevious()).toBeFalsy();
-                        expect(wbc.showNext()).toBeFalsy();
+                        expect(wbc.hidePrevious()).toBeTrue();
+                        expect(wbc.hideNext()).toBeTrue();
                     });
                     f.detectChanges();
                 });

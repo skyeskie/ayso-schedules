@@ -14,12 +14,12 @@ const ONE = 1;
     directives: [NgIf],//TODO: Change from NgIf to NgStyle with invisible
     styles: ['nav span { font: 2em bold; }'],
     template: `
-     <nav class="navbar navbar-light text-xs-center">
-        <button type="button" class="btn btn-primary-outline nav-item nav-link pull-xs-left"
-            *ngIf="showPrevious()" (click)="changePrev()">Back</button>
+     <nav class="navbar navbar-sticky-top navbar-light text-xs-center">
+        <button type="button" class="btn btn-sm btn-primary-outline nav-item nav-link pull-xs-left"
+            [class.invisible]="hidePrevious()" (click)="changePrev()">Back</button>
         <span class="nav-item">Week #{{week}}</span>
-        <button type="button" class="btn btn-primary-outline nav-item nav-link pull-xs-right"
-            *ngIf="showNext()" (click)="changeNext()">Next</button>
+        <button type="button" class="btn btn-sm btn-primary-outline nav-item nav-link pull-xs-right"
+            [class.invisible]="hideNext()" (click)="changeNext()">Next</button>
     </nav>
     `,
 })
@@ -43,18 +43,18 @@ export default class WeekBarComponent implements OnInit {
     constructor(
         @Inject(WeekCacheInterface)
         private _weeks: WeekCacheInterface
-    ) {}
+    ) { /* Empty */ }
 
     ngOnInit() {
         this.max = this._weeks.getMaxWeeks();
     }
 
-    showPrevious(): boolean {
-        return this.week && (this.week !== 1);
+    hidePrevious(): boolean {
+        return !this.week || (this.week === 1);
     }
 
-    showNext(): boolean {
-        return this.week && this.max && (this.week !== this.max);
+    hideNext(): boolean {
+        return !this.week || !this.max || (this.week === this.max);
     }
 
     changePrev() {
