@@ -10,11 +10,20 @@ import RegionListView from './region-list';
     template: `
     <img class="img-fluid center-block" src="./img/MainLogo.png" alt="AYSO Kansas" />
     <article class="container main-buttons">
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/SchedulesMenu']">Schedules</button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/RegionList']">Region Info</button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/FavoritesSchedule']">My teams</button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/TwitterView']">Cancellations</button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/Settings']">Settings</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/SchedulesMenu']">
+            <i class="ion-calendar"></i> Schedules</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/RegionList']">
+            <i class="ion-map"></i> Region Info
+        </button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/FavoritesSchedule']">
+            <i class="ion-bookmark"></i> My teams
+        </button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/TwitterView']">
+            <i class="ion-social-twitter"></i> Cancellations
+        </button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/Settings']">
+            <i class="ion-gear-a"></i> Settings
+        </button>
     </article>
     `,
 })

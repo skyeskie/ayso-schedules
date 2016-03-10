@@ -14,14 +14,20 @@ import {Inject} from 'angular2/core';
         <h4 class="text-primary text-xs-center m-b-2">
             <b>Schedules</b> <small *ngIf="regionNum" class="text-muted">Region {{regionNum}}</small>
         </h4>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['CurWeekSchedule']">This Week</button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['TeamSelect']">Find Team</button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['DivisionSelect']">Advanced Search</button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['CurWeekSchedule']">
+            <i class="ion-clock"></i> This Week
+        </button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['TeamSelect']">
+            <i class="ion-search"></i> Find Team
+        </button>
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['DivisionSelect']">
+            <i class="ion-search"></i> Advanced Search
+        </button>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['MapDetail', {region: regionNum}]"
-            *ngIf="regionNum">Directions
+            *ngIf="regionNum"><i class="ion-navigate"></i> Directions
         </button>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['FieldDetail', {region: regionNum}]"
-            *ngIf="regionNum">Field Map
+            *ngIf="regionNum"><i class="ion-map"></i> Field Map
         </button>
     </article>
     `,

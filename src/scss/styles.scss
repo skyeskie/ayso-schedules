@@ -1,4 +1,4 @@
-body, ayso-app {
+body, ayso-app, nav {
     max-width: 600px;
 }
 
@@ -25,6 +25,10 @@ article.container {
 form label {
     font-size: 1.2rem;
     font-weight: bold;
+}
+
+.navbar-dark.bg-primary .navbar-nav .nav-link {
+    color: #FFFFFF;
 }
 
 //Responsive font size. Default bootstrap is 16px
