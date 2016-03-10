@@ -9,6 +9,7 @@ import {ILocalStorage, LS_KEYS} from './ls/local-storage.interface';
 
 import {ClassLogger, Logger} from '../service/log.decorator';
 import {CFG} from '../app/cfg';
+import {Router} from 'angular2/router';
 
 /**
  * This class provides a common interface for updating all the
@@ -28,7 +29,8 @@ class DataControlService {
         @Inject(TeamsDAO)           public teams:TeamsDAO,
         @Inject(WeekCacheInterface) public weekCache:WeekCacheInterface,
         @Inject(IBackend)           public backend:IBackend,
-        @Inject(ILocalStorage)      public ls:ILocalStorage
+        @Inject(ILocalStorage)      public ls:ILocalStorage,
+                                    private router:Router
     ) {
         //No-op
     }
@@ -132,12 +134,16 @@ class DataControlService {
      * `@Override` this to actually update
      */
     reset():Promise<void> {
+        this.ls.removeItem(LS_KEYS.DATA_VERSION);
         return Promise.all([
             this.settings.reset(),
             this.games.clear(),
             this.teams.clear(),
             this.weekCache.clear(),
-        ]).then(() => Promise.resolve());
+        ]).then(() => {
+            this.router.navigate(['/Init']);
+            return this.update(true);
+        }).then(() => Promise.resolve());
     }
 
     private setLastUpdate(version: string) {

@@ -22,7 +22,9 @@ class LocalStorageGamesService extends InMemoryGamesService {
     }
 
     clear(): Promise<void> {
-        return super.clear().then(() => this.persistGames());
+        return super.clear().then(() => {
+            this.client.removeItem(LS_KEYS.GAMES_CACHE);
+        });
     }
 
     add(newGames:Game[]): Promise<any> {

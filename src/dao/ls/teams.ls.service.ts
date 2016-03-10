@@ -79,6 +79,7 @@ class LocalStorageTeamsService implements TeamsDAO {
 
     clear(): Promise<void> {
         this.teams.clear();
+        this.client.removeItem(TEAMS_CACHE_KEY);
         return Promise.resolve();
     }
 
