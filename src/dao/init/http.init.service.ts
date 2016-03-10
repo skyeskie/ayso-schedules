@@ -110,7 +110,7 @@ class HttpInitService implements IBackend {
     }
 
     getSettings(): Promise<SettingsDataType> {
-        return Promise.resolve({});
+        return Promise.resolve<SettingsDataType>(null);
     };
 
     getDataVersion(): Promise<string> {

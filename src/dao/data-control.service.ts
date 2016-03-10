@@ -94,7 +94,9 @@ class DataControlService {
                     this.teams.add(teams);
                 }),
                 this.backend.getSettings().then((settings:SettingsDataType) => {
-                    this.settings.init(settings);
+                    if(settings !== null) {
+                        this.settings.init(settings);
+                    }
                 }),
             ]);
         }).then(() => this.backend.getWeekStarts()).then((starts:Date[]) => {

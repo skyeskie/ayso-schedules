@@ -25,6 +25,13 @@ interface IBackend {
 
     getTeams(): Promise<Team[]>;
     getGames(): Promise<Game[]>;
+
+    /**
+     * Used to provide initial settings.
+     * @return SettingsDataType - settings with defaults
+     * @return null - don't initialize any settings
+     * - By default, region is selected and favorite teams is blank
+     */
     getSettings(): Promise<SettingsDataType>;
 
     /**

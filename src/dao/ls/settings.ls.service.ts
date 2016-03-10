@@ -78,8 +78,10 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 
     init(preset?:SettingsDataType): Promise<void> {
-        this.log.debug('Setting from initializer: ', preset);
-        this.setRegion(preset.regionNumber);
+        this.log.info('Setting from initializer: ', preset);
+        if(typeof preset.regionNumber !== 'undefined') {
+            this.setRegion(preset.regionNumber);
+        }
         if(typeof preset.savedTeams !== 'undefined') {
             this.teams = preset.savedTeams;
         }
