@@ -13,20 +13,21 @@ import {DateMedPipe} from '../pipes/date-med.pipe';
     styles: [`.team { height: 100%; text-valign: middle}`],
     pipes: [DateMedPipe, VsAtGameFormatPipe],
     template: `
-    <div class="list-group">
-        <div class="list-group-item text-xs-center text-warning" *ngIf="hasNoResults()">No games found</div>
+    <div class="list-group list-group-flush" *ngIf="!hasResults()">
+        <h6 class="list-group-item list-group-item-warning text-xs-center">
+            <i class="ion-alert-circled"></i>
+            No games found
+        </h6>
+    </div>
 
-        <button type="button" class="list-group-item container"
-         *ngFor="#game of games" [routerLink]="['/GameDetail',{id:game.id}]">
-            <div class="col-xs-6">
-                <h5>{{game.startTime | dateMed}}</h5>
-                <div class="m-l-2">
-                    Region {{game.region}}, Field {{game.field}}
-                </div>
-            </div>
-            <h4 class="col-xs-5 team text-xs-center" *ngIf="team">
-                {{game | vsAtGame:team }}
-            </h4>
+    <div class="list-group list-group-flush" *ngIf="hasResults()">
+        <button type="button" class="list-group-item container text-xs-center"
+                *ngFor="#game of games" [routerLink]="['/GameDetail',{id:game.id}]">
+            <h6 class="col-xs-6 col-md-3 font-weight-bold">{{game.startTime | dateMed}}</h6>
+            <h6 class="col-xs-6 col-md-3 font-weight-bold" *ngIf="team">{{game | vsAtGame:team }}</h6>
+            <h6 class="col-xs-6 col-md-3" *ngIf="!team">&nbsp;</h6>
+            <div class="col-xs-6 col-md-3">Region {{game.region}}</div>
+            <div class="col-xs-6 col-md-3">Field {{game.field}}</div>
         </button>
     </div>
     `,
@@ -48,7 +49,7 @@ export default class SingleTeamGameListComponent implements OnInit {
         }
     }
 
-    hasNoResults() {
-        return this.games && this.games.length === 0;
+    hasResults() {
+        return (this.games instanceof Array) && this.games.length > 0;
     }
 }

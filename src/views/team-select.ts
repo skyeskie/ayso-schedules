@@ -24,39 +24,48 @@ type TeamFormData = {age?:string, gender?:string, region?:string}
     <title-bar></title-bar>
     <article class="container">
     <form id="team" [ngFormModel]="teamForm">
-        <legend>Filter teams</legend>
+        <legend class="text-xs-center text-primary">Filter teams</legend>
         <fieldset class="form-group row">
-            <label for="regionSelect" class="form-control-label  col-sm-3">Region</label>
-            <div class="col-sm-9">
+            <label for="regionSelect" class="form-control-label  col-xs-3 text-xs-right">
+                Region
+            </label>
+            <div class="col-xs-9">
                 <select id="regionSelect" class="form-control" [ngFormControl]="teamForm.controls.region">
+                    <option value="">Any</option>
                     <option *ngFor="#r of regions" [value]="r.number">Region {{r.number}} {{r.name}}</option>
                 </select>
             </div>
         </fieldset>
 
         <fieldset class="form-group row">
-            <label for="divisSelect" class="form-control-label  col-sm-3">Age Group</label>
-            <div class="col-sm-9">
+            <label for="divisSelect" class="form-control-label col-xs-3 text-xs-right">
+                Age <span class="hidden-xs-down">Group</span>
+            </label>
+            <div class="col-xs-9">
                 <select id="divisSelect" class="form-control" [ngFormControl]="teamForm.controls.age">
+                    <option value="" selected>Any</option>
                     <option *ngFor="#age of ages" [value]="age.toString()">{{age.toString()}}</option>
                 </select>
             </div>
         </fieldset>
 
         <fieldset class="form-group row">
-            <label for="genderSelect" class="form-control-label  col-sm-3">Gender</label>
-            <div class="col-sm-9">
+            <label for="genderSelect" class="form-control-label col-xs-3 text-xs-right">
+                Gender
+            </label>
+            <div class="col-xs-9">
                 <select id="genderSelect" class="form-control" [ngFormControl]="teamForm.controls.gender">
+                    <option value="" selected>Any</option>
                     <option *ngFor="#g of genders" [value]="g.long">{{g.long}}</option>
                 </select>
             </div>
         </fieldset>
 
-        <h3 class="text-xs-center">Select Team</h3>
-        <div class="container team-list text-justify">
-            <button type="button" class="btn btn-secondary m-a-1 btn-sm"
-                *ngFor="#team of teams" [routerLink]="['/TeamSchedule',{ id: team.code }]">
-                {{team.code}}<span *ngIf="teams.length<10"> - {{team.coach | NameSwitch}}</span>
+        <h5 class="text-xs-center">Select Team</h5>
+        <div class="container team-list text-xs-center">
+            <button type="button" *ngFor="#team of teams" [class]="getButtonClasses()"
+                [routerLink]="['/TeamSchedule',{ id: team.code }]">
+                    {{team.code}}<span *ngIf="showCoachName()"> - {{team.coach | NameSwitch}}</span>
             </button>
         </div>
     </form>
@@ -83,9 +92,9 @@ class TeamSelectView {
         this.genders = CFG.GENDERS;
         //Create form controls
         this.teamForm = fb.group({
-            age: undefined,
-            gender: undefined,
-            region: undefined,
+            age: '',
+            gender: '',
+            region: '',
         });
 
         this.teamForm.valueChanges.subscribe((data:TeamFormData) => console.log(data));
@@ -96,7 +105,27 @@ class TeamSelectView {
     }
 
     updateTeams(ageString?:string, genderLong?:string, regionNum?:number) {
+        if(ageString === '') {
+            ageString = null;
+        }
+        if(genderLong === '') {
+            genderLong = null;
+        }
+        if(isNaN(regionNum)) {
+            regionNum = null;
+        }
         this.dao.findTeams(regionNum, ageString, genderLong).then((teams:Team[]) => this.teams = teams);
+    }
+
+    showCoachName(): boolean {
+        return (this.teams.length < 8);
+    }
+
+    getButtonClasses() {
+        if(this.showCoachName()) {
+            return 'btn btn-primary-outline btn-sm m-y-auto m-b-1';
+        }
+        return 'btn btn-link col-xs-3 col-md-2';
     }
 }
 

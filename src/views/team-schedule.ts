@@ -16,25 +16,38 @@ import {NameSwitchPipe} from '../pipes/name-switch.pipe';
     template: `
     <title-bar></title-bar>
     <article class="container">
-        <div class="card card-block clearfix">
-            <button class="btn btn-sm btn-primary-outline pull-sm-right hidden-xs-down"
-                 type="button" (click)="toggleTeamSave()">
-                {{getSavedToggleText()}}
-            </button>
-            <h2 class="text-sm-center card-title">Team {{teamID}}</h2>
-            <h4 class="card-text m-a-1 text-xs-center text-md-left"><b>Coach</b> {{team?.coach | NameSwitch}}</h4>
-            <div class="col-xs-9 col-md-12 inline">
-                <button type="button" class="btn btn-sm btn-link card-link"
-                    (click)="initCall()" *ngIf="team?.coachTel">Call</button>
-            </div>
-            <div class="col-xs-3 inline hidden-sm-up">
-                <button type="button" class="btn btn-sm btn-primary-outline card-link" (click)="toggleTeamSave()">
-                    {{getSavedToggleText()}}
+        <div class="card">
+            <div class="card-block clearfix">
+                <button class="btn btn-xs btn-primary-outline pull-xs-right"
+                     type="button" (click)="toggleTeamSave()">
+                     <i class="ion-star"></i>
+                     {{getSavedToggleText()}}
                 </button>
+                <h5 class="text-sm-center card-text text-muted"><small>Team {{teamID}}</small></h5>
+            </div>
+            <div class="clearfix" *ngIf="!isCoachTBD()">
+                <div class="text-sm-center text-md-left container">
+                    <h5 class="col-xs-4 text-xs-right font-weight-bold">Coach</h5>
+                    <h5 class="col-xs-8 text-xs-left">{{team?.coach | NameSwitch}}</h5>
+                </div>
+                <div class="col-xs-8 col-xs-offset-4">
+                    <a type="button" class="btn btn-sm btn-link" href="tel:{{team.coachTel}}" *ngIf="team?.coachTel">
+                        <i class="ion-android-call"></i> {{team.coachTel}}
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix" *ngIf="isCoachTBD()">
+                <h5 class="col-xs-4 text-xs-right font-weight-bold">Coach</h5>
+                <h5 class="col-xs-8 text-xs-left text-muted font-italic">
+                    <small>To Be Determined</small>
+                </h5>
             </div>
         </div>
 
-        <single-team-game-list [games]="games" [team]="teamID"></single-team-game-list>
+        <div class="card">
+            <single-team-game-list [games]="games" [team]="teamID"></single-team-game-list>
+        </div>
+
     </article>
   `,
 })
@@ -78,6 +91,10 @@ class TeamScheduleView implements OnInit {
 
     getSavedToggleText() {
         return (this.isTeamSaved) ? 'Unsave' : 'Save';
+    }
+
+    isCoachTBD() {
+        return (this.team instanceof Team) && this.team.coach === 'TBD';
     }
 }
 

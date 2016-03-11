@@ -6,9 +6,8 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     styles: [],
     template: `
     <title-bar></title-bar>
-    <h3 class=" text-xs-center">News and Cancellations</h3>
-
     <article class="container text-xs-center">
+        <h5 class="text-primary">News and Cancellations</h5>
         <a class="twitter-timeline" href="https://twitter.com/AYSOKS"
           data-widget-id="305786822305386496">Tweets by @AYSOKS</a>
     </article>

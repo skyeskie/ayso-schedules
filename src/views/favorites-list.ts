@@ -18,9 +18,9 @@ import Team from '../models/team';
     <article class="container">
         <h4 class="m-a-1 text-primary text-xs-center">My Teams' Schedules</h4>
         <div class="text-xs-center">
-            <button type="button" class="btn btn-primary-outline m-x-2 m-b-2"
+            <button type="button" class="btn btn-primary-outline m-x-1 m-b-1 btn-sm"
                 *ngFor="#team of savedTeams" [routerLink]="['/TeamSchedule', {id: team}]">
-                Team {{team}}
+                <span *ngIf="savedTeams.length < 3">Team</span> {{team}}
             </button>
         </div>
 
