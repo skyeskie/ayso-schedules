@@ -24,40 +24,37 @@ import {Division, AgeGroup, Gender} from '../models/division';
     <title-bar></title-bar>
     <article class="container">
     <form id="search" (ngSubmit)="onSubmit()">
-        <legend>Filter teams</legend>
+        <legend>Search Games</legend>
         <p></p>
+        <fieldset class="form-group row">
+            <label for="weekSelect" class="form-control-label col-xs-3">Week</label>
+            <div class="col-xs-9">
+                <select id="weekSelect" class="form-control" [(ngModel)]="week">
+                    <option *ngFor="#w of weeks" [value]="w">{{w}}</option>
+                </select>
+            </div>
+        </fieldset>
 
         <fieldset class="form-group row">
-            <label for="regionSelect" class="form-control-label  col-sm-3">Region</label>
+            <label for="regionSelect" class="form-control-label  col-xs-3">Region</label>
             <div class="col-xs-9">
                 <select id="regionSelect" class="form-control" [(ngModel)]="region">
-                    <option>Any Region</option>
+                    <option value="" selected>Any Region</option>
                     <option *ngFor="#r of regions" [value]="r.number">Region {{r.number}} {{r.name}}</option>
                 </select>
             </div>
         </fieldset>
 
         <fieldset class="form-group row">
-            <label class="form-control-label  col-sm-3">Division</label>
-            <div class="col-sm-9">
-                <select id="divisSelect" class="form-control" [(ngModel)]="ageGroup">
-                    <option>Any</option>
-                    <option *ngFor="#age of ages" [value]="age.toString()">{{age.toString()}}</option>
-                </select>
-                <select id="genderSelect" class="form-control" [(ngModel)]="gender">
-                    <option>Any</option>
-                    <option *ngFor="#g of genders" [value]="g.long">{{g.long}}</option>
-                </select>
-            </div>
-        </fieldset>
-
-        <fieldset class="form-group row">
-            <label for="weekSelect" class="form-control-label col-sm-3">Week</label>
-            <div class="col-sm-9">
-                <select id="weekSelect" class="form-control" [(ngModel)]="week">
-                    <option *ngFor="#w of weeks" [value]="w">{{w}}</option>
-                </select>
-            </div>
+            <label class="form-control-label  col-xs-3">Division</label>
+            <select id="divisSelect" class="form-control col-xs-4" [(ngModel)]="ageGroup">
+                <option selected value="">Any</option>
+                <option *ngFor="#age of ages" [value]="age.toString()">{{age.toString()}}</option>
+            </select>
+            <select id="genderSelect" class="form-control col-xs-5" [(ngModel)]="gender">
+                <option selected value="">Any</option>
+                <option *ngFor="#g of genders" [value]="g.long">{{g.long}}</option>
+            </select>
         </fieldset>
         <button type="submit" class="btn btn-primary">Go</button>
     </form>
@@ -72,17 +69,15 @@ export class SearchView {
     public genders:Gender[];
 
     //Form values
-    public ageGroup:AgeGroup;
-    public gender:Gender;
-    public week:number;
-    public region:number;
+    public ageGroup:string = '';
+    public gender:string = '';
+    public week:string = '';
+    public region:string = '';
 
     constructor(
         private _router:Router,
         @Inject(WeekCacheInterface)
-        private _weekCache:WeekCacheInterface,
-        @Inject(SettingsDAO)
-        private _settings:SettingsDAO
+        private _weekCache:WeekCacheInterface
     ) {
         this.regions = CFG.REGIONS;
         this.ages = CFG.AGES;
@@ -95,15 +90,12 @@ export class SearchView {
         }
 
         //Default to current week
-        this.week = _weekCache.getCurrentWeek();
-
-        //Default to current region
-        _settings.getRegionNumber().then((n:number) => this.region = n);
+        this.week = _weekCache.getCurrentWeek().toString(10);
     }
 
     onSubmit(): void {
         console.log('Submitting search form');
-        let params:{age?,gender?,region?,week} = {
+        let params:{age?:string,gender?:string,region?:string,week:string} = {
             week: this.week
         };
         if(checkPresent(this.ageGroup)) {

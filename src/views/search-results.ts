@@ -18,8 +18,8 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     template: `
     <title-bar></title-bar>
     <article class="container">
-        <h2>Search Results</h2>
-        <h3><span *ngIf="params.region">Region {{params.region}} </span> {{params.age}} {{params.gender}}</h3>
+        <h4 class="text-primary">Search Results</h4>
+        <h5><span *ngIf="params.region">Region {{params.region}} </span> {{params.age}} {{params.gender}}</h5>
         <week-bar [week]="params.week" (weekChange)="navWeek($event)"></week-bar>
         <two-teams-game-list [games]="games"></two-teams-game-list>
     </article>
