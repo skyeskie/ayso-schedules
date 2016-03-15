@@ -21,9 +21,6 @@ import {Region} from '../models/region';
             <div class="card card-block card-info-outline">
                 <p>This app covers all divisions <strong>except</strong>:</p>
                 <ul>
-                    <li>Region 105 - U6</li>
-                    <li>Region 208 - U10, U8 and U6</li>
-                    <li>Region 253 - U6</li>
                     <li>Region 491 - U8 and U6</li>
                 </ul>
             </div>
