@@ -1,9 +1,9 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
+import {NgIf} from 'angular2/common';
 import {RouteParams} from 'angular2/router';
 import {ANGULAR2_GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
 import Region from '../models/region';
-import {NgIf} from 'angular2/common';
 import {TitleBarComponent} from '../comp/title-bar.component';
 
 @Component({
@@ -24,12 +24,18 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     </div>
     `,
 })
-export class MapView {
+export class MapView implements OnInit {
     public region: Region;
 
     constructor(
-        params:RouteParams
+        private params:RouteParams
     ) {
-        this.region = Region.fromNumber(Number.parseInt(params.get('region'), 10));
+        //In OnInit
+    }
+
+    ngOnInit() {
+        this.region = Region.fromNumber(
+            Number.parseInt(this.params.get('region'), 10)
+        );
     }
 }

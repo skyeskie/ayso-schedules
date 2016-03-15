@@ -43,21 +43,26 @@ import Team from '../models/team';
 })
 //TODO: Decorate saved teams
 //TODO: Fix up save team instructions
-export default class FavoritesListView {
+export default class FavoritesListView implements OnInit {
     public savedTeams:string[];
     public gamesList:Game[];
 
     constructor(
         @Inject(SettingsDAO)
-        private _favorites:SettingsDAO,
+        private settings:SettingsDAO,
         @Inject(GamesDAO)
-        private _gameDao:GamesDAO
+        private dao:GamesDAO
     ) {
-        _favorites.getSavedTeamIDs()
-                  .then((teams:string[]) => {
-                      this.savedTeams = teams;
-                      return this._gameDao.findForTeams(teams);
-                  })
-                  .then((games:Game[]) => this.gamesList = games);
+        //in OnInit
+    }
+
+    ngOnInit() {
+        this.settings
+            .getSavedTeamIDs()
+            .then((teams:string[]) => {
+                this.savedTeams = teams;
+                return this.dao.findForTeams(teams);
+            })
+            .then((games:Game[]) => this.gamesList = games);
     }
 }

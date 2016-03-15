@@ -29,7 +29,9 @@ export default class FieldMapView implements OnInit {
 
     constructor(
         private _routeParams:RouteParams
-    ) {}
+    ) {
+        //in OnInit
+    }
 
     ngOnInit() {
         let id:string = this._routeParams.get('region');

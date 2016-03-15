@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, Inject, ViewChild} from 'angular2/core';
+import {Component, OnInit, Inject, ViewChild} from 'angular2/core';
 import {Router, RouteParams, RouterLink} from 'angular2/router';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, FormBuilder, ControlGroup} from 'angular2/common';
 import {ChangeDetector} from 'angular2/src/core/change_detection/interfaces';
@@ -72,7 +72,7 @@ type TeamFormData = {age?:string, gender?:string, region?:string}
     </article>
     `,
 })
-class TeamSelectView {
+class TeamSelectView implements OnInit {
     private teamForm:ControlGroup;
 
     //Iterated lists
@@ -90,8 +90,11 @@ class TeamSelectView {
         this.regions = CFG.REGIONS;
         this.ages = CFG.AGES;
         this.genders = CFG.GENDERS;
+    }
+
+    ngOnInit() {
         //Create form controls
-        this.teamForm = fb.group({
+        this.teamForm = this.fb.group({
             age: '',
             gender: '',
             region: '',

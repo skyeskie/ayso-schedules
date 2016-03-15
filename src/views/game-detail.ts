@@ -79,7 +79,9 @@ export default class GameDetail implements OnInit {
         private _games:GamesDAO,
         @Inject(TeamsDAO)
         private _teams:TeamsDAO
-    ) {}
+    ) {
+        //in OnInit
+    }
 
     ngOnInit() {
         let id = this._routeParams.get('id');

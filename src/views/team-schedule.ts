@@ -67,6 +67,7 @@ class TeamScheduleView implements OnInit {
         @Inject(SettingsDAO)
         private _settings:SettingsDAO
     ) {
+        //In OnInit
     }
 
     ngOnInit() {

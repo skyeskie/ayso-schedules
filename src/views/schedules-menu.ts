@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {RouterLink} from 'angular2/router';
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {NgIf} from 'angular2/common';
@@ -37,9 +37,13 @@ class SchedulesMenuView {
 
     constructor(
         @Inject(SettingsDAO)
-        dao:SettingsDAO
+        private dao:SettingsDAO
     ) {
-        dao.getRegionNumber().then((n:number) => this.regionNum = n);
+        //In OnInit()
+    }
+
+    ngOnInit() {
+        this.dao.getRegionNumber().then((n:number) => this.regionNum = n);
     }
 }
 

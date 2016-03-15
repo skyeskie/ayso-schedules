@@ -19,41 +19,45 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     <title-bar></title-bar>
     <article class="container">
         <h4 class="text-primary">Search Results</h4>
-        <h5><span *ngIf="params.region">Region {{params.region}} </span> {{params.age}} {{params.gender}}</h5>
-        <week-bar [week]="params.week" (weekChange)="navWeek($event)"></week-bar>
+        <h5><span *ngIf="filters.region">Region {{filters.region}} </span> {{filters.age}} {{filters.gender}}</h5>
+        <week-bar [week]="filters.week" (weekChange)="navWeek($event)"></week-bar>
         <two-teams-game-list [games]="games"></two-teams-game-list>
     </article>
     `,
 })
-export class SearchResultsView {
+export class SearchResultsView implements OnInit {
     //Only used for displaying filter
-    public params:{week?:number,region?:number,gender?:string,age?:string} = {};
+    public filters:{week?:number,region?:number,gender?:string,age?:string} = {};
 
     public games:Game[]=[];
 
     constructor(
         private _router:Router,
-        params:RouteParams,
+        private params:RouteParams,
         @Inject(GamesDAO)
         private dao:GamesDAO
     ) {
-        let w = parseInt(params.get('week'),10);
-        if(!isNaN(w)) {
-            this.params.week = w;
-        }
-        let r = parseInt(params.get('region'),10);
-        if(!isNaN(r)) {
-            this.params.region = r;
-        }
-        this.params.gender = params.get('gender');
-        this.params.age = params.get('age');
+        //In OnInit
+    }
 
-        dao.findGames(this.params.region, this.params.age, this.params.gender, this.params.week)
-           .then((result:Game[]) => this.games = result);
+    ngOnInit() {
+        let w = parseInt(this.params.get('week'),10);
+        if(!isNaN(w)) {
+            this.filters.week = w;
+        }
+        let r = parseInt(this.params.get('region'),10);
+        if(!isNaN(r)) {
+            this.filters.region = r;
+        }
+        this.filters.gender = this.params.get('gender');
+        this.filters.age = this.params.get('age');
+
+        this.dao.findGames(this.filters.region, this.filters.age, this.filters.gender, this.filters.week)
+                .then((result:Game[]) => this.games = result);
     }
 
     navWeek(week:number) {
-        this.params.week = week;
-        this._router.navigate(['/DivisionSchedule', this.params]);
+        this.filters.week = week;
+        this._router.navigate(['/DivisionSchedule', this.filters]);
     }
 }

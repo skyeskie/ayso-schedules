@@ -61,7 +61,7 @@ import {Division, AgeGroup, Gender} from '../models/division';
     </article>
    `,
 })
-export class SearchView {
+export class SearchView implements OnInit {
     //Iterated lists
     public regions:Region[];
     public ages:AgeGroup[];
@@ -75,22 +75,26 @@ export class SearchView {
     public region:string = '';
 
     constructor(
-        private _router:Router,
+        private router:Router,
         @Inject(WeekCacheInterface)
-        private _weekCache:WeekCacheInterface
+        private weekCache:WeekCacheInterface
     ) {
+        //In OnInit
+    }
+
+    ngOnInit(): void {
         this.regions = CFG.REGIONS;
         this.ages = CFG.AGES;
         this.genders = CFG.GENDERS;
 
-        let max = _weekCache.getMaxWeeks();
+        let max = this.weekCache.getMaxWeeks();
         this.weeks = new Array<number>(max);
         for(let i=0; i<max; ++i) {
             this.weeks[i] = i + 1;
         }
 
         //Default to current week
-        this.week = _weekCache.getCurrentWeek().toString(10);
+        this.week = this.weekCache.getCurrentWeek().toString(10);
     }
 
     onSubmit(): void {
@@ -107,6 +111,6 @@ export class SearchView {
         if(checkPresent(this.region)) {
             params.region = this.region;
         }
-        this._router.navigate(['/DivisionSchedule', params]);
+        this.router.navigate(['/DivisionSchedule', params]);
     }
 }
