@@ -65,7 +65,7 @@ Error handling
 
 View
 
-- [ ] Handle no coach (TBD)
+- [x] Handle no coach (TBD)
 - [x] ~~Show field better; perhaps in config?~~~~
 - [ ] Hide region if default?
 

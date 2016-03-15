@@ -16,13 +16,12 @@ import {Region} from '../models/region';
     ],
     template: `
     <article class="container">
-        <img src="img/HomeText.png" alt="AYSO Kansas" class="img-fluid center-block m-b-2" />
+        <img src="img/AYSOKansas.svg" alt="AYSO Kansas" class="img-fluid center-block m-b-2" />
         <form [ngFormModel]="initForm" (ngSubmit)="onSubmit()">
-            <div class="card card-block card-info-outline">
-                <p>This app covers all divisions <strong>except</strong>:</p>
-                <ul>
-                    <li>Region 491 - U8 and U6</li>
-                </ul>
+            <div class="alert alert-info">
+                <p><i class="ion-information-circled"></i>
+                This app does not cover U8 and U6 in Region 491.</p>
+                <p>All other divisions in the regions below have schedules.</p>
             </div>
 
             <div class="card card-block">

@@ -62,6 +62,7 @@ var plugins = {
 
     copy: new CopyWebpackPlugin([
         { from: 'src/img', to: 'img' },
+        { from: 'res/img', to: 'img' },
         { from: 'test/data-2016-02-08.json', to: 'data.json' }
     ]),
 

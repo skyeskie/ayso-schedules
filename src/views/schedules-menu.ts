@@ -10,7 +10,7 @@ import {Inject} from 'angular2/core';
     template: `
     <title-bar></title-bar>
     <article class="main-buttons container">
-        <img class="img-fluid center-block m-b-2" src="img/HomeText.png" alt="AYSO Kansas" />
+        <img class="img-fluid center-block m-b-2" src="img/AYSOKansas.svg" alt="AYSO Kansas" />
         <h4 class="text-primary text-xs-center m-b-2">
             <b>Schedules</b> <small *ngIf="regionNum" class="text-muted">Region {{regionNum}}</small>
         </h4>

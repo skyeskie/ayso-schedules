@@ -12,7 +12,7 @@ import {Region} from '../models/region';
     <title-bar></title-bar>
     <article class="list-group text-xs-center">
         <!--<div class="center-block m-y-1" style="width: 50%">-->
-            <!--<img class="img-fluid" src="img/HomeText.png" alt="AYSO Kansas" />-->
+            <!--<img class="img-fluid" src="img/AYSOKansas.svg" alt="AYSO Kansas" />-->
         <!--</div>-->
         <div class="region list-group-item" *ngFor="#region of regions">
             <div class="list-group-item-heading container font-weight-bold">

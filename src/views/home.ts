@@ -8,8 +8,9 @@ import RegionListView from './region-list';
 @Component({
     directives: [RouterLink],
     template: `
-    <img class="img-fluid center-block" src="./img/MainLogo.png" alt="AYSO Kansas" />
     <article class="container main-buttons">
+        <img class="center-block" style="width: 80%;" src="./img/KansasSoccerBall.svg" alt="AYSO Kansas" />
+        <img class="img-fluid m-b-1" src="./img/AYSOKansas.svg" alt="AYSO Kansas" />
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/SchedulesMenu']">
             <i class="ion-calendar"></i> Schedules</button>
         <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/RegionList']">

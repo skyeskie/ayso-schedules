@@ -67,11 +67,20 @@ module.exports = {
             { test: /\.ts$/, loader: 'ts-loader', query: cfg.tsLoaderQuery },
             { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('src/app.html'), root('node_modules')] },
             { test: /\.png$/, loader: 'file' },
+            { test: /\.svg$/, loades: ['file-loader', 'svgo-loader?useConfig=svgoConfig' ]},
 
             //Bootstrap
             { test: /\.css$/, loader: ExtractTextPlugin.extract([ 'css', 'postcss' ]) },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract([ 'css', 'postcss', 'sass' ]) },
             { test: /\.(woff2?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file?name=./fonts/[name]-[hash:6].[ext]' }
+        ]
+    },
+
+    svgoConfig: {
+        plugins: [
+            { removeTitle: true },
+            { convertColors: { shorthex: true }},
+            { convertPathData: false }
         ]
     },
 
