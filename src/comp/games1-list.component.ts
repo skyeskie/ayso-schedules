@@ -1,4 +1,4 @@
-import {Component, Input, Inject, OnInit, Optional} from 'angular2/core';
+import {Component, Input, Inject, OnChanges, Optional} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {Router, RouterLink} from 'angular2/router';
 
@@ -6,6 +6,7 @@ import Game from '../models/game';
 import {GamesDAO} from '../dao/games.interface';
 import {VsAtGameFormatPipe} from '../pipes/vs-at-game.pipe';
 import {DateMedPipe} from '../pipes/date-med.pipe';
+import {ClassLogger, Logger} from '../service/log.decorator';
 
 @Component({
     selector: 'single-team-game-list',
@@ -32,7 +33,9 @@ import {DateMedPipe} from '../pipes/date-med.pipe';
     </div>
     `,
 })
-export default class SingleTeamGameListComponent implements OnInit {
+export default class SingleTeamGameListComponent implements OnChanges {
+    @ClassLogger(Logger.Level.DEBUG) log:Logger;
+
     @Optional()
     @Input() games: Game[];
 
@@ -43,10 +46,18 @@ export default class SingleTeamGameListComponent implements OnInit {
         private dao: GamesDAO
     ) {}
 
-    ngOnInit() {
+    ngOnChanges() {
         if(typeof this.games === 'undefined') {
-            this.dao.findForTeam(this.team).then((games:Game[]) => this.games);
+            this.log.debug('Loading games from DAO');
+            this.loadGames();
+        } else {
+            this.log.debug('Sorting games');
+            this.games.sort(Game.compare);
         }
+    }
+
+    loadGames() {
+        this.dao.findForTeam(this.team).then((games:Game[]) => this.games = games);
     }
 
     hasResults() {

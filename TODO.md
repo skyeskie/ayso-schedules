@@ -67,11 +67,11 @@ View
 
 - [x] Handle no coach (TBD)
 - [x] ~~Show field better; perhaps in config?~~~~
-- [ ] Hide region if default?
+- [ ] Hide region if default in lists
 
 Bugs:
 
 - [ ] If URL to /init already has GET, keep those
 - [x] Region filter doesn't work for /teams
 - [x] Field/directions don't work for /game/:id
-- [ ] One team game list needs sort by date/time
+- [x] One team game list needs sort by date/time
