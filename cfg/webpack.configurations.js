@@ -41,6 +41,8 @@ var plugins = {
         '__es6promise': 'es6-promise',
         '__es6shim': 'es6-shim',
         //
+        'svgPanZoom': 'svg-pan-zoom',
+
         '__zoneMicro': 'zone.js/lib/browser/zone-microtask.js',
         '__zoneStack': 'zone.js/lib/browser/long-stack-trace-zone.js',
         '__zoneJasmine': 'zone.js/dist/jasmine-patch.js',
@@ -55,6 +57,7 @@ var plugins = {
         '__extends': 'ts-helper/extends',
         '__param': 'ts-helper/param',
         'jQuery': 'jquery',
+        'svgPanZoom': 'svg-pan-zoom',
         'Zone.longStackTraceZone': 'zone.js/lib/zones/long-stack-trace.js',
         'Error.stackTraceLimit': Infinity
         //'Reflect': 'es7-reflect-metadata/dist/browser'

@@ -30,8 +30,8 @@ TODO:
 - [x] Better loading handle
 - [x] Have single configuration class
 - [ ] re-use angular isBlank() ?
-- [ ] Make sure service calls are in ngOnInit instead of in the constructor
-- [ ] Navigate UP (or back?) instead of just to Home
+- [x] Make sure service calls are in ngOnInit instead of in the constructor
+- [x] Navigate ~~UP~~ (or back?) instead of just to Home
 - [ ] Make favorites use different list view (header week/date; time in row)
 
 Backend
