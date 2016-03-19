@@ -1,6 +1,5 @@
 import {PipeTransform, Pipe} from 'angular2/core';
 import {StringJoiner} from 'angular2/src/facade/lang';
-
 import {ClassLogger, Logger} from '../service/log.decorator';
 
 //

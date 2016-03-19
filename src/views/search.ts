@@ -1,16 +1,12 @@
 import {Component, OnInit, Inject} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {Router} from 'angular2/router';
-
-import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
-
 import {CFG} from '../app/cfg';
-
 import {checkPresent} from '../service/util';
 import {TitleBarComponent} from '../comp/title-bar.component';
-import {SettingsDAO, Region} from '../dao/settings.interface';
+import {Region} from '../dao/settings.interface';
 import {WeekCacheInterface} from '../dao/week-cache.interface';
-import {Division, AgeGroup, Gender} from '../models/division';
+import {AgeGroup, Gender} from '../models/division';
 
 @Component({
     directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, TitleBarComponent],

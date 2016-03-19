@@ -1,11 +1,6 @@
-import {Component, OnInit, Inject, Optional} from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
-
-import GamesDAO, { Game, Division } from '../games.interface';
-import Region from '../../models/region';
+import GamesDAO, {Game} from '../games.interface';
 import {checkPresent} from '../../service/util';
-import {IBackend} from '../backend.interface';
-import {ClassLogger, Logger, Level} from '../../service/log.decorator';
+import {ClassLogger, Logger} from '../../service/log.decorator';
 
 class InMemoryGamesService implements GamesDAO {
     @ClassLogger() public log:Logger;

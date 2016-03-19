@@ -1,9 +1,7 @@
-import {Injectable} from 'angular2/core';
+import {OpaqueToken} from 'angular2/core';
 import Game from '../models/game';
 import Division from '../models/division';
 import Gender from '../models/gender';
-import {OpaqueToken} from 'angular2/core';
-import {AgeGroup} from '../models/ageGroup';
 
 interface GamesDAO {
     /**

@@ -1,10 +1,8 @@
 import {IBackend} from './../../dao/backend.interface';
 import {SettingsDataType} from '../../dao/settings.interface';
-
 import Game from '../../models/game';
-import {Division, Gender, AgeGroup} from '../../models/division';
+import {Division} from '../../models/division';
 import Team from '../../models/team';
-import {Region} from '../../models/region';
 import {CFG} from '../../app/cfg';
 
 CFG.init();

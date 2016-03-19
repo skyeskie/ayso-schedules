@@ -1,15 +1,12 @@
 import {Injectable, Inject} from 'angular2/core';
 import {Router} from 'angular2/router';
-
 import {GamesDAO, Game} from './../dao/games.interface';
 import {SettingsDAO, SettingsDataType} from './../dao/settings.interface';
 import {TeamsDAO, Team} from './../dao/teams.interface';
 import {WeekCacheInterface} from './../dao/week-cache.interface';
 import {IBackend} from './../dao/backend.interface';
-
 import {ILocalStorage, LS_KEYS} from './local-storage.interface';
 import {ClassLogger, Logger} from './log.decorator';
-
 import {CFG} from '../app/cfg';
 
 /**

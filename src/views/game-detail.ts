@@ -1,11 +1,9 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, Inject} from 'angular2/core';
 import {RouterLink, RouteParams} from 'angular2/router';
-
 import Game from '../models/game';
 import Team from '../models/team';
 import GamesDAO from '../dao/games.interface';
 import {TeamsDAO} from '../dao/teams.interface';
-import {Inject} from 'angular2/core';
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {NameSwitchPipe} from '../pipes/name-switch.pipe';
 import {NgIf} from 'angular2/common';

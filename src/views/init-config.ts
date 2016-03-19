@@ -1,10 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
-import {
-    NgFor, FORM_DIRECTIVES,
-    ControlGroup, FormBuilder, Control, Validators,
-} from 'angular2/common';
-
+import {NgFor, FORM_DIRECTIVES, ControlGroup, FormBuilder, Control, Validators} from 'angular2/common';
 import {DataControlService} from '../service/data-control.service';
 import {Region} from '../models/region';
 

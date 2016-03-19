@@ -1,6 +1,4 @@
-import {Pipe} from 'angular2/core';
-import {PipeTransform} from 'angular2/core';
-import Game from '../models/game';
+import {Pipe, PipeTransform} from 'angular2/core';
 import {ClassLogger, Logger} from '../service/log.decorator';
 
 /**

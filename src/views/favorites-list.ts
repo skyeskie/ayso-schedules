@@ -1,15 +1,11 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, Inject} from 'angular2/core';
 import SettingsDAO from '../dao/settings.interface';
 import GamesDAO from '../dao/games.interface';
 import Game from '../models/game';
-import {NgFor} from 'angular2/common';
+import {NgFor, NgIf} from 'angular2/common';
 import {RouterLink} from 'angular2/router';
-import {NgIf} from 'angular2/common';
-import {Inject} from 'angular2/core';
 import {TitleBarComponent} from '../comp/title-bar.component';
-import {OnChanges} from 'angular2/core';
 import TwoTeamsGamesListComponent from '../comp/games2-list.component';
-import Team from '../models/team';
 
 @Component({
     directives: [NgFor, NgIf, RouterLink, TitleBarComponent, TwoTeamsGamesListComponent],

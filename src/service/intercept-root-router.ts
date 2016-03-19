@@ -1,15 +1,10 @@
 /* tslint:disable:no-any */
 
 import {CONST_EXPR} from 'angular2/src/facade/lang';
-import {Provider, ApplicationRef, Inject, Type} from 'angular2/core';
+import {Provider, ApplicationRef} from 'angular2/core';
 import {RootRouter} from 'angular2/src/router/router';
-import {
-    Router, RouteRegistry, Instruction,
-    Location, ROUTER_PRIMARY_COMPONENT,
-} from 'angular2/router';
-
+import {Router, RouteRegistry, Location, ROUTER_PRIMARY_COMPONENT} from 'angular2/router';
 import {SettingsDAO} from '../dao/settings.interface';
-import {DataControlService} from './data-control.service';
 
 //Constructor requires super() to be called ahead of object-level instantiation
 //Need settings and (appIsConfigured) to be present before super(), so moving to module scope

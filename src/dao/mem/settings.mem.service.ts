@@ -1,8 +1,6 @@
-import {Inject, Injectable, Optional} from 'angular2/core';
-
+import {Inject, Injectable} from 'angular2/core';
 import {TeamsDAO, Team} from '../teams.interface';
 import SettingsDAO, {Region, SettingsDataType} from '../settings.interface';
-import {IBackend} from '../backend.interface';
 
 @Injectable()
 class InMemorySettingsService implements SettingsDAO {

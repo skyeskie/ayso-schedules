@@ -1,16 +1,13 @@
-import {Inject, Injectable, Optional} from 'angular2/core';
-
-import {IBackend} from '../backend.interface';
-import WeekCacheInterface from '../week-cache.interface';
-import {calculateCurrentWeek} from '../week-cache.interface';
-import {ClassLogger, Logger, Level} from '../../service/log.decorator';
+import {Inject, Injectable} from 'angular2/core';
+import WeekCacheInterface, {calculateCurrentWeek} from '../week-cache.interface';
+import {ClassLogger, Logger} from '../../service/log.decorator';
 import {ILocalStorage, LS_KEYS} from './../../service/local-storage.interface';
 
 @Injectable()
 class LocalStorageWeeksService implements WeekCacheInterface {
     @ClassLogger() public log: Logger;
 
-    public initialized:boolean;
+    public initialized: boolean;
     private initializePromise: Promise<any> = null;
 
     private weekStarts:Date[] = [];
@@ -58,7 +55,7 @@ class LocalStorageWeeksService implements WeekCacheInterface {
         let savedString = this.client.getItem(LS_KEYS.WEEKS_CACHE);
         if(typeof savedString === 'string' && savedString.length > 0) {
             let timestamps = savedString.split(',');
-            this.weekStarts = timestamps.map((timestamp:string) => Number.parseInt(timestamp, 10))
+            this.weekStarts = timestamps.map((timestamp:string) => parseInt(timestamp, 10))
                                         .map((timestamp:number) => new Date(timestamp));
             this.max = this.weekStarts.length;
 

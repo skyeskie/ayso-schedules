@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 612 1008" style="enable-background:new 0 0 612 1008;" xml:space="preserve">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 612 1008" style="enable-background:new 0 0 612 1008;" xml:space="preserve">
 <style type="text/css">
 <![CDATA[
 	.st0{fill:none;stroke:#939598;}
@@ -24,7 +24,7 @@
 <g id="Roads">
 	<line class="st10" x1="24.4" y1="46.3" x2="1000.5" y2="46.3"/>
 	<path class="st8" d="M687.4,46.3v158l123,138l101-90.6c5.7-36-2.6-105.7-15-115.4c-8-23.7-8-23.7-8-53v-37"/>
-	
+
 		<rect x="678.7" y="208.7" transform="matrix(0.7488 -0.6628 0.6628 0.7488 -20.1096 550.9215)" class="st1" width="76" height="186.5"/>
 	<rect x="593.5" y="81.6" class="st1" width="87.9" height="66"/>
 	<line class="st2" x1="566.5" y1="46.3" x2="566.5" y2="606"/>

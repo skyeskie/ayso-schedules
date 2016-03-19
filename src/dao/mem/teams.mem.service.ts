@@ -1,9 +1,6 @@
-import TeamsDAO, {Team, Division} from '../teams.interface';
-import {Gender} from '../../models/gender';
+import TeamsDAO, {Team} from '../teams.interface';
 import {checkPresent} from '../../service/util';
-import {Inject, Optional} from 'angular2/core';
-import {IBackend} from '../backend.interface';
-import {ClassLogger, Logger, Level} from '../../service/log.decorator';
+import {ClassLogger, Logger} from '../../service/log.decorator';
 
 class InMemoryTeamsService implements TeamsDAO {
     @ClassLogger() public log: Logger;

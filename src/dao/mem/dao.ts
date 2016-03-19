@@ -1,5 +1,4 @@
 import {Provider, provide} from 'angular2/core';
-
 import {InMemoryTeamsService, TeamsDAO} from './teams.mem.service';
 import {InMemoryGamesService, GamesDAO} from './games.mem.service';
 import {InMemorySettingsService, SettingsDAO} from './settings.mem.service';

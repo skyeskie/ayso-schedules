@@ -1,7 +1,6 @@
 import {Component, Input, Inject, OnChanges, Optional} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {Router, RouterLink} from 'angular2/router';
-
+import {RouterLink} from 'angular2/router';
 import Game from '../models/game';
 import {GamesDAO} from '../dao/games.interface';
 import {VsAtGameFormatPipe} from '../pipes/vs-at-game.pipe';

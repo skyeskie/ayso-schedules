@@ -1,5 +1,4 @@
 import {Provider, provide} from 'angular2/core';
-
 import {LocalStorageTeamsService, TeamsDAO} from './teams.ls.service';
 import {LocalStorageGamesService, GamesDAO} from './games.ls.service';
 import {LocalStorageSettingsService, SettingsDAO} from './settings.ls.service';

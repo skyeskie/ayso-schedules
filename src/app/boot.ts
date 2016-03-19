@@ -2,8 +2,14 @@ import {FORM_PROVIDERS} from 'angular2/common';
 import {enableProdMode, provide} from 'angular2/core';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS, Router} from 'angular2/router';
+import {ROUTER_PROVIDERS, HashLocationStrategy, LocationStrategy} from 'angular2/router';
 import {ANGULAR2_GOOGLE_MAPS_PROVIDERS} from 'angular2-google-maps/core';
+import {DataControlService} from '../service/data-control.service';
+import {INTERCEPT_ROUTER_PROVIDER} from '../service/intercept-root-router';
+import AppComponent from './app.component';
+import {IBackend} from '../dao/backend.interface';
+import {HttpInitService} from '../service/backend/http.backend';
+import {LOCAL_STORAGE_DAO_PROVIDERS} from '../dao/ls/dao';
 
 const ENV_PROVIDERS = [];
 
@@ -14,21 +20,6 @@ if ('production' === process.env.ENV) {
 }
 
 //Begin app component imports
-import {InMemoryGamesService, GamesDAO} from '../dao/mem/games.mem.service';
-import {InMemoryTeamsService, TeamsDAO} from '../dao/mem/teams.mem.service';
-import {InMemoryWeeksService, WeekCacheInterface} from '../dao/mem/weeks.mem.service';
-import {SettingsDAO} from '../dao/mem/settings.mem.service';
-import {DataControlService} from '../service/data-control.service';
-import {INTERCEPT_ROUTER_PROVIDER} from '../service/intercept-root-router';
-
-import AppComponent from './app.component';
-import {IBackend} from '../dao/backend.interface';
-import {HttpInitService} from '../service/backend/http.backend';
-import {StaticInitializationService} from '../service/backend/static.backend';
-import {Http} from 'angular2/http';
-import {LocalStorageSettingsService} from '../dao/ls/settings.ls.service';
-import {HashLocationStrategy, LocationStrategy} from 'angular2/router';
-import {LOCAL_STORAGE_DAO_PROVIDERS} from '../dao/ls/dao';
 
 let hasInit = false;
 function initApp() {

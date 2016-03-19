@@ -1,11 +1,9 @@
 import {Component, Inject, OnInit} from 'angular2/core';
 import {NgIf} from 'angular2/common';
 import {Router, RouteParams} from 'angular2/router';
-
 import {GamesDAO, Game} from '../dao/games.interface';
 import {WeekCacheInterface} from '../dao/week-cache.interface';
 import {SettingsDAO} from '../dao/settings.interface';
-
 import WeekBarComponent from '../comp/week-bar.component';
 import TwoTeamsGamesListComponent from '../comp/games2-list.component';
 import {TitleBarComponent} from '../comp/title-bar.component';

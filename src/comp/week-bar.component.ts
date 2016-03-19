@@ -1,11 +1,7 @@
-import {
-    Component, Input, Inject, Injectable,
-    EventEmitter, OnInit, Output,
-} from 'angular2/core';
+import {Component, Input, Inject, Injectable, EventEmitter, OnInit, Output} from 'angular2/core';
 import {NgIf} from 'angular2/common';
-
 import WeekCacheInterface from '../dao/week-cache.interface';
-import {ClassLogger, Logger, Level} from '../service/log.decorator';
+import {ClassLogger, Logger} from '../service/log.decorator';
 
 const ONE = 1;
 

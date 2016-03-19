@@ -1,15 +1,10 @@
-import {Component, OnInit, Inject, ViewChild} from 'angular2/core';
-import {Router, RouteParams, RouterLink} from 'angular2/router';
+import {Component, OnInit, Inject} from 'angular2/core';
+import {Router, RouterLink} from 'angular2/router';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, FormBuilder, ControlGroup} from 'angular2/common';
-import {ChangeDetector} from 'angular2/src/core/change_detection/interfaces';
-import {ButtonRadio} from 'ng2-bootstrap/ng2-bootstrap';
-
 import {TeamsDAO, Team, Region} from '../dao/teams.interface';
-
 import {CFG} from '../app/cfg';
 import {AgeGroup} from '../models/ageGroup';
 import {Gender} from '../models/gender';
-
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {NameSwitchPipe} from '../pipes/name-switch.pipe';
 

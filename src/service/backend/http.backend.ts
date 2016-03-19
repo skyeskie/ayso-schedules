@@ -1,23 +1,15 @@
-import {Http, Response} from 'angular2/http';
+import {Http, Response, RequestOptions, URLSearchParams} from 'angular2/http';
 import {Inject, Injectable} from 'angular2/core';
 import {Observable} from 'rxjs/Observable';
-
-import {RequestOptions, URLSearchParams} from 'angular2/http';
-
 import {ReplaySubject} from 'rxjs/Rx';
-import {Subscriber} from 'rxjs/Subscriber';
-
 import {Division, AgeGroup, Gender} from '../../models/division';
 import Game from '../../models/game';
 import Region from '../../models/region';
 import Team from '../../models/team';
-
 import {ILocalStorage} from '../local-storage.interface';
 import {IBackend} from './../../dao/backend.interface';
 import {SettingsDataType} from '../../dao/settings.interface';
-import {GamesDAO} from '../../dao/games.interface';
-
-import {ClassLogger, Logger, Level} from '../log.decorator';
+import {ClassLogger, Logger} from '../log.decorator';
 import {CFG} from '../../app/cfg';
 
 //TODO: Make server types match so can remove

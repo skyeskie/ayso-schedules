@@ -1,10 +1,8 @@
 import {NgIf} from 'angular2/common';
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit, AfterViewInit} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
-
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {Region} from '../models/region';
-import {AfterViewInit} from 'angular2/core';
 
 @Component({
     directives: [TitleBarComponent, NgIf],

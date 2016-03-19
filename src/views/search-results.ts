@@ -1,14 +1,8 @@
 import {Component, OnInit, Inject} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 import {NgIf} from 'angular2/common';
-
-import {Region} from '../models/region';
 import Game from '../models/game';
-import Division from '../models/division';
 import GamesDAO from '../dao/games.interface';
-import {AgeGroup} from '../models/ageGroup';
-import {Gender} from '../models/gender';
-
 import WeekBarComponent from '../comp/week-bar.component';
 import TwoTeamsGamesListComponent from '../comp/games2-list.component';
 import {TitleBarComponent} from '../comp/title-bar.component';

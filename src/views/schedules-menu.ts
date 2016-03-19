@@ -1,9 +1,8 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, Inject} from 'angular2/core';
 import {RouterLink} from 'angular2/router';
 import {TitleBarComponent} from '../comp/title-bar.component';
 import {NgIf} from 'angular2/common';
 import {SettingsDAO} from '../dao/settings.interface';
-import {Inject} from 'angular2/core';
 
 @Component({
     directives: [RouterLink, TitleBarComponent, NgIf],

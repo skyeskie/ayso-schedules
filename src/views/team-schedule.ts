@@ -1,7 +1,6 @@
 import {Component, OnInit, Inject} from 'angular2/core';
 import {NgIf} from 'angular2/common';
 import {Router, RouteParams} from 'angular2/router';
-
 import SingleTeamGameListComponent from '../comp/games1-list.component';
 import TitleBarComponent from '../comp/title-bar.component';
 import {GamesDAO, Game} from '../dao/games.interface';

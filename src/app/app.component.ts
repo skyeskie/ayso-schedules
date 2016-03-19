@@ -1,4 +1,4 @@
-import {provide, Component} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import AYSO_APP_ROUTES from './routes';
 import {ClassLogger, Logger} from '../service/log.decorator';

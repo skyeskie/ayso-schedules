@@ -1,11 +1,6 @@
-import {Component, OnInit, Inject, Optional} from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
-
-import GamesDAO, { Game, Division } from '../games.interface';
-import Region from '../../models/region';
-import {checkPresent} from '../../service/util';
-import {IBackend} from '../backend.interface';
-import {ClassLogger, Logger, Level} from '../../service/log.decorator';
+import {Inject} from 'angular2/core';
+import GamesDAO, {Game, Division} from '../games.interface';
+import {ClassLogger, Logger} from '../../service/log.decorator';
 import {ILocalStorage, LS_KEYS} from './../../service/local-storage.interface';
 import {InMemoryGamesService} from '../mem/games.mem.service';
 
