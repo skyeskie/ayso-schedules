@@ -43,8 +43,8 @@ var plugins = {
         //
         'svgPanZoom': 'svg-pan-zoom',
 
-        '__zoneMicro': 'zone.js/lib/browser/zone-microtask.js',
-        '__zoneStack': 'zone.js/lib/browser/long-stack-trace-zone.js',
+        '__zoneMicro': 'zone.js/dist/browser/zone-microtask.js',
+        '__zoneStack': 'zone.js/dist/browser/long-stack-trace-zone.js',
         '__zoneJasmine': 'zone.js/dist/jasmine-patch.js',
         'ng2testing':'angular2/testing',
         'ng2browser': 'angular2/platform/testing/browser'
@@ -58,7 +58,7 @@ var plugins = {
         '__param': 'ts-helper/param',
         'jQuery': 'jquery',
         'svgPanZoom': 'svg-pan-zoom',
-        'Zone.longStackTraceZone': 'zone.js/lib/zones/long-stack-trace.js',
+        'Zone.longStackTraceZone': 'zone.js/dist/zones/long-stack-trace.js',
         'Error.stackTraceLimit': Infinity
         //'Reflect': 'es7-reflect-metadata/dist/browser'
     }),
@@ -76,8 +76,8 @@ var plugins = {
     ordering: new webpack.optimize.OccurenceOrderPlugin(true),
 
     commons:  new webpack.optimize.CommonsChunkPlugin({
-        names: 'lib',
-        filename: 'lib.wp.js',
+        names: 'common',
+        filename: 'common.wp.js',
         minChunks: function(module, count) {
             "use strict";
             return module.resource && module.resource.indexOf(app_dir) === -1;
@@ -178,14 +178,12 @@ module.exports = function(env, target) {
     console.log('Running webpack for ' + env + ' and ' + target);
 
     var definePlugin = new webpack.DefinePlugin({
-        'process.env': {
             'ENV': JSON.stringify(metadata.ENV),
             'NODE_ENV': JSON.stringify(metadata.ENV),
             'TARGET': JSON.stringify(target),
             'BASE_URL': JSON.stringify(cfg[target].baseUrl),
             'CORDOVA': JSON.stringify(cfg[target].includeCordova)
-        }
-    });
+        });
 
     metadata.baseUrl = cfg[target].baseUrl;
     metadata.includeCordova = cfg[target].includeCordova;

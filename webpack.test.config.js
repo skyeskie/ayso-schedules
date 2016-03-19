@@ -84,8 +84,8 @@ module.exports = {
             '__es6promise': 'es6-promise',
             '__es6shim': 'es6-shim',
 //
-'__zoneMicro': 'zone.js/lib/browser/zone-microtask.js',
-'__zoneStack': 'zone.js/lib/browser/long-stack-trace-zone.js',
+'__zoneMicro': 'zone.js/dist/browser/zone-microtask.js',
+'__zoneStack': 'zone.js/dist/browser/long-stack-trace-zone.js',
             '__zoneJasmine': 'zone.js/dist/jasmine-patch.js',
             'ng2testing':'angular2/testing',
             'ng2browser': 'angular2/platform/testing/browser'

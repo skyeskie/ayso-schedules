@@ -94,7 +94,7 @@ function gamesInterfaceSpec(impl: any) {
             }));
 
             it('returns all games with null filters', injectAsync([impl], (dao:GamesDAO) => {
-                return init(dao).then(() => Promise.all([
+                return init(dao).then(() => Promise.all<number>([
                     dao.findGames().then((games:Game[]) => games.length),
                     dao.findGames(null, null, null, null).then((games:Game[]) => games.length),
                     mockData.getGames().then((games:Game[]) => games.length),
@@ -134,7 +134,7 @@ function gamesInterfaceSpec(impl: any) {
             }));
 
             it('returns games for 3 teams', injectAsync([impl], (dao:GamesDAO) => {
-                return init(dao).then(() => dao.findForTeams(['A','B','D'])).then((games) => {
+                return init(dao).then(() => dao.findForTeams(['A', 'B', 'D'])).then((games) => {
                     expect(games).toBeArrayOfSize(6);
                     games.forEach(game => {
                         expect(game.hasTeam('A')

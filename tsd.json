@@ -19,6 +19,18 @@
     },
     "jasmine-expect/jasmine-expect.d.ts": {
       "commit": "2736167fdafc8c20e24e11ea1fb574d3e79f2832"
+    },
+    "svg-pan-zoom/svg-pan-zoom.d.ts": {
+      "commit": "ce8ae773688d2244ba11fdf3378fcd68f773e1c4"
+    },
+    "es6-shim/es6-shim.d.ts": {
+      "commit": "ce8ae773688d2244ba11fdf3378fcd68f773e1c4"
+    },
+    "zone.js/zone.js.d.ts": {
+      "commit": "ce8ae773688d2244ba11fdf3378fcd68f773e1c4"
+    },
+    "node/node.d.ts": {
+      "commit": "ce8ae773688d2244ba11fdf3378fcd68f773e1c4"
     }
   }
 }

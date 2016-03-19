@@ -39,10 +39,7 @@ module.exports = {
     entry: {
         main: [
             //Libraries. Commons chunk will export to lib
-            'es6-shim',
-            'es6-promise',
-            'zone.js/lib/browser/zone-microtask',
-            'es7-reflect-metadata/dist/browser',
+            './src/app/lib.ts',
             'bootstrap-loader',
             //Main app
             './src/app/boot.ts'
@@ -64,7 +61,7 @@ module.exports = {
             { test: /\.ts$/, loader: 'tslint-loader', exclude: [/node_modules/, /typings/] }
         ],
         loaders: [
-            { test: /\.ts$/, loader: 'ts-loader', query: cfg.tsLoaderQuery },
+            { test: /\.ts$/, loader: 'ts-loader', query: cfg.tsLoaderQuery, exclude: [ root('node_modules')] },
             { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('src/app.html'), root('node_modules')] },
             { test: /\.png$/, loader: 'file' },
             { test: /\.svg$/, loades: ['file-loader', 'svgo-loader?useConfig=svgoConfig' ]},
@@ -73,6 +70,14 @@ module.exports = {
             { test: /\.css$/, loader: ExtractTextPlugin.extract([ 'css', 'postcss' ]) },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract([ 'css', 'postcss', 'sass' ]) },
             { test: /\.(woff2?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file?name=./fonts/[name]-[hash:6].[ext]' }
+        ],
+        // A RegExp or an array of RegExps. Don’t parse files matching.
+        // With noParse you can exclude big libraries from parsing, but this can break stuff.
+        //
+        // See: http://webpack.github.io/docs/configuration.html#module-noparse
+        noParse: [
+            root('zone.js', 'dist'),
+            root('angular2', 'bundles')
         ]
     },
 
