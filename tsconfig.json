@@ -10,14 +10,25 @@
     "noImplicitAny": false,
     "noEmitHelpers": false,
     "outDir": "./build/ts2js/",
-    "listFiles": true,
-    "isolatedModules": true
+    "listFiles": true
   },
   "exclude": [
     "node_modules",
-    "grunt",
-    "hooks",
-    "lib",
-    "build"
-  ]
+    "typings/main.d.ts",
+    "typings/main"
+  ],
+  "filesGlob": [
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "!./node_modules/**/*.ts",
+    "typings/misc-typings.d.ts",
+    "typings/browser.d.ts"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "resolveGlobs": true,
+    "forkChecker": true
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": { "rewriteTsconfig": false }
 }

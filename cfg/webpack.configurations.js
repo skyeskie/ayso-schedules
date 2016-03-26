@@ -2,8 +2,10 @@
 
 var path = require('path');
 var webpack = require('webpack');
+var zlib = require('zlib');
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
 var DefinePlugin  = require('webpack/lib/DefinePlugin');
+var CompressionPlugin = require('compression-webpack-plugin');
 var CopyWebpackPlugin  = require('copy-webpack-plugin');
 var CordovaPlugin = require('webpack-cordova-plugin');
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
@@ -106,6 +108,16 @@ var plugins = {
         mangle: false,
         compress : { screw_ie8 : true},
         comments: false
+    }),
+
+    compress: new CompressionPlugin({
+        asset: "[path].gz[query]",
+        algorithm: function(buffer, callback) {
+            'use strict';
+            return zlib.gzip(buffer, {level: 9}, callback);
+        },
+        regExp: /\.css$|\.html$|\.js$|\.map$/,
+        threshold: 2 * 1024
     })
 };
 

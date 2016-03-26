@@ -61,8 +61,8 @@ module.exports = {
             { test: /\.ts$/, loader: 'tslint-loader', exclude: [/node_modules/, /typings/] }
         ],
         loaders: [
-            { test: /\.ts$/, loader: 'ts-loader', query: cfg.tsLoaderQuery, exclude: [ root('node_modules')] },
-            { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('src/app.html'), root('node_modules')] },
+            { test: /\.ts$/, loader: 'ts-loader', query: cfg.tsLoaderQuery },
+            { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('src/app.html') ] },
             { test: /\.png$/, loader: 'file' },
             { test: /\.svg$/, loades: ['file-loader', 'svgo-loader?useConfig=svgoConfig' ]},
 
@@ -98,13 +98,9 @@ module.exports = {
 
     tslint: {
         emitErrors: false,
-        failOnHint: false
+        failOnHint: false,
+        resourcePath: 'src'
     },
-
-    noParse: [
-        /zone\.js\/dist\/.+/,
-        /angular2\/bundles\/.+/
-    ],
 
     devServer: {
         port: cfg.metadata.port,

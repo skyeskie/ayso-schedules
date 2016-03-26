@@ -1,18 +1,22 @@
-/**
- * Defines library files for creating a library bundle
- */
+/* tslint:disable:no-require-imports */
 
-/* tslint:disable:no-string-literal no-require-imports */
+// Angular 2
+import 'angular2/platform/browser';
+import 'angular2/core';
+import 'angular2/http';
+import 'angular2/router';
 
-// Polyfills
-import 'es6-shim';
-import 'es6-promise';
-// (these modules are what are in 'angular2/bundles/angular2-polyfills' so don't use that here)
+// RxJS
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+
+require('svg-pan-zoom');
 
 if ('production' !== ENV) {
     // Reflect Polyfill
     require('es7-reflect-metadata/dist/browser');
     Error.stackTraceLimit = Infinity;
+    require('zone.js/dist/long-stack-trace-zone');
 }
 
 if ('production' === ENV) {

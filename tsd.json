@@ -31,6 +31,18 @@
     },
     "node/node.d.ts": {
       "commit": "ce8ae773688d2244ba11fdf3378fcd68f773e1c4"
+    },
+    "core-js/core-js.d.ts": {
+      "commit": "a44529fcb1e1cdc0355e71c42a6048de99b57c34"
+    },
+    "webpack/webpack.d.ts": {
+      "commit": "a44529fcb1e1cdc0355e71c42a6048de99b57c34"
+    },
+    "uglify-js/uglify-js.d.ts": {
+      "commit": "a44529fcb1e1cdc0355e71c42a6048de99b57c34"
+    },
+    "source-map/source-map.d.ts": {
+      "commit": "a44529fcb1e1cdc0355e71c42a6048de99b57c34"
     }
   }
 }
