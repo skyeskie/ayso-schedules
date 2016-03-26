@@ -19,6 +19,9 @@
     },
     "jasmine-expect/jasmine-expect.d.ts": {
       "commit": "2736167fdafc8c20e24e11ea1fb574d3e79f2832"
+    },
+    "svg-pan-zoom/svg-pan-zoom.d.ts": {
+      "commit": "a44529fcb1e1cdc0355e71c42a6048de99b57c34"
     }
   }
 }
