@@ -19,7 +19,7 @@ Gender.configure('C', 'Coed');
 Region.configure(1, 49, 'Stryker', './img/Fields49.svg', 37.737437, -97.213361);
 Region.configure(2, 105, 'Southview', './img/Fields105.svg', 37.611328, -97.367567);
 Region.configure(4, 208, 'West Wichita', './img/Fields208.svg', 37.842481, -97.372607);
-Region.configure(5, 253, 'Valley Center', './img/Fields253.svg', 37.842481, -97.372607);
+Region.configure(5, 253, 'Valley Center', './img/Fields253.svg', 37.843271, -97.365568);
 Region.configure(6, 491, 'Clearwater', './img/Fields491.svg', 37.503879, -97.490616);
 
 let CFG = {

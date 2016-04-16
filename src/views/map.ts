@@ -11,7 +11,11 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     template: `
     <title-bar></title-bar>
     <div class="container" *ngIf="region">
-        <h4 class="m-a-1 text-xs-center">Region {{region.number}} - {{region.name}}</h4>
+        <h4 class="m-a-1 text-xs-center text-primary">Region {{region.number}} - {{region.name}}</h4>
+        <a href="{{geoLink}}" type="button" class="btn btn-secondary m-b-1 center-block">
+            <i class="ion-navigate"></i>
+            Launch in Map App
+        </a>
         <sebm-google-map [latitude]="region.lat" [longitude]="region.lon" [zoom]="13">
             <sebm-google-map-marker
                 [latitude]="region.lat" [longitude]="region.lon" [title]="markerName">
@@ -21,7 +25,11 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     `,
 })
 export class MapView implements OnInit {
+    public static GEO_PREFIX: String = 'geo:';
+    public static COMMA: String = ',';
+
     public region: Region;
+    public geoLink: String;
 
     constructor(
         private params:RouteParams
@@ -33,5 +41,10 @@ export class MapView implements OnInit {
         this.region = Region.fromNumber(
             parseInt(this.params.get('region'), 10)
         );
+
+        this.geoLink = MapView.GEO_PREFIX
+            + this.region.lat.toFixed(6)
+            + MapView.COMMA
+            + this.region.lon.toFixed(6);
     }
 }
