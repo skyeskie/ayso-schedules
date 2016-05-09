@@ -1,0 +1,12 @@
+{
+  "android": {
+    "debug": {
+      "keystore": "../aysoks2-key.keystore",
+      "alias": "ayso-ks"
+    },
+    "release": {
+      "keystore": "../aysoks2-key.keystore",
+      "alias": "ayso-ks"
+    }
+  }
+}

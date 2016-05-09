@@ -5,6 +5,7 @@ import {Provider, ApplicationRef} from 'angular2/core';
 import {RootRouter} from 'angular2/src/router/router';
 import {Router, RouteRegistry, Location, ROUTER_PRIMARY_COMPONENT} from 'angular2/router';
 import {SettingsDAO} from '../dao/settings.interface';
+import {ClassLogger, Logger} from './log.decorator';
 
 //Constructor requires super() to be called ahead of object-level instantiation
 //Need settings and (appIsConfigured) to be present before super(), so moving to module scope
@@ -19,6 +20,7 @@ function executeIntercept(url:string):boolean {
 }
 
 class InterceptRootRouter extends RootRouter {
+    @ClassLogger(Logger.Level.DEBUG) log: Logger;
     public navigateToInit(url?:string) {
         let instruction = this.generate(['/Init', {url: url}]);
         return this.navigateByInstruction(instruction, false);
@@ -58,7 +60,7 @@ const INTERCEPT_ROUTER_PROVIDER = CONST_EXPR(
     {
         useFactory: interceptRouterFactory,
         deps: CONST_EXPR([
-            RouteRegistry, Location, ROUTER_PRIMARY_COMPONENT, ApplicationRef, SettingsDAO
+            RouteRegistry, Location, ROUTER_PRIMARY_COMPONENT, ApplicationRef, SettingsDAO,
         ]),
     }
 ));
