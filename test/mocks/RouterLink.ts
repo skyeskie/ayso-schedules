@@ -1,34 +1,20 @@
 /* tslint:disable:no-any */
-import {Directive} from 'angular2/core';
-import {RouterLink} from 'angular2/router';
+import { Directive, HostListener, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Directive({
-   selector: '[routerLink]',
-   inputs: ['routeParams: routerLink', 'target: target'],
-   host: {
-       '(click)': 'onClick()',
-       '[attr.href]': 'visibleHref',
-       '[class.router-link-active]': 'isRouteActive',
-   },
+    selector: '[routerLink]',
 })
 class MockRouterLink {
-    visibleHref: string;
-    target: string;
+    @Input('routerLink') linkParams: any;
+    navigatedTo: any = null;
 
-    private _routeParams: any[];
-
-    set routeParams(changes: any[]) {
-        this._routeParams = changes;
-        this._updateLink();
-    }
-
-    getRouteParams() {
-        return this._routeParams;
-    }
-
-    private _updateLink(): void {
-        //No-op
+    @HostListener('click')
+    onClick(): void {
+        this.navigatedTo = this.linkParams;
     }
 }
+
+export const MOCK_ROUTER_LINK_PROVIDER = { provide: RouterLink, useClass: MockRouterLink };
 
 export { MockRouterLink, RouterLink };

@@ -27,6 +27,8 @@
     "expect": false,
     "it": false,
     "jasmine": false,
-    "module": false
+    "module": false,
+    "require": true,
+    "__dirname": true
   }
 }

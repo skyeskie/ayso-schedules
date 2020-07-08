@@ -1,40 +1,45 @@
-import {provide} from 'angular2/core';
-import {
-    describe,
-    beforeEachProviders,
-    fdescribe,
-    it,
-    TestComponentBuilder,
-    xdescribe,
-    xit,
-} from 'angular2/testing';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS, RouteParams, MockComponent
-} from '../mocks/providers';
-import {ensureViewExists} from '../util/viewUtil';
+import { MapView } from '../../src/views/map';
+import { ActivatedRouteStub, ACTIVATED_ROUTE_STUB_PROVIDER } from '../mocks/activated-route-stub';
+import { MOCK_DAO_PROVIDERS } from '../mocks/providers';
+import { TitleBarMock } from '../mocks/title-bar.mock';
 
-import {MapView} from '../../src/views/map';
-import {TitleBarComponent} from '../../src/comp/title-bar.component';
-import {ANGULAR2_GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
-import {SebmGoogleMap} from 'angular2-google-maps/core';
-import {SebmGoogleMapMarker} from 'angular2-google-maps/core';
+xdescribe('View: Map', () => {
+    let component: MapView;
+    let fixture: ComponentFixture<MapView>;
+    let route: ActivatedRouteStub;
 
-describe('View: Map', () => {
-    beforeEachProviders(() => [
-        ...MOCK_ROUTER_PROVIDERS,
-        ...MOCK_DAO_PROVIDERS,
-        provide(RouteParams, { useFactory: () => {
-            let rp = new RouteParams({id: '49'});
-            spyOn(rp, 'get').and.returnValue('49');
-            return rp;
-        },}),
-        provide(MapView, {useClass: MapView, deps: [RouteParams]}),
-    ]);
+    @Component({selector: 'agm-map', template: ''})
+    class MockAngularGoogleMaps {}
 
-    ensureViewExists(MapView, (tcb:TestComponentBuilder) => {
-        return tcb.overrideDirective(MapView, TitleBarComponent, MockComponent)
-                  .overrideDirective(MapView, SebmGoogleMap, MockComponent)
-                  .overrideDirective(MapView, SebmGoogleMapMarker, MockComponent);
+    @Component({selector: 'agm-marker', template: ''})
+    class MockAgmMarker {}
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                MapView,
+                MockAngularGoogleMaps,
+                MockAgmMarker,
+                TitleBarMock,
+            ],
+            providers: [
+                ACTIVATED_ROUTE_STUB_PROVIDER,
+                ...MOCK_DAO_PROVIDERS,
+            ],
+        });
+
+        route = TestBed.inject(ActivatedRouteStub);
+        route.setParamMap({ id: '49'});
+
+        fixture = TestBed.createComponent(MapView);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
     });
 });

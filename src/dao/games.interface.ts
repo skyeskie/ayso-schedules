@@ -1,9 +1,10 @@
-import {OpaqueToken} from 'angular2/core';
-import Game from '../models/game';
+import { InjectionToken } from '@angular/core';
+
 import Division from '../models/division';
+import Game from '../models/game';
 import Gender from '../models/gender';
 
-interface GamesDAO {
+interface GamesInterface {
     /**
      * Lookup a single game
      * @param id - Game ID
@@ -17,11 +18,12 @@ interface GamesDAO {
      * @param week - numeric
      * - Implementations may check for valid week or
      *   resolve to empty array
+     * @param region - optionally limit to specific region
      * @returns Promise<Game[]>
      */
     findByWeek(week: number, region?: number): Promise<Game[]>;
 
-    findGames(regionID?:number, ageGroup?:string, gender?:string, week?:number): Promise<Game[]>;
+    findGames(regionID?: number, ageGroup?: string, gender?: string, week?: number): Promise<Game[]>;
 
     /**
      * Lookup all games for a single team
@@ -46,5 +48,5 @@ interface GamesDAO {
     add(games: Game[]): Promise<any>;
 }
 
-var GamesDAO = new OpaqueToken('GamesDAO');
-export { GamesDAO as default, GamesDAO, Game, Division, Gender }
+const GamesDAO = new InjectionToken<GamesInterface>('GamesInterface');
+export { GamesDAO, GamesInterface, Game, Division, Gender };

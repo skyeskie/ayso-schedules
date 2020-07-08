@@ -2,17 +2,13 @@ body, ayso-app, nav {
     max-width: 600px;
 }
 
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/mixins/breakpoints";
 
-//Import IonIcons
-$ionicons-font-path: "../../node_modules/ionicons/fonts";
-@import "../../node_modules/ionicons/scss/ionicons";
-
-article.container {
-    //Including pad-all-1
-    padding: $spacer-y $spacer-x !important;
-}
+//article.container {
+//    //Including pad-all-1
+//    padding: $spacer-y $spacer-x !important;
+//}
 
 .main-buttons {
     width: 80%;
@@ -32,6 +28,12 @@ button.btn-xs {
     font-size:.7rem;
     line-height:1.5;
     border-radius:.2rem;
+    vertical-align: center;
+    display: inline-block;
+}
+
+nmi-icon {
+    padding: 2px;
 }
 
 .navbar-dark.bg-primary .navbar-nav .nav-link {

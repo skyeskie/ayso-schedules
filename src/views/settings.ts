@@ -1,12 +1,11 @@
-import {Component, OnInit, Injectable} from 'angular2/core';
-import {Control, COMMON_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
-import {TitleBarComponent} from '../comp/title-bar.component';
-import {DataControlService} from '../service/data-control.service';
-import {Region} from '../models/region';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+import { Region } from '../models/region';
+import { DataControlService } from '../service/data-control.service';
 
 @Component({
-    directives:[COMMON_DIRECTIVES, TitleBarComponent, FORM_DIRECTIVES],
-    //pipes:[DateMedPipe],
+    // pipes:[DateMedPipe],
     template: `
     <title-bar></title-bar>
     <article class="container">
@@ -15,8 +14,8 @@ import {Region} from '../models/region';
         <div class="card card-block card-info-outline">
             <label for="select-region" class="card-title text-info">Home Region</label>
             <p>This filters your current week view and other parts of the app.</p>
-            <select class="form-control" [ngFormControl]="defaultRegion">
-                <option *ngFor="#region of regions" value="{{region.number}}">
+            <select class="form-control" [formControl]="defaultRegion">
+                <option *ngFor="let region of regions" [ngValue]="region.number">
                     Region {{region.number}} ({{region.name}})
                 </option>
             </select>
@@ -25,7 +24,7 @@ import {Region} from '../models/region';
         <div class="list-group">
             <button type="button" (click)="toggleTroubleshootMode()" class="list-group-item list-group-item-warning">
                 <h6 class="list-group-item-heading">
-                    <i class="ion-help-buoy"></i>
+                    <nmi-icon>support</nmi-icon>
                     Troubleshooting
                 </h6>
                 <p class="list-group-item-text" *ngIf="!troubleshooting">Fix some app issues</p>
@@ -45,7 +44,7 @@ import {Region} from '../models/region';
                     This does the same as the data update above but also resets any user settings.
                 </div>
                 <p class="list-group-item-text text-danger"><strong>
-                    <i class="ion-alert-circled" aria-label="alert"></i>
+                    <nmi-icon>warning</nmi-icon>
                     This will reset the app to the initial state.
                 </strong></p>
                 <div class="list-group-item-text text-xs-center">
@@ -59,30 +58,29 @@ import {Region} from '../models/region';
     </article>
     `,
 })
-@Injectable()
-export default class SettingsView implements OnInit {
-    public defaultRegion:Control = new Control('');
+export class SettingsView implements OnInit {
+    public defaultRegion: FormControl = new FormControl('');
 
-    public regions:Region[];
-    public lastUpdate:string;
+    public regions: Region[];
+    public lastUpdate: string;
 
-    private troubleshooting:boolean = false;
+    public troubleshooting: boolean = false;
 
     constructor(
-        private dataControl: DataControlService
+        private dataControl: DataControlService,
     ) {
-        //No-op
+        // No-op
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.regions = Region.REGIONS;
 
-        this.dataControl.settings.getRegionNumber().then((r:number) => this.defaultRegion.updateValue(r.toString()));
+        this.dataControl.settings.getRegionNumber().then((r: number) => this.defaultRegion.setValue(r.toString()));
 
         this.lastUpdate = this.dataControl.getLastUpdate();
 
-        this.defaultRegion.valueChanges.subscribe((val:string) => {
-            this.dataControl.settings.setRegion(parseInt(val,10));
+        this.defaultRegion.valueChanges.subscribe((val: string) => {
+            this.dataControl.settings.setRegion(parseInt(val, 10));
         });
     }
 
@@ -91,12 +89,12 @@ export default class SettingsView implements OnInit {
     }
 
     forceRefresh(): void {
-        this.dataControl.update(true).then((updated:string) => {
+        this.dataControl.update(true).then((updated: string) => {
             this.lastUpdate = updated;
         });
     }
 
-    toggleTroubleshootMode() {
+    toggleTroubleshootMode(): void {
         this.troubleshooting = !this.troubleshooting;
     }
 }

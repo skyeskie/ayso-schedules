@@ -1,48 +1,45 @@
-import {Component, Inject} from 'angular2/core';
-import {RouterLink} from 'angular2/router';
-import {TitleBarComponent} from '../comp/title-bar.component';
-import {NgIf} from 'angular2/common';
-import {SettingsDAO} from '../dao/settings.interface';
+import { Component, Inject } from '@angular/core';
+
+import { SettingsDAO, SettingsInterface } from '../dao/settings.interface';
 
 @Component({
-    directives: [RouterLink, TitleBarComponent, NgIf],
     template: `
     <title-bar></title-bar>
     <article class="main-buttons container">
-        <img class="img-fluid center-block m-b-2" src="img/AYSOKansas.svg" alt="AYSO Kansas" />
-        <h4 class="text-primary text-xs-center m-b-2">
-            <b>Schedules</b> <small *ngIf="regionNum" class="text-muted">Region {{regionNum}}</small>
+        <img class="img-fluid center-block mb-2" src="img/AYSOKansas.svg" alt="AYSO Kansas" />
+        <h4 class="text-primary text-center mb-2">
+            <b class="pr-2">Schedules</b> <small *ngIf="regionNum" class="text-muted">Region {{regionNum}}</small>
         </h4>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['CurWeekSchedule']">
-            <i class="ion-clock"></i> This Week
+        <button type="button" class="btn btn-secondary btn-block" routerLink="/week">
+            <nmi-icon>schedule</nmi-icon> This Week
         </button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['TeamSelect']">
-            <i class="ion-search"></i> Find Team
+        <button type="button" class="btn btn-secondary btn-block" routerLink="/teams">
+            <nmi-icon>search</nmi-icon> Find Team
         </button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['DivisionSelect']">
-            <i class="ion-search"></i> Advanced Search
+        <button type="button" class="btn btn-secondary btn-block" routerLink="/search">
+            <nmi-icon>search</nmi-icon> Advanced Search
         </button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['MapDetail', {region: regionNum}]"
-            *ngIf="regionNum"><i class="ion-navigate"></i> Directions
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/region', regionNum, 'map']"
+                *ngIf="regionNum"><nmi-icon>commute</nmi-icon> Directions
         </button>
-        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['FieldDetail', {region: regionNum}]"
-            *ngIf="regionNum"><i class="ion-map"></i> Field Map
+        <button type="button" class="btn btn-secondary btn-block" [routerLink]="['/region', regionNum, 'field']"
+                *ngIf="regionNum"><nmi-icon>map</nmi-icon> Field Map
         </button>
     </article>
     `,
 })
 class SchedulesMenuView {
-    public regionNum:number;
+    public regionNum: number;
 
     constructor(
         @Inject(SettingsDAO)
-        private dao:SettingsDAO
+        private dao: SettingsInterface,
     ) {
-        //In OnInit()
+        // In OnInit()
     }
 
-    ngOnInit() {
-        this.dao.getRegionNumber().then((n:number) => this.regionNum = n);
+    ngOnInit(): void {
+        this.dao.getRegionNumber().then((n: number) => this.regionNum = n);
     }
 }
 

@@ -1,13 +1,14 @@
-import Team from '../models/team';
+import { InjectionToken } from '@angular/core';
+
 import Region from '../models/region';
-import {OpaqueToken} from 'angular2/core';
+import Team from '../models/team';
 
 type SettingsDataType = {
-    regionNumber?:number
-    savedTeams?:string[]
+    regionNumber?: number,
+    savedTeams?: string[],
 };
 
-interface SettingsDAO {
+interface SettingsInterface {
     /**
      * Gets a list of the IDs the saved teams
      * List will have no duplicates
@@ -21,23 +22,22 @@ interface SettingsDAO {
     getSavedTeams(): Promise<Team[]>;
 
     /**
-     * @function saveTeam
      * @desc Saves a team as a favorite.
      * If team already saved, does no-op to prevent duplicates
-     * @param {String} team - unique ID for team
+     * @param team - unique ID for team
      */
     saveTeam(team: string): Promise<void>;
 
     /**
      * Removes a team from favorites.
      * Checks all items so will remove all if there are duplicates
-     * @param {String} team - unique ID of team to remove
+     * @param team - unique ID of team to remove
      */
     unSaveTeam(team: string): Promise<void>;
 
     /**
      * Checks if team is saved
-     * @param {String} team - unique ID of team
+     * @param team - unique ID of team
      */
     isTeamSaved(team: string): Promise<boolean>;
 
@@ -61,9 +61,8 @@ interface SettingsDAO {
     getRegion(): Promise<Region>;
 
     /**
-     * @function setRegion
      * @desc Persists the current region to configuration
-     * @param {String} region - the region ID
+     * @param region - the region ID
      */
     setRegion(region: number): Promise<void>;
 
@@ -72,7 +71,7 @@ interface SettingsDAO {
      * If not required should be no-op
      * If `isAppConfigured()===true`, should be no-op
      */
-    init(data:SettingsDataType): Promise<void>;
+    init(data: SettingsDataType): Promise<void>;
 
     /**
      * Returns if all required settings are present
@@ -88,5 +87,6 @@ interface SettingsDAO {
     reset(): Promise<void>;
 }
 
-var SettingsDAO = new OpaqueToken('SettingsDAO');
-export {SettingsDAO as default, SettingsDAO, Region, Team, SettingsDataType};
+const SettingsDAO = new InjectionToken<SettingsInterface>('SettingsInterface');
+export { SettingsInterface, SettingsDAO, Region, Team };
+export type { SettingsDataType };

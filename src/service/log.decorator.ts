@@ -1,3 +1,5 @@
+// tslint:disable:no-console
+
 enum Level {
     ALL = 0,
     TRACE, DEBUG, INFO, WARN, ERROR, FATAL,
@@ -5,83 +7,83 @@ enum Level {
 }
 
 class Logger {
-    static GLOBAL_LEVEL:Level = Level.INFO;
-    static Level:any = Level;
+    static GLOBAL_LEVEL: Level = Level.INFO;
+    static Level: any = Level;
 
-    private static loggers:Map<string,Logger> = new Map<string,Logger>();
+    private static loggers: Map<string, Logger> = new Map<string, Logger>();
 
-    private name:string;
-    private level:Level = null;
+    private readonly name: string;
+    private level: Level = null;
 
-    public static get(name:string, level?:Level): Logger {
-        if(!Logger.loggers.has(name)) {
+    constructor(n: string, l?: Level) {
+        this.name = n;
+        this.level = l || null;
+    }
+
+    public static get(name: string, level?: Level): Logger {
+        if (!Logger.loggers.has(name)) {
             Logger.loggers.set(name, new Logger(name));
         }
 
-        let logger:Logger = Logger.loggers.get(name);
+        const logger: Logger = Logger.loggers.get(name);
 
-        if(level !== null && typeof level !== 'undefined') {
+        if (level !== null && typeof level !== 'undefined') {
             logger.setLevel(level);
         }
 
         return logger;
     }
 
-    constructor(n:string, l?:Level) {
-        this.name = n;
-        this.level = l || null;
-    }
-
-    setLevel(newLevel: Level) {
+    setLevel(newLevel: Level): void {
         this.level = newLevel;
     }
 
-    clearLevel() {
+    clearLevel(): void {
         this.level = null;
     }
 
-    isEnabled(level:Level) {
+    isEnabled(level: Level): boolean {
         return (this.level !== null) ?
             (level >= this.level) :
             (level >= Logger.GLOBAL_LEVEL);
     }
 
-    fatal(...messages:Object[]) {
-        if(this.isEnabled(Level.FATAL)) {
+    fatal(...messages: any[]): void {
+        if (this.isEnabled(Level.FATAL)) {
             console.error(this.name, '[FATAL]', ...messages);
         }
     }
 
-    error(...messages:Object[]) {
-        if(this.isEnabled(Level.ERROR)) {
+    error(...messages: any[]): void {
+        if (this.isEnabled(Level.ERROR)) {
             console.error(this.name, '[ERROR]', ...messages);
         }
     }
 
-    warn(...messages:Object[]) {
-        if(this.isEnabled(Level.WARN)) {
+    warn(...messages: any[]): void {
+        if (this.isEnabled(Level.WARN)) {
             console.warn(this.name, '[WARN]', ...messages);
         }
     }
 
-    log(...messages:Object[]) {
+    log(...messages: any[]): void {
         this.info(messages);
     }
 
-    info(...messages:Object[]) {
-        if(this.isEnabled(Level.INFO)) {
+    info(...messages: any[]): void {
+        if (this.isEnabled(Level.INFO)) {
             console.info(this.name, '[INFO]', ...messages);
         }
     }
 
-    debug(...messages:Object[]) {
-        if(this.isEnabled(Level.DEBUG)) {
+    debug(...messages: any[]): void {
+        if (this.isEnabled(Level.DEBUG)) {
             console.debug(this.name, '[DEBUG]', ...messages);
         }
     }
 
-    trace(...messages:Object[]) {
-        if(this.isEnabled(Level.TRACE)) {
+    trace(...messages: any[]): void {
+        if (this.isEnabled(Level.TRACE)) {
             console.debug(this.name, '[TRACE]', ...messages);
         }
     }
@@ -101,22 +103,23 @@ class Logger {
  * </code>
  */
 
-function ClassLogger(level?: Level) {
-    return function (target:Object, property:string):void {
-        let loggerName = target.constructor.toString().match(/\w+/g)[1];
-        let logger = Logger.get(loggerName, level);
+function ClassLogger(level?: Level): (target: any, property: string) => void {
+    return (target: any, property: string) => {
+        const loggerName = target.constructor.toString().match(/\w+/g)[1];
+        const logger = Logger.get(loggerName, level);
 
         target[property] = logger;
 
         Object.keys(target)
               .filter(key => typeof target[key] === 'function')
               .forEach(key => {
-                  let method = key + '()';
-                  let descriptor = Object.getOwnPropertyDescriptor(target, key);
-                  let originalMethod = descriptor.value;
+                  const method = key + '()';
+                  const descriptor = Object.getOwnPropertyDescriptor(target, key);
+                  const originalMethod = descriptor.value;
 
-                  descriptor.value = function () {
-                      var result = originalMethod.apply(this, arguments);
+                  // tslint:disable-next-line:typedef
+                  descriptor.value = function() {
+                      const result = originalMethod.apply(this, arguments);
                       if (result !== null && typeof result === 'object'
                           && result.hasOwnProperty('_id') && typeof result.then === 'function') {
 
@@ -133,4 +136,4 @@ function ClassLogger(level?: Level) {
     };
 }
 
-export {ClassLogger as default, ClassLogger, Logger, Level}
+export { ClassLogger as default, ClassLogger, Logger, Level };

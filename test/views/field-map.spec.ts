@@ -1,34 +1,34 @@
-import {provide} from 'angular2/core';
-import {
-    describe,
-    beforeEachProviders,
-    fdescribe,
-    it,
-    TestComponentBuilder,
-    xdescribe,
-    xit,
-} from 'angular2/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS, Router, RouteParams, MockComponent
-} from '../mocks/providers';
-import {ensureViewExists} from '../util/viewUtil';
-
-import FieldMapView from '../../src/views/field-map';
-import {TitleBarComponent} from '../../src/comp/title-bar.component';
+import { FieldMapView } from '../../src/views/field-map';
+import { ActivatedRouteStub, ACTIVATED_ROUTE_STUB_PROVIDER } from '../mocks/activated-route-stub';
+import { TitleBarMock } from '../mocks/title-bar.mock';
 
 describe('View: FieldMap', () => {
-    beforeEachProviders(() => [
-        ...MOCK_DAO_PROVIDERS,
-        provide(RouteParams, { useFactory: () => {
-            let rp = new RouteParams({id: '49'});
-            spyOn(rp, 'get').and.returnValue('49');
-            return rp;
-        },}),
-        provide(FieldMapView, {useClass: FieldMapView, deps: [RouteParams]}),
-    ]);
+    let component: FieldMapView;
+    let fixture: ComponentFixture<FieldMapView>;
+    let route: ActivatedRouteStub;
 
-    ensureViewExists(FieldMapView, (tcb:TestComponentBuilder) => {
-        return tcb.overrideDirective(FieldMapView, TitleBarComponent, MockComponent);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                FieldMapView,
+                TitleBarMock,
+            ],
+            providers: [
+                ACTIVATED_ROUTE_STUB_PROVIDER,
+            ], // ngIf, [data],
+        });
+
+        route = TestBed.inject(ActivatedRouteStub);
+        route.setParamMap({ id: '49'});
+
+        fixture = TestBed.createComponent(FieldMapView);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    xit('should create', () => {
+        expect(component).toBeTruthy();
     });
 });

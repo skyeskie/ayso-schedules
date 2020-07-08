@@ -1,20 +1,28 @@
-import {
-    describe,
-    beforeEachProviders,
-    inject,
-    it,
-} from 'angular2/testing';
-import {provide} from 'angular2/core';
+import { TestBed } from '@angular/core/testing';
 
-import {settingsInterfaceSpec} from '../interfaces/settings.spec.i';
-import {TeamsDAO, InMemoryTeamsService} from '../../src/dao/mem/teams.mem.service';
-import {InMemorySettingsService} from '../../src/dao/mem/settings.mem.service';
-import {StaticInitializationService} from '../../src/service/backend/static.backend';
+import { InMemorySettingsService, SettingsDAO } from '../../src/dao/mem/settings.mem.service';
+import { InMemoryTeamsService, TeamsDAO } from '../../src/dao/mem/teams.mem.service';
+import { IBackend, StaticInitializationService } from '../../src/service/backend/static.backend';
+import { settingsInterfaceSpec } from '../interfaces/settings.spec.i';
+
+let dao: InMemorySettingsService;
+let init: StaticInitializationService;
 
 describe('DAO: SettingsMock', () => {
-    beforeEachProviders(() => [
-        provide(TeamsDAO, {useClass: InMemoryTeamsService})
-    ]);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                InMemorySettingsService,
+                { provide: SettingsDAO, useExisting: InMemorySettingsService },
+                { provide: TeamsDAO, useClass: InMemoryTeamsService },
+                StaticInitializationService,
+                { provide: IBackend,  useExisting: StaticInitializationService },
+            ],
+        });
 
-    settingsInterfaceSpec(InMemorySettingsService);
+        dao = TestBed.inject(InMemorySettingsService);
+        init = TestBed.inject(StaticInitializationService);
+    });
+
+    settingsInterfaceSpec();
 });

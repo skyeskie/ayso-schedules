@@ -1,18 +1,14 @@
-import {provide} from 'angular2/core';
+import { IN_MEM_GAME_SERVICE_PROVIDER } from '../../src/dao/mem/games.mem.service';
+import { IN_MEM_SETTINGS_PROVIDER } from '../../src/dao/mem/settings.mem.service';
+import { IN_MEMORY_TEAMS_SERVICE_PROVIDER } from '../../src/dao/mem/teams.mem.service';
+import { IBackend, StaticInitializationService } from '../../src/service/backend/static.backend';
 
-export * from './router';
-import {InMemoryGamesService, GamesDAO} from '../../src/dao/mem/games.mem.service';
-import {InMemoryTeamsService, TeamsDAO} from '../../src/dao/mem/teams.mem.service';
-import {InMemoryWeeksService, WeekCacheInterface} from '../../src/dao/mem/weeks.mem.service';
-import {InMemorySettingsService, SettingsDAO} from '../../src/dao/mem/settings.mem.service';
-import {StaticInitializationService, IBackend} from '../../src/service/backend/static.backend';
+import { MOCK_WEEK_SERVICE_PROVIDER } from './weeks.mock.service';
 
-let MOCK_DAO_PROVIDERS = [
-    provide(IBackend, { useClass: StaticInitializationService }),
-    provide(GamesDAO, { useClass: InMemoryGamesService }),
-    provide(TeamsDAO, { useClass: InMemoryTeamsService }),
-    provide(SettingsDAO, {useClass: InMemorySettingsService}),
-    provide(WeekCacheInterface, { useClass: InMemoryWeeksService}),
+export const MOCK_DAO_PROVIDERS = [
+    { provide: IBackend, useClass: StaticInitializationService },
+    IN_MEM_GAME_SERVICE_PROVIDER,
+    IN_MEMORY_TEAMS_SERVICE_PROVIDER,
+    IN_MEM_SETTINGS_PROVIDER,
+    MOCK_WEEK_SERVICE_PROVIDER,
 ];
-
-export { MOCK_DAO_PROVIDERS, GamesDAO, TeamsDAO, SettingsDAO, WeekCacheInterface };

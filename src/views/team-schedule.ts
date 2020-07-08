@@ -1,16 +1,11 @@
-import {Component, OnInit, Inject} from 'angular2/core';
-import {NgIf} from 'angular2/common';
-import {Router, RouteParams} from 'angular2/router';
-import SingleTeamGameListComponent from '../comp/games1-list.component';
-import TitleBarComponent from '../comp/title-bar.component';
-import {GamesDAO, Game} from '../dao/games.interface';
-import {TeamsDAO, Team} from '../dao/teams.interface';
-import SettingsDAO from '../dao/settings.interface';
-import {NameSwitchPipe} from '../pipes/name-switch.pipe';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+
+import { Game, GamesDAO, GamesInterface } from '../dao/games.interface';
+import { SettingsDAO, SettingsInterface } from '../dao/settings.interface';
+import { ITeamsDAO, Team, TeamsDAO } from '../dao/teams.interface';
 
 @Component({
-    directives: [SingleTeamGameListComponent, TitleBarComponent, NgIf],
-    pipes: [NameSwitchPipe],
     styles: ['h4.card-text { display: inline; }'],
     template: `
     <title-bar></title-bar>
@@ -19,7 +14,7 @@ import {NameSwitchPipe} from '../pipes/name-switch.pipe';
             <div class="card-block clearfix">
                 <button class="btn btn-xs btn-primary-outline pull-xs-right"
                      type="button" (click)="toggleTeamSave()">
-                     <i class="ion-star"></i>
+                    <nmi-icon>star_outline</nmi-icon>
                      {{getSavedToggleText()}}
                 </button>
                 <h5 class="text-sm-center card-text text-muted"><small>Team {{teamID}}</small></h5>
@@ -31,7 +26,7 @@ import {NameSwitchPipe} from '../pipes/name-switch.pipe';
                 </div>
                 <div class="col-xs-8 col-xs-offset-4">
                     <a type="button" class="btn btn-sm btn-link" href="tel:{{team.coachTel}}" *ngIf="team?.coachTel">
-                        <i class="ion-android-call"></i> {{team.coachTel}}
+                        <nmi-icon>call</nmi-icon>{{team.coachTel}}
                     </a>
                 </div>
             </div>
@@ -51,49 +46,53 @@ import {NameSwitchPipe} from '../pipes/name-switch.pipe';
   `,
 })
 class TeamScheduleView implements OnInit {
-    public isTeamSaved:boolean = false;
-    public teamID:string;
-    public games:Game[];
-    public team:Team;
+    public isTeamSaved: boolean = false;
+    public teamID: string;
+    public games: Game[];
+    public team: Team;
 
     constructor(
-        private _router:Router,
-        private _routeParams:RouteParams,
+        private router: Router,
+        private route: ActivatedRoute,
         @Inject(TeamsDAO)
-        private _teamsDao:TeamsDAO,
+        private teamsDao: ITeamsDAO,
         @Inject(GamesDAO)
-        private _gamesDao:GamesDAO,
+        private gamesDAO: GamesInterface,
         @Inject(SettingsDAO)
-        private _settings:SettingsDAO
+        private settings: SettingsInterface,
     ) {
-        //In OnInit
+        // In OnInit
     }
 
-    ngOnInit() {
-        this.teamID = this._routeParams.get('id');
-        this._teamsDao.getTeam(this.teamID).then((team:Team) => this.team = team);
-        this._gamesDao.findForTeam(this.teamID).then((list:Game[]) => this.games = list);
-        this._settings.isTeamSaved(this.teamID).then((v:boolean) => this.isTeamSaved = v);
+    ngOnInit(): void {
+        this.route.paramMap.subscribe(this.onLoadParams);
     }
 
-    initCall() {
+    onLoadParams(paramMap: ParamMap): void {
+        this.teamID = paramMap.get('id');
+        this.teamsDao.getTeam(this.teamID).then((team: Team) => this.team = team);
+        this.gamesDAO.findForTeam(this.teamID).then((list: Game[]) => this.games = list);
+        this.settings.isTeamSaved(this.teamID).then((v: boolean) => this.isTeamSaved = v);
+    }
+
+    initCall(): void {
         console.log('tel:' + this.team.coachTel);
     }
 
-    toggleTeamSave() {
-        if(this.isTeamSaved) {
-            this._settings.unSaveTeam(this.teamID);
+    toggleTeamSave(): void {
+        if (this.isTeamSaved) {
+            this.settings.unSaveTeam(this.teamID);
         } else {
-            this._settings.saveTeam(this.teamID);
+            this.settings.saveTeam(this.teamID);
         }
         this.isTeamSaved = ! this.isTeamSaved;
     }
 
-    getSavedToggleText() {
+    getSavedToggleText(): string {
         return (this.isTeamSaved) ? 'Unsave' : 'Save';
     }
 
-    isCoachTBD() {
+    isCoachTBD(): boolean {
         return (this.team instanceof Team) && this.team.coach === 'TBD';
     }
 }

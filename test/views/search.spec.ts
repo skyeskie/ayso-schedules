@@ -1,26 +1,33 @@
-import {provide} from 'angular2/core';
-import {
-    describe,
-    beforeEachProviders,
-    fdescribe,
-    it,
-    xdescribe,
-    xit,
-} from 'angular2/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
-import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS
-} from '../mocks/providers';
-import {ensureViewExists} from '../util/viewUtil';
-
-import {SearchView} from '../../src/views/search';
+import { SearchView } from '../../src/views/search';
+import { TitleBarMock } from '../mocks/title-bar.mock';
+import { MOCK_WEEK_SERVICE_PROVIDER } from '../mocks/weeks.mock.service';
 
 describe('View: Search', () => {
-    beforeEachProviders(() => [
-        ...MOCK_ROUTER_PROVIDERS,
-        ...MOCK_DAO_PROVIDERS,
-        SearchView,
-    ]);
+    let component: SearchView;
+    let fixture: ComponentFixture<SearchView>;
+    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
-    ensureViewExists(SearchView);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                SearchView,
+                TitleBarMock,
+            ],
+            providers: [
+                { provide: Router, useValue: routerSpy },
+                MOCK_WEEK_SERVICE_PROVIDER,
+            ],
+        });
+
+        fixture = TestBed.createComponent(SearchView);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

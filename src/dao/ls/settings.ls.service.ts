@@ -1,28 +1,28 @@
-import {Inject, Injectable} from 'angular2/core';
-import {SettingsDAO, SettingsDataType} from '../settings.interface';
-import {TeamsDAO, Team} from '../teams.interface';
-import {Region} from '../../models/region';
-import {Logger, ClassLogger} from '../../service/log.decorator';
-import {ILocalStorage, LS_KEYS} from './../../service/local-storage.interface';
+import { Inject, Injectable } from '@angular/core';
+
+import { Region } from '../../models/region';
+import { ILocalStorage, LS_KEYS } from '../../service/local-storage.interface';
+import { ClassLogger, Logger } from '../../service/log.decorator';
+import { SettingsDAO, SettingsDataType, SettingsInterface } from '../settings.interface';
+import { ITeamsDAO, Team, TeamsDAO } from '../teams.interface';
 
 @Injectable()
-class LocalStorageSettingsService implements SettingsDAO {
-    @ClassLogger() public log:Logger;
-    public teams:string[] = [];
-    public region:number = undefined;
+class LocalStorageSettingsService implements SettingsInterface {
+    @ClassLogger() public log: Logger;
+    public teams: string[] = [];
+    public region: number = undefined;
 
     constructor(
-        @Inject(ILocalStorage)
-        private client:ILocalStorage,
+        private client: ILocalStorage,
         @Inject(TeamsDAO)
-        private dao: TeamsDAO
+        private dao: ITeamsDAO,
     ) {
-        let savedList = this.client.getItem(LS_KEYS.USER_TEAMS) || '';
-        this.log.info('Retrieved teams from LocalStorage',savedList);
-        if(savedList) {
+        const savedList = this.client.getItem(LS_KEYS.USER_TEAMS) || '';
+        this.log.info('Retrieved teams from LocalStorage', savedList);
+        if (savedList) {
             this.teams = savedList.split(',');
         }
-        this.log.info('Parsed teams into array',this.teams);
+        this.log.info('Parsed teams into array', this.teams);
     }
 
     getSavedTeamIDs(): Promise<string[]> {
@@ -34,7 +34,7 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 
     saveTeam(team: string): Promise<void> {
-        if(!this._isTeamSaved(team)) {
+        if (!this._isTeamSaved(team)) {
             this.teams.push(team);
         }
         this.persistTeams();
@@ -42,7 +42,7 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 
     unSaveTeam(team: string): Promise<void> {
-        this.teams = this.teams.filter((item:string) => item !== team);
+        this.teams = this.teams.filter((item: string) => item !== team);
         this.persistTeams();
         return Promise.resolve();
     }
@@ -58,30 +58,34 @@ class LocalStorageSettingsService implements SettingsDAO {
     }
 
     getRegionNumber(): Promise<number> {
-        let n = Number.parseInt(this.client.getItem(LS_KEYS.MAIN_REGION),10);
+        const n = Number.parseInt(this.client.getItem(LS_KEYS.MAIN_REGION), 10);
         return Promise.resolve(isNaN(n) ? undefined : n);
     }
 
     getRegion(): Promise<Region> {
-        return this.getRegionNumber().then((num:number) => {
+        return this.getRegionNumber().then((num: number) => {
             this.log.info('Looking up region', num, Region.REGIONS);
             return Promise.resolve(Region.fromNumber(num));
         });
     }
 
     setRegion(region: number): Promise<void> {
-        if(!isNaN(region)) {
+        if (!isNaN(region)) {
             this.client.setItem(LS_KEYS.MAIN_REGION, region.toString());
         }
         return Promise.resolve();
     }
 
-    init(preset?:SettingsDataType): Promise<void> {
+    init(preset?: SettingsDataType): Promise<void> {
+        if (typeof preset === 'undefined') {
+            return Promise.resolve();
+        }
+
         this.log.info('Setting from initializer: ', preset);
-        if(typeof preset.regionNumber !== 'undefined') {
+        if (typeof preset.regionNumber !== 'undefined') {
             this.setRegion(preset.regionNumber);
         }
-        if(typeof preset.savedTeams !== 'undefined') {
+        if (typeof preset.savedTeams !== 'undefined') {
             this.teams = preset.savedTeams;
         }
         this.persistTeams();
@@ -100,13 +104,15 @@ class LocalStorageSettingsService implements SettingsDAO {
         return Promise.resolve();
     }
 
-    private _isTeamSaved(team: string) {
-        return this.teams.some((item:string) => item === team);
+    private _isTeamSaved(team: string): boolean {
+        return this.teams.some((item: string) => item === team);
     }
 
-    private persistTeams() {
+    private persistTeams(): void {
         this.client.setItem(LS_KEYS.MAIN_REGION, this.teams.join(','));
     }
 }
 
-export { LocalStorageSettingsService as default, LocalStorageSettingsService, SettingsDAO }
+const LOCAL_STORAGE_SETTINGS_PROVIDER = { provide: SettingsDAO, useClass: LocalStorageSettingsService };
+
+export { LOCAL_STORAGE_SETTINGS_PROVIDER, LocalStorageSettingsService, SettingsDAO };

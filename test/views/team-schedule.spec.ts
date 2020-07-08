@@ -1,34 +1,43 @@
-import {provide} from 'angular2/core';
-import {
-    describe,
-    beforeEachProviders,
-    fdescribe,
-    it,
-    TestComponentBuilder,
-    xdescribe,
-    xit,
-} from 'angular2/testing';
+import { Component } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS, MockComponent
-} from '../mocks/providers';
-import {ensureViewExists} from '../util/viewUtil';
+import { NameSwitchPipe } from '../../src/pipes/name-switch.pipe';
+import { TeamScheduleView } from '../../src/views/team-schedule';
+import { ActivatedRouteStub } from '../mocks/activated-route-stub';
+import { MOCK_DAO_PROVIDERS } from '../mocks/providers';
+import { TitleBarMock } from '../mocks/title-bar.mock';
 
-import {TitleBarComponent} from '../../src/comp/title-bar.component';
-import {TeamScheduleView} from '../../src/views/team-schedule';
-import SingleTeamGameListComponent from '../../src/comp/games1-list.component';
-import {NameSwitchPipe} from '../../src/pipes/name-switch.pipe';
+describe('View: TeamSchedule', () => {
+    let component: TeamScheduleView;
+    let fixture: ComponentFixture<TeamScheduleView>;
+    const route = new ActivatedRouteStub({ id: '1701B'});
+    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
-//TODO: Figure out why pipe not working
-xdescribe('View: TeamSchedule', () => {
-    beforeEachProviders(() => [
-        ...MOCK_ROUTER_PROVIDERS,
-        ...MOCK_DAO_PROVIDERS,
-        TeamScheduleView,
-    ]);
+    @Component({selector: 'single-team-game-list', template: '', inputs: ['games', 'team']})
+    class StubSingleTeamGameList {}
 
-    ensureViewExists(TeamScheduleView, (tcb:TestComponentBuilder) => {
-        return tcb.overrideDirective(TeamScheduleView, TitleBarComponent, MockComponent)
-                  .overrideDirective(TeamScheduleView, SingleTeamGameListComponent, MockComponent);
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                NameSwitchPipe,
+                StubSingleTeamGameList,
+                TeamScheduleView,
+                TitleBarMock,
+            ],
+            providers: [
+                { provide: ActivatedRoute, useValue: route },
+                ...MOCK_DAO_PROVIDERS,
+                { provide: Router, useValue: routerSpy },
+            ],
+        });
+
+        fixture = TestBed.createComponent(TeamScheduleView);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    }));
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
     });
 });

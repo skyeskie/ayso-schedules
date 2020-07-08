@@ -1,10 +1,10 @@
-import {WeekCacheInterface} from '../../src/dao/week-cache.interface';
+import { WeekCacheDAO, WeekCacheInterface } from '../../src/dao/week-cache.interface';
 
 class MockWeeksService implements WeekCacheInterface {
     constructor(
-        public cur=2, public max=7
+        public cur= 2, public max= 7,
     ) {
-        //No-op
+        // No-op
     }
 
     getMaxWeeks(): number {
@@ -28,4 +28,6 @@ class MockWeeksService implements WeekCacheInterface {
     }
 }
 
-export { MockWeeksService as default, MockWeeksService, WeekCacheInterface }
+const MOCK_WEEK_SERVICE_PROVIDER = { provide: WeekCacheDAO, useClass: MockWeeksService };
+
+export { MOCK_WEEK_SERVICE_PROVIDER, MockWeeksService, WeekCacheInterface };

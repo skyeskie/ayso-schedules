@@ -1,17 +1,12 @@
-import {Component, OnInit, Inject} from 'angular2/core';
-import {RouterLink, RouteParams} from 'angular2/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { GamesDAO, GamesInterface } from '../dao/games.interface';
+import { ITeamsDAO, TeamsDAO } from '../dao/teams.interface';
 import Game from '../models/game';
 import Team from '../models/team';
-import GamesDAO from '../dao/games.interface';
-import {TeamsDAO} from '../dao/teams.interface';
-import {TitleBarComponent} from '../comp/title-bar.component';
-import {NameSwitchPipe} from '../pipes/name-switch.pipe';
-import {NgIf} from 'angular2/common';
-import {DateMedPipe} from '../pipes/date-med.pipe';
 
 @Component({
-    pipes: [DateMedPipe, NameSwitchPipe],
-    directives: [TitleBarComponent, RouterLink, NgIf],
     template: `
     <title-bar></title-bar>
     <article class="container" *ngIf="game">
@@ -28,7 +23,7 @@ import {DateMedPipe} from '../pipes/date-med.pipe';
                     <h6>{{homeTeam.coach | NameSwitch}}</h6>
                     <a type="button" class="btn btn-sm btn-block btn-secondary"
                         href="tel:{{homeTeam.coachTel}}" [class.invisible]="homeTeam.coach==='TBD'">
-                        <i class="ion-android-call"></i> Call
+                        <nmi-icon>call</nmi-icon> Call
                     </a>
                 </div>
             </div>
@@ -40,7 +35,7 @@ import {DateMedPipe} from '../pipes/date-med.pipe';
                     <h6>{{awayTeam.coach | NameSwitch}}</h6>
                     <a type="button" class="btn btn-sm btn-block btn-secondary"
                         href="tel:{{awayTeam.coachTel}}" [class.invisible]="awayTeam.coach==='TBD'">
-                        <i class="ion-android-call"></i> Call
+                        <nmi-icon>call</nmi-icon> Call
                     </a>
                 </div>
             </div>
@@ -48,8 +43,9 @@ import {DateMedPipe} from '../pipes/date-med.pipe';
         <div *ngIf="isNoBye()" class="container m-y-1">
             <h5 class="col-xs-6 m-a-0 text-xs-right" style="line-height: 1.5;"><strong>Region</strong> {{game.region}}</h5>
             <div class="col-xs-6">
-                <button type="button" class="btn btn-sm btn-secondary" [routerLink]="['/MapDetail', {region: game.region}]">
-                    <i class="ion-navigate"></i>
+                <button type="button" class="btn btn-sm btn-secondary"
+                        [routerLink]="['/region', {region: game.region}, 'map']">
+                    <nmi-icon>commute</nmi-icon>
                     Directions
                 </button>
             </div>
@@ -57,8 +53,9 @@ import {DateMedPipe} from '../pipes/date-med.pipe';
         <div *ngIf="isNoBye()" class="container m-y-1">
             <h5 class="col-xs-6 m-a-0 text-xs-right" style="line-height: 1.5;"><strong>Field</strong> {{game.field}}</h5>
             <div class="col-xs-6">
-                <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['/FieldDetail', {region: game.region}]">
-                    <i class="ion-map"></i>
+                <button type="button" class="btn btn-secondary btn-sm"
+                        [routerLink]="['/region', {region: game.region}, 'field']">
+                    <nmi-icon>sports_soccer</nmi-icon><!-- or map -->
                     Field map
                 </button>
             </div>
@@ -66,31 +63,32 @@ import {DateMedPipe} from '../pipes/date-med.pipe';
     </article>
     `,
 })
-export default class GameDetail implements OnInit {
+export class GameDetailView implements OnInit {
     public game: Game;
     public homeTeam: Team;
     public awayTeam: Team;
 
     constructor(
-        private _routeParams:RouteParams,
+        private route: ActivatedRoute,
         @Inject(GamesDAO)
-        private _games:GamesDAO,
+        private games: GamesInterface,
         @Inject(TeamsDAO)
-        private _teams:TeamsDAO
+        private teams: ITeamsDAO,
     ) {
-        //in OnInit
+        // in OnInit
     }
 
-    ngOnInit() {
-        let id = this._routeParams.get('id');
-        this._games.getGame(id).then((game:Game) => {
-            this.game = game;
-            this._teams.getTeam(game.homeTeam).then((t:Team) => this.homeTeam = t);
-            this._teams.getTeam(game.awayTeam).then((t:Team) => this.awayTeam = t);
+    ngOnInit(): void {
+        this.route.params.subscribe(params => {
+            this.games.getGame(params.id).then((game: Game) => {
+                this.game = game;
+                this.teams.getTeam(game.homeTeam).then((t: Team) => this.homeTeam = t);
+                this.teams.getTeam(game.awayTeam).then((t: Team) => this.awayTeam = t);
+            });
         });
     }
 
-    isNoBye() {
+    isNoBye(): boolean {
         return (this.game instanceof Game) && !this.game.isBye();
     }
 }

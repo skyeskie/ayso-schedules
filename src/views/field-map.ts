@@ -1,11 +1,9 @@
-import {NgIf} from 'angular2/common';
-import {Component, OnInit, AfterViewInit} from 'angular2/core';
-import {RouteParams} from 'angular2/router';
-import {TitleBarComponent} from '../comp/title-bar.component';
-import {Region} from '../models/region';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Region } from '../models/region';
 
 @Component({
-    directives: [TitleBarComponent, NgIf],
     template: `
     <title-bar></title-bar>
     <!-- Move outside article for largest area -->
@@ -18,34 +16,37 @@ import {Region} from '../models/region';
     <article class="container clearfix" *ngIf="!hasMap()">
         <h3>Field Map</h3>
         <div role="alert" class="alert alert-danger m-a-2 text-xs-center">
-            <strong>Error</strong> Could not find map for region {{id}}
+            <strong>Error</strong> Could not find map for region {{regionId}}
         </div>
     </article>
     `,
 })
-export default class FieldMapView implements OnInit, AfterViewInit {
-    private region: Region;
-    private panzoom: SvgPanZoom.ISvgPanZoom;
+export class FieldMapView implements OnInit, AfterViewInit {
+    public region: Region;
+    public panZoom: SvgPanZoom.Instance;
+    public regionId: number;
 
     constructor(
-        private _routeParams:RouteParams
+        private route: ActivatedRoute,
     ) {
-        //in OnInit
+        // in OnInit
     }
 
-    ngOnInit() {
-        let id:string = this._routeParams.get('region');
-        this.region = Region.fromNumber(parseInt(id, 10));
-    }
-
-    ngAfterViewInit() {
-        //Setup SVG
-        document.getElementById('svgFieldView').addEventListener('load', () => {
-            this.panzoom = svgPanZoom('#svgFieldView', { controlIconsEnabled: true});
+    ngOnInit(): void {
+        this.route.params.subscribe(params => {
+            this.regionId = parseInt(params.id, 10);
+            this.region = Region.fromNumber(this.regionId);
         });
     }
 
-    hasMap() {
-        return this.region && this.region.mapFile;
+    ngAfterViewInit(): void {
+        // Setup SVG
+        document.getElementById('svgFieldView').addEventListener('load', () => {
+            this.panZoom = svgPanZoom('#svgFieldView', { controlIconsEnabled: true});
+        });
+    }
+
+    hasMap(): boolean {
+        return typeof this.region !== 'undefined' && typeof this.region.mapFile === 'string';
     }
 }

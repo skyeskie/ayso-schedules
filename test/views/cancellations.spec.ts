@@ -1,26 +1,33 @@
-import {provide} from 'angular2/core';
-import {
-    describe,
-    beforeEachProviders,
-    fdescribe,
-    it,
-    xdescribe,
-    xit,
-} from 'angular2/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import createSpyObj = jasmine.createSpyObj;
 
-import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS
-} from '../mocks/providers';
-import {ensureViewExists} from '../util/viewUtil';
-
-import {CancellationsView} from '../../src/views/cancellations';
+import { TwitterWidgets } from '../../src/service/twitter';
+import { CancellationsView } from '../../src/views/cancellations';
+import { TitleBarMock } from '../mocks/title-bar.mock';
 
 describe('View: Cancellations', () => {
-    beforeEachProviders(() => [
-        ...MOCK_ROUTER_PROVIDERS,
-        ...MOCK_DAO_PROVIDERS,
-        CancellationsView,
-    ]);
+    let component: CancellationsView;
+    let fixture: ComponentFixture<CancellationsView>;
+    const spy = createSpyObj('TwitterWidgets', ['load']);
 
-    ensureViewExists(CancellationsView);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                CancellationsView,
+                TitleBarMock,
+            ],
+            providers: [
+                { provide: TwitterWidgets, useSpy: spy },
+            ],
+        });
+
+        fixture = TestBed.createComponent(CancellationsView);
+        component = fixture.componentInstance;
+        spy.load.and.returnValue(Promise);
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

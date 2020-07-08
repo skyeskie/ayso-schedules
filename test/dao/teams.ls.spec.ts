@@ -1,61 +1,63 @@
-import {describe, beforeEachProviders, injectAsync, it} from 'angular2/testing';
-import {provide} from 'angular2/core';
+import { async, TestBed } from '@angular/core/testing';
 
-import {teamsInterfaceSpec} from '../interfaces/teams.spec.i';
-import {StaticInitializationService, IBackend} from '../../src/service/backend/static.backend';
-import {LocalStorageTeamsService} from '../../src/dao/ls/teams.ls.service';
-import {MOCK_LOCAL_STORAGE_PROVIDER, MockLocalStorage} from '../mocks/local-storage.mock';
+import { LocalStorageTeamsService, TeamsDAO } from '../../src/dao/ls/teams.ls.service';
 import Team from '../../src/models/team';
+import { IBackend, StaticInitializationService } from '../../src/service/backend/static.backend';
+import { teamsInterfaceSpec } from '../interfaces/teams.spec.i';
+import { ILocalStorage, MOCK_LOCAL_STORAGE_PROVIDER } from '../mocks/local-storage.mock';
+
+let dao: LocalStorageTeamsService;
+let lsMock: ILocalStorage;
+let init: StaticInitializationService;
 
 describe('DAO: TeamsLocalStorage', () => {
-    beforeEachProviders(() => [
-        LocalStorageTeamsService,
-        StaticInitializationService,
-        provide(IBackend, {useExisting: StaticInitializationService}),
-        MOCK_LOCAL_STORAGE_PROVIDER,
-    ]);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                LocalStorageTeamsService,
+                { provide: TeamsDAO, useExisting: LocalStorageTeamsService },
+                StaticInitializationService,
+                { provide: IBackend, useExisting: StaticInitializationService },
+                MOCK_LOCAL_STORAGE_PROVIDER,
+            ],
+        });
 
-    teamsInterfaceSpec(LocalStorageTeamsService);
+        dao = TestBed.inject(LocalStorageTeamsService);
+        lsMock = TestBed.inject<ILocalStorage>(ILocalStorage);
+        init = TestBed.inject(StaticInitializationService);
+    });
+
+    teamsInterfaceSpec();
 
     describe('(ls)', () => {
-        beforeEachProviders(() => [
-            StaticInitializationService,
-            MockLocalStorage,
-        ]);
+        it('runs init with empty string saved', async(() => {
+            lsMock.setItem('ayso-teams', '');
+            spyOn(init, 'getTeams').and.callThrough();
+            return init.getTeams().then((teams: Team[]) => {
+                dao.add(teams);
+            }).then(() => dao.findTeams()).then((teams: Team[]) => {
+                expect(teams.length).toBeGreaterThan(0);
+                expect(init.getTeams).toHaveBeenCalled();
+            });
+        }));
 
-        it('runs init with empty string saved', injectAsync([MockLocalStorage, StaticInitializationService],
-            (mock:MockLocalStorage, init) => {
-                mock.setItem('ayso-teams', '');
-                spyOn(init, 'getTeams').and.callThrough();
-                let dao = new LocalStorageTeamsService(mock);
-                return init.getTeams().then((teams:Team[]) => {
-                    dao.add(teams);
-                }).then(() => dao.findTeams()).then((teams:Team[]) => {
-                    expect(teams.length).toBeGreaterThan(0);
-                    expect(init.getTeams).toHaveBeenCalled();
-                });
-            }
-        ));
+        it('parses saved teams from JSON', async(() => {
+            lsMock.setItem('ayso-teams', init.teamsJSON);
 
-        it('parses saved teams from JSON', injectAsync([MockLocalStorage, StaticInitializationService],
-            (mock:MockLocalStorage, init) => {
-                mock.setItem('ayso-teams', init.teamsJSON);
-                let dao = new LocalStorageTeamsService(mock);
-                return dao.findTeams().then((teams:Team[]) => {
-                    expect(teams.length).toEqual(init.teams.length);
-                });
-            }
-        ));
+            // Re-init
+            const teamsDao = new LocalStorageTeamsService(lsMock);
 
-        it('saves teams as JSON', injectAsync([MockLocalStorage, StaticInitializationService],
-            (mock:MockLocalStorage, init:StaticInitializationService) => {
-                let dao = new LocalStorageTeamsService(mock);
-                return init.getTeams().then((teams:Team[]) => {
-                    dao.add(teams);
-                }).then(() => {
-                    expect(mock.getItem('ayso-teams')).toEqual(init.teamsJSON);
-                });
-            }
-        ));
+            return teamsDao.findTeams().then((teams: Team[]) => {
+                expect(teams.length).toEqual(init.teams.length);
+            });
+        }));
+
+        it('saves teams as JSON', async(() => {
+            return init.getTeams().then((teams: Team[]) => {
+                dao.add(teams);
+            }).then(() => {
+                expect(lsMock.getItem('ayso-teams')).toEqual(init.teamsJSON);
+            });
+        }));
     });
 });

@@ -1,26 +1,29 @@
-import {provide} from 'angular2/core';
-import {
-    describe,
-    beforeEach,
-    beforeEachProviders,
-    it,
-    inject,
-    injectAsync,
-    TestComponentBuilder,
-} from 'angular2/testing';
-import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS
-} from '../mocks/providers';
-import {ensureViewExists} from '../util/viewUtil';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterLink } from '@angular/router';
 
-import {HomeView} from '../../src/views/home';
+import { HomeView } from '../../src/views/home';
+import { MockRouterLink } from '../mocks/RouterLink';
 
 describe('View: Home', () => {
-    beforeEachProviders(() => [
-        ...MOCK_ROUTER_PROVIDERS,
-        ...MOCK_DAO_PROVIDERS,
-        HomeView,
-    ]);
+    let component: HomeView;
+    let fixture: ComponentFixture<HomeView>;
 
-    ensureViewExists(HomeView);
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [HomeView],
+            providers: [
+                { provide: RouterLink, useClass: MockRouterLink },
+            ],
+        }).compileComponents();
+    }));
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(HomeView);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

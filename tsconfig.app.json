@@ -1,0 +1,16 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./build/out-tsc/app",
+    "types": []
+  },
+  "files": [
+    "src/app/boot.ts",
+    "src/app/lib.ts",
+    "node_modules/svg-pan-zoom/dist/svg-pan-zoom.d.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}

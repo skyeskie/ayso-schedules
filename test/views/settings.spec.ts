@@ -1,30 +1,42 @@
-import {provide} from 'angular2/core';
-import {
-    describe,
-    beforeEachProviders,
-    fdescribe,
-    it,
-    xdescribe,
-    xit,
-} from 'angular2/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS
-} from '../mocks/providers';
-import {ensureViewExists} from '../util/viewUtil';
-
-import SettingsView from '../../src/views/settings';
-import {DataControlService} from '../../src/service/data-control.service';
-import {MOCK_LOCAL_STORAGE_PROVIDER} from '../mocks/local-storage.mock';
+import { DataControlService } from '../../src/service/data-control.service';
+import { SettingsView } from '../../src/views/settings';
+import { TitleBarMock } from '../mocks/title-bar.mock';
 
 describe('View: Settings', () => {
-    beforeEachProviders(() => [
-        ...MOCK_ROUTER_PROVIDERS,
-        ...MOCK_DAO_PROVIDERS,
-        MOCK_LOCAL_STORAGE_PROVIDER,
-        DataControlService,
-        SettingsView,
-    ]);
+    let component: SettingsView;
+    let fixture: ComponentFixture<SettingsView>;
+    const settingsSpy = jasmine.createSpyObj(
+        'SettingsDAO',
+        ['getRegionNumber', 'setRegion'],
+    );
+    const dataControlSpy = jasmine.createSpyObj(
+        'DataControlService',
+        ['getLastUpdate', 'reset', 'update'],
+        // ['settings'],
+    );
+    dataControlSpy.settings = settingsSpy;
 
-    ensureViewExists(SettingsView);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                SettingsView,
+                TitleBarMock,
+            ],
+            providers: [
+                { provide: DataControlService, useValue: dataControlSpy },
+            ],
+        });
+
+        settingsSpy.getRegionNumber.and.returnValue(Promise.resolve(49));
+
+        fixture = TestBed.createComponent(SettingsView);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

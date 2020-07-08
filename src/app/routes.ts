@@ -1,20 +1,23 @@
 /* tslint:disable:trailing-comma */
 
-import GameView from '../views/game-detail';
-import RegionListView from '../views/region-list';
-import FieldMapView from '../views/field-map';
-import {HomeView} from '../views/home';
-import FavoritesListView from '../views/favorites-list';
-import {SearchResultsView} from '../views/search-results';
-import {SearchView} from '../views/search';
-import {CancellationsView} from '../views/cancellations';
-import {MapView} from '../views/map';
-import {TeamScheduleView} from '../views/team-schedule';
-import {WeekScheduleView} from '../views/week-schedule';
-import {SchedulesMenuView} from '../views/schedules-menu';
-import SettingsView from '../views/settings';
-import {TeamSelectView} from '../views/team-select';
-import {InitialConfigurationView} from '../views/init-config';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+import { CancellationsView } from '../views/cancellations';
+import { FavoritesListView } from '../views/favorites-list';
+import { FieldMapView } from '../views/field-map';
+import { GameDetailView } from '../views/game-detail';
+import { HomeView } from '../views/home';
+import { InitialConfigurationView } from '../views/init-config';
+import { MapView } from '../views/map';
+import { RegionListView } from '../views/region-list';
+import { SchedulesMenuView } from '../views/schedules-menu';
+import { SearchView } from '../views/search';
+import { SearchResultsView } from '../views/search-results';
+import { SettingsView } from '../views/settings';
+import { TeamScheduleView } from '../views/team-schedule';
+import { TeamSelectView } from '../views/team-select';
+import { WeekScheduleView } from '../views/week-schedule';
 
 /**
  * Main routing configuration
@@ -22,39 +25,42 @@ import {InitialConfigurationView} from '../views/init-config';
  * TODO: Rework routes so that alias points to the default ID
  * TODO: Try to modularize and split the @RouteConfig within different files
  */
-let AYSO_APP_ROUTES = [
-    {path:'/', useAsDefault: true,
+const AYSO_APP_ROUTES = [
+    {path: '', useAsDefault: true,
         name: 'Home', component: HomeView},
-    {path:'/schedules',
+    {path: 'schedules',
         name: 'SchedulesMenu', component: SchedulesMenuView},
-    {path:'/favorites',
+    {path: 'favorites',
         name: 'FavoritesSchedule', component: FavoritesListView},
-    {path:'/search',
+    {path: 'search',
         name: 'DivisionSelect', component: SearchView},
-    {path:'/search/week/:week/results',
+    {path: 'search/week/:week/results',
         name: 'DivisionSchedule', component: SearchResultsView},
-    {path:'/game/:id',
-        name: 'GameDetail', component: GameView},
-    {path:'/regions',
+    {path: 'game/:id',
+        name: 'GameDetail', component: GameDetailView},
+    {path: 'regions',
         name: 'RegionList', component: RegionListView},
-    {path:'/region/:region/field',
+    {path: 'region/:region/field',
         name: 'FieldDetail', component: FieldMapView},
-    {path:'/region/:region/map',//TODO: Fill viewport
+    {path: 'region/:region/map', // TODO: Fill viewport
         name: 'MapDetail', component: MapView},
-    {path:'/teams',
+    {path: 'teams',
         name: 'TeamSelect', component: TeamSelectView},
-    {path:'/team/:id',
+    {path: 'team/:id',
         name: 'TeamSchedule', component: TeamScheduleView},
-    {path:'/week',
+    {path: 'week',
         name: 'CurWeekSchedule', component: WeekScheduleView},
-    {path:'/week/:num',
+    {path: 'week/:num',
         name: 'WeekSchedule', component: WeekScheduleView},
-    {path:'/twitter',
+    {path: 'twitter',
         name: 'TwitterView', component: CancellationsView},
-    {path:'/settings',
+    {path: 'settings',
         name: 'Settings', component: SettingsView},
-    {path:'/init',
+    {path: 'init',
         name: 'Init', component: InitialConfigurationView },
 ];
+
+@NgModule({imports: [RouterModule.forRoot(AYSO_APP_ROUTES)], exports: [RouterModule]})
+export class AppRoutingModule {}
 
 export default AYSO_APP_ROUTES;

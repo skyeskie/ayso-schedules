@@ -1,10 +1,10 @@
-import {PipeTransform, Pipe} from 'angular2/core';
-import {StringJoiner} from 'angular2/src/facade/lang';
-import {ClassLogger, Logger} from '../service/log.decorator';
+import { Pipe, PipeTransform } from '@angular/core';
+
+import { ClassLogger, Logger } from '../service/log.decorator';
 
 //
 //
-//So this pipe puts for custom format: '
+// So this pipe puts for custom format: '
 /**
  * DatePipe requires Intl and has limited usage: http://caniuse.com/#search=intl
  * Issue: https://github.com/angular/angular/issues/3333
@@ -14,38 +14,36 @@ import {ClassLogger, Logger} from '../service/log.decorator';
  * Returned format: 'Mon 12, 3:45'
  */
 @Pipe({name: 'dateMed'})
-class DateMedPipe implements PipeTransform {
-    @ClassLogger() log:Logger;
+export class DateMedPipe implements PipeTransform {
+    @ClassLogger() log: Logger;
 
     months: string[] = [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec',
     ];
 
-    transform(date:Date): string {
-        if(!(date instanceof Date)) {
+    transform(date: Date): string {
+        if (!(date instanceof Date)) {
             this.log.warn('Invalid date object: ' + date);
             return '';
         }
 
-        let sb = new StringJoiner();
-        sb.add(this.months[date.getMonth()]);
-        sb.add(' ');
-        sb.add(date.getDate().toString()); //day of month
-        sb.add(', ');
+        const sb = [];
+        sb.push(this.months[date.getMonth()]);
+        sb.push(' ');
+        sb.push(date.getDate().toString()); // day of month
+        sb.push(', ');
         let hours = date.getHours();
-        if(hours > 12) {
+        if (hours > 12) {
             hours -= 12;
         }
-        sb.add(hours.toString());
-        sb.add(':');
-        let minutes = date.getMinutes();
-        if(minutes < 10) {
-            sb.add('0');
+        sb.push(hours.toString());
+        sb.push(':');
+        const minutes = date.getMinutes();
+        if (minutes < 10) {
+            sb.push('0');
         }
-        sb.add(minutes.toString());
+        sb.push(minutes.toString());
 
-        return sb.toString();
+        return sb.join('');
     }
 }
-
-export { DateMedPipe as default, DateMedPipe }

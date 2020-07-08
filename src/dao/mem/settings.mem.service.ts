@@ -1,26 +1,27 @@
-import {Inject, Injectable} from 'angular2/core';
-import {TeamsDAO, Team} from '../teams.interface';
-import SettingsDAO, {Region, SettingsDataType} from '../settings.interface';
+import { Inject, Injectable } from '@angular/core';
 
-@Injectable()
-class InMemorySettingsService implements SettingsDAO {
+import { Region, SettingsDAO, SettingsDataType, SettingsInterface } from '../settings.interface';
+import { ITeamsDAO, Team, TeamsDAO } from '../teams.interface';
+
+@Injectable({providedIn: 'root'})
+class InMemorySettingsService implements SettingsInterface {
+    public teams: Set<string> = new Set<string>();
+
+    public region: number = undefined;
+
     constructor(
         @Inject(TeamsDAO)
-        private dao: TeamsDAO
+        private dao: ITeamsDAO,
     ) {}
 
-    public teams:Set<string> = new Set<string>();
-
-    public region:number = undefined;
-
     getSavedTeamIDs(): Promise<string[]> {
-        let teamArray: string[] = [];
-        this.teams.forEach((team:string) => teamArray.push(team));
+        const teamArray: string[] = [];
+        this.teams.forEach((team: string) => teamArray.push(team));
         return Promise.resolve(teamArray);
     }
 
     getSavedTeams(): Promise<Team[]> {
-        return this.getSavedTeamIDs().then((teamList:string[]) => this.dao.getTeams(teamList));
+        return this.getSavedTeamIDs().then((teamList: string[]) => this.dao.getTeams(teamList));
     }
 
     saveTeam(team: string): Promise<void> {
@@ -55,11 +56,11 @@ class InMemorySettingsService implements SettingsDAO {
         return Promise.resolve();
     }
 
-    init(preset:SettingsDataType): Promise<void> {
+    init(preset: SettingsDataType): Promise<void> {
         this.region = preset.regionNumber;
         this.teams = new Set<string>();
-        if(typeof preset.savedTeams !== 'undefined') {
-            preset.savedTeams.forEach((team:string) => this.teams.add(team));
+        if (typeof preset.savedTeams !== 'undefined') {
+            preset.savedTeams.forEach((team: string) => this.teams.add(team));
         }
 
         return Promise.resolve();
@@ -76,4 +77,6 @@ class InMemorySettingsService implements SettingsDAO {
     }
 }
 
-export { InMemorySettingsService as default, InMemorySettingsService, SettingsDAO }
+const IN_MEM_SETTINGS_PROVIDER = { provide: SettingsDAO, useClass: InMemorySettingsService };
+
+export { IN_MEM_SETTINGS_PROVIDER, InMemorySettingsService, SettingsDAO };

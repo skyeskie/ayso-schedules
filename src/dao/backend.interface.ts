@@ -1,7 +1,9 @@
-import {OpaqueToken} from 'angular2/core';
-import Team from '../models/team';
+import { InjectionToken } from '@angular/core';
+
 import Game from '../models/game';
-import {SettingsDataType} from './settings.interface';
+import Team from '../models/team';
+
+import { SettingsDataType } from './settings.interface';
 
 /**
  * Interface for DAOs to load initial data for saving to local storage
@@ -16,7 +18,7 @@ interface IBackend {
      * @param curVersion - string version for current data version
      * - Exact use depends on backend implementation
      */
-    init(curVersion?:string): Promise<any>;
+    init(curVersion?: string): Promise<any>;
 
     getDataVersion(): Promise<string>;
 
@@ -39,5 +41,5 @@ interface IBackend {
     getWeekStarts(): Promise<Date[]>;
 }
 
-var IBackend = new OpaqueToken('IBackend');
-export { IBackend as default, IBackend }
+const IBackend = new InjectionToken('IBackend');
+export { IBackend as default, IBackend };

@@ -1,9 +1,10 @@
-import Team from '../models/team';
-import Region from '../models/region';
-import Division from '../models/division';
-import {OpaqueToken} from 'angular2/core';
+import { InjectionToken } from '@angular/core';
 
-interface TeamsDAO {
+import Division from '../models/division';
+import Region from '../models/region';
+import Team from '../models/team';
+
+interface ITeamsDAO {
     /**
      * Gets single team
      * @param id - `Team.code`
@@ -33,8 +34,8 @@ interface TeamsDAO {
      */
     clear(): Promise<void>;
 
-    add(teams:Team[]): Promise<any>;
+    add(teams: Team[]): Promise<any>;
 }
 
-var TeamsDAO = new OpaqueToken('TeamsDAO');
-export {TeamsDAO as default, TeamsDAO, Team, Region, Division};
+const TeamsDAO = new InjectionToken<ITeamsDAO>('ITeamsDAO');
+export { ITeamsDAO, TeamsDAO, Team, Region, Division };

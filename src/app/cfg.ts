@@ -1,6 +1,6 @@
-import {Gender} from '../models/gender';
-import {AgeGroup} from '../models/ageGroup';
-import {Region} from '../models/region';
+import { AgeGroup } from '../models/ageGroup';
+import { Gender } from '../models/gender';
+import { Region } from '../models/region';
 
 AgeGroup.configure(1, 19);
 AgeGroup.configure(2, 16);
@@ -22,15 +22,15 @@ Region.configure(4, 208, 'West Wichita', './img/Fields208.svg', 37.842481, -97.3
 Region.configure(5, 253, 'Valley Center', './img/Fields253.svg', 37.843271, -97.365568);
 Region.configure(6, 491, 'Clearwater', './img/Fields491.svg', 37.503879, -97.490616);
 
-let CFG = {
+const CFG = {
     AGES: AgeGroup.AGES,
     GENDERS: Gender.GENDERS,
     REGIONS: Region.REGIONS,
     URL: 'http://aysoks.org/app/json.php5',
-    UPDATE_CACHE_TIME: 3600, //One hour
+    UPDATE_CACHE_TIME: 3600, // One hour
     init: () => {
-        //No-op function to make sure this is initialized
+        // No-op function to make sure this is initialized
     },
 };
 
-export { CFG as default, CFG }
+export { CFG as default, CFG };

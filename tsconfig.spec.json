@@ -1,0 +1,22 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./build/out-tsc/spec",
+    "types": [
+      "jasmine",
+      "jasmine-expect",
+      "svg-pan-zoom"
+    ]
+  },
+  "files": [
+    "test/test.ts",
+    "src/app/lib.ts"
+  ],
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts",
+    "test/**/*.spec.ts",
+    "test/**/*.d.ts",
+  ]
+}

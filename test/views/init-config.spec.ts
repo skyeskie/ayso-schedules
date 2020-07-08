@@ -1,30 +1,33 @@
-import {provide} from 'angular2/core';
-import {
-    describe,
-    beforeEachProviders,
-    fdescribe,
-    it,
-    xdescribe,
-    xit,
-} from 'angular2/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
-import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS
-} from '../mocks/providers';
-import {ensureViewExists} from '../util/viewUtil';
-
-import {InitialConfigurationView} from '../../src/views/init-config';
-import {DataControlService} from '../../src/service/data-control.service';
-import {MOCK_LOCAL_STORAGE_PROVIDER} from '../mocks/local-storage.mock';
+import { DataControlService } from '../../src/service/data-control.service';
+import { InitialConfigurationView } from '../../src/views/init-config';
+import { MOCK_LOCAL_STORAGE_PROVIDER } from '../mocks/local-storage.mock';
+import { MOCK_DAO_PROVIDERS } from '../mocks/providers';
 
 describe('View: InitConfig', () => {
-    beforeEachProviders(() => [
-        ...MOCK_ROUTER_PROVIDERS,
-        ...MOCK_DAO_PROVIDERS,
-        MOCK_LOCAL_STORAGE_PROVIDER,
-        DataControlService,
-        InitialConfigurationView,
-    ]);
+    let component: InitialConfigurationView;
+    let fixture: ComponentFixture<InitialConfigurationView>;
+    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
-    ensureViewExists(InitialConfigurationView);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [InitialConfigurationView],
+            providers: [
+                ...MOCK_DAO_PROVIDERS,
+                MOCK_LOCAL_STORAGE_PROVIDER,
+                {provide: Router, useValue: routerSpy},
+                DataControlService,
+            ],
+        });
+
+        fixture = TestBed.createComponent(InitialConfigurationView);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

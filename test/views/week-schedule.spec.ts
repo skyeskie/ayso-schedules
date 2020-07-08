@@ -1,32 +1,37 @@
-import {provide} from 'angular2/core';
-import {
-    describe,
-    beforeEachProviders,
-    fdescribe,
-    it,
-    TestComponentBuilder,
-    xdescribe,
-    xit,
-} from 'angular2/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
-import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS, MockComponent
-} from '../mocks/providers';
-import {ensureViewExists, asyncTcb} from '../util/viewUtil';
+import { WeekScheduleView } from '../../src/views/week-schedule';
+import { ActivatedRouteStub, ACTIVATED_ROUTE_STUB_PROVIDER } from '../mocks/activated-route-stub';
+import { TitleBarMock } from '../mocks/title-bar.mock';
 
-import {TitleBarComponent} from '../../src/comp/title-bar.component';
-import TwoTeamsGamesListComponent from '../../src/comp/games2-list.component';
-import {WeekScheduleView} from '../../src/views/week-schedule';
+xdescribe('View: WeekSchedule', () => {
+    let component: WeekScheduleView;
+    let fixture: ComponentFixture<WeekScheduleView>;
+    let route: ActivatedRouteStub;
+    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
-describe('View: TeamSchedule', () => {
-    beforeEachProviders(() => [
-        ...MOCK_ROUTER_PROVIDERS,
-        ...MOCK_DAO_PROVIDERS,
-        WeekScheduleView,
-    ]);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                TitleBarMock,
+                WeekScheduleView,
+            ],
+            providers: [
+                ACTIVATED_ROUTE_STUB_PROVIDER,
+                {provide: Router, useValue: routerSpy},
+            ],
+        });
 
-    ensureViewExists(WeekScheduleView, (tcb:TestComponentBuilder) => {
-        return tcb.overrideDirective(WeekScheduleView, TitleBarComponent, MockComponent)
-                  .overrideDirective(WeekScheduleView, TwoTeamsGamesListComponent, MockComponent);
+        route = TestBed.inject(ActivatedRouteStub);
+        route.setParamMap({ num: '2'});
+
+        fixture = TestBed.createComponent(WeekScheduleView);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
     });
 });

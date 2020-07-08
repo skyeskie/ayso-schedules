@@ -1,15 +1,26 @@
-import { describe, beforeEachProviders } from 'angular2/testing';
-import {provide} from 'angular2/core';
+import { TestBed } from '@angular/core/testing';
 
-import {gamesInterfaceSpec} from '../interfaces/games.spec.i';
-import {InMemoryGamesService} from '../../src/dao/mem/games.mem.service';
-import {StaticInitializationService, IBackend} from '../../src/service/backend/static.backend';
+import { GamesDAO, InMemoryGamesService } from '../../src/dao/mem/games.mem.service';
+import { IBackend, StaticInitializationService } from '../../src/service/backend/static.backend';
+import { gamesInterfaceSpec } from '../interfaces/games.spec.i';
+
+let dao: InMemoryGamesService;
+let init: StaticInitializationService;
 
 describe('DAO: GamesMock', () => {
-    beforeEachProviders(() => [
-        InMemoryGamesService,
-        provide(IBackend, { useClass: StaticInitializationService }),
-    ]);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                InMemoryGamesService,
+                { provide: GamesDAO, useExisting: InMemoryGamesService },
+                StaticInitializationService,
+                { provide: IBackend, useExisting: StaticInitializationService },
+            ],
+        });
 
-    gamesInterfaceSpec(InMemoryGamesService);
+        dao = TestBed.inject(InMemoryGamesService);
+        init = TestBed.inject(StaticInitializationService);
+    });
+
+    gamesInterfaceSpec();
 });

@@ -1,14 +1,10 @@
-import {Component, OnInit, Inject} from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
-import {NgIf} from 'angular2/common';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { GamesDAO, GamesInterface } from '../dao/games.interface';
 import Game from '../models/game';
-import GamesDAO from '../dao/games.interface';
-import WeekBarComponent from '../comp/week-bar.component';
-import TwoTeamsGamesListComponent from '../comp/games2-list.component';
-import {TitleBarComponent} from '../comp/title-bar.component';
 
 @Component({
-    directives: [WeekBarComponent, TwoTeamsGamesListComponent, NgIf, TitleBarComponent],
     template: `
     <title-bar></title-bar>
     <article class="container">
@@ -20,38 +16,42 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     `,
 })
 export class SearchResultsView implements OnInit {
-    //Only used for displaying filter
-    public filters:{week?:number,region?:number,gender?:string,age?:string} = {};
+    // Only used for displaying filter
+    public filters: {week?: number, region?: number, gender?: string, age?: string} = {};
 
-    public games:Game[]=[];
+    public games: Game[] = [];
 
     constructor(
-        private _router:Router,
-        private params:RouteParams,
+        private router: Router,
+        private route: ActivatedRoute,
         @Inject(GamesDAO)
-        private dao:GamesDAO
+        private dao: GamesInterface,
     ) {
-        //In OnInit
+        // In OnInit
     }
 
-    ngOnInit() {
-        let w = parseInt(this.params.get('week'),10);
-        if(!isNaN(w)) {
+    ngOnInit(): void {
+        this.route.params.subscribe(this.handleParams);
+    }
+
+    private handleParams(params): void {
+        const w = parseInt(params.get('week'), 10);
+        if (!isNaN(w)) {
             this.filters.week = w;
         }
-        let r = parseInt(this.params.get('region'),10);
-        if(!isNaN(r)) {
+        const r = parseInt(params.get('region'), 10);
+        if (!isNaN(r)) {
             this.filters.region = r;
         }
-        this.filters.gender = this.params.get('gender');
-        this.filters.age = this.params.get('age');
+        this.filters.gender = params.get('gender');
+        this.filters.age = params.get('age');
 
         this.dao.findGames(this.filters.region, this.filters.age, this.filters.gender, this.filters.week)
-                .then((result:Game[]) => this.games = result);
+            .then((result: Game[]) => this.games = result);
     }
 
-    navWeek(week:number) {
+    navWeek(week: number): void {
         this.filters.week = week;
-        this._router.navigate(['/DivisionSchedule', this.filters]);
+        this.router.navigate(['/DivisionSchedule', this.filters]);
     }
 }

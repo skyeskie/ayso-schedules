@@ -1,16 +1,17 @@
-import {Injectable} from 'angular2/core';
-import WeekCacheInterface, {calculateCurrentWeek} from '../week-cache.interface';
-import {ClassLogger, Logger} from '../../service/log.decorator';
+import { Injectable } from '@angular/core';
+
+import { ClassLogger, Logger } from '../../service/log.decorator';
+import { calculateCurrentWeek, WeekCacheDAO, WeekCacheInterface } from '../week-cache.interface';
 
 @Injectable()
 class InMemoryWeeksService implements WeekCacheInterface {
     @ClassLogger() public log: Logger;
 
-    public initialized:boolean;
+    public initialized: boolean;
     private initializePromise: Promise<any> = null;
-    private weekStarts:Date[] = [];
-    private max:number = 1;
-    private cur:number = 1;
+    private weekStarts: Date[] = [];
+    private max: number = 1;
+    private cur: number = 1;
 
     getMaxWeeks(): number {
         return this.max;
@@ -39,4 +40,6 @@ class InMemoryWeeksService implements WeekCacheInterface {
     }
 }
 
-export { InMemoryWeeksService as default, InMemoryWeeksService, WeekCacheInterface }
+const IN_MEM_WEEK_SERVICE_PROVIDER = { provide: WeekCacheDAO, useClass: InMemoryWeeksService };
+
+export { IN_MEM_WEEK_SERVICE_PROVIDER, InMemoryWeeksService, WeekCacheInterface };

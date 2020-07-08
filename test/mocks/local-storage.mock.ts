@@ -1,22 +1,21 @@
-import {ILocalStorage} from '../../src/service/local-storage.interface';
-import {provide} from 'angular2/core';
-import {ClassLogger, Logger} from '../../src/service/log.decorator';
+import { ILocalStorage } from '../../src/service/local-storage.interface';
+import { ClassLogger, Logger } from '../../src/service/log.decorator';
 
 class MockLocalStorage implements ILocalStorage {
     @ClassLogger() public log: Logger;
 
-    localStore:any = {};
+    localStore: any = {};
 
     key(index: number): string {
         return localStorage[index];
     }
 
-    getItem(key: string): any {
+    getItem(key: string): string {
         return this.localStore[key];
     }
 
-    setItem(key: string, value: any): void {
-        this.log.info('Setting',key,value);
+    setItem(key: string, value: string): void {
+        this.log.info('Setting', key, value);
         this.localStore[key] = value;
     }
 
@@ -29,6 +28,6 @@ class MockLocalStorage implements ILocalStorage {
     }
 }
 
-let MOCK_LOCAL_STORAGE_PROVIDER = provide(ILocalStorage, {useClass: MockLocalStorage});
+const MOCK_LOCAL_STORAGE_PROVIDER = { provide: ILocalStorage, useClass: MockLocalStorage};
 
-export { MockLocalStorage, ILocalStorage, MockLocalStorage as default, MOCK_LOCAL_STORAGE_PROVIDER }
+export { MockLocalStorage, ILocalStorage, MockLocalStorage as default, MOCK_LOCAL_STORAGE_PROVIDER };

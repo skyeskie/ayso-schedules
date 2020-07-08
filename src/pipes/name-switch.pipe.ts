@@ -1,5 +1,6 @@
-import {Pipe, PipeTransform} from 'angular2/core';
-import {ClassLogger, Logger} from '../service/log.decorator';
+import { Pipe, PipeTransform } from '@angular/core';
+
+import { ClassLogger, Logger } from '../service/log.decorator';
 
 /**
  * @method transform
@@ -10,11 +11,11 @@ import {ClassLogger, Logger} from '../service/log.decorator';
  * If doesn't have exactly one comma followed by a space, returns input unchanged
  */
 @Pipe({name: 'NameSwitch'})
-class NameSwitchPipe implements PipeTransform {
-    @ClassLogger() public log:Logger;
+export class NameSwitchPipe implements PipeTransform {
+    @ClassLogger() public log: Logger;
 
-    transform(name:string): any {
-        if(typeof name !== 'string') {
+    transform(name: string): any {
+        if (typeof name !== 'string') {
             this.log.warn('Unexpected parameter for pipe', name);
             return '';
         }
@@ -22,5 +23,3 @@ class NameSwitchPipe implements PipeTransform {
         return name.replace(/^([^,]*), ([^,]*)$/, '$2 $1');
     }
 }
-
-export { NameSwitchPipe as default, NameSwitchPipe }

@@ -1,16 +1,26 @@
-import {describe, beforeEachProviders} from 'angular2/testing';
-import {provide} from 'angular2/core';
+import { TestBed } from '@angular/core/testing';
 
-import {teamsInterfaceSpec} from '../interfaces/teams.spec.i';
-import {InMemoryTeamsService} from '../../src/dao/mem/teams.mem.service';
-import {StaticInitializationService, IBackend} from '../../src/service/backend/static.backend';
+import { InMemoryTeamsService, TeamsDAO } from '../../src/dao/mem/teams.mem.service';
+import { IBackend, StaticInitializationService } from '../../src/service/backend/static.backend';
+import { teamsInterfaceSpec } from '../interfaces/teams.spec.i';
+
+let dao: InMemoryTeamsService;
+let init: StaticInitializationService;
 
 describe('DAO: TeamsMock', () => {
-    beforeEachProviders(() => [
-        InMemoryTeamsService,
-        StaticInitializationService,
-        provide(IBackend, {useExisting: StaticInitializationService}),
-    ]);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                InMemoryTeamsService,
+                { provide: TeamsDAO, useExisting: InMemoryTeamsService },
+                StaticInitializationService,
+                { provide: IBackend, useExisting: StaticInitializationService },
+            ],
+        });
 
-    teamsInterfaceSpec(InMemoryTeamsService);
+        dao = TestBed.inject(InMemoryTeamsService);
+        init = TestBed.inject(StaticInitializationService);
+    });
+
+    teamsInterfaceSpec();
 });

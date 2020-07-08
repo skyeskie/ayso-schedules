@@ -1,8 +1,7 @@
-import {describe, it, fdescribe} from 'angular2/testing';
-import {NameSwitchPipe} from '../../src/pipes/name-switch.pipe';
+import { NameSwitchPipe } from '../../src/pipes/name-switch.pipe';
 
 describe('Pipe: NameSwitch', () => {
-    let pipe:NameSwitchPipe;
+    let pipe: NameSwitchPipe;
 
     beforeEach(() => {
         pipe = new NameSwitchPipe();
@@ -23,7 +22,7 @@ describe('Pipe: NameSwitch', () => {
     it('returns empty for invalid inputs', () => {
         expect(pipe.transform(undefined)).toEqual('');
         expect(pipe.transform(null)).toEqual('');
-        expect(pipe.transform(<any>{ prop: false })).toEqual('');
-        expect(pipe.transform(<any>'')).toEqual('');
+        expect(pipe.transform({ prop: false } as any)).toEqual('');
+        expect(pipe.transform('' as any)).toEqual('');
     });
 });

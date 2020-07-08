@@ -1,14 +1,14 @@
-import {OpaqueToken} from 'angular2/core';
+import { InjectionToken } from '@angular/core';
 
 interface ILocalStorage {
     clear(): void;
-    getItem(key: string): any;
+    getItem(key: string): string;
     key(index: number): string;
     removeItem(key: string): void;
     setItem(key: string, data: string): void;
 }
 
-let ILocalStorage = new OpaqueToken('ILocalStorage');
+const ILocalStorage = new InjectionToken('ILocalStorage');
 
 const LS_KEYS = {
     DATA_VERSION: 'ayso-data-version',
@@ -20,4 +20,4 @@ const LS_KEYS = {
     MAIN_REGION: 'ayso-region',
 };
 
-export {ILocalStorage as default, ILocalStorage, LS_KEYS}
+export { ILocalStorage as default, ILocalStorage, LS_KEYS };

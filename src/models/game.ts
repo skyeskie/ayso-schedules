@@ -1,34 +1,34 @@
-import Team from './team';
 import Division from './division';
 
 export default class Game {
-    public static BYE_TEAM:string = '-';
+    // tslint:disable-next-line:typedef
+    public static BYE_TEAM = '-';
 
     constructor(
-        public id:string,
-        public homeTeam:string,
-        public awayTeam:string,
-        public weekNum:number,
-        public startTime:Date,
-        public region:number,
-        public field:string,
-        public divis?:Division
+        public id: string,
+        public homeTeam: string,
+        public awayTeam: string,
+        public weekNum: number,
+        public startTime: Date,
+        public region: number,
+        public field: string,
+        public divis?: Division,
     ) {}
 
-    static compare(l: Game, r: Game) {
+    static compare(l: Game, r: Game): number {
         return l.startTime.valueOf() - r.startTime.valueOf();
     }
 
-    hasTeam(teamId: string) {
+    hasTeam(teamId: string): boolean {
         return (this.homeTeam === teamId) || (this.awayTeam === teamId);
     }
 
     getOpponent(myTeamId: string): string {
-        if(myTeamId === this.awayTeam) {
+        if (myTeamId === this.awayTeam) {
             return this.homeTeam;
         }
 
-        if(myTeamId === this.homeTeam) {
+        if (myTeamId === this.homeTeam) {
             return this.awayTeam;
         }
 
@@ -40,7 +40,7 @@ export default class Game {
     }
 
     getTeamWithBye(): string {
-        if(!this.isBye()) {
+        if (!this.isBye()) {
             throw new RangeError('This game is not a bye.');
         }
         return this.getOpponent(Game.BYE_TEAM);

@@ -1,8 +1,8 @@
-import {Component, OnInit} from 'angular2/core';
-import {TitleBarComponent} from '../comp/title-bar.component';
+import { Component, OnInit } from '@angular/core';
+
+import { TwitterWidgets } from '../service/twitter';
 
 @Component({
-    directives: [TitleBarComponent],
     styles: [],
     template: `
     <title-bar></title-bar>
@@ -14,18 +14,10 @@ import {TitleBarComponent} from '../comp/title-bar.component';
     `,
 })
 export class CancellationsView implements OnInit {
-    public ngOnInit() {
-        this.addScript();
-    }
 
-    public render() {
-        twttr.widgets.load();
-    }
+    constructor(private twitter: TwitterWidgets) {}
 
-    private addScript() {
-        var s = document.createElement('script');
-        s.setAttribute('src', 'https://platform.twitter.com/widgets.js');
-        s.onload = this.render;
-        document.body.appendChild(s);
+    public ngOnInit(): void {
+        this.twitter.load().then(twttr => twttr.widgets.load());
     }
 }

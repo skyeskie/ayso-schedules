@@ -1,31 +1,29 @@
-import {provide} from 'angular2/core';
-import {
-    describe,
-    beforeEachProviders,
-    fdescribe,
-    it,
-    TestComponentBuilder,
-    xdescribe,
-    xit,
-} from 'angular2/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {
-    MOCK_DAO_PROVIDERS, MOCK_ROUTER_PROVIDERS, MockComponent
-} from '../mocks/providers';
-import {ensureViewExists} from '../util/viewUtil';
-
-import {TitleBarComponent} from '../../src/comp/title-bar.component';
-import TwoTeamsGamesListComponent from '../../src/comp/games2-list.component';
-import RegionListView from '../../src/views/region-list';
+import { RegionListView } from '../../src/views/region-list';
+import { MockRouterLink } from '../mocks/RouterLink';
+import { TitleBarMock } from '../mocks/title-bar.mock';
 
 describe('View: RegionList', () => {
-    beforeEachProviders(() => [
-        ...MOCK_ROUTER_PROVIDERS,
-        ...MOCK_DAO_PROVIDERS,
-        RegionListView,
-    ]);
+    let component: RegionListView;
+    let fixture: ComponentFixture<RegionListView>;
 
-    ensureViewExists(RegionListView, (tcb:TestComponentBuilder) => {
-        return tcb.overrideDirective(RegionListView, TitleBarComponent, MockComponent);
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                MockRouterLink,
+                RegionListView,
+                TitleBarMock,
+            ], // ngFor
+            providers: [],
+        });
+
+        fixture = TestBed.createComponent(RegionListView);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
     });
 });
